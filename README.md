@@ -7,6 +7,11 @@
 </div>
 
 
+
+<img align="right" width="300" src="https://raw.githubusercontent.com/gpizzorno/understanding-ai/ad2d7b134a276c93c59a6a1e3a956c7613fc6021/assets/understanding_ai_thumb.png?token=GHSAT0AAAAAADW3EG66227TUSNL6BRZW26S2NQGESQ">
+
+
+
 Artificial intelligence (AI), large language models (LLMs), and machine learning (ML) are reshaping research across disciplines. This two-day workshop offers humanities and social science researchers a clear, accessible introduction to contemporary AI systems: what they are, how they differ from traditional computing, what they can—and cannot—do, and how to critically assess their outputs. Through guided demonstrations and hands-on exercises participants will gain a grounded understanding of the concepts behind today’s AI tools.
 
 Day 1 focuses on conceptual foundations and hands-on exploration with off-the-shelf tools. Participants will see how training data, model limitations, and evaluation methods shape AI behavior, and will practice identifying common failure modes. Day 1 also introduces practical ways to use LLMs to support programming and technical work as a bridge to the more hands-on workflows of Day 2.
