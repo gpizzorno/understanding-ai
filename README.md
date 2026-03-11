@@ -1,6 +1,8 @@
 # Understanding AI: A Practical Workshop for Humanities and Social Science Researchers
 
-<img align="right" width="300" src="https://raw.githubusercontent.com/gpizzorno/understanding-ai/ad2d7b134a276c93c59a6a1e3a956c7613fc6021/assets/understanding_ai_thumb.png?token=GHSAT0AAAAAADW3EG66227TUSNL6BRZW26S2NQGESQ">
+<p align="right">
+  <img src="understanding_ai_thumb.png" width=300  />
+</p>
 
 Artificial intelligence (AI), large language models (LLMs), and machine learning (ML) are reshaping research across disciplines. This two-day workshop offers humanities and social science researchers a clear, accessible introduction to contemporary AI systems: what they are, how they differ from traditional computing, what they can—and cannot—do, and how to critically assess their outputs. Through guided demonstrations and hands-on exercises participants will gain a grounded understanding of the concepts behind today’s AI tools.
 
