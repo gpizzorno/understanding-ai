@@ -15,4 +15,6 @@ scipy
 seaborn
 sentence-transformers
 spacy
+torch
+transformers
 yfiles_jupyter_graphs
