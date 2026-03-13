@@ -74,7 +74,7 @@ Participants should plan on modest prework in advance of Day 1:
 
 ### Between workshops
 
-A [self-paced online introduction to Python]() is available for participants who want to learn or brush up on programming basics between the two workshop days. Follow the [setup instructions](documents/python_setup.md) to get started.
+A [self-paced online introduction to Python](https://github.com/harvard-digital-history/Introduction-to-Python) is available for participants who want to learn or brush up on programming basics between the two workshop days. Follow the [setup instructions](documents/python_setup.md) to get started.
 
 We recommend going over Units 1 and 2 of the Python introduction before Day 2.
 
