@@ -60,11 +60,11 @@ Participants should plan on modest prework in advance of Day 1:
 |--------------------|----------|
 | 9:30 – 10:00 | Introduction |
 | 10:00 – 10:45 | Activity: Teachable Machine |
-| 10:45 – 11:05 | Discussion: Training and Bias |
-| 11:05 – 11:15 | *Break* |
+| 10:45 – 10:55 | *Break* |
+| 10:55 – 11:15 | Discussion: Training and Bias |
 | 11:15 – 11:45 | Activity: Gandalf  |
 | 11:45 – 12:05 | Discussion: LLM Limitations |
-| 12:00 – 12:25 | *Lunch* |
+| 12:05 – 12:25 | *Lunch* |
 | 12:25 – 1:00 | Activity: NotebookLM  |
 | 1:00 – 1:25 | Discussion: Failure Modes and Assessment  |
 | 1:25 – 1:35 | *Break* |
