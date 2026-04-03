@@ -99,20 +99,14 @@ Before Day 2, participants should:
 - [Set up a Python/Jupyter environment](documents/python_setup.md)
 - Download the workshop materials and confirm the `data/` directory is accessible from the notebook
 
-#### Schedule
+#### Plan
 
-| Time | Activity |
-|------|----------|
-| 9:00 – 9:30 | Introduction and Review |
-| 9:30 – 10:00 | Coding with LLMs |
-| 10:00 – 10:10 | *Break* |
-| 10:10 – 10:55 | Case Study: Setup and NER Model |
-| 10:55 – 11:15 | Case Study: Full Corpus processing |
-| 11:15 – 11:45 | Case Study: Explore Results and Visualize |
-| 11:45 – 12:15 | *Lunch* |
-| 12:15 – 12:45 | Activity: Ground-Truth Annotation |
-| 12:45 – 1:10 | Evaluation |
-| 1:10 – 1:20 | *Break* |
-| 1:20 – 1:35 | Model Comparison |
-| 1:35 – 2:00 | Closing Discussion |
-
+- Introduction and Review
+- Coding with LLMs
+- Setup
+- NLP Pipeline, NER, Pre-trained Models
+- Case Study: RLS Letters
+- Activity: Ground-truth Annotation
+- Model Evaluation
+- Activity: Model Comparison
+- Closing Discussion
