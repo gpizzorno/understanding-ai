@@ -110,3 +110,9 @@ Before Day 2, participants should:
 - Model Evaluation
 - Activity: Model Comparison
 - Closing Discussion
+
+
+## License
+
+The project is licensed under the [MIT License](LICENSE), allowing free use, modification, and distribution.
+
