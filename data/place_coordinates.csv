@@ -1,0 +1,61 @@
+place,mentions,latitude,longitude,geocoded_as,review,note
+Bournemouth,76,50.7446718,-1.8579514,"Bournemouth, Bear Cross, Bournemouth, Christchurch and Poole, England, United Kingdom",correct,
+Samoa,68,-13.7693895,-172.12005,Sāmoa,correct,
+Edinburgh,59,55.9533456,-3.1883749,"City of Edinburgh, Alba / Scotland, United Kingdom",correct,
+Vailima,59,-13.8652832,-171.7620339,"Vailima, Tuamasaga, Sāmoa",correct,RLS's home in Samoa from 1890
+England,33,52.5310214,-1.2649062,"England, United Kingdom",correct,
+Davos,31,46.796198,9.8236892,"Davos, Prättigau/Davos, Graubünden/Grischun/Grigioni, Schweiz/Suisse/Svizzera/Svizra",correct,
+Scotland,28,56.7861112,-4.1140518,"Alba / Scotland, United Kingdom",correct,
+Honolulu,27,21.304547,-157.855676,"Honolulu, Honolulu County, Hawaii, United States",correct,
+Sydney,27,-33.8698439,151.2082848,"Sydney, New South Wales, Australia",correct,
+San Francisco,26,37.7879363,-122.4075201,"San Francisco, California, United States",correct,
+London,22,51.5074456,-0.1277653,"Greater London, England, United Kingdom",correct,
+Hyeres,22,43.1202573,6.1301614,"Hyères, Toulon, Var, Provence-Alpes-Côte d'Azur, France métropolitaine, 83400, France",correct,
+Skerryvore,22,56.3232379,-7.1136975,"Skerryvore, Argyll and Bute, Alba / Scotland, United Kingdom",wrong,"RLS's house in Bournemouth (1885–87)"
+Saranac Lake,21,44.3296606,-74.1311198,"Village of Saranac Lake, Town of Harrietstown, Franklin County, New York, United States",correct,
+New York,20,40.7127281,-74.0060152,"New York, United States",approximate,city or state? geocoded to state
+Var,19,43.4173551,6.2664637,"Var, Provence-Alpes-Côte d'Azur, France métropolitaine, France",correct,
+Monterey,18,36.2231079,-121.387742,"Monterey County, California, United States",approximate,geocoded to county not town
+States,18,39.7837304,-100.445882,United States,approximate,plotted at the centre of the USA
+California,16,36.7014631,-118.755997,"California, United States",correct,
+Treasure Island,16,37.8238061,-122.3704106,"Treasure Island, San Francisco, California, United States",not a place,geocoded to an island in San Francisco Bay
+Hyeres - Les - Palmiers,15,43.1033388,6.1655053,"Les Palmiers, Rue du Ceinturon, L'Ayguade, Hyères, Toulon, Var, Provence-Alpes-Côte d'Azur, France métropolitaine, 83400, France",approximate,
+Paris,14,48.8534951,2.3483915,"Paris, Île-de-France, France métropolitaine, France",correct,
+Upolu,13,20.265102,-155.859612,"Upolu Airport, Coral Reel Place, Hawaiʻi County, Hawaii, 96755, United States",wrong,"the island in Samoa where Vailima is, geocoded to Upolu Airport in Hawaii"
+France,12,46.603354,1.8883335,France,correct,
+S,12,18.2612839,-73.8444985,"Département du Sud, Ayiti",not a place,
+Heriot Row,11,55.9550136,-3.2039513,"Heriot Row, Silvermills, New Town, New Town/Broughton, City of Edinburgh, Alba / Scotland, EH3 6ES, United Kingdom",correct,the Stevenson family home in Edinburgh
+Apia,11,-13.8345235,-171.7630955,"Apia, Tuamasaga, Sāmoa",correct,
+Saranac,10,44.6562669,-73.739108,"Town of Saranac, Clinton County, New York, United States",wrong,"almost certainly Saranac Lake, geocoded to the Town of Saranac, a different place"
+America,9,39.7837304,-100.445882,United States,approximate,plotted at the centre of the USA
+Fontainebleau,9,48.4049375,2.7015872,"Fontainebleau, Seine-et-Marne, Île-de-France, France métropolitaine, 77300, France",correct,
+Europe,9,51.0,10.0,Europe,approximate,continent
+South Seas,9,25.7933379,-80.1288818,"South Seas, Collins Avenue, Miami Beach, Miami-Dade County, Florida, 33139, United States",not a place,
+Newport,9,41.4899827,-71.3137707,"Newport, Newport County, Rhode Island, 02840, United States",approximate,"ambiguous, geocoded to Newport in Rhode Island"
+Pitlochry,8,56.7036239,-3.7355093,"Pitlochry, Perth and Kinross, Alba / Scotland, PH16 5AB, United Kingdom",correct,
+Tahiti,8,-17.6873439,-149.4451681,"Tahiti, Îles du Vent, Polynésie Française, France",correct,
+Bush Street,7,40.8515148,-73.9034648,"Bush Street, Tremont, The Bronx, Bronx County, New York, 10457, United States",wrong,
+Pacific,7,46.5334929,-123.768029,"Pacific County, Washington, United States",wrong,"the ocean, geocoded to Pacific County in Washington"
+Hotel Belvedere,7,42.6332717,18.1314892,"Hotel Belvedere, 28, Frana Supila, Sveti Jakov, Gradski kotar Ploče iza Grada, Dubrovnik, Grad Dubrovnik, Dubrovačko-neretvanska županija, 20108, Hrvatska",wrong,RLS stayed at the Hotel Belvedere in Davos
+Braemar,7,57.0058223,-3.399713,"Braemar, Aberdeenshire, Alba / Scotland, AB35 5YN, United Kingdom",correct,
+Nice,7,43.7009358,7.2683912,"Nice, Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France métropolitaine, France",correct,
+Bonallie Towers,7,,,,not found,"a house in Branksome Park, Bournemouth"
+Branksome Park,7,50.7138571,-1.9153628,"Branksome Park, Poole, Bournemouth, Bournemouth, Christchurch and Poole, England, BH13 6LT, United Kingdom",correct,
+Tautira,7,-27.145219,-109.430579,"Tautira, Isla de Pascua, Provincia de Isla de Pascua, Región de Valparaíso, 2770000, Chile",wrong,"a village on Tahiti where RLS stayed in 1888, geocoded to Easter Island"
+Frankfurt,6,50.1106444,8.6820917,"Frankfurt am Main, Hessen, Deutschland",correct,
+Highland,6,57.5066357,-5.0038367,"Highland, Alba / Scotland, United Kingdom",approximate,region
+Heaven,6,51.507865,-0.1245597,"Heaven, 10A, Villiers Street, Westminster, Covent Garden, City of Westminster, Greater London, England, WC2N 6NG, United Kingdom",not a place,geocoded to a London nightclub
+Fiji,6,-18.1239696,179.0122737,Viti,correct,country: plotted at its centre
+Vai,6,45.6101932,10.3901746,"Vallio Terme, Comunità montana della Valle Sabbia, Brescia, Lombardia, 25080, Italia",not a place,"geocoded to Italy"
+Samoan Islands,6,,,,not found,the Samoan archipelago
+Mentone,5,43.7753495,7.5029213,"Menton, Nice, Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France métropolitaine, 06500, France",correct,the old English name for Menton
+Germany,5,51.1638175,10.4478313,Deutschland,correct,country: plotted at its centre
+Lothianburn,5,55.8901274,-3.2007923,"Lothianburn, Loanhead, Midlothian, Alba / Scotland, EH10 7DU, United Kingdom",correct,
+Alais,5,42.385221,-7.3989682,"Alais, O Castro de Caldelas, Terra de Caldelas, Ourense, Galicia, 32760, España",wrong,"the old name for Alès in France, geocoded to Spain"
+Cha,5,-26.3829647,-60.8816092,"Chaco, Argentina",not a place,
+Am Stein,5,47.375368,9.942275,"Am Stein, Bizau, Bezirk Bregenz, Vorarlberg, 6874, Österreich",wrong,"probably the Chalet am Stein in Davos, geocoded to Austria"
+Glasgow,5,55.861155,-4.2501687,"Glasgow, Glasgow City, Alba / Scotland, G2 1AL, United Kingdom",correct,
+Molokai,5,21.1344895,-157.0071539,"Molokaʻi, Maui County, Hawaii, United States",correct,
+Cunningham,5,37.6439067,-98.4311883,"Cunningham, Kingman County, Kansas, United States",not a place,"a person, geocoded to Kansas"
+Brussels,4,50.8467372,4.352493,"Bruxelles - Brussel, Brussel-Hoofdstad - Bruxelles-Capitale, Région de Bruxelles-Capitale - Brussels Hoofdstedelijk Gewest, België / Belgique / Belgien",correct,
+Wick,4,58.4425516,-3.0915827,"Wick, Highland, Alba / Scotland, KW1 4NB, United Kingdom",correct,
