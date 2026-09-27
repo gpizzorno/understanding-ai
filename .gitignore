@@ -1,10 +1,14 @@
 # other
 .DS_Store
-.notes/
 .vscode/
 *_bak/
 temp_*
-TODO*
+tracking_docs/
+
+# notebook results and user's own annotations
+outputs/
+data/annotations/my_annotations.csv
+data/annotations/second_annotator.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
