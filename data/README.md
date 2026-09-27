@@ -1,0 +1,95 @@
+# Data
+
+The main dataset is a corpus of 462 letters by Robert Louis Stevenson (1850–1894), written between 1863 and 1894, plus files derived from it for the activities in [Unit 2](../README.md#unit-2-using-llms-effectively-for-research) and [Unit 3](../README.md#unit-3-programmatic-approaches).
+
+## Source
+
+The letters come from *The Letters of Robert Louis Stevenson* as transcribed on Wikisource, in two volumes:
+
+- [Volume 1](https://en.wikisource.org/wiki/The_Letters_of_Robert_Louis_Stevenson_Volume_1) (chapters I–VII): 238 letters
+- [Volume 2](https://en.wikisource.org/wiki/The_Letters_of_Robert_Louis_Stevenson_Volume_2) (chapters VIII–XII): 224 letters
+
+The letters are in the public domain. Wikisource makes its transcriptions available under the [Creative Commons Attribution-ShareAlike License](https://creativecommons.org/licenses/by-sa/4.0/).
+
+The corpus was prepared in the [`stevenson_letters`](https://github.com/jaguillette/stevenson_letters) repository, originally for a workshop on web scraping with Python. Its notebook `Getting Data with Python.ipynb` downloads the twelve Wikisource chapter pages and splits them into individual letters. `messy_folder/` contains the further processing into one text file per letter and the parsing of each letter's heading into addressee and date. The files here are taken from there:
+
+- `letters/` is identical to `messy_folder/letter_txt/` in that repository.
+- `letters_metadata.csv` is `messy_folder/letters_data_cleaned.csv`, with the columns renamed (`Month`, `DayOfMonth`, `Year` → `month`, `day`, `year`) and the `location` column converted to the `file_name` of each text file. In that file, dates were normalized from the form in the headings (e.g. `12TH NOVEMBER 1863`) to `NOVEMBER 12 1863`, and split into month, day, and year.
+
+## Contents
+
+| Path | Description | Use |
+|---|---|---|
+| [`letters/`](letters/) | The full corpus: 462 letters, one plain-text file each | Unit 3 notebook |
+| [`letters_metadata.csv`](letters_metadata.csv) | One row per letter: addressee and date | Unit 3 notebook |
+| [`sample_letters/`](sample_letters/) | A sample of 20 letters, with their metadata | Unit 2 NotebookLM activity + Unit 3 annotation |
+| [`extracted_entities.csv`](extracted_entities.csv) | Named entities extracted from all 462 letters by the Unit 3 notebook | Unit 3 notebook (`USE_PRECOMPUTED`) + to build `place_coordinates.csv` |
+| [`place_coordinates.csv`](place_coordinates.csv) | Coordinates for the 60 most-mentioned places, with a manual review of each | Unit 3 notebook + Section 8 (map) |
+| [`annotations/`](annotations/) | Human annotations of named entities, for evaluating the model | Unit 3 notebook + Section 9 |
+
+### `letters/`
+
+One UTF-8 plain-text file per letter, named `wikisource_vol{V}_ch{C}_letter{N}.txt`:
+
+- `V`: the Wikisource volume (1 or 2)
+- `C`: the chapter within the edition (1–12, numbered continuously across both volumes)
+- `N`: the letter's position within the chapter
+
+For example, `wikisource_vol1_ch3_letter14.txt` is the 14th letter in chapter III of Volume 1. Each file starts with the letter's heading (*e.g.,* `Letter: TO SIDNEY COLVIN`), followed by the place and date as printed in the edition (*e.g.,* `[EDINBURGH, AUGUST 1877.]`), and then the text.
+
+### `letters_metadata.csv`
+
+| Column | Description | Example |
+|---|---|---|
+| `addressee` | The recipient, as written in the heading | `SIDNEY COLVIN` |
+| `date` | The date as written | `AUGUST 1877` |
+| `month` | Month, or season | `AUGUST`, `WINTER` |
+| `day` | Day of the month | `23` |
+| `year` | Year | `1877` |
+| `file_name` | The letter's file in `letters/` | `wikisource_vol1_ch3_letter14.txt` |
+
+### `sample_letters/`
+
+Twenty letters chosen for the `NotebookLM` activity in Unit 2, spanning 1868–1893 and a range of correspondents, with their metadata in `selected_letters_metadata.csv` (the same columns as `letters_metadata.csv`, plus `year_num`). They are copies of files in `letters/`. They were selected by [`notebooks/select_sample_letters.py`](../notebooks/select_sample_letters.py), which picks letters across time periods and key correspondents, favouring shorter letters that upload easily. The same 20 letters are used for annotation in Unit 3.
+
+### `extracted_entities.csv`
+
+The output of Sections 1–3 of the [Unit 3 notebook](../notebooks/ner_pipeline.ipynb), saved to avoid the slow step of processing every letter (`USE_PRECOMPUTED = True`). It was produced with the model [`Davlan/bert-base-multilingual-cased-ner-hrl`](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl), with `aggregation_strategy='simple'`, after converting ALL-CAPS words to title case. Re-running the notebook with the same settings reproduces it (verified with `transformers` 5.1.0).
+
+| Column | Description |
+|---|---|
+| `entity_group` | Entity type: `PER`, `LOC`, or `ORG` |
+| `score` | The model's confidence, 0–1 |
+| `start`, `end` | Character positions of the entity in the letter text |
+| `file_name` | The letter's file in `letters/` |
+| `text` | The entity as extracted (the *surface form*, not resolved to a canonical name) |
+| `addressee`, `date`, `month`, `day`, `year` | Joined from `letters_metadata.csv` |
+
+This is raw model output with errors preserved, since the notebook explores and evaluates them.
+
+### `place_coordinates.csv`
+
+Coordinates for the 60 locations most often extracted in `extracted_entities.csv`, used for the map in the Unit 3 notebook. They were looked up automatically with OpenStreetMap's [Nominatim](https://nominatim.org) geocoder by [`notebooks/build_place_coordinates.py`](../notebooks/build_place_coordinates.py), then each row was checked manually.
+
+| Column | Description |
+|---|---|
+| `place` | The place name as extracted |
+| `mentions` | Number of times it was extracted |
+| `latitude`, `longitude` | Coordinates returned by the geocoder (empty if not found) |
+| `geocoded_as` | The place the geocoder matched |
+| `review` | Result of the hand check: `correct`, `approximate`, `wrong`, `not a place`, or `not found` |
+| `note` | What the place actually is, and what went wrong |
+
+The geocoder's answers are kept as returned, **including the incorrect ones**, since the map shows what an unchecked automatic pipeline would have produced.
+
+### `annotations/`
+
+Human annotations of named entities, used as ground truth to evaluate the model in the Unit 3 notebook. See the [annotation activity](../units/unit_3/ground_truth_annotation.md) for the guidelines.
+
+| File | Description |
+|---|---|
+| `annotation_template.csv` | An empty file with the three columns: copy it to `my_annotations.csv` to start annotating |
+| `person_1_annotations.csv` | Annotations of sample letters by Person 1 |
+| `person_2_annotations.csv` | Annotations of sample letters by Person 2 |
+
+Columns: `file_name` (the letter), `entity_text` (the entity exactly as written in the letter), `entity_type` (`PER`, `LOC`, or `ORG`).
