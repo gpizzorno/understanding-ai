@@ -1,0 +1,127 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "understanding-ai"
+version = "1.0.0"
+description = "Understanding AI: A practical Workshop for Humanities and Social Science Researchers"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Gabe Pizzorno" }]
+
+dependencies = [
+    "notebook>=7",        # Jupyter (tested: 7.5.3)
+    "ipywidgets>=8",      # progress bars in Jupyter (tested: 8.1.8)
+    "pandas>=2.0",        # tested: 3.0.0
+    "matplotlib>=3.7",    # tested: 3.10.8
+    "seaborn>=0.12",      # tested: 0.13.2
+    "networkx>=3.0",      # tested: 3.6.1
+    "scikit-learn>=1.2",  # Cohen's kappa (tested: 1.8.0)
+    "folium>=0.14",       # interactive map (tested: 0.20.0)
+    "transformers>=4.40", # tested: 5.1.0
+    "torch>=2.1",         # model backend for transformers (tested: 2.10.0)
+]
+
+[project.urls]
+Repository = "https://github.com/gpizzorno/understanding-ai"
+
+# This repository is a set of notebooks and documents, not an importable Python package:
+# installing it only installs the dependencies above.
+[tool.setuptools]
+packages = []
+
+# https://github.com/charliermarsh/ruff#configuration
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+ignore = [
+  "D100",   # missing docstring in public module
+  "D104",   # missing docstring in public package
+  "FBT002", # boolean default in function definition
+  "RUF012", # mutable-class-default annotated with ClassVar
+  "T201", # print statements
+  "PTH123", # use Pathlib instead of built in open
+]
+select = [
+  "A",
+  "ARG",
+  "B",
+  "BLE",
+  "C4",
+  "C90",
+  "COM",
+  "D",
+  "DTZ",
+  "DJ",
+  "E",
+  "EM",
+  "F",
+  "FBT",
+  "FLY",
+  "G",
+  "I",
+  "ICN",
+  "INP",
+  "INT",
+  "ISC",
+  "N",
+  "PGH",
+  "PIE",
+  "PLC",
+  "PLE",
+  "PLR",
+  "PLW",
+  "PT",
+  "PTH",
+  "Q",
+  "RET",
+  "RUF",
+  "RSE",
+  "SLF",
+  "SIM",
+  "T",
+  "T10",
+  "T20",
+  "TID",
+  "TRY",
+  "UP",
+  "W",
+]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "single"
+
+[tool.ruff.format]
+quote-style = "single" # Prefer single quotes over double quotes
+  
+[tool.ruff.lint.isort]
+section-order = [
+  "future",
+  "standard-library",
+  "third-party",
+  "first-party",
+  "local-folder",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402"] # ignore import violations in init files
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 130 # to detect extra-long lines that the formatter can't automatically split
+
+[tool.ty.environment]
+python-version = "3.10"
+python-platform = "linux"
+root = ["."]
+
+[tool.ty.src]
+exclude = [
+  ".venv/",
+]

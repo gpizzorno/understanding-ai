@@ -1,20 +1,6 @@
-en_core_web_md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl
-gliner
-ipython
-ipywidgets
-matplotlib
-networkx
-notebook
-numpy
-pandas
-RapidFuzz
-regex
-scikit-learn
-scikit-network
-scipy
-seaborn
-sentence-transformers
-spacy
-torch
-transformers
-yfiles_jupyter_graphs
+# Dependencies are declared in pyproject.toml. This file just installs the project.
+#
+#   python3.11 -m venv .venv
+#   .venv/bin/pip install -r requirements.txt
+#
+-e .
