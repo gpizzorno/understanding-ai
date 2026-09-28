@@ -7,8 +7,9 @@ tracking_docs/
 
 # notebook results and user's own annotations
 outputs/
-data/annotations/my_annotations.csv
-data/annotations/second_annotator.csv
+data/annotations/*.csv
+!data/annotations/annotation_template.csv
+!data/annotations/person_*_annotations.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
