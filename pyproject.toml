@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "understanding-ai"
 version = "1.0.0"
-description = "Understanding AI: A practical Workshop for Humanities and Social Science Researchers"
+description = "Understanding AI: A Practical Workshop for Humanities and Social Science Researchers"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
@@ -27,6 +27,7 @@ dependencies = [
 
 [project.urls]
 Repository = "https://github.com/gpizzorno/understanding-ai"
+Documentation = "https://gpizzorno.github.io/understanding-ai/"
 
 # This repository is a set of notebooks and documents, not an importable Python package:
 # installing it only installs the dependencies above.
