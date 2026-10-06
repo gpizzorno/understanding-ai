@@ -1,0 +1,84 @@
+---
+title: 'Language Models'
+---
+
+[Basic Concepts](basic_concepts.qmd) described how machine learning systems in general learn from examples. This page turns to the kind of system behind *ChatGPT*, *Claude*, and *Gemini*: the **language model**. It follows a piece of text through one: how it's broken into tokens, how tokens become numbers, how a transformer relates them to each other, and, finally, how the model produces text of its own. That last step explains much of what makes LLMs useful, and much of what makes them unreliable.
+
+## Tokens
+
+A language model processes text by breaking it into small pieces called [tokens](https://en.wikipedia.org/wiki/Large_language_model#Tokenization): whole words, parts of words, or punctuation. A common word is usually a single token; a rare name or an unusual spelling may be split into several.
+
+![](../assets/tokenization.gif){.img-right width=300}
+
+Here is how the tokenizer used by OpenAI's GPT-4o model splits some examples, most of them from [Stevenson's letters](../reference/letters.qmd) (`|` marks the boundaries between tokens):
+
+Common words, spaces included, are single tokens. Names, ALL-CAPS text, and old spellings are broken into fragments that often don't correspond to anything meaningful. The same text can even be split differently depending on what comes before it.
+
+Languages that build long words out of many parts show this even more clearly. Turkish *evlerimizden* (<span class="quote">from our houses</span>) happens to split along its meaningful parts: <span class="token">ev</span> (house) \| <span class="token">ler</span> (plural) \| <span class="token">imiz</span> (our) \| <span class="token">den</span> (from). Finnish *taloissanikin* (<span class="quote">in my houses, too</span>) doesn't: <span class="token">t</span> \| <span class="token">alo</span> \| <span class="token">issan</span> \| <span class="token">ikin</span>. Tokenizers are built from the statistics of their training text, which is mostly English, so text in other languages usually takes more tokens, and is split less meaningfully. That affects how well models handle those languages, and how much it costs to use them.
+
+## Word Embeddings
+
+You might be wondering: if a neural network works by adding and multiplying numbers along its connections (see [Neural Networks and Weights](basic_concepts.qmd#neural-networks-and-weights)), how can it do anything with *words*, or even tokens? It can't, directly. Before a network can do anything with text, every token has to become numbers.
+
+![](../assets/word_embeddings.gif){width=949}
+
+That is what an *embedding* does. Each token (here: <span class="token">wolf</span>, <span class="token">dog</span>, <span class="token">cat</span>, <span class="token">banana</span>, <span class="token">apple</span>) is turned into a list of numbers. The animation shows six numbers per word, real models use hundreds or thousands. Each list places its word as a point in a space with that many dimensions, and in that space:
+
+- *Words with related meanings end up close together.* <span class="token">Wolf</span>, <span class="token">dog</span>, and <span class="token">cat</span> form one cluster; <span class="token">banana</span> and <span class="token">apple</span> another.
+- *Directions in the space can capture relationships*, such as the difference between singular and plural, or between a country and its capital.
+
+Nobody decides these numbers by hand. They are learned during training, in exactly the same way as the weights, in fact, they *are* weights. A model ends up placing words close together when they occur in similar contexts, which is why the positions reflect meaning. It's also why they reflect the assumptions in the training text, as [Model Training](model_training.qmd#bias-in-training-data) showed.
+
+Embeddings give models a way to work with meaning numerically, capturing subtle relationships among words, phrases, and concepts. A language model doesn't understand language as a human does, but it builds a mathematical model of language patterns that can convincingly mimic understanding. That makes it a powerful tool for exploring and generating text, and one that needs careful checking.
+
+## From Sequence to Sequence: Transformers
+
+Many language tasks turn one sequence of tokens into another. The classic example is translation:
+
+![](../assets/encoder-decoder_translation.gif){width=600}
+
+<span class="quote">They are watching.</span> is split into tokens (<span class="token">They</span>, <span class="token">are</span>, <span class="token">watching</span>, <span class="token">.</span>), which form the *input sequence*. An *encoder* reads the input sequence and turns it into an internal representation of its meaning (numbers, like everything else in a network). A *decoder* then uses that representation to produce the *output sequence*, one token at a time: <span class="token">Ils</span>, <span class="token">regardent</span>, <span class="token">.</span> The same design works for other tasks that turn one text into another, such as turning a question into an answer, or a long text into a summary.
+
+What sits inside the encoder and decoder has changed over time, and each change addressed a weakness of the one before:
+
+- [**Recurrent neural networks (RNNs)**](https://en.wikipedia.org/wiki/Recurrent_neural_network) read the input one token at a time, carrying a running summary forward from each token to the next. By the end of a long sentence, the beginning has largely faded from that summary, so RNNs struggled to connect words that were far apart.
+- [**Long short-term memory (LSTM)**](https://en.wikipedia.org/wiki/Long_short-term_memory) networks added internal *gates* that decide, at each step, what to keep, what to forget, and what to pass on. They could carry information much further, and were the standard for translation in the mid-2010s. But they still processed text one token at a time, which made them slow to train on large amounts of text.
+- [**Transformers**](https://en.wikipedia.org/wiki/Transformer_(deep_learning)) (introduced in 2017) replaced step-by-step reading with a mechanism called *attention*, which lets the model weigh every token against every other token at once. This way, it can relate words and ideas regardless of how far apart they are, and it can process a whole passage in parallel, which made training on vast amounts of text practical. This is what makes modern models so much more coherent over long passages.
+
+The original transformer kept the encoder–decoder design. Most of today's chat models use only the decoder half: they read everything so far (your prompt and their own output) and generate the next token, one at a time, each time attending back over the whole text. The “GPT” in ChatGPT stands for *Generative Pre-trained Transformer*.
+
+## How a Language Model Writes
+
+Generating <span class="quote">the next token</span> is worth understanding precisely, because so much of LLMs' behaviour follows from it.
+
+At each step, the model doesn't choose a single next token. It produces a *probability for every token in its vocabulary*: how likely each one is to come next, given everything so far. Here is a real example, from a small open language model, completing a sentence that could come from one of Stevenson's letters. Look at the middle panel first:
+
+![](../assets/next_token_probabilities.gif){width=700}
+
+The model gives <span class="token">week</span> a 41% chance of coming next, <span class="token">month</span> 28%, <span class="token">year</span> 17%, and so on down a long tail of thousands of other tokens. Notice <span class="token">semester</span> and <span class="token">school</span> in that tail: the model has no idea the sentence is from the 1880s. It has learned what usually follows these words in the (mostly modern) text it was trained on.
+
+One token is then picked from that distribution, and added to the text; then the whole process repeats for the next token, and the next.
+
+How the token is picked matters more than you might expect:
+
+- If the model always picked the single most likely token, its writing would be flat, predictable, and prone to repeating itself. Human writing isn't like that: people often choose words that are good but not the most obvious.
+- So the choice is usually *random, weighted by the probabilities* (called *sampling*): likely tokens are picked most often, but less likely ones sometimes win. This is a large part of why LLM output reads as natural and varied.
+- A setting called `temperature` controls how adventurous the choice is. The left and right panels show the same probabilities recalculated at a low and a high temperature. At low temperature, the most likely tokens dominate (<span class="quote">week</span> rises to 60%); at high temperature, the choice spreads out to less likely ones (<span class="quote">week</span> falls to 19%), and the text becomes more surprising, and eventually incoherent.
+
+Two consequences you'll meet again and again:
+
+- *The same prompt can produce different answers.* There's a random choice at every token, and a different early choice sends the rest of the text in a different direction.
+- *Nothing in this process checks facts.* The model picks likely text. Likely and true often coincide, since the model learned from an enormous amount of human writing, but not always, and the model has no separate way of telling the difference.
+
+This is why *LLMs are not general intelligences.* An LLM is a very sophisticated pattern predictor trained on text. The model itself has no goals and no memory between conversations (products may add memory features on top), and it only knows what was in its training data, unless a tool supplies it with documents or search results. Its outputs can look like careful reasoning, and are sometimes useful as reasoning, but they are produced by predicting likely text, not by checking facts or following logic step by step. [LLM Behaviour](llm_behavior.qmd) takes up what follows from this.
+
+## Key Takeaways
+
+- Language models work with tokens: whole words, parts of words, or punctuation. Names, ALL-CAPS text, old spellings, and languages other than English are often split into meaningless fragments.
+- Before a network can use them, tokens become embeddings: lists of numbers that place related words close together. Embeddings are learned like any other weights, so they reflect the patterns, and the assumptions, of the training text.
+- Transformers use attention to relate every token to every other at once, which is what lets modern models stay coherent over long passages.
+- An LLM writes by repeatedly assigning a probability to every possible next token and picking one, with some randomness. That's why its output is fluent and varied, why the same prompt can give different answers, and why nothing in the process checks whether the result is true.
+
+## Next
+
+Try [Hack Merlin](hack_merlin.qmd), which turns from how a language model works to a practical question: how well can one be made to follow rules?

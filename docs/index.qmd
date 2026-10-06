@@ -1,0 +1,20 @@
+---
+title: 'Understanding AI'
+subtitle: A Practical Workshop for Humanities and Social Science Researchers
+toc: false
+body-classes: home-page
+---
+
+![](assets/understanding_ai_thumb.png){.img-right width=300}
+
+AI tools are reshaping research across disciplines. These materials introduce humanities and social science researchers to how contemporary AI systems work, what they can and cannot do, and how to use them critically in your own research. You don't need a technical background: the first two units need only a web browser, and the third walks you through a Python case study step by step.
+
+The materials combine short readings with hands-on activities, and a running example throughout: the letters of Robert Louis Stevenson.
+
+::: {.callout-note}
+## The Running Example
+
+Robert Louis Stevenson (1850–1894), the author of *Treasure Island* and *Strange Case of Dr Jekyll and Mr Hyde*, was a prolific letter writer. A collection of 462 of his letters, written between 1863 and 1894, runs through all three units: you'll question them with a chat assistant, explore them with an AI research tool, and analyse them with a Python pipeline. [More about the letters](reference/letters.qmd)
+:::
+
+

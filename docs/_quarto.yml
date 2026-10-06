@@ -31,6 +31,24 @@ website:
     contents:
       - text: Home
         href: index.qmd
+      - section: 'Unit 1: Key Concepts'
+        href: unit_1/index.qmd
+        contents:
+          - text: Basic Concepts
+            href: unit_1/basic_concepts.qmd
+          - text: 'Activity: Teachable Machine'
+            href: unit_1/teachable_machine.qmd
+          - section: Model Training
+            href: unit_1/model_training.qmd
+            contents:
+              - text: Evaluation Metrics
+                href: unit_1/evaluation_metrics.qmd
+          - text: Language Models
+            href: unit_1/language_models.qmd
+          - text: 'Activity: Hack Merlin'
+            href: unit_1/hack_merlin.qmd
+          - text: LLM Behaviour
+            href: unit_1/llm_behavior.qmd
 
 format:
   html:

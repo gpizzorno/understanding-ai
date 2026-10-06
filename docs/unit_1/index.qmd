@@ -1,0 +1,53 @@
+---
+title: 'Unit 1: Key Concepts'
+toc: false
+---
+
+This unit covers what AI systems are, how they learn from data, and why they behave the way they do. You'll train a small model yourself with [Teachable Machine](teachable_machine.qmd), and try to talk a chatbot out of its secret password in [Hack Merlin](hack_merlin.qmd).
+
+::: {.callout-tip collapse="true"}
+# Requirements
+
+For this unit, you'll need:
+
+   - A computer with a modern web browser
+   - A webcam or microphone for the Teachable Machine activity
+:::
+
+::: {.callout-note collapse="true"}
+# Learning Objectives
+
+- Distinguish key categories: artificial intelligence, machine learning, large language models, and generative AI
+- Describe, at a high level, how neural networks and language models work (weights, tokens, embeddings, attention, transformers), and how an LLM generates text
+- Explain, at a high level, how models are trained, what training data is, and why it matters
+- Recognize the difference between supervised, unsupervised, and reinforcement learning
+- Apply basic evaluation concepts (training/test split, overfitting, accuracy, precision, recall, F1) in a research-appropriate way
+- Explain why LLM guardrails are brittle, and what prompt injection demonstrates about model behaviour
+- Explain why LLMs produce fluent but unreliable output, why their answers vary, and why benchmarks aren't enough to judge them
+:::
+
+## Contents
+
+1. **Reading: [Basic Concepts](basic_concepts.qmd)**
+   - Terminology: AI, machine learning, deep learning, generative AI, and LLMs
+   - From rules to examples: how machine learning differs from traditional software
+   - Neural networks and weights
+   - Types of machine learning: supervised, unsupervised, and reinforcement learning
+2. **Activity: [Teachable Machine](teachable_machine.qmd)**: training a model from scratch
+3. **Reading: [Model Training](model_training.qmd)**
+   - The training loop: loss, gradient descent, and epochs
+   - Overfitting and generalization
+   - Testing: training, development, and test sets
+   - Measuring performance: accuracy, precision, recall, and F1 (with a [worked example](evaluation_metrics.qmd))
+   - The black box problem, and how bias enters through data collection, labelling, and model design
+4. **Reading: [Language Models](language_models.qmd)**
+   - Tokens, and how names, old spellings, and other languages are split
+   - Word embeddings: turning tokens into numbers
+   - From sequence to sequence: RNNs, LSTMs, and transformers
+   - How a language model writes: next-token probabilities, sampling, and temperature
+5. **Activity: [Hack Merlin](hack_merlin.qmd)**: prompt injection and LLM guardrails
+6. **Reading: [LLM Behaviour](llm_behavior.qmd)**
+   - Plausible, not true: hallucination, confidence, and variation between answers
+   - Learned patterns all the way down: why guardrails can be talked around
+   - You can see what a model does, not why
+   - Why benchmarks aren't enough, and why fluency is not correctness
