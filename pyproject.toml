@@ -9,7 +9,7 @@ description = "Understanding AI: A Practical Workshop for Humanities and Social 
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
-license-files = ["LICENSE"]
+license-files = ["LICENSE", "LICENSE-docs"]
 authors = [{ name = "Gabe Pizzorno" }]
 
 dependencies = [
@@ -42,8 +42,11 @@ extend-include = ["*.ipynb"]
 
 [tool.ruff.lint]
 ignore = [
+  "COM812", # missing trailing comma (conflicts with the formatter)
   "D100",   # missing docstring in public module
   "D104",   # missing docstring in public package
+  "D203",   # blank line before class docstring (incompatible with D211)
+  "D213",   # multi-line docstring summary on the second line (incompatible with D212)
   "FBT002", # boolean default in function definition
   "RUF012", # mutable-class-default annotated with ClassVar
   "T201", # print statements
@@ -113,6 +116,7 @@ section-order = [
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["E402"] # ignore import violations in init files
+"docs/_scripts/*.py" = ["INP001"] # standalone scripts run by the site build, not a package
 
 [tool.ruff.lint.pycodestyle]
 max-line-length = 130 # to detect extra-long lines that the formatter can't automatically split

@@ -1,0 +1,43 @@
+# Website built with Quarto (https://quarto.org).
+#
+# Preview locally:   quarto preview docs
+# Build locally:     quarto render docs      (output in docs/_site/)
+# Published by .github/workflows/website.yml when docs/ or the notebook changes on main.
+#
+# The facilitator guide, data, and code are not part of the site: they stay in the repository,
+# and pages link to them on GitHub.
+
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - assets/
+
+website:
+  title: Understanding AI
+  description: A Practical Workshop for Humanities and Social Science Researchers
+  site-url: https://gpizzorno.github.io/understanding-ai/
+  repo-url: https://github.com/gpizzorno/understanding-ai
+  page-navigation: true
+  bread-crumbs: true
+  navbar:
+    search: true
+    tools:
+      - icon: github
+        href: https://github.com/gpizzorno/understanding-ai
+        aria-label: GitHub repository
+  sidebar:
+    style: docked
+    contents:
+      - text: Home
+        href: index.qmd
+
+format:
+  html:
+    theme:
+      light: cosmo
+    toc: true
+    toc-title: On this page
+    code-copy: true
+    code-overflow: wrap
+    link-external-newwindow: false
