@@ -1,0 +1,175 @@
+---
+title: 'Setting Up Python'
+---
+
+Unit 3 uses [Python](https://www.python.org/), in [Jupyter notebooks](https://jupyter.org) (documents that mix code, its output, and explanatory text). You write and run code in small cells, one at a time, and see the result immediately below each one, which makes them forgiving for learning: run a cell, see what happens, change it, run it again.
+
+This page covers two things: how much Python you need, and how to get a working setup.
+
+## Required Python Knowledge
+
+You won't write Python from scratch in this unit. You'll read, run, and adapt a notebook that has already been written, and ask an LLM to explain anything that isn't clear ([Coding with LLMs](coding_with_llms.qmd)). But you need to be able to follow what the code is doing. Pick the route that best fits you:
+
+- **You already use Python:** skip ahead to [the setup options](#setup-options).
+- **You've used some Python, or another programming language, before:** read the refresher below, and check that each idea in it looks familiar.
+- **You've never programmed:** work through the first two units of this [self-paced introduction to Python](https://github.com/gpizzorno/introduction-to-python) before you start the case study. Then read the refresher below, as a check.
+
+::: {.callout-note collapse="true"}
+## A Quick Python Refresher
+
+Python reads relatively close to plain English. Five ideas are enough to follow the case study:
+
+- **Variables** store a value under a name:
+
+  ```python
+  text = 'MY DEAR COLVIN'
+  ```
+
+- **Lists** hold a collection of items, in order:
+
+  ```python
+  letters = ['wikisource_vol1_ch1_letter1.txt', 'wikisource_vol1_ch1_letter2.txt']
+  ```
+
+- **Loops** do something for each item in a list:
+
+  ```python
+  for letter in letters:
+      print(letter)
+  ```
+
+- **Functions** are reusable, named blocks of code. They take inputs and return a result:
+
+  ```python
+  def count_words(text):
+      return len(text.split())
+
+  count_words(text)  # 3
+  ```
+
+- **Libraries** are code that someone else has written, which you import and use. The case study uses `pandas` for tables and `transformers` for the model:
+
+  ```python
+  import pandas as pd
+
+  letters = pd.read_csv('../data/letters_metadata.csv')
+  ```
+
+Notice the indentation: in Python, the lines that belong to a loop or a function are indented under it. If any of this is unfamiliar, the [self-paced introduction](https://github.com/gpizzorno/introduction-to-python) covers it properly.
+:::
+
+## Setup Options
+
+There are three ways to get set up. If you're not sure, start with [Google Colab](#option-1-google-colab).
+
+<div class="table-container table-90">
+
+| Option | Install? | Good for |
+|---|---|---|
+| [Google Colab](#option-1-google-colab) | No, runs in the browser | Getting started quickly, or a computer where you can't install software |
+| [Anaconda](#option-2-anaconda) | Yes, one installer | A permanent local setup, with a graphical launcher |
+| [Plain Python](#option-3-plain-python) | Yes, command line | People comfortable with a terminal |
+: {.sm}
+
+</div>
+
+## Option 1: Google Colab
+
+[Google Colab](https://colab.research.google.com) runs notebooks on Google's computers, and you see the results in your browser. You only need a Google account.
+
+1. Open the [case study notebook on GitHub](https://github.com/gpizzorno/understanding-ai/blob/main/notebooks/ner_pipeline.ipynb) and click the <span class="command">Open in Colab</span> badge at the top.
+2. Run the first cell. It downloads a copy of this repository into your Colab session, so the notebook can find the data.
+3. Carry on from there. The libraries the notebook needs are already installed in Colab.
+
+::: {.callout-warning}
+## About Colab
+
+Two things to know about Colab:
+
+- **Your session is temporary.** When it ends, the downloaded data and anything you created (such as your annotations) are deleted. Download anything you want to keep (<span class="command">File</span> → <span class="command">Download</span>), or save a copy of the notebook to your Google Drive (<span class="command">File</span> → <span class="command">Save a copy in Drive</span>).
+- **Annotations:** to use your own annotations, upload your `my_annotations.csv` file to `understanding-ai/data/annotations/` in Colab's file browser (the folder icon on the left) before running Section 9.
+:::
+
+## Option 2: Anaconda
+
+The [Anaconda distribution](https://www.anaconda.com/download) installs Python, Jupyter, and many common libraries in one go, on Windows, macOS, or Linux.
+
+1. Download and run the installer from [anaconda.com/download](https://www.anaconda.com/download). You can install it like any other program (the defaults are fine).
+2. Get a copy of this repository: on its GitHub page, click <span class="command">Code</span> → <span class="command">Download ZIP</span> and unzip it (or use `git clone` if you know git).
+3. Open <span class="command">Anaconda Prompt</span> (Windows) or <span class="command">Terminal</span> (macOS and Linux), move into the repository folder, and install the libraries the notebooks need (the `.` means *this folder*, the list of libraries is in `pyproject.toml`):
+
+   ```bash
+   cd path/to/understanding-ai
+   pip install .
+   ```
+
+4. Start Jupyter from the same window:
+
+   ```bash
+   jupyter notebook
+   ```
+
+   Your browser opens with a list of files. Open `notebooks/ner_pipeline.ipynb`.
+
+You can also start Jupyter from the <span class="command">Anaconda Navigator</span> app instead of the command line, but you still need to run step 3 once.
+
+## Option 3: Plain Python
+
+If you're comfortable with a terminal, you can use a standard Python installation and a *virtual environment* (an isolated set of libraries for this project, so it doesn't interfere with anything else on your computer).
+
+1. Install **Python 3.12** or later.
+   - **macOS:** with [Homebrew](https://brew.sh): `brew install python@3.12`, or use the installer from [python.org](https://www.python.org/downloads/).
+   - **Windows:** use the installer from [python.org](https://www.python.org/downloads/), and tick <span class="command">Add python.exe to PATH</span>.
+   - **Linux:** use your distribution's package manager (for example, `sudo apt install python3 python3-venv`).
+2. Get this repository: `git clone https://github.com/gpizzorno/understanding-ai.git`, or download and unzip it from [GitHub](https://github.com/gpizzorno/understanding-ai).
+3. Create and activate a virtual environment in the repository folder:
+
+   macOS and Linux:
+
+   ```bash
+   cd understanding-ai
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+
+   Windows (Command Prompt):
+
+   ```bat
+   cd understanding-ai
+   py -m venv .venv
+   .venv\Scripts\activate
+   ```
+
+4. **Install the libraries** listed in `pyproject.toml`:
+
+   ```bash
+   pip install .
+   ```
+
+5. **Start Jupyter:**
+
+   ```bash
+   jupyter notebook
+   ```
+
+Each time you come back, activate the environment again (step 3's last line) before starting Jupyter.
+
+## Checking Your Setup
+
+Whichever option you chose:
+
+1. Open `notebooks/ner_pipeline.ipynb`.
+2. Run the first three code cells (the setup cell, the imports, and loading the metadata).
+3. If the third cell prints `Total letters in corpus: 462`, you're ready.
+
+**If something goes wrong:**
+
+- **`ModuleNotFoundError`** (for example, `No module named 'transformers'`): a library is missing. Make sure you ran `pip install .` from the repository folder, in the same environment Jupyter is using. In a notebook cell, you can also run `%pip install transformers` (replacing `transformers` with the missing module): `%pip` always installs into the environment the notebook is running in.
+- **`FileNotFoundError` for `../data/...`:** the notebook can't find the data. Make sure you opened the notebook from inside the repository's `notebooks/` folder, not a copy saved somewhere else. [Coding with LLMs](coding_with_llms.qmd#from-code-to-result) explains why this matters.
+- **Anything else:** copy the full error message into an LLM and ask what it means, as described in [Coding with LLMs](coding_with_llms.qmd).
+
+The first time the notebook loads a model, it downloads a few hundred megabytes, so you'll want to do it from somewhere with a reasonably fast internet connection. Installing the libraries also takes a while, and several gigabytes of disk space.
+
+## Next
+
+[Advantages of programmatic approaches](programming_advantages.qmd): why this unit moves from conversational tools to code.
