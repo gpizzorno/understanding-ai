@@ -48,7 +48,24 @@ website:
           - text: 'Activity: Hack Merlin'
             href: unit_1/hack_merlin.qmd
           - text: LLM Behaviour
-            href: unit_1/llm_behavior.qmd
+            href: unit_1/llm_behaviour.qmd
+      - section: 'Unit 2: Working with LLMs'
+        href: unit_2/index.qmd
+        contents:
+          - text: Prompt Processing
+            href: unit_2/prompts.qmd
+          - text: Prompting Strategies
+            href: unit_2/prompting_strategies.qmd
+          - text: 'Activity: Gemini Notebook'
+            href: unit_2/gemini_notebook.qmd
+          - text: Assessing Reliability
+            href: unit_2/assessing_reliability.qmd
+          - text: Documenting Your Work
+            href: unit_2/documenting_ai_use.qmd
+          - text: 'Activity: AI-Assisted Work'
+            href: unit_2/ai_assisted_work.qmd
+          - text: Acknowledging AI Use
+            href: unit_2/acknowledging_ai_use.qmd
 
 format:
   html:
