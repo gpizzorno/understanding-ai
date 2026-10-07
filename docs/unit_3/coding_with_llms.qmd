@@ -1,0 +1,199 @@
+---
+title: 'Coding with LLMs'
+---
+
+LLMs have changed what it means to learn to code. You can ask one to explain a line you don't understand, interpret an error message, or write a script from a description, and it will usually give a useful answer. But the failure modes from [Unit 2](../unit_2/index.qmd) apply to code too: LLMs produce plausible-looking code that can be subtly wrong, and code that is right can still fail to run on *your* computer, with *your* files. This page is about getting the benefits while staying in control.
+
+## Vibe-Coding vs. Coding with LLMs
+
+- **Vibe-coding:** describe what you want, run whatever the LLM produces, and iterate until it seems to work, without understanding the code in between.
+- **Coding with LLMs:** use the LLM as a collaborator to explain, draft, debug, and extend code that you follow step by step.
+
+The difference is whether **you are in the loop**.
+
+[*Vibe-coding*](https://en.wikipedia.org/wiki/Vibe_coding) (a term popularized by the AI researcher Andrej Karpathy) is seductive, and genuinely useful for throwaway scripts and quick prototypes. For research, it's risky:
+
+- You can't evaluate output from code you don't understand.
+- You can't maintain or modify code you didn't follow.
+- You can't document your process credibly.
+
+Coding with LLMs means treating the LLM as a knowledgeable—but fallible—collaborator: ask it to explain a function before you run it, to walk through its logic step by step, and to say what could go wrong. **You remain the decision-maker**. LLMs lower the barrier to writing code. They don't lower the bar for *understanding* what your code does.
+
+## Kinds of Tools
+
+::: {.callout-warning}
+## About the Tools
+
+The types of tools described in this section change quickly. The descriptions below were written in October 2026. Names, features, and prices will change, but the three kinds of tool, and the trade-offs between them, are likely to last.
+:::
+
+There are three main kinds of tool for coding with an LLM. To compare them, imagine the same small task in each: **count Stevenson's letters per year, using `data/letters_metadata.csv`, and draw a bar chart.**
+
+### Chat Assistants
+
+This is a general-purpose chat assistant, such as *ChatGPT*, *Claude*, or *Gemini*, the same kind you used in Unit 2. You describe the task, and it writes the code, which you copy into a notebook cell and run yourself.
+
+The assistant can't see your files, so you have to tell it what it needs to know: where the file is, and what its columns are. Paste in the first few lines of the file:
+
+<div class="prompt">Write Python code for a Jupyter notebook in the 'notebooks/' folder of my project. It should read '../data/letters_metadata.csv', count the letters per year, and draw a bar chart. Here are the first lines of the file: **[paste the header and two or three rows]**</div>
+
+**Running the result:** copy the code into a new cell in a notebook in the `notebooks/` folder, and run it.
+
+**Good for:** small pieces of code, explanations, and error messages. You see every line before it runs, because you're the one who runs it. Some assistants can also run code themselves, in their own sandbox, that tells you the code works on *their* copy of the file, not on yours.
+
+### Coding Agents
+
+A coding agent, such as *Claude Code*, OpenAI's *Codex*, or *Gemini CLI*, runs in a terminal or in a code editor, inside your project folder. It can read your files, write code, run it, read the error messages, and try again, until the task is done.
+
+You don't need to tell it the columns of the file: it can open the file and look. You can give it the task in a sentence:
+
+<div class="prompt">Count the letters per year in 'data/letters_metadata.csv', plot them as a bar chart, and save the chart as 'outputs/letters_per_year.png'.</div>
+
+**Running the result:** start the agent from the repository folder, give it the task, and approve (or refuse) each command it asks to run. When it's done, it will tell you what it created, open the files and check them.
+
+**Good for:** larger tasks, and tasks that need the agent to look at your actual files. The risk is the reverse of the chat assistant's: an agent can do a great deal without you following each step. It can install libraries, create and change files, and run commands. See [Checking a coding agent's work](#checking-a-coding-agents-work), below.
+
+### Code Editors with AI Assistance
+
+A code editor, such as [VS Code](https://code.visualstudio.com) with its Jupyter extension, opens notebooks like the case study's directly, and has an AI assistant built in (in VS Code, GitHub Copilot, or most other models via extensions). The assistant suggests code as you type, explains a selected cell, and can work as an agent inside the editor. Google Colab also has a built-in assistant.
+
+**Running the result:** open the repository folder in the editor, open the notebook, and choose which Python environment (the *kernel*) runs it. Then run the cells as usual.
+
+**Good for:** working on a notebook over a longer period, with help at hand. It combines the chat assistant's step-by-step control with the agent's view of your files.
+
+### Typical Output
+
+Whichever tool you use, you'd get something like this:
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+letters = pd.read_csv('../data/letters_metadata.csv')
+per_year = letters['year'].value_counts().sort_index()
+print(per_year)
+
+per_year.plot(kind='bar', title='Letters per year')
+plt.show()
+```
+
+It runs, and the chart looks right. But look at the printed counts:
+
+```text
+year
+1863.0     1
+1866.0     1
+1868.0     4
+...
+```
+
+Why `1863.0`, and not `1863`? Because one letter in the metadata has no year, and the way `pandas` stores a missing number turns the whole column into decimals. The counts are right, but **the code silently dropped the letter with no year**, and nothing tells you so. Ask the LLM <span class="prompt">Why do the years end in .0?</span>, and it will usually explain, and suggest a fix. But you had to notice first. **Reading the output critically is your job**, whichever tool wrote the code.
+
+## From Code to Result
+
+Most of the trouble beginners have with LLM-written code isn't in the code itself. It's in getting it to run: in the right place, with the right files, and the right libraries. LLMs can't see these things unless you tell them, so this is where their suggestions most often go wrong.
+
+### Execution Environments
+
+Code always runs on some computer, in some Python installation:
+
+- **Google Colab:** runs on Google's computers. Files you create there disappear when the session ends, unless you download them.
+- **Jupyter on your own computer:** runs in the Python environment you installed ([Setting up Python](python_setup.qmd)). Each notebook is connected to a *kernel*: the running Python process that executes its cells, with that environment's libraries.
+- **A chat assistant's sandbox:** runs on the provider's computers, on whatever copy of your files you uploaded.
+
+When something works in one place and not another, the difference between the places is usually the reason for it.
+
+### The Working Directory and File Paths
+
+Code finds files by their *path*. A path can be:
+
+- **Relative:** worked out from the folder the code is running in, called the *working directory*. `../data/letters_metadata.csv` means *go up one folder from here, then into `data/`*. This works when the notebook runs from `notebooks/`, and fails anywhere else.
+- **Absolute:** the full location on one computer, such as `/Users/yourname/understanding-ai/data/letters_metadata.csv`. This works from anywhere on that computer, and nowhere else.
+
+The case study uses relative paths, so that it works on anyone's computer, as long as it runs from `notebooks/`. If you see a `FileNotFoundError`, check the working directory first:
+
+```python
+from pathlib import Path
+
+Path.cwd()  # the folder this code is running in
+```
+
+### Describing Your Folder Layout
+
+A chat assistant will guess where your files are, and often guess wrong. Tell it:
+
+<div class="prompt">My project is laid out like this: 'notebooks/' (where my notebook is), 'data/letters/' (one .txt file per letter), 'data/letters_metadata.csv', and 'outputs/'. The notebook runs from 'notebooks/'. Use relative paths.</div>
+
+It's worth keeping a description like this in a text file, and pasting it in whenever you start a new conversation about the project.
+
+### Installing Libraries into the Right Environment
+
+If a cell fails with `ModuleNotFoundError` even though you installed the library, it was almost certainly installed into a different Python environment from the one running your notebook. Computers often have several. Two ways to avoid it:
+
+- **In a notebook, install with `%pip`:** `%pip install folium` always installs into the environment the notebook is using. LLMs often suggest `pip install` in a terminal instead, which may install somewhere else.
+- **Check which Python is running:** `import sys; sys.executable` shows the Python the notebook is using. In VS Code, the kernel picker shows it too.
+
+When an LLM suggests installing something, ask yourself (or it) where it will go. Coding agents in particular may install libraries into whatever Python they find first, tell them which environment to use.
+
+### Checking a Coding Agent's Work
+
+An agent's convenience comes from doing many things for you. Make sure you can see what they were:
+
+- **Read the commands before you approve them.** If you don't know what a command does, refuse it, and ask the agent to explain.
+- **Use version control.** If your project is in [git](https://git-scm.com), you can see exactly which files the agent changed, and undo the changes. If it isn't, at least make a copy of your data before you start.
+- **Ask for a summary:** <span class="prompt">List every file you created or changed, and every command you ran.</span> Then check the files.
+- **Don't give an agent blanket permission** in a folder with data you can't replace.
+
+::: {.callout-tip}
+## Five Good Habits
+
+**1. Ask for explanations, not just code.** Before running code you don't understand (whether an LLM wrote it or not), ask for an explanation: <span class="prompt">Walk me through this function line by line.</span> If the explanation doesn't make sense, don't trust the code yet.
+
+**2. Iterate in small steps.** Don't ask for a whole pipeline at once. Work one piece at a time: run one cell, check its output, then move on. Keeping each step small keeps errors small and traceable.
+
+**3. Ask what could go wrong.** <span class="prompt">What happens if a letter is empty?</span> <span class="prompt">What if a letter has no entities?</span> <span class="prompt">What could go wrong when running this on a nineteenth-century letter?</span> LLMs are often good at anticipating failure cases, if you ask explicitly.
+
+**4. Use the LLM to read error messages.** Python error messages (called *tracebacks*) can look intimidating. Read the last line first, it usually names the problem. Then paste the whole traceback into an LLM and ask what it means and how to fix it. This is one of the most valuable uses of LLMs for beginners.
+
+**5. Keep a record.** The prompts you use to generate or change code are part of your research process. Keep the useful ones alongside your code, in a comment, a notebook text cell, or a separate file, and keep the code itself, not just its results ([Documenting your work](../unit_2/documenting_ai_use.qmd#explicit-processing-requesting-the-script)).
+:::
+
+## Prompts to Try
+
+These prompts work well with the [case study notebook](ner_pipeline.ipynb):
+
+- <span class="prompt">Explain this Python function line by line for someone with basic Python knowledge.</span> (Paste in `extract_entities_from_file` from Section 3)
+- <span class="prompt">What would cause this function to throw an error? List three likely failure cases.</span>
+- <span class="prompt">I got this error: **[paste the traceback]**. What does it mean and how do I fix it?</span>
+- <span class="prompt">What does aggregation_strategy='simple' do in a Hugging Face NER pipeline?</span>
+- <span class="prompt">How would I change this cell to show the top 30 people instead of the top 20?</span>
+
+The structure from [Prompting Strategies](../unit_2/prompting_strategies.qmd) applies here too: include the code (**source**), say what you want (**task:** an explanation, a change, a fix), and state any constraints (**standards:** <span class="prompt">keep it simple</span>, <span class="prompt">don't add new libraries</span>).
+
+::: {.callout-note}
+## Example
+
+Paste `extract_entities_from_file` into an LLM and ask for a line-by-line explanation. Check the explanation against the code yourself. Then ask: <span class="prompt">What could go wrong when running this on a nineteenth-century letter?</span> A good answer will point out that the model was trained on modern text, which is exactly the issue you'll find in the case study.
+
+If any of the Python itself is unfamiliar, the [quick refresher](python_setup.qmd#required-python-knowledge) in Setting up Python covers the five ideas you need.
+:::
+
+## Ground Rules for the Case Study
+
+- Before running a cell you don't understand, ask an LLM to explain it.
+- Keep a record of prompts that helped you, in a notebook text cell or a separate file.
+- If you get an error, read the last line of the traceback first, then paste the whole thing into an LLM.
+- If you're moving quickly, go deeper: change a parameter, predict what will happen, then test your prediction.
+- If it feels slow, that's fine. Focus on following the logic, not on finishing every cell.
+
+## Key Takeaways
+
+- LLMs make code easier to read, write, and debug, but they can produce plausible code that is subtly wrong. Stay in the loop: ask for explanations, work in small steps, and ask what could go wrong.
+- Chat assistants show you every line but can't see your files; coding agents can see and change your files, so check what they did; editors with AI assistance combine the two.
+- Code that runs isn't necessarily right. Read the output critically, whichever tool wrote the code.
+- Most problems are in getting code to run: where it runs, the working directory and paths, and which environment libraries are installed in. Tell the LLM what it can't see.
+- The prompts you use, and the code they produce, are part of your method. Keep them.
+
+## Next
+
+[The NLP pipeline](nlp_pipeline.qmd): what the model in the case study actually does, and how it differs from the chat assistants you used in Unit 2.
