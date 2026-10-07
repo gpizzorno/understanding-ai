@@ -1,0 +1,396 @@
+/* Site styles (see _quarto.yml). */
+
+/* Full font import */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+/* Variables */
+:root {
+  --bs-body-font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --link-colour: rgb(37 92 139);
+  --link-hover-colour: rgb(26 80 241);
+}
+
+/* Images with the .img-right class float to the right of the text, and stack on the right
+   instead of pushing each other to the left */
+img.img-right {
+  float: right;
+  clear: right;
+  max-width: 50%;
+  height: auto;
+  margin: 0.25rem 0 1rem 1.5rem;
+}
+
+/* Other images that stand alone in a paragraph are centred in the text column */
+main p > img:only-child:not(.img-right) {
+  display: block;
+  margin: 1rem auto;
+}
+
+/* Videos that stand alone in a paragraph are centred in the text column, and never wider than it */
+main p > video:only-child {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+}
+
+/* A new section, or a callout, starts below any image still floating beside the text before it */
+main .callout {
+  clear: both;
+}
+
+/* On narrow screens, don't float images next to text: show them full width */
+@media (max-width: 600px) {
+  img.img-right {
+    float: none;
+    display: block;
+    max-width: 100%;
+    margin: 1rem auto;
+  }
+}
+
+/* Text colours for marbles examples */
+main .orange-marbles {
+  color: rgb(242, 114, 0);
+}
+
+main .blue-marbles {
+  color: rgb(57, 126, 196);
+}
+
+/* The last page of Unit 3 links back to the previous page, but not on to the Reference section */
+body.end-of-units .nav-page-next {
+  display: none;
+}
+
+/* Plain-text blocks (```text), such as a letter shown exactly as it is in its file: wrap long
+   lines instead of scrolling sideways, and set them off from the surrounding text */
+main pre.text,
+main pre.text code {
+  white-space: pre-wrap;
+}
+
+main pre.text {
+  border-left: 3px solid var(--bs-border-color);
+  padding: 0.5rem 0 0.5rem 1rem;
+}
+
+/* add horizontal padding for figure captions to increase contrast from text */
+figcaption {
+    padding: 0 3rem;
+}
+
+/* navbar visual fixes */
+.navbar {
+    background-color: #502e74;;
+    color: white;
+}
+.navbar-brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+}
+a.navbar-brand:hover, .navbar .quarto-navbar-tools .quarto-navigation-tool:hover {
+  color: white;
+}
+.navbar .quarto-navbar-tools .quarto-navigation-tool {
+  color: white;
+}
+.quarto-navigation-tool i {
+  font-size: 20px;
+}
+.navbar #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon {
+  width: 23px;
+  height: 23px;
+  color: white;
+}
+.aa-DetachedSearchButton {
+  padding-left: 0;
+  padding-bottom: 5px;
+}
+.sidebar-menu-container li.sidebar-item {
+  margin-bottom: .5em;
+}
+.sidebar-menu-container > ul > li > div.sidebar-item-container a {
+  font-weight: 600;
+}
+div.sidebar-item-container .active {
+  color: #6f1bc3;
+}
+.sidebar nav[role=doc-toc]>h2 {
+  margin-bottom: 0.4rem;
+}
+
+/* home page visual fixes */
+.home-page .quarto-title h1.title {
+  font-size: 2.5rem;
+  color: #6f1bc3;
+  font-weight: 700;
+}
+.home-page .quarto-title  p.subtitle {
+  margin-top: -3px;
+  margin-bottom: .5em;
+}
+.home-page .quarto-title  p.subtitle.lead {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #17778a;
+}
+
+/* headings visual fixes */
+h1, .h1, h2, .h2 {
+  margin-bottom: 1.25rem;
+  font-weight: 700;  
+}
+h2, .h2 {
+  padding-bottom: .25rem;
+}
+h3, .h3 {
+  font-size: 1.3rem;
+  margin-bottom: .8rem;
+}
+
+/* section > h3:first-of-type {
+  margin-top: 0;
+} */
+#the-three-units {
+  margin-top: 2rem;
+}
+
+/* link visual fixes */
+a {
+  color: var(--link-colour);
+  text-decoration: none;
+  font-weight: inherit;
+}
+a:not([class]):hover {
+  color: var(--link-hover-colour);
+  border-bottom: 1px dotted var(--link-hover-colour);
+}
+a.anchorjs-link {
+  color: var(--link-hover-colour);
+}
+a.anchorjs-link:hover {
+  border-bottom: none;
+}
+
+/* navigation visual fixes */
+li.nav-item a.nav-link {
+  font-size: 0.925rem;
+  font-weight: 600;
+}
+li:not(:last-child):not(.nav-item) {
+  margin-bottom: 0.5rem;
+}
+li > ul > li, #TOC li, .quarto-sidebar-section-2 li   {
+  margin-bottom: 0 !important;
+}
+
+/* callout visual fixes */
+.callout.callout-style-default .callout-body {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.callout.callout-titled .callout-body>:last-child:not(.sourceCode), .callout.callout-titled .callout-body>div>:last-child:not(.sourceCode) {
+    padding-bottom: 1rem;
+}
+.callout.callout-style-default .callout-body>:first-child:not(.prompt) {
+    padding-top: 1rem;
+}
+.callout.callout-style-default .callout-body>.prompt {
+    margin-top: 1rem;
+}
+.callout.callout-style-default:not(.no-icon) div.callout-title-container {
+    margin-left: 2px;
+}
+.callout-note.callout-style-default>div.callout-header {
+  color: #1b68bd;
+}
+.callout-tip.callout-style-default>div.callout-header {
+  color: #26720e;
+}
+.callout-warning.callout-style-default>div.callout-header {
+  color: #b15111;
+}
+.callout-important.callout-style-default>div.callout-header {
+  color: #a9092d;
+}
+.callout-caution.callout-style-default>div.callout-header {
+  color: #8d6328;
+}
+
+/* fix for sections with id = contents*/
+section:target::before {
+  content: "";
+  display: block;
+  height: 0 !important;
+  margin-top: -0 !important;
+}
+
+/* remove the original link for lightbox images */
+a.lightbox + a[data-original-href] {
+  display: none;
+}
+
+/* tables visual fixes */
+.table-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+.table-50 {
+  width: 50%;
+}
+.table-60 {
+  width: 60%;
+}
+.table-70 {
+  width: 70%;
+}
+.table-80 {
+  width: 80%;
+}
+.table-90 {
+  width: 90%;
+}
+
+/* in-text special tokens */
+.quote {
+  font-family: "Source Serif 4", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 95%;
+}
+.quote::before {
+  content: "“";
+  font-size: 90%;
+  margin-right: 0.1em;
+  position: relative;
+  top: -2px;
+}
+.quote::after {
+  content: "”";
+  font-size: 90%;
+  margin-left: 0.1em;
+  position: relative;
+  top: -2px;
+}
+.token {
+  background-color: rgb(225 255 252);
+  color: rgb(0, 77, 128);
+  border-color: rgb(0, 118, 186);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  padding: 0 0.3em;
+  font-weight: 500;
+  font-size: 90%;
+  white-space: nowrap;
+}
+.prompt {
+  background-color: rgb(0 118 186 / 19%);
+  color: rgb(0, 77, 128);
+  border-color: rgb(0, 118, 186);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  padding: 0 0.3em;
+  font-weight: 500;
+  font-size: 90%;
+  white-space: nowrap;
+}
+.response {
+  background-color: rgb(174 141 90 / 13%);
+  color: rgb(154, 82, 32);
+  border-color: rgb(242, 114, 0);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  padding: 0 0.3em;
+  font-weight: 500;
+  font-size: 90%;
+  white-space: nowrap;
+}
+.command {
+  background-color: rgb(239 239 239);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  padding: 0 0.3em;
+  font-weight: 500;
+  font-size: 80%;
+  white-space: nowrap;
+}
+
+/* Prompts and responses longer than a line: ::: {.prompt} and ::: {.response} blocks */
+div.prompt,
+div.response {
+  padding: 0.6em 0.9em;
+  margin: 1em 0;
+  white-space: normal;
+}
+
+div.prompt > p:last-child,
+div.response > p:last-child {
+  margin-bottom: 0;
+}
+
+div.prompt p,
+div.response p {
+  margin-bottom: 0;
+}
+
+div.prompt p:not(:first-of-type),
+div.response p:not(:first-of-type) {
+  margin-top: 1rem;
+}
+
+/* Copy button for prompt blocks (added by _includes/copy_prompts.html), like the one on code blocks */
+div.prompt {
+  position: relative;
+  padding-right: 1.3em;
+}
+
+.prompt-copy-button {
+  position: absolute;
+  top: 0.30em;
+  right: 0.04em;
+  border: 0;
+  padding: 0 0.2em;
+  background: transparent;
+  color: rgb(157 181 196);
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.prompt-copy-button:hover {
+  color: rgb(0, 77, 128);
+}
+
+/* code blocks */
+pre, pre.sourceCode {
+  font-size: .8em;
+}
+pre {
+  white-space: break-spaces;
+}
+code {
+  font-family: 'Roboto Mono', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+p code:not(.sourceCode), li code:not(.sourceCode), td code:not(.sourceCode) {
+    white-space: break-spaces;
+    background-color: rgb(153 171 184 / 40%);
+    border-radius: 4px;
+    margin: 0;
+    padding: .1em .4em;
+    font-size: 75%;
+    font-weight: 400;
+    color: rgb(31, 35, 40);
+}
+
+/* math */
+mjx-math {
+  font-weight: 600 !important;
+  font-size: 90% !important;
+}

@@ -71,6 +71,9 @@ format:
   html:
     theme:
       light: cosmo
+    grid:
+      sidebar-width: 330px
+    css: styles.css
     toc: true
     toc-title: On this page
     code-copy: true
