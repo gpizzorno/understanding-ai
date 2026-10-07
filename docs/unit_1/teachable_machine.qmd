@@ -25,23 +25,23 @@ Before you start, you may want to read [Basic Concepts](basic_concepts.qmd), esp
 Teachable Machine is a third-party site and may change over time. Your images and sounds are processed in your browser and are not uploaded unless you choose to export your model to the cloud.
 :::
 
-## How Teachable Machine Works
+## Transfer Learning
 
-When you click <span class="command">Train Model</span>, Teachable Machine doesn't build a model from nothing. It starts from a model that has already been trained, by Google, on millions of images (or sounds, or poses), and has learned general visual features: edges, textures, shapes. It then trains only the last part of that model, on your examples, to separate *your* classes. This is called *transfer learning*, and it's why a few dozen examples are enough, where training from scratch would need thousands. (The NER models in Unit 3 are *pre-trained* in the same sense.)
+When you click <span class="command">Train Model</span>, Teachable Machine doesn't build a model from nothing. It starts from a model that has already been trained, by Google, on millions of images (or sounds, or poses), and has learned general visual features: edges, textures, shapes. It then trains only the last part of that model, on your examples, to separate *your* classes. This is called [**transfer learning**](https://en.wikipedia.org/wiki/Transfer_learning), and it's why a few dozen examples are enough, where training from scratch would need thousands. (The NER models in Unit 3 are *pre-trained* in the same sense.)
 
 ![](../assets/teachable_machine/advanced_settings.png){.img-right width=220 fig-alt="The Advanced section of the Training panel: Epochs 50, Batch Size 16, Learning Rate 0.001, Reset Defaults, and Under the hood."}
 
-Training follows the cycle you'll read about in [Model Training](model_training.qmd#the-training-loop), in miniature:
+Training follows the cycle you'll read about in [Model Training](model_training.qmd#the-training-loop), in short:
 
-- **It splits your examples.** For each class, 15% of the samples (rounded up) are held back to test the model on examples it hasn't seen; the rest are used for training.
-- **It trains in epochs.** Each epoch is one pass through all your training samples, adjusting the model's weights a little each time.
+- **It splits your examples.** For each class, 15% of the samples (rounded up) are held back to test the model on examples it hasn't seen, and the rest are used for training.
+- **It trains in epochs.** Each *epoch* is one pass through all your training samples, adjusting the model's weights a little each time.
 - **It shows you the result.** The `Preview` panel runs the trained model live on your webcam or microphone, with a bar for each class showing how confident it is.
 
 You don't need to change any settings to do the activity. But if you open <span class="command">Advanced</span>, under <span class="command">Train Model</span>, you'll find the settings that control training: the number of `Epochs` (50 by default), the `Batch Size` (how many samples the model looks at before each adjustment of its weights), and the `Learning Rate` (how big each adjustment is). [Model Training](model_training.qmd#training-loss-and-optimization) explains the cycle of adjustments these settings control.
 
 <span class="command">Under the hood</span>, at the bottom of the same section, shows how well the model did on the samples it held back. For the model in the videos, it held back 5 of the 28 green-square samples and 4 of the 21 orange-circle samples, and got all 9 right: 100% accuracy on the test samples, reached in about one epoch.
 
-That sounds perfect, but look at what those 9 samples were: taken in the same minute, on the same desk, in the same light as the training samples. A perfect score on them tells you the model learned to separate *those* pictures. It doesn't tell you what the model will do in another room, which is what [Part 2](teachable_machine.qmd#part-2-test-a-model) is about.
+That sounds perfect, but look at what those 9 samples were: taken in the same minute, on the same desk, in the same light as the training samples. A perfect score on them tells you the model learned to separate *those* pictures. It doesn't tell you what the model will do in another room, which is what [Part 2](teachable_machine.qmd#part-2-testing-a-model) is about.
 
 ::: {.callout-note collapse="true"}
 ## Under the Hood
@@ -53,30 +53,30 @@ This is the <span class="command">Under the Hood</span> panel for the model in t
 From the top: accuracy for each class on the test samples; a [confusion matrix](evaluation_metrics.qmd), showing which class the model predicted for each test sample; and accuracy and loss for each epoch, on the training samples (blue) and the test samples (orange). Click the image to enlarge it.
 :::
 
-## Part 1: Train a Model
+## Part 1: Training a Model
 
 The videos below show the whole process, with two classes: a green paper square and an orange paper circle. They have no sound. Watch them first, or refer back to them as you go.
 
 ::: {.panel-tabset}
-### Start a Project
+### Starting a Project
 
 ![](../assets/teachable_machine/start.mp4){poster="../assets/teachable_machine/start.jpg" preload="none"}
 
 Step 1: from the home page, <span class="command">Get Started</span>, then <span class="command">Image Project</span> → <span class="command">Standard image model</span>.
 
-### Add Samples
+### Adding Samples
 
 ![](../assets/teachable_machine/samples.mp4){poster="../assets/teachable_machine/samples.jpg" preload="none"}
 
 Steps 2–3: rename the classes, then hold <span class="command">Hold to Record</span> to capture webcam samples for each one.
 
-### Train
+### Training
 
 ![](../assets/teachable_machine/train.mp4){poster="../assets/teachable_machine/train.jpg" autoplay="" loop="" muted="" playsinline=""}
 
 Step 4: <span class="command">Train Model</span>. (The progress bar is sped up.)
 
-### Test
+### Testing
 
 ![](../assets/teachable_machine/test.mp4){poster="../assets/teachable_machine/test.jpg" preload="none"}
 
@@ -96,7 +96,7 @@ As you work, notice the assumptions you are building in. What makes something co
 
 **In a group:** work in groups of 3–4. When you're done, export your model: click <span class="command">Export Model</span>, and on the <span class="command">Tensorflow.js</span> tab choose <span class="command">Upload (shareable link)</span>, then click <span class="command">Upload my model</span>. Copy the sharable link that appears, and share it with another group, along with the data type, your categories, and a one-line description of what the model does. The link shares the trained model, not the images you trained it on.
 
-## Part 2: Test a Model
+## Part 2: Testing a Model
 
 Now try to break a model: yours, or another group's.
 
@@ -118,7 +118,7 @@ Either way, here are some things to look for:
 Focus on *why* the model fails when it does, not just *that* it fails. The failures are the most instructive part of this exercise.
 
 ::: {.callout-tip collapse="true"}
-## What You're Likely to Find
+## Expected Results
 
 - **It works well on examples like its training data, and much less well on anything else.** A model trained in one room, in one light, often fails in another.
 - **It learns shortcuts.** If everything in one class shared a background, a colour, or a person, the model may have learned that instead of the thing you meant. You'll often find this out only by changing that one thing.
@@ -126,7 +126,7 @@ Focus on *why* the model fails when it does, not just *that* it fails. The failu
 - **More examples of one class can change the others.** The model learns what *separates* the classes, so changing one changes the boundary for all of them.
 :::
 
-### An Experiment: Shape or Colour?
+### An Experiment: Shape or Colour
 
 The model in the videos was trained on green squares and orange circles. Every example it saw differed in two ways at once, shape *and* colour, so either one would separate the classes perfectly. Which did it learn?
 
@@ -144,9 +144,9 @@ That's what we wanted, but nothing in the training data could have told us so in
 
 ## Explaining Model Behaviour
 
-Everything the model knows comes from your examples. It found whatever statistical pattern best separated your classes in the samples you gave it, and that pattern may or may not be the one you had in mind. It can't tell the difference between the object and everything else in the picture, unless your examples showed it the difference: the same object in different places, lights, and angles, and different objects in the same place.
+Everything the model knows comes from your examples. It found whatever statistical pattern best separated your classes in the samples you gave it, and that pattern may or may not be the one you had in mind. It can't tell the difference between the object and everything else in the picture, unless your examples made the difference clear: the same object in different places, lights, and angles, and different objects in the same place.
 
-This is the same for every model, including the largest. The data is where the model's abilities come from, and also where its blind spots come from. [Model Training](model_training.qmd) looks at how this works, and why testing a model on data unlike its training data is the only way to find out what it actually learned.
+This is the same for every model, including the largest of them. The data is where the model's abilities come from, and also where its blind spots come from. [Model Training](model_training.qmd) looks at how this works, and why testing a model on data unlike its training data is the only way to find out what it actually learned.
 
 ## Key Takeaways
 

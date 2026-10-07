@@ -18,9 +18,9 @@ Terminology in this area is genuinely confusing. The same words mean different t
 
 **Deep Learning (DL)** is a subfield of ML that uses neural networks with many layers (hence *deep*). It is behind most of the striking AI capabilities of the past decade: image recognition, speech recognition, translation, and language generation. It requires large amounts of data and computing power, which is one reason AI advanced so quickly as both became cheaper.
 
-**Generative AI** is the category of systems that produce new content (text, images, audio, video, code) rather than only classifying or predicting. It is the term most used in public discussion right now, but it groups together systems with very different designs and behaviours: image generators such as Stable Diffusion or DALL-E are generative AI, and so are LLMs.
+**Generative AI** is the category of systems that produce new content (text, images, audio, video, code) rather than only classifying or predicting. It is the term most used in public discussion right now, but it groups together systems with very different designs and behaviours: image generators such as [Stable Diffusion](https://stablediffusionweb.com/) or [DALL-E](https://openai.com/index/dall-e/) are generative AI, and so are LLMs.
 
-**Large Language Models (LLMs)** are deep learning models trained on massive collections of text: a large fraction of the publicly accessible web, plus books, code, and other sources. They learn statistical patterns in language at enormous scale, which lets them generate coherent, contextually appropriate text. ChatGPT, Claude, Gemini, and Llama are built on LLMs.
+**Large Language Models (LLMs)** are deep learning models trained on massive collections of text: a large fraction of the publicly accessible web, plus books, code, and other sources. They learn statistical patterns in language at enormous scale, which lets them generate coherent, contextually appropriate text. *ChatGPT*, *Claude*, *Gemini*, and *Llama* are built on LLMs.
 
 Why is *AI* used as a catch-all? Largely for marketing: *machine learning model* is accurate, but it doesn't sell products or generate headlines. Noticing this is itself a useful habit when reading coverage of AI.
 
@@ -30,11 +30,11 @@ At the heart of all these terms is one idea: that machines can learn, in a sense
 
 In ordinary software, a programmer writes rules: `if the input contains the word 'cat', classify it as an animal`. The program does exactly what it was told. It doesn't learn, adapt, or improve.
 
-In machine learning, no one writes those rules. The system infers them from examples: the rules are derived from data. This is a fundamental shift. To get a system to do what you want, *you don't write logic, you curate examples*.
+In machine learning, no one writes those rules. The system infers them from examples: the rules are derived from data. This is a fundamental shift. To get a system to do what you want, **you don't write logic, you curate examples**.
 
 Take a task you'll return to in [Unit 3](../unit_3/index.qmd): finding the people mentioned in [Robert Louis Stevenson's letters](../reference/letters.qmd). With rules, you might write `a capitalized word after 'Mr.' or 'Dear' is a person`, and you'd immediately drown in exceptions, *e.g.*, `Dear Sir`, `MY DEAR COLVIN`. With machine learning, people instead mark every name in thousands of example sentences, and the system works out for itself what names tend to look like. That is how the model you'll use in Unit 3 was made.
 
-How a system actually learns from its examples is the subject of [Model Training](model_training.qmd). But first, *what kind of system* does the learning?
+How a system actually learns from its examples is the subject of [Model Training](model_training.qmd). But first, **what kind of system** does the learning?
 
 ## Neural Networks and Weights
 
@@ -43,9 +43,9 @@ How a system actually learns from its examples is the subject of [Model Training
 The most common learning architecture is a [neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning)), a mathematical structure loosely inspired by the brain.
 
 - A network is made of simple units called [artificial neurons](https://en.wikipedia.org/wiki/Artificial_neuron), connected to each other.
-- Neurons are organized in *layers*. Data enters at the *input layer*, passes through one or more [hidden layers](https://en.wikipedia.org/wiki/Hidden_layer) that transform it, and emerges at the *output layer*.
-- Each connection has a *weight*: a number that determines how the value passing along it changes.
-- A network with many hidden layers is called a [*deep* neural network](https://en.wikipedia.org/wiki/Deep_learning#Deep_neural_networks), which is where *deep learning* gets its name.
+- Neurons are organized in **layers**. Data enters at the **input layer**, passes through one or more [hidden layers](https://en.wikipedia.org/wiki/Hidden_layer) that transform it, and emerges at the **output layer**.
+- Each connection has a **weight**: a number that determines how the value passing along it changes.
+- A network with many hidden layers is called a [*deep* neural network](https://en.wikipedia.org/wiki/Deep_learning#Deep_neural_networks), which is where **deep learning** gets its name.
 
 The weights are the key to everything, so it's worth following some values through a network:
 
@@ -58,7 +58,7 @@ Two values, `1` and `2`, enter at the *input layer*. Each connection multiplies 
 - The next layer does the same with those results: `7 × 2 + 4 × 3 = 26`, then `26 × 1 = 26`.
 - Finally, `26 × 2 = 52` arrives at the *output layer*.
 
-The animation follows only a few connections. In a real network, every neuron combines the values arriving along *all* its connections, and passes the result through a simple function (the [activation function](https://en.wikipedia.org/wiki/Activation_function)) that lets the network represent complex patterns. But the principle is the same: *what comes out depends entirely on the weights*. Change any one of them, and the `52` changes too.
+The animation follows only a few connections. In a real network, every neuron combines the values arriving along *all* its connections, and passes the result through a simple function (the [activation function](https://en.wikipedia.org/wiki/Activation_function)) that lets the network represent complex patterns. But the principle is the same: **what comes out depends entirely on the weights**. Change any one of them, and the `52` changes too.
 
 And the weights are what the network *learns*. Before training, they are random, so the output is meaningless. Training nudges each weight up or down, very slightly, over and over, until the network's outputs come out right for its training examples. A small network like the one in the animation has a few dozen weights, a modern LLM has billions. Everything a network “knows” is stored in those numbers, and nowhere else.
 
@@ -72,7 +72,7 @@ There are several basic ways to train a model. They differ in what the model lea
 
 ![](../assets/supervised_learning.gif){.img-right width=320}
 
-The model learns from examples that come with the correct answer: inputs paired with *labels*. Think of teaching with an answer key. To build a model that finds names in text, people annotate thousands of sentences, marking every name and whether it's a person, a place, or an organization; the model learns patterns that predict those labels, and can then label new text it has never seen. The [named entity recognition (NER)](https://en.wikipedia.org/wiki/Named-entity_recognition) models in [Unit 3](../unit_3/index.qmd) were trained this way.
+The model learns from examples that come with the correct answer: inputs paired with **labels**. Think of teaching with an answer key. To build a model that finds names in text, people annotate thousands of sentences, marking every name and whether it's a person, a place, or an organization; the model learns patterns that predict those labels, and can then label new text it has never seen. The [named entity recognition (NER)](https://en.wikipedia.org/wiki/Named-entity_recognition) models in [Unit 3](../unit_3/index.qmd) were trained this way.
 
 ### Unsupervised Learning
 

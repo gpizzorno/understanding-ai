@@ -6,7 +6,7 @@ title: 'Evaluation Metrics'
 
 ## Classification Example
 
-Suppose you have a bag of **10 marbles**, <span class="blue-marbles">**6 blue**</span> and <span class="orange-marbles">**4 orange**</span>, and you train a machine learning model to classify each marble by colour. After training, you test the model on all 10 marbles and get the following results:
+Suppose you've trained a machine learning model to classify marbles by colour. To test it, you set aside a separate bag of **10 marbles** that the model never saw during training, <span class="blue-marbles">**6 blue**</span> and <span class="orange-marbles">**4 orange**</span>, and ask it to classify each one (this is your [test set](model_training.qmd#training-development-and-test-sets)). You get the following results:
 
 <div class="table-container table-50">
 
@@ -24,18 +24,22 @@ This table is called a **confusion matrix**. Here are the same results as marble
 
 Each cell tells you something specific:
 
-- **4 blue marbles called Blue:** the model said Blue, and it was right. These are **true positives (TP)**.
-- **2 blue marbles called Orange:** the model missed them; they were blue, but it predicted Orange. These are **false negatives (FN)**.
-- **1 orange marble called Blue:** the model made a mistake; it was orange, but it predicted Blue. This is a **false positive (FP)**.
-- **3 orange marbles called Orange:** the model said Orange, and it was right. These are **true negatives (TN)**.
+- *4 blue marbles called Blue:* the model said Blue, and it was right. These are **true positives (TP)**.
+- *2 blue marbles called Orange:* the model missed them. These are **false negatives (FN)**.
+- *1 orange marble called Blue:* the model made a mistake. This is a **false positive (FP)**.
+- *3 orange marbles called Orange:* the model said Orange, and it was right. These are **true negatives (TN)**.
 
-It helps to keep the logic of the names straight: *true/false* tells you whether the model was correct; *positive/negative* tells you what the model predicted. Here, "positive" means "Blue": the class you're trying to find.
+It helps to keep the logic of the names straight: **true/false** tells you whether the model was correct, **positive/negative** tells you what the model predicted. Here, *positive* means *Blue*: the class you're trying to find.
 
 ## Accuracy
 
-**Accuracy** is the simplest metric: of all the marbles, what fraction did the model get right?
+*Accuracy* is the simplest metric: **of all the marbles, what fraction did the model get right?**
+
+::: {.callout-note collapse="true"}
+## Calculation
 
 $$\text{Accuracy} = \frac{TP + TN}{\text{Total}} = \frac{4 + 3}{10} = \frac{7}{10} = 0.70$$
+:::
 
 The model correctly classified 7 out of 10 marbles, giving an accuracy of **70%**.
 
@@ -43,17 +47,25 @@ Accuracy is intuitive, but it can be misleading. Imagine a bag with 9 blue marbl
 
 ## Precision
 
-**Precision** asks: *of all the marbles the model called Blue, how many actually were blue?*
+*Precision* asks: **of all the marbles the model called Blue, how many actually were blue?**
+
+::: {.callout-note collapse="true"}
+## Calculation
 
 $$\text{Precision} = \frac{TP}{TP + FP} = \frac{4}{4 + 1} = \frac{4}{5} = 0.80$$
+:::
 
 When the model predicted Blue, it was right **80%** of the time. Precision measures how trustworthy the model's positive predictions are. A low precision means lots of false alarms.
 
 ## Recall
 
-**Recall** asks the opposite question: *of all the marbles that were actually blue, how many did the model find?*
+*Recall* asks the opposite question: **of all the marbles that were actually blue, how many did the model find?**
+
+::: {.callout-note collapse="true"}
+## Calculation
 
 $$\text{Recall} = \frac{TP}{TP + FN} = \frac{4}{4 + 2} = \frac{4}{6} \approx 0.667$$
+:::
 
 The model found **4 of the 6** blue marbles, a recall of about **67%**. The other two blue marbles were missed (called Orange). Recall measures coverage: how many of the things you were looking for you actually caught. A low recall means the model is missing things.
 
@@ -65,9 +77,13 @@ Which matters more depends on the task. If you are collecting every blue marble 
 
 ## F1 Score
 
-The **F1 score** combines precision and recall into a single number. It is the *harmonic mean* of the two, a form of average that penalizes large imbalances between them:
+The *F1 score* combines precision and recall into a single number. It is the **harmonic mean** of the two, a form of average that penalizes large imbalances between them:
+
+::: {.callout-note collapse="true"}
+## Calculation
 
 $$F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} = 2 \times \frac{0.80 \times 0.667}{0.80 + 0.667} = 2 \times \frac{0.533}{1.467} \approx 0.727$$
+:::
 
 The F1 score for our model is approximately **0.73** (or 73%). A perfect model would score 1.0; a model that gets everything wrong would score 0.
 
@@ -75,29 +91,27 @@ The harmonic mean is used rather than a simple average because it is sensitive t
 
 ## Summary
 
-<div class="table-container table-90">
+<div class="table-container table-60">
 
-| Metric | Formula | Value | What it asks |
-|-|---|-|---|
-| **Accuracy** | (TP + TN) / Total | 0.70 | Overall, how often was the model right? |
-| **Precision** | TP / (TP + FP) | 0.80 | When it said Blue, how often was it correct? |
-| **Recall** | TP / (TP + FN) | 0.667 | Of all the blue marbles, how many did it find? |
-| **F1 score** | 2 * (Precision * Recall) / (Precision + Recall) | 0.727 | Balance between precision and recall |
-| **Recall** | TP / (TP + FN) | 0.67 | Of all the blue marbles, how many did it find? |
-| **F1 score** | 2 × (P × R) / (P + R) | 0.73 | Balanced summary of precision and recall |
+| Metric | Value | What it asks |
+|--|--|---|
+| **Accuracy** | 0.70 | Overall, how often was the model right? |
+| **Precision** | 0.80 | When it said Blue, how often was it correct? |
+| **Recall** | 0.67 | Of all the blue marbles, how many did it find? |
+| **F1 score** | 0.73 | Balanced summary of precision and recall |
 : {.sm}
 
 </div>
 
-All the metrics above are calculated with Blue as the *positive class*. In a real evaluation, you would often report metrics for each class separately, or an average across all classes. The core logic is the same: define what counts as a "positive" prediction, then count true positives, false positives, and false negatives from there.
+All the metrics above are calculated with Blue as the *positive class*. In a real evaluation, you would often report metrics for each class separately, or an average across all classes. The core logic is the same: define what counts as a *positive* prediction, then count true positives, false positives, and false negatives from there.
 
 ## From Marbles to Letters
 
-In Unit 3, the "marbles" are the names in [Stevenson's letters](../reference/letters.qmd), and the positive class is a type of name, such as *person*. A model reads each letter and marks the people it finds; people have annotated the same letters, and their annotations are treated as the correct answers:
+In Unit 3, the *marbles* are the names in [Stevenson's letters](../reference/letters.qmd), and the positive class is a type of name, such as *person*. A model reads each letter and marks the people it finds, with humans having annotated the same letters and their annotations treated as the correct answers:
 
-- A **true positive** is a person the model marked who is also in the annotations, such as "Sidney Colvin".
-- A **false positive** is something the model marked as a person that isn't one. In one letter, the model marks "Clever" (from "not so CLEVER perhaps") as a person.
-- A **false negative** is a person the model missed. In the same letter, it misses "COLVIN" in "MY DEAR COLVIN".
+- A **true positive** is a person the model marked who is also in the annotations, such as `Sidney Colvin`.
+- A **false positive** is something the model marked as a person that isn't one. In one letter, the model marks `Clever` (from `not so CLEVER perhaps`) as a person.
+- A **false negative** is a person the model missed. In the same letter, it misses `COLVIN` in `MY DEAR COLVIN`.
 - **True negatives** would be every other word in the letters, correctly left unmarked. There are so many of them that accuracy would be close to 100% for almost any model, which is why the evaluation in Unit 3 uses only precision, recall, and F1.
 
 ## Next

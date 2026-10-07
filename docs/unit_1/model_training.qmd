@@ -8,7 +8,7 @@ If you have done the [Teachable Machine activity](teachable_machine.qmd), you ha
 
 When you collected training examples, what were you actually doing? You were defining what each class *looks like* to the machine, in terms of pixel values, sound frequencies, or body positions. The model found statistical patterns that separate those classes.
 
-The model did not understand your concept. It learned to distinguish patterns in the data you gave it. The model in the [Teachable Machine videos](teachable_machine.qmd#an-experiment-shape-or-colour) could have learned colour instead of shape, since both separated its examples perfectly; only a green circle showed which it had picked up. In the same way, if all your examples of one class had a bright background, the model may have learned “bright background”, not the thing you meant.
+The model did not understand your concept. It learned to distinguish patterns in the data you gave it. The model in the [Teachable Machine videos](teachable_machine.qmd#an-experiment-shape-or-colour) could have learned colour instead of shape, since both separated its examples perfectly, only a green circle showed which it had picked up. In the same way, if all your examples of one class had a bright background, the model may have learned “bright background”, not the thing you meant.
 
 That is the core insight of this reading: **models learn from data, and the data shapes everything**.
 
@@ -16,7 +16,7 @@ That is the core insight of this reading: **models learn from data, and the data
 
 Training a model is not a single step, but a cycle:
 
-![](../assets/training_loop.gif){width=949}
+![](../assets/training_loop.gif){width=700}
 
 1. **The data is split** into three parts before anything else happens: a **training** set, a **development** set, and a **test** set.
 2. The model is **trained** on the training set.
@@ -57,7 +57,7 @@ Bias is not simply a bug to be fixed. It is a property of the data and of the ch
 
 1. The model starts with random weights.
 2. It processes a training example and makes a prediction.
-3. It compares the prediction with the correct answer and calculates how wrong it was. This measure of error is called the [loss](https://en.wikipedia.org/wiki/Loss_function). If the right answer is `Green Square` and the model confidently says `Orange Circle`, the loss is high.
+3. It compares the prediction with the correct answer and calculates how wrong it was. This measure of error is called the [**loss**](https://en.wikipedia.org/wiki/Loss_function). If the right answer is `Green Square` and the model confidently says `Orange Circle`, the loss is high.
 4. It adjusts its weights slightly, in whichever direction reduces the loss.
 
 ![](../assets/loss_function.gif){.img-right width=500}
@@ -72,24 +72,24 @@ This is **[optimization](https://en.wikipedia.org/wiki/Mathematical_optimization
 
 The `evaluate` step hides an important question: *measured how?* The obvious measure is *accuracy*: what fraction of the model's answers are correct? But accuracy can mislead.
 
-Suppose a model reads [Stevenson's letters](../reference/letters.qmd) word by word and marks each word as a place name or not. Nearly every word in a letter is *not* a place name, so a model that never marks anything would be more than 95% accurate, and completely useless.
+Suppose a model reads [Stevenson's letters](../reference/letters.qmd) word for word and, for each word, it decides whether it is a place name or not. The vast majority of words in a letter are *not* place names, so a model that never marks anything as a place name would be more than 95% accurate, and completely useless.
 
 That's why evaluation usually separates two kinds of error:
 
-- **Precision:** of all the words the model marked as place names, how many really are? Low precision means *false alarms*.
+- **Precision:** of all the words the model marked as place names, how many really are so? Low precision means *false alarms*.
 - **Recall:** of all the place names actually in the letters, how many did the model find? Low recall means *misses*.
 
-The two are often in tension, and which matters more depends on your research goal. If you're building a map of every place Stevenson mentions and will check the results by hand anyway, you care most about recall (don't miss places); you can weed out false alarms yourself. If you're publishing counts without checking, false alarms matter just as much. A third measure, **F1**, combines precision and recall into a single score.
+The two are often in tension, and which matters more depends on your research goal. If you're building a map of every place Stevenson mentions and will check the results by hand anyway, you care most about recall (don't miss places), since you can weed out false alarms yourself. If you're publishing counts without checking, false alarms matter just as much. A third measure, **F1**, combines precision and recall into a single score.
 
 For a step-by-step example with numbers, see [Evaluation Metrics](evaluation_metrics.qmd). You will calculate these measures yourself in Unit 3, comparing a model's output against annotations of the letters made by people.
 
 ## Tuning: Overfitting and Generalization
 
-What is tuning trying to achieve? Not simply a lower loss on the training data. Think of a student who memorizes past exam papers instead of learning the material: they ace the practice tests and struggle on the real exam, because the real exam asks new questions.
+What is tuning trying to achieve? Not simply a lower loss on the training data. Think of a student who memorizes past exam papers instead of learning the material: they ace the practice tests but struggle on the real exam, because the real exam asks new questions.
 
 ![](../assets/overfitting_generalization.gif){.img-right width=500}
 
-Models can do the same. **[Overfitting](https://en.wikipedia.org/wiki/Overfitting)** happens when a model learns its training data *too well*, including its noise and quirks. It performs well on the training data and poorly on anything new. The goal is **generalization**: doing well on examples the model has never seen. This is exactly what the development set is for: if the loss keeps falling on the training set but starts rising on the development set, the model has begun to memorize.
+Models can do the same. **[Overfitting](https://en.wikipedia.org/wiki/Overfitting)** happens when a model learns its training data *too well*, including its noise and quirks. It performs well on the training data and poorly on anything new. The goal of model training is **generalization**: doing well on examples the model has never seen. This is exactly what the development set is for: if the loss keeps falling on the training set but starts rising on the development set, the model has begun to memorize.
 
 - In Teachable Machine terms: if every green square had been photographed on a desk and every orange circle on the floor, the model may have learned `desk` as part of `green square`. New examples in a different setting will fail.
 - The opposite problem is **underfitting**: a model too simple to capture the real pattern, which does poorly everywhere. The figure shows all three: a model that misses the pattern, one that captures it, and one that follows every quirk of its training points.
@@ -99,15 +99,15 @@ Models can do the same. **[Overfitting](https://en.wikipedia.org/wiki/Overfittin
 - Good models sit somewhere in between: complex enough to capture real patterns, not so complex that they memorize noise. This is known as the [bias–variance tradeoff](https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff) (a different sense of *bias* from the one above): as a model gets more complex, errors from oversimplifying fall and errors from memorizing rise, and the best total sits in the middle.
 - Tuning is largely about finding that middle. Common remedies for overfitting include more diverse training data, simpler models, techniques that limit how far the model can adjust ([regularization](https://en.wikipedia.org/wiki/Regularization_(mathematics))), and stopping training before the model starts to overfit ([early stopping](https://en.wikipedia.org/wiki/Early_stopping)).
 
-Even a model that generalizes well only generalizes to data *like its training data*. A model trained mostly on modern news articles may be excellent on news and much worse on nineteenth-century letters, with their ALL-CAPS headers, archaic spellings, and people known only to the writer. You will measure exactly this in [Unit 3](../unit_3/index.qmd).
+Even a model that generalizes well only generalizes to data *like its training data*. A model trained mostly on modern news articles may be excellent on news and much worse on nineteenth-century letters, with their archaic spellings, and people known only to the writer. You will measure exactly this in [Unit 3](../unit_3/index.qmd).
 
 ## The Black Box Problem
 
 ![](../assets/black_box.png){.img-right width=350}
 
-Once a model is trained, its *knowledge* is spread across millions or billions of weights. There is no readable rulebook. You can measure what the model **does**, but you cannot open it up and read off **what it learned**.
+Once a model is trained, its *knowledge* is spread across millions or billions of weights. There is no readable rulebook. You can measure what the model **does**, but you cannot open it up and read **what it learned**.
 
-This matters most for bias. If a model was trained on skewed or unrepresentative data, that bias is encoded in the weights, but you can't point to where it lives. You can only probe the model's behaviour: give it inputs and observe its outputs across a carefully built evaluation set. [LLM Behavior](llm_behavior.qmd) returns to what this means for LLMs.
+This matters most for bias. If a model was trained on skewed or unrepresentative data, that bias is encoded in the weights, but you can't point to where it lives. You can only probe the model's behaviour: give it inputs and observe its outputs across a carefully built evaluation set. [LLM Behavior](llm_behaviour.qmd) returns to what this means for LLMs.
 
 ## Key Takeaways
 

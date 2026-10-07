@@ -44,10 +44,10 @@ For this unit, you'll need:
    - Tokens, and how names, old spellings, and other languages are split
    - Word embeddings: turning tokens into numbers
    - From sequence to sequence: RNNs, LSTMs, and transformers
-   - How a language model writes: next-token probabilities, sampling, and temperature
+   - Text generation: next-token probabilities, sampling, and temperature
 5. **Activity: [Hack Merlin](hack_merlin.qmd)**: prompt injection and LLM guardrails
-6. **Reading: [LLM Behaviour](llm_behavior.qmd)**
-   - Plausible, not true: hallucination, confidence, and variation between answers
+6. **Reading: [LLM Behaviour](llm_behaviour.qmd)**
+   - Plausibility, not truth: hallucination, confidence, and variation between answers
    - Learned patterns all the way down: why guardrails can be talked around
    - You can see what a model does, not why
-   - Why benchmarks aren't enough, and why fluency is not correctness
+   - The limits of benchmarks, and fluency without correctness
