@@ -1,0 +1,171 @@
+---
+title: 'Assessing Reliability'
+---
+
+Once an LLM gives you a polished, plausible answer, it becomes hard to know how sceptical to be. Total distrust makes the tool useless, uncritical trust makes it dangerous. You've just seen both sides in the [Gemini Notebook activity](gemini_notebook.qmd): output that was impressive, and more accurate than a specialized model, but that couldn't be checked or repeated. This page moves from a vague sense that LLMs are *sometimes useful and sometimes risky* to a more disciplined question: **what exactly would justify trusting specific output, for a specific task?**
+
+The goal is neither to make you fearful of LLMs nor to reassure you that everything is fine. It is to help you build a professional standard of judgement. You already do this with other sources and tools.
+
+## Failure Modes: Patterns, Not Accidents
+
+By this point, you've seen several ways AI systems fail. In Teachable Machine, the model failed when inputs didn't resemble its training data. In Hack Merlin, its *safety* gave way, because guardrails are patterns, not rules. In Gemini Notebook, a story title became a person, and the same request produced different data.
+
+These are **failure modes**: characteristic ways in which a kind of system goes wrong. The key point is that LLMs fail in *characteristic, non-random* ways. Their failures follow from how they work ([LLM Behaviour](../unit_1/llm_behaviour.qmd) explained why), which means you can learn to anticipate them. The main groups are:
+
+- **Factual errors:** hallucination, outdated knowledge, overgeneralization.
+- **Reasoning errors:** faulty logic, arithmetic mistakes, losing track in multi-step work.
+- **Instruction-following errors:** ignored constraints, over- or under-compliance, and overconfidence.
+- **Sycophancy:** agreeing with you, flattering you, or giving way when you push back.
+- **Bias:** stereotypes, and values that may not be yours.
+- **Interaction errors:** inconsistency between runs, forgetting earlier context, sensitivity to phrasing, and manipulation.
+- **Quieter errors:** omission, over-interpretation, false certainty, and muddled sourcing.
+
+[**Failure Modes**](../reference/failure_modes.qmd) is a reference page describing each of these, with examples and what to do about them. You can come back to it when you need to put a name to something that went wrong.
+
+Two of these deserve a special mention, because they're the easiest to miss. **Hallucination** gets the most attention, but many bad outputs aren't invented from nothing: they leave out important evidence, present a weak inference as settled, or flatten real ambiguity. In humanities work, these quieter errors are especially dangerous, because they look like interpretation rather than obvious falsehood. A model may correctly identify a name in a letter, and then overstate the relationship, or read the tone too confidently from thin evidence. And **sycophancy** turns your own expectations into the model's answer: ask a leading question, and you'll often get the answer you were leading towards.
+
+## Degrees of Trust
+
+Trusting LLM output is not a yes-or-no decision. It is a judgement about whether a specific output is fit for a specific use. <span class="quote">Can I trust ChatGPT?</span> is too broad a question to be useful. A better one is: <span class="quote">Can I trust *this output* enough for *this purpose*?</span>
+
+A draft list of seminar discussion questions needs a different standard than a factual claim in a published article. Brainstorming search terms, drafting an email, or generating alternative phrasings can be helpful even without perfect accuracy. Exact quotations, archival descriptions, dates, counts, citations, translations, and extracted datasets demand much stronger checking.
+
+Thinking this way helps you avoid both hype and blanket rejection.
+
+## Fluency Without Evidence
+
+A polished answer can feel authoritative without being well supported.
+
+- Confidence of tone is not proof.
+- Detail is not the same as accuracy.
+- Coherence is not the same as evidence.
+
+The greatest strength of LLMs is also one of their greatest risks: they produce fluent, well-structured prose. Polished writing triggers our normal cues for expertise, which makes it easy to lower our guard. A highly specific answer may feel more credible simply because it includes dates, names, or causal explanations, but specificity can be fabricated or weakly grounded. (Remember the three detailed, confident, and entirely invented biographies of Sidney Colvin in [Unit 1](../unit_1/llm_behaviour.qmd#plausibility-vs.-truth).)
+
+**Make a habit of separating style from support.** Ask yourself: what in this answer could I actually verify? Which claims are direct, and which are interpretive? Is the model showing me evidence, or only giving me conclusions?
+
+Grounding the model in your sources, and asking it to quote them ([Prompting Strategies](prompting_strategies.qmd#grounding-in-sources)), helps a great deal, because it gives you something concrete to inspect. But a grounded answer can still select the wrong passage, mistake a salutation for a mention in the body of a letter, or turn a tentative statement into a firm conclusion. Grounding improves transparency, not certainty.
+
+## Verification in Proportion to the Stakes
+
+How much you check should depend on what the output will be used for.
+
+- **Low stakes:** brainstorming keywords, drafting an email, rephrasing notes, generating possible avenues of inquiry. These still require judgement, but exhaustive checking may not be necessary.
+- **Medium stakes:** summaries of sources, comparisons of themes, tentative interpretive scaffolding. These need visible evidence and selective checking.
+- **High stakes:** anything that will be quoted, cited, counted, published as fact, or reused as data. These need much stronger verification, and sometimes a different method entirely.
+
+This lines up with what conversational tools are good at:
+
+- **Good fits:** exploratory, synthetic, and drafting tasks, such as brainstorming search terms, drafting summaries, comparing themes across a few texts, rephrasing notes, or helping write code.
+- **Weaker fits:** exact counts, exhaustive retrieval, reproducible labelling, and precise factual claims, without verification.
+
+A simple rule: if the output needs to be cited, counted, or reused systematically, ask what evidence supports it, and whether the process can be repeated. When it can't, as with the Gemini Notebook exports, the output can still be a useful starting point, but it can't be the finished data. [Unit 3](../unit_3/index.qmd) shows the alternative.
+
+## Practical Verification Approaches
+
+Verification is a set of concrete practices, not a vague attitude of caution.
+
+- Ask the model to quote the phrase supporting each claim.
+- Open the source, and check whether the quotation actually supports the conclusion drawn from it.
+- Restate the question more narrowly, and see whether the answer holds steady.
+- Try the same task in a fresh session or another tool, and compare.
+- Ask the question in a neutral way, without signalling the answer you expect (sycophancy).
+- If a claim matters, verify it outside the model entirely.
+- For structured tasks, compare the model's output against a small sample you've checked by hand.
+- Mark uncertainty explicitly.
+
+Verification is easiest when the task was well scoped in the first place. **Don't just ask if the answer sounds right, ask what you would need to inspect to know whether it *is* right.**
+
+
+::: {.callout-tip}
+## Questions for Checking Output
+
+You can use familiar disciplinary habits to interrogate LLM output:
+
+- <span class="prompt">What is the source of this claim?</span>
+- <span class="prompt">Is it explicit in the text, or inferred?</span>
+- <span class="prompt">What is missing or flattened here?</span>
+- <span class="prompt">Could a reasonable reader interpret this differently?</span>
+
+You already have many of the right instincts: the same critical habits you use with archives and secondary literature apply here. Ask whether a claim is stated in the source or constructed by the model. Ask whether the answer compresses ambiguity into certainty. Ask what it leaves out: models are often strong at producing the central tendency, and weak at preserving edge cases, contradictions, or minority evidence. And ask whether a different framing of the same source would lead to a different interpretation.
+:::
+
+::: {.callout-warning}
+## Poor Fits for Unverified Output
+
+Some uses are poor fits for unverified LLM output, even when the answer sounds plausible.
+
+- **Exact quotations and citations.** Models may paraphrase, compress, or invent wording while sounding precise.
+- **Exhaustive counts or lists.** The model may leave items out without signalling that it has.
+- **Fine-grained chronology.** Sequences can be flattened or rearranged.
+- **Sensitive interpretation** without reviewing the sources yourself.
+- **Structured data for later analysis.** The output may look neat while hiding inconsistencies, and a second run may not match the first.
+
+This doesn't mean the model can't help with these tasks. It means the model shouldn't be the final authority.
+:::
+
+## From Spot Checks to Systematic Evaluation
+
+Everything above is about checking individual answers. For structured tasks with right and wrong answers, such as finding the names in a set of letters, there's a more systematic version: people with the relevant expertise annotate a sample of documents, producing a set of correct answers (the **ground truth**), and the model's output is compared with it, using the precision, recall, and F1 you saw in [Unit 1](../unit_1/evaluation_metrics.qmd). How often two annotators agree tells you how reliable the ground truth itself is.
+
+This is what separates research use from casual use: **treating model output as a hypothesis to be evaluated, not an answer to be accepted**. You'll do exactly this in [Unit 3](../unit_3/index.qmd): annotate some letters yourself, and measure how well a model (and Gemini Notebook) did on them. The exercise below is a first, reduced version.
+
+## Exercise
+
+::: {.callout-note}
+## The Letter to Colvin: Step 4 of 6
+
+Take the table you made in [step 2](prompting_strategies.qmd#exercise) (and the Gemini Notebook rows from step 3), and check it against the [letter](https://github.com/gpizzorno/understanding-ai/blob/main/data/sample_letters/wikisource_vol1_ch3_letter14.txt) itself. Keep your notes on what you find: you'll use them in step 5.
+
+:::
+
+1. Go through the table row by row. Is each name really in the letter, exactly as written? Is the type right?
+2. Go through the letter. Is any name missing from the table?
+3. For each problem you find, look up the kind of failure in [Failure Modes](../reference/failure_modes.qmd). Is it a factual error, an instruction-following error (names not recorded *as written*), a quieter error (an inference presented as a fact), or something else?
+4. Then compare with the answer key below, made by two people who annotated this letter independently.
+
+::: {.callout-tip collapse="true"}
+## Answer Key: Two Annotators' Findings
+
+Both annotators marked these eight names (as written in the letter, with their type):
+
+<div class="table-container table-70">
+
+| Mention | Type |
+|---|---|
+| SIDNEY COLVIN | person |
+| COLVIN | person |
+| LOUIS STEVENSON | person |
+| Stephen (twice: Leslie Stephen, editor of the *Cornhill*) | person |
+| EDINBURGH | place |
+| Penzance | place |
+| CORNHILL | organization (the *Cornhill Magazine*) |
+| TEMPLE BAR | organization (the magazine *Temple Bar*) |
+: {.sm}
+
+</div>
+
+They disagreed on one: one annotator also marked `post-office` (`at the post-office a letter will find me`) as an organization, the other didn't consider it a named entity. Neither marked `Villon` or `The Sire de Maletroit's Mousetrap`, which are titles of Stevenson's stories, not people.
+
+So even the answer key involves judgement calls, and two careful people don't agree completely. What would you have decided about the post-office?
+
+:::
+
+## Common Misconceptions
+
+- <span class="quote">Hallucination means the model is useless.</span> No. It means the output must be evaluated in relation to the task and the stakes.
+- <span class="quote">If the answer is grounded in sources, I can trust it.</span> Grounding makes an answer easier to inspect, it doesn't guarantee it's correct.
+- <span class="quote">If the tool is more accurate, I don't need to check it.</span> Accuracy measured once doesn't carry over to the next run, or the next version.
+- <span class="quote">If I can't verify everything, I should never use the tool.</span> Use can still be appropriate for low-stakes support, brainstorming, or drafting.
+
+## Key Takeaways
+
+- LLMs fail in characteristic ways, learning the main failure modes lets you anticipate them.
+- Many errors are quiet: omissions, over-interpretation, false certainty, and answers that tell you what you expected to hear.
+- Trust should be calibrated to the task and its stakes: use freely for low-stakes work, verify strongly anything you'll quote, count, publish, or reuse as data.
+- Verification is concrete: quote, check the source, ask again, compare, and check a sample by hand.
+- For structured tasks, systematic evaluation against ground truth is the research-grade version of checking.
+
+## Next
+
+[Failure Modes](../reference/failure_modes.qmd) is the reference for the failures named on this page; skim it now, and come back to it when you need it. Then continue with [Documenting Your Work](documenting_ai_use.qmd).

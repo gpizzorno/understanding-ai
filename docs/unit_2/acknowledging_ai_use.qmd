@@ -1,0 +1,104 @@
+---
+title: 'Acknowledging AI Use'
+---
+
+If AI helped produce part of your work, what should you say about that help, and where? The [AI-Assisted Work activity](ai_assisted_work.qmd) showed that there is rarely a single right answer. This page offers practical advice on describing AI assistance in the cases where you've decided the use was appropriate.
+
+The key word is *acknowledging*, not *citing*. In most research settings, an AI tool isn't a source you cite for a claim, the way you'd cite a letter or an article. It's a tool that helped you work, and what readers need is an honest account of how.
+
+There's no universal rule. Norms differ across disciplines, institutions, publishers, and classrooms, and they are very much in flux. What follows are suggestions on how to make these decisions responsibly.
+
+## Citing Sources, Not the Model
+
+If a model helped you find, summarize, or interpret evidence, your citation should point to the evidence itself: the letter, the article, the archive, the dataset. AI output is not a scholarly authority on a topic, its claims need checking against sources, and once you've checked them, you cite the sources.
+
+This is why *citing ChatGPT* for a fact is always the wrong move: it points your reader to an answer that can't be checked, reproduced, or trusted on its own. Some style guides do offer formats for citing AI output. They're useful when the AI's output is itself the thing you're discussing (for example, if you're studying how chatbots describe Stevenson), but that's the exception.
+
+## Acknowledging a Tool's Role in the Work
+
+If AI materially affected your wording, structure, code, translation, interpretation, data, or workflow, say so. The form varies with the setting:
+
+- **A methods section or note,** for AI used in the research process: extraction, classification, translation, analysis, code.
+- **An acknowledgement,** for help with drafting or editing.
+- **A disclosure statement,** where a course, journal, or funder asks for one.
+- **An appendix or supplementary material,** for detailed prompts, settings, or evaluation results.
+- **Your own records,** for use that doesn't need public mention ([Documenting Your Work](documenting_ai_use.qmd)).
+
+## Principles
+
+- **Disclosure should be proportional to impact.** A minor brainstorming use may need little or no formal mention. A major analytical or drafting role should usually be disclosed more explicitly.
+- **Be specific.** <span class="quote">AI tools were used in preparing this article</span> tells a reader almost nothing. Say what the tool did, on what material, and what you did with the result.
+- **Say what you checked.** Verification is what makes AI-assisted work defensible: say how the output was checked, and what that check found.
+- **Neither overstate nor understate.** Don't hide a substantive contribution behind vague wording, and don't exaggerate a trivial one.
+- **Policy takes precedence.** When a course, publisher, journal, archive, or funder has a rule, follow it. When there's none, use the strongest standard of transparency you'd be comfortable defending.
+
+## A Decision Framework
+
+1. What did the AI actually do: brainstorm, summarize, draft, translate, extract, code, or analyze?
+2. Did it provide evidence, or only language?
+3. Will the result stay private, or appear in a public or assessed output?
+4. How much of the final result depends on the AI's wording or judgement?
+5. What checking was done before reuse?
+6. What would a reasonable reader, instructor, or reviewer need to know?
+
+If you've kept a record of your use ([Documenting Your Work](documenting_ai_use.qmd)), you'll have the answers to most of these already.
+
+## Examples of Disclosure Statements
+
+*For analysis:* 
+
+> <span class="quote">I used Gemini Notebook to generate preliminary summaries of three Stevenson letters while identifying recurring themes. All interpretive claims in the final text were checked against the letters themselves.</span>
+
+*For brainstorming:* 
+
+> <span class="quote">I used ChatGPT to suggest alternative search terms for nineteenth-century emigration in newspaper databases. Its suggestions were used only to broaden my searches, it supplied no evidence or wording in the final piece.</span>
+
+*For data:* 
+
+> <span class="quote">Named entities were extracted with a pre-trained model, and evaluated against two people's annotations of eight letters (see Methods). An LLM (Claude) helped write and debug the extraction code, the code is available at [link].</span>
+
+*For writing:* 
+
+> <span class="quote">An early draft of the introduction was revised for clarity with the help of an AI writing assistant. The argument, sources, and final wording are my own.</span>
+
+::: {.callout-warning}
+## A Note on AI Detectors
+
+You may encounter tools that claim to detect whether a text was written by AI. General-purpose AI detectors are unreliable, and have been shown to flag writing by non-native English speakers as AI-generated far more often than writing by native speakers. Some AI providers add watermarks to their own output, which *can* be detected reliably by the provider, but only for that provider's models, and not after heavy editing ([LLM behaviour](../unit_1/llm_behaviour.qmd#plausibility-vs.-truth) explains how). The reliable way to show how your work was made is to say so.
+:::
+
+## Exercise
+
+::: {.callout-note}
+## The Letter to Colvin: Step 6 of 6
+
+Imagine you're publishing a short article on Stevenson's relationships with his editors, and it includes the table of names you made and checked in steps 2 to 4. Using your log entry from [step 5](documenting_ai_use.qmd#exercise), write a two- or three-sentence disclosure statement for it.
+:::
+
+Then check your statement:
+
+- Is it specific enough? Does it say which tool, and what it did?
+- Does it make clear what you checked, and how?
+- Does it avoid overstating or understating the AI's role?
+- Would a reader know whether the table could be trusted?
+
+Finally, try the same for one of the scenarios in the [AI-Assisted Work activity](ai_assisted_work.qmd), and compare the two.
+
+## Common Misconceptions
+
+- <span class="quote">If AI helped at all, it must be cited like a book.</span> Usually the better approach is acknowledgement, or a description of method, rather than treating the model as a source of evidence.
+- <span class="quote">If I cite the chatbot, I don't need to verify the claim.</span> Citing the chatbot doesn't make the claim trustworthy.
+- <span class="quote">If the AI only changed the wording, that never matters.</span> In some settings, especially student work or public writing, help with wording may still require disclosure.
+- <span class="quote">There is one universal rule for all contexts.</span> Norms vary, which is why awareness of policy and transparent reasoning matter.
+- <span class="quote">An AI detector will show whether I used AI anyway.</span> General detectors are unreliable; your own account is the only reliable record.
+
+## Key Takeaways
+
+- Cite the actual sources that support your claims, not the model.
+- Acknowledge AI when it materially shaped your wording, analysis, code, or data, in proportion to its impact.
+- A good acknowledgement is specific: which tool, what it did, and what you checked.
+- When a policy exists, it takes precedence; when it doesn't, choose a standard you could defend.
+
+## Next
+
+This completes Unit 2. You've seen what conversational AI does well, and what it can't give you: reproducible, transparent, verifiable results. [Unit 3](../unit_3/index.qmd) builds a pipeline that does. Before you start, [set up Python](../unit_3/python_setup.qmd).

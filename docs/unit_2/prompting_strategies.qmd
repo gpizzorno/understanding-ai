@@ -1,0 +1,192 @@
+---
+title: 'Prompting Strategies'
+---
+
+This page follows [Prompt Processing](prompts.qmd). If the model works by responding to the text in its context, then prompting *is the practice of shaping that context so the task is easier for the model to perform and easier for you to evaluate.*
+
+You may have come across online advice that treats prompting as a hidden craft. It mostly isn't. Prompting is usually **task design**. If you can describe a research task clearly to a student assistant or a collaborator, you can usually write a good prompt. The challenge is being explicit about your **sources**, the **task**, the **output** you want, and the **level of certainty** you need.
+
+Four key ideas run through this page:
+
+- Better prompts are usually clearer prompts, not cleverer ones.
+- Prompting is iterative: useful results usually come from a sequence of refinements, not one perfect request.
+- Grounding the model in specific sources improves transparency and reduces unsupported invention.
+- A good prompt makes the output easier to inspect, question, and reuse.
+
+## Prompting as Task Design
+
+The best prompts come from **defining the task clearly**, not from discovering secret phrases.
+
+A common misconception is that if you can only find the perfect wording, the model will suddenly become reliable. Here's a more grounded view: a prompt works well when it answers a few practical questions clearly. What material should the model use? What should it do with that material? What kind of output do you want? How should it handle uncertainty?
+
+These are familiar scholarly habits. Researchers already know how to define a source base, distinguish evidence from interpretation, and ask whether a claim is justified. Good prompting extends those habits to a new tool.
+
+## The Four Parts of a Strong Prompt
+
+Most useful prompts contain four elements:
+
+- **Source:** what material should the model use? The relevant text or corpus, or a clear instruction about where to draw information from.
+- **Task:** what should it do? The actual intellectual operation: summarize, compare, extract, translate, categorize, brainstorm, critique.
+- **Output:** what form should the answer take? A paragraph, bullet list, table, chronological list, short explanation for beginners.
+- **Standard:** how should it handle evidence, uncertainty, or constraints? Quote the evidence, separate facts from inference, say when uncertain, don't use outside knowledge, limit to three examples, and so on.
+
+The last part is often what separates a casual chatbot exchange from a prompt you can use for research.
+
+## The Benefits of Structure
+
+Structure improves both the model's performance and your ability to evaluate it.
+
+- It clarifies what counts as a good response.
+- It reduces drift into irrelevant material.
+- It makes weak answers easier to diagnose.
+
+Structure is useful even when the model still makes mistakes. If you ask a vague question and get a vague answer, it's hard to tell whether the problem was comprehension, evidence, or formatting. A structured prompt gives you clear failure points. If you asked the model to quote evidence and it didn't, that's visible. If you asked it to separate explicit statements from inference and it blended them, that's visible too.
+
+This matters because it's tempting to judge a model only by whether its prose sounds good. A structured prompt pushes you to judge whether the answer is actually usable. A beautiful synthesis that can't be traced back to sources is often less useful than a simpler answer with clear grounding.
+
+::: {.callout-note}
+## A Before-and-After Example
+
+Small changes in specificity often produce much more usable output.
+
+- **Weak:** <div class="prompt">What is happening in these letters?</div>
+- **Stronger:** <div class="prompt">Using only these three letters, give a 4-bullet summary of the main topics. Then list each person mentioned, quote the phrase that names them, and mark each identification as explicit or inferred. If you are unsure, say so.</div>
+
+Why is the second better?
+
+- It narrows the source base.
+- It specifies the kind of summary wanted.
+- It asks for a separate extraction task instead of blending everything into prose.
+- It demands evidence.
+- It allows uncertainty instead of encouraging the model to bluff.
+
+The second prompt doesn't eliminate errors, but it produces output that is easier to inspect and revise. Which would you trust more as a starting point for your notes?
+:::
+
+## Iteration over Perfection
+
+Useful prompting is usually a process of refinement, not a one-shot request.
+
+1. **First prompt:** get a draft answer.
+2. **Second prompt:** diagnose its weaknesses.
+3. **Third prompt:** narrow, revise, or reformat.
+
+It's easy to assume that a disappointing first response means the tool is useless, or that you're bad at prompting. Instead, treat the interaction as iterative work. You already refine search terms, adjust archive queries, and restate research questions all the time, prompting works the same way.
+
+The first answer tells you how the model interpreted your request. You can then tighten the task: ask for fewer claims, a different format, more explicit quotation, a narrower scope, or a clearer line between summary and analysis. This is often more effective than writing a giant prompt from scratch, and it models good scholarly method: inspect the output, identify what went wrong, and revise the procedure. **Treat the first response as diagnostic, not final.**
+
+::: {.callout-tip}
+## Good Follow-Up Questions
+
+The best follow-up prompts target a specific weakness in the previous answer.
+
+- Ask for evidence: <span class="prompt">Can you quote the sentence that supports that claim?</span>
+- Ask for a narrower scope: <span class="prompt">Redo this using only Letter 5.</span>
+- Ask for a different format: <span class="prompt">Put this into a table with one row per person mentioned.</span>
+- Ask for a separation: <span class="prompt">Separate what the text states directly from what you inferred.</span>
+- Ask the model to label uncertainty: <span class="prompt">Which parts of your answer are uncertain or depend on outside knowledge?</span>
+
+These aren't tricks. They are ways of auditing and refining the model's work. Think like an editor rather than a passive recipient: if an answer is too broad, force it narrower; if it's too polished, demand evidence; if it's too vague, ask for categories or structure.
+:::
+
+## Grounding in Sources
+
+Grounding improves prompts by anchoring them in specific material instead of inviting free-floating synthesis.
+
+In practical terms, grounding means telling the model which documents to use and asking it to show where each claim comes from. This matters for researchers because LLMs are very good at producing plausible generalizations that *sound* source-based even when they aren't.
+
+A strong default rule: **if the source matters, name it and ask the model to stay within it.** You can do this by pasting text directly, uploading specific files, or clearly marking off the relevant material in your prompt.
+
+Be aware that some tools will mix in background knowledge unless told otherwise. That may sometimes be useful, but it should be explicit rather than invisible.
+
+Useful phrasing:
+
+- <span class="prompt">Using only the text provided below...</span>
+- <span class="prompt">Quote the phrase that supports each claim.</span>
+- <span class="prompt">Do not rely on outside knowledge unless you label it separately.</span>
+
+::: {.callout-warning}
+## The Limits of Grounding
+
+Even grounded prompts need verification, because the model can still misread or over-interpret its sources.
+
+It's easy to hear *grounded* and think *safe*. **Grounding improves transparency, not certainty**. The model may quote the wrong passage, misidentify a person, overstate what a document shows, or quietly combine evidence with inference. With historical materials, the risk is amplified by OCR problems, archaic phrasing, ambiguous names, and missing context.
+
+Grounding is valuable because it gives you something to inspect. It doesn't remove the need to inspect it. [Assessing reliability](assessing_reliability.qmd) takes this further.
+:::
+
+## Patterns That Usually Help
+
+A small set of habits does most of the real work in research prompting.
+
+- **Constrain the source** when you need accountability.
+- **Define the task** so the model knows whether you want extraction, synthesis, comparison, or explanation.
+- **Specify the output shape** if you need notes, a table, a list of themes, a draft email, or an explanation of code.
+- **Ask for evidence and uncertainty** when correctness matters.
+- **Revise based on what went wrong**, not on generic advice from the internet.
+
+Prompting goals differ by task. A brainstorming prompt can be loose; a prompt for analysing sources should usually be tight.
+
+::: {.callout-tip}
+## A Reusable Prompt Template
+
+<div class="prompt">Using only **[source or pasted text]**, **[perform task]**. Return the answer as **[desired format]**. For each claim, **[quote evidence / identify uncertainty / separate explicit statements from inference]**.</div>
+
+This isn't a script to memorize, it's a checklist of the parts of a prompt. Adapt it for your own work: summarization, entity extraction, comparison across documents, translation assistance, or help with code. The same structure works when you ask an LLM to explain code or write a Python loop: include the code, say what you want changed, and state any constraints.
+:::
+
+## An Example Workflow
+
+Prompting works best as part of a repeatable workflow, not as isolated questions.
+
+1. Ask for a narrow, grounded summary of one or two letters.
+2. Inspect the output: did the model quote accurately and identify people correctly?
+3. Ask a targeted follow-up, such as turning the result into a table or clarifying an uncertain identification.
+4. If the prompt proved useful, save it, with a note of what it was for, so you can repeat the process (see [Documenting Your Work](documenting_ai_use.qmd)).
+
+This moves you beyond casual chat towards methodical research support. It also reflects a broader lesson: if a task needs consistency, the process itself has to become more explicit.
+
+## Exercise
+
+::: {.callout-note}
+## The Letter to Colvin: Step 2 of 6
+
+Go back to the [letter to Colvin](https://github.com/gpizzorno/understanding-ai/blob/main/data/sample_letters/wikisource_vol1_ch3_letter14.txt) from step 1. This time, instead of asking a loose question, you'll design the task. After completing the table, save it, you'll check it against people's annotations of the same letter in step 4.
+:::
+
+ In a new conversation, paste the letter and ask:
+
+::: {.prompt}
+Using only the letter below, list every named person, place, and organization it mentions. Put them in a table with the columns: name as written | type (person, place, organization, or title of a work) | the phrase where it appears | explicit or inferred. Record each name exactly as it is written. If you're unsure about a name or its type, say so in a final column.
+:::
+
+Then refine it with follow-ups, one weakness at a time. For example:
+
+- <span class="prompt">"Villon" is in quotation marks. Is it a person, or the title of a work? Check the phrase it appears in.</span>
+- <span class="prompt">Are CORNHILL and TEMPLE BAR places, or something else here? Quote the phrase that decides it.</span>
+- <span class="prompt">Which rows depend on knowledge from outside the letter? Mark them.</span>
+
+::: {.callout-tip}
+## Points to Notice
+
+- **Compare the table with your answers from step 1.** The structured prompt doesn't make the model smarter, but it makes each claim separately visible, so you can check it.
+- **The type column forces decisions** that a summary glosses over. `CORNHILL pages` and `TEMPLE BAR appears to like my 'Villon'` only make sense if Cornhill and Temple Bar are magazines, not places: context decides, and the model has to show it read the context.
+- **Did the model follow your instructions exactly?** Names as written (`COLVIN`, not `Sidney Colvin`)? Only the letter, or outside knowledge too? Where it didn't, a targeted follow-up usually fixes it. That's iteration at work.
+:::
+
+## Common Misconceptions
+
+- <span class="quote">Prompt engineering means learning special formulas.</span> Usually it means being explicit about task design.
+- <span class="quote">If I keep refining the prompt, I can force the model to become reliable.</span> Iteration improves usefulness, but it doesn't remove the need for verification.
+- <span class="quote">Grounding in sources guarantees accuracy.</span> Grounding makes claims easier to inspect, it doesn't guarantee a correct reading.
+- <span class="quote">A polished answer is a trustworthy answer.</span> Fluent writing and reliable reasoning are not the same thing.
+
+## Key Takeaways
+
+- Better prompts are clearer prompts, not cleverer ones: state the source, the task, the output, and the standard.
+- Strong results usually come through iteration. Treat the first response as diagnostic.
+- Grounding improves transparency, not certainty.
+
+## Next
+
+Try the [Gemini Notebook activity](gemini_notebook.qmd), where you'll apply these strategies to 20 of Stevenson's letters at once, with a research tool built for working with your own sources, and find out what it can and can't do.

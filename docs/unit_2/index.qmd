@@ -1,0 +1,53 @@
+---
+title: 'Unit 2: Working with LLMs'
+toc: false
+---
+
+This unit covers how large language models process prompts, how to prompt them well, how to judge how far their output can be trusted, and how to be transparent about using them. You'll explore a set of [historical letters](../reference/letters.qmd) with an AI research tool, and find out what it does well, and what it can't do reliably.
+
+Throughout the unit, a six-step exercise follows one short letter ([Stevenson to Sidney Colvin, August 1877](../reference/letters.qmd#a-sample-letter)) from a first question to a disclosure statement.
+
+::: {.callout-tip collapse="true"}
+# Requirements
+
+For this unit, you'll need:
+
+   - A Google account (for Gemini Notebook)
+   - Access to a general-purpose AI chat assistant such as [ChatGPT](https://chatgpt.com), [Claude](https://claude.ai/), or [Gemini](https://gemini.google.com) (free tiers are sufficient)
+:::
+
+::: {.callout-note collapse="true"}
+# Learning Objectives
+
+- Explain what an LLM actually receives when you use it (system prompts, chat history, documents, retrieved passages) and how the context window limits it
+- Write more effective prompts, treating prompting as task design: structure, iteration, and grounding in sources
+- Use a research tool such as [Gemini Notebook](gemini_notebook.qmd) to explore a set of documents, and judge what its output can and can't be relied on for
+- Recognize the characteristic ways LLMs fail, including hallucination, sycophancy, and quieter errors such as omission and over-interpretation
+- Calibrate trust to the stakes, and verify LLM output in concrete ways
+- Keep a proportionate record of AI use, and acknowledge it appropriately
+:::
+
+## Contents
+
+1. **Reading: [Prompt Processing](prompts.qmd)**
+   - The model's actual input: your prompt, the system prompt, documents, chat history, and retrieved passages
+   - Context windows, long conversations, and summaries
+   - Instructions as strong signals, not hard rules; drift, forgetting, and self-contradiction
+2. **Reading: [Prompting Strategies](prompting_strategies.qmd)**
+   - Prompting as task design: source, task, output, and standard
+   - Iteration, follow-up questions, and grounding
+3. **Activity: [Gemini Notebook](gemini_notebook.qmd)**
+   - Exploring 20 Stevenson letters, and the entity resolution problem
+   - Structured output: a real data file and a network graph
+   - Reliability: reproducibility, visible code, versions, and scale
+4. **Reading: [Assessing Reliability](assessing_reliability.qmd)**
+   - Failure modes: patterns, not accidents
+   - Trust as fit for purpose, matching verification to the stakes, practical verification approaches
+   - From spot checks to systematic evaluation against ground truth
+5. **Reading: [Documenting Your Work](documenting_ai_use.qmd)**
+   - Proportionality, and a documentation template (with two worked examples)
+   - Explicit processing: requesting the script, not the result
+6. **Activity: [AI-Assisted Work](ai_assisted_work.qmd)**: six scenarios for discussion
+7. **Reading: [Acknowledging AI Use](acknowledging_ai_use.qmd)**
+   - Citing sources, not the model, and acknowledging tools in proportion to their impact
+   - A decision framework, example disclosure statements, and a note on AI detectors
