@@ -39,6 +39,7 @@ packages = []
 line-length = 120
 target-version = "py311"
 extend-include = ["*.ipynb"]
+extend-exclude = ["data/"] # files kept exactly as a tool produced them, such as data/gemini_notebook/
 
 [tool.ruff.lint]
 ignore = [
@@ -117,6 +118,10 @@ section-order = [
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["E402"] # ignore import violations in init files
 "docs/_scripts/*.py" = ["INP001"] # standalone scripts run by the site build, not a package
+"*.ipynb" = [
+  "B905",   # zip() without strict=: the columns zipped are always the same length, and strict= is one more thing to explain
+  "BLE001", # catching every exception: the extraction loop reports a failed letter and carries on with the next one
+]
 
 [tool.ruff.lint.pycodestyle]
 max-line-length = 130 # to detect extra-long lines that the formatter can't automatically split
@@ -129,4 +134,5 @@ root = ["."]
 [tool.ty.src]
 exclude = [
   ".venv/",
+  "**/*.ipynb", # notebooks are written for beginners, without type hints
 ]
