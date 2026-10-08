@@ -1,0 +1,63 @@
+---
+title: 'Unit 3: Programmatic Approaches'
+toc: false
+---
+
+This unit covers what to do when your research needs the kind of reproducibility, transparency, and control that a conversation with an AI tool can't provide. You'll run a pre-trained model over all [462 letters](../reference/letters.qmd), turn the results into charts, a network graph, a timeline, and a map, and then measure how accurate the results actually are when compared to annotations made by humans, including your own.
+
+::: {.callout-tip collapse="true"}
+# Requirements
+
+For this unit, you'll need:
+
+- A working Python/Jupyter environment, or an account for Google Colab ([Setting up Python](python_setup.qmd) covers both)
+- Enough knowledge of Python to read and run code, though not to write it from scratch ([Setting up Python](python_setup.qmd#required-python-knowledge) helps you check)
+- Access to a general-purpose AI chat assistant, as in Unit 2, to help you read and debug code
+:::
+
+::: {.callout-note collapse="true"}
+# Learning Objectives
+
+- Explain what programmatic approaches offer over conversational tools (reproducibility, transparency, a pinned model, scale, and structured output)
+- Use an LLM to read, explain, adapt, and debug code, and get LLM-written code to run on your own computer
+- Describe what a pre-trained model is, and how it differs from a general-purpose LLM
+- Load and run a pre-trained named-entity recognition (NER) model with Hugging Face Transformers, over a whole corpus
+- Turn model output into structured data, export it as CSV, and visualize it (charts, a network graph, a timeline, and a map)
+- Create ground-truth annotations, and measure agreement between annotators
+- Evaluate model output against ground truth with precision, recall, and F1, analyse its errors, and compare models
+- Record a model, its version, its settings, and its evaluation in a way that supports reproducible research
+:::
+
+## Contents
+
+1. **Setup: [Setting up Python](python_setup.qmd)**
+   - Required Python knowledge, and a quick refresher
+   - Three ways to get set up: Google Colab, Anaconda, or plain Python
+2. **Reading: [Advantages of programmatic approaches](programming_advantages.qmd)**
+   - Control, not capability: what Gemini Notebook could and couldn't give you
+   - The case for code: when a research task is worth writing code for
+   - Approaches in between: LLMs called from code, local models, RAG, and GraphRAG
+3. **Reading: [Coding with LLMs](coding_with_llms.qmd)**
+   - Vibe-coding vs. coding with LLMs: keeping yourself in the loop
+   - Kinds of tools: chat assistants, coding agents, and code editors with AI assistance
+   - From code to result: where code runs, file paths, environments, and checking what an agent did
+   - Five habits, and prompts to try
+4. **Reading: [The NLP pipeline](nlp_pipeline.qmd)**
+   - Named-entity recognition, and pre-trained models vs. general-purpose LLMs
+   - Tokenization and the problem of ALL-CAPS text, and the pipeline step by step
+   - Hugging Face and model cards
+5. **Case study: [Named entities in Stevenson's letters](ner_case_study.qmd)**, using the [NER pipeline notebook](ner_pipeline.ipynb)
+   - Run a pre-trained NER model on a letter, then on all 462, and export the results as CSV
+   - Explore and visualize the results: counts, a co-occurrence network, a timeline, and a map
+   - Entity resolution revisited: deciding, in code, which names are the same person
+6. **Activity: [Ground-truth annotation](annotation.qmd)**
+   - Annotating letters for people, places, and organizations
+   - Inter-annotator agreement: boundary, type, and coverage disagreements
+7. **Activity: [Evaluating and comparing models](evaluating_models.qmd)**
+   - Precision, recall, F1, and error analysis against human annotations
+   - Confidence thresholds and the precision/recall tradeoff
+   - Comparing a second NER model, and Gemini Notebook
+8. **Reading: [Next steps](next_steps.qmd)**
+   - Writing up AI methods
+   - Applying the pipeline to your own sources
+   - Further directions: other models, spaCy, fine-tuning, and LLMs from code
