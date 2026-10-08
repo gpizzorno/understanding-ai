@@ -72,7 +72,7 @@ There are several basic ways to train a model. They differ in what the model lea
 
 ![](../assets/supervised_learning.gif){.img-right width=320}
 
-The model learns from examples that come with the correct answer: inputs paired with **labels**. Think of teaching with an answer key. To build a model that finds names in text, people annotate thousands of sentences, marking every name and whether it's a person, a place, or an organization; the model learns patterns that predict those labels, and can then label new text it has never seen. The [named entity recognition (NER)](https://en.wikipedia.org/wiki/Named-entity_recognition) models in [Unit 3](../unit_3/index.qmd) were trained this way.
+The model learns from examples that come with the correct answer: inputs paired with **labels**. Think of teaching with an answer key. To build a model that finds names in text, people annotate thousands of sentences, marking every name and whether it's a person, a place, or an organization; the model learns patterns that predict those labels, and can then label new text it has never seen. The [named-entity recognition (NER)](https://en.wikipedia.org/wiki/Named-entity_recognition) models in [Unit 3](../unit_3/index.qmd) were trained this way.
 
 ### Unsupervised Learning
 
