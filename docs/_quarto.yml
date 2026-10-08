@@ -10,8 +10,18 @@
 project:
   type: website
   output-dir: _site
+  # the notebook lives in notebooks/ this copies it into unit_3/ for each build
+  pre-render: _scripts/copy_notebook.lua
+  render:
+    - index.qmd
+    - unit_*/*.qmd
+    - reference/*.qmd
+    - unit_3/ner_pipeline.ipynb
   resources:
     - assets/
+
+execute:
+  enabled: false # the notebook is shown with its saved outputs, nothing is run when building
 
 website:
   title: Understanding AI
@@ -88,7 +98,7 @@ website:
             href: unit_3/evaluating_models.qmd
           - text: Next Steps
             href: unit_3/next_steps.qmd
-      # Reference material: these pages have no previous/next links
+      # reference material: these pages have no previous/next links
       - section: Reference
         contents:
           - text: The Stevenson Letters
