@@ -1,0 +1,558 @@
+---
+title: 'Failure Modes'
+---
+
+This page is a reference guide to the characteristic ways in which LLMs go wrong. You don't need to read it from start to finish: use the table to find a failure, and come back when you need to put a name to something you've seen. [Assessing reliability](../unit_2/assessing_reliability.qmd) explains how to use this in practice, and [LLM behaviour](../unit_1/llm_behaviour.qmd) explains where these failures come from.
+
+<div class="table-container table-80">
+
+::: {.list-table .small tbl-colwidths="[25,25,50]"}
+- - Group
+  - Failure
+  - Description
+- - []{rowspan=3} Factual
+  - [Hallucination](#hallucination)
+  - Plausible, specific, confident, and false
+- - [Outdated knowledge](#outdated-knowledge)
+  - Doesn't know what happened after its training data was collected
+- - [Overgeneralization](#overgeneralization)
+  - Applies a common pattern where it doesn't hold
+- - []{rowspan=3} Reasoning
+  - [Faulty logic](#faulty-logic)
+  - Invalid inferences presented as valid
+- - [Arithmetic mistakes](#arithmetic-mistakes)
+  - Wrong numbers, stated fluently
+- - [Multi-step breakdowns](#multi-step-breakdowns)
+  - Loses track partway through a long task
+- - []{rowspan=4} Instructions
+  - [Ignored constraints](#ignored-constraints)
+  - Breaks the rules you gave it
+- - [Over- or under-compliance](#over--or-under-compliance)
+  - Takes an instruction too literally or too loosely
+- - [Overconfidence](#overconfidence)
+  - A definite answer where the honest one is "it depends"
+- - [Misread ambiguity](#misread-ambiguity)
+  - Picks one meaning of an ambiguous request, silently
+- - []{rowspan=3} Sycophancy
+  - [Confirming expectations](#confirming-expectations)
+  - Leading questions get the answer they lead to
+- - [Giving way under pushback](#giving-way-under-pushback)
+  - Abandons a correct answer when you disagree
+- - [Flattery](#flattery)
+  - Praises your work instead of assessing it
+- - []{rowspan=4} Quiet errors
+  - [Omission](#omission)
+  - Leaves out important evidence, without saying so
+- - [Over-interpretation](#over-interpretation)
+  - Presents a weak inference as settled
+- - [False certainty](#false-certainty)
+  - Flattens real ambiguity in the source
+- - [Muddled sourcing](#muddled-sourcing)
+  - Mixes the source with outside knowledge, or merges people
+- - []{rowspan=3} Bias
+  - [Stereotypes](#stereotypes)
+  - Reproduces associations from the training data
+- - [Harmful content](#harmful-content)
+  - Safety training is imperfect
+- - [Value misalignment](#value-misalignment)
+  - Its implicit values may not be yours
+- - []{rowspan=4} Interaction
+  - [Inconsistency](#inconsistency)
+  - The same prompt gives a different answer
+- - [Context forgetting](#context-forgetting)
+  - Loses earlier instructions in long conversations
+- - [Sensitivity to phrasing](#sensitivity-to-phrasing)
+  - Small wording changes, big differences
+- - [Prompt injection](#prompt-injection)
+  - Instructions hidden in the input take over
+
+:::
+
+</div>
+
+## Factual Errors
+
+These are errors about the world: claims that are simply wrong. They are the easiest kind to check, once you know that you need to check them.
+
+### Hallucination
+
+The model produces content that is specific, credible, and false: an invented citation, a biographical detail, a quotation, a law or court case. The term *hallucination* is itself somewhat misleading, the model isn't confused or dreaming, it is doing what it was trained to do: predicting likely text, only the prediction happens to be false. The output looks exactly like correct output, and it is often most detailed exactly where it is least reliable.
+
+::: {.callout-note}
+# Example
+
+Asked <span class="prompt">Who was Sidney Colvin?</span>, a small model gave three different, detailed, confident, and entirely invented answers ([Unit 1](../unit_1/llm_behaviour.qmd#plausibility-vs.-truth)). Larger models make the same kind of error wherever their training data runs thin: minor historical figures, non-canonical works, regional or non-English-language archives, and, above all, references. Ask <span class="prompt">Give me five articles on Stevenson's correspondence</span>, and you may get five plausible authors, titles, journals, and page ranges, some of which don't exist.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Verify every specific detail you intend to use:** names, dates, quotations, numbers, and references. Check them against primary sources or established references, not against another chatbot.
+- **Never cite a reference you haven't found yourself.** Look it up in a library catalogue, a database, or by its DOI. A reference that looks right is not evidence that it exists.
+- **Ground the model in your sources.** Upload the documents and ask it to quote the passage behind each claim ([grounding](../unit_2/prompting_strategies.qmd#grounding-in-sources)). This makes hallucination less likely and much easier to spot, though it doesn't rule it out.
+- **Give it permission not to know.** Adding <span class="prompt">If you're not sure, say so</span> to your prompt helps a little. It doesn't make the model aware of what it doesn't know.
+- **Be most suspicious of the detail you were hoping to find.** A convenient quotation or a perfect example deserves the hardest check.
+:::
+
+### Outdated Knowledge
+
+A model knows only what was in its training data, which was collected up to a cutoff date, often a year or more before you use it. Anything after that (new publications, renamed tools, changed institutions, updated scholarship) is invisible to it, unless the tool searches the web. The model won't necessarily tell you it's out of date; it will describe the world as it was, in the present tense.
+
+::: {.callout-note}
+# Example
+
+Google's research tool used in Unit 2 was called NotebookLM until July 2026, when it became Gemini Notebook. Ask a model whose training data ends before then about "Gemini Notebook", and it may tell you there's no such product, guess at what it might be, or confuse it with something else.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **For anything that may have changed recently,** such as software, institutions, current research, or prices, check a current source.
+- **Use a tool that searches the web when currency matters,** and check the pages it cites: a search-enabled answer is only as good as what it found, and how well it read it.
+- **Don't rely on the model to know its own cutoff date.** It may not report it accurately. The provider's documentation will.
+- **For tools and software, check the official documentation,** especially for instructions: menus, commands, and settings change often.
+:::
+
+### Overgeneralization
+
+The model applies a common pattern to cases where it doesn't hold, without flagging the exceptions. Its knowledge is strongest about what is typical, because that's what its training data contains most of, the unusual case is exactly where it is most likely to be wrong, and research is often about the unusual case.
+
+::: {.callout-note}
+# Example
+
+<span class="response">All mammals give birth to live young</span> is true of most mammals, but false for the platypus and the echidna. In historical research, the same thing happens less visibly. Ask a model to date an undated letter from its style, and it may apply the general conventions of letter writing in the period, which a particular writer, or a particular friendship, may well have ignored.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Ask about exceptions explicitly:** <span class="prompt">Where doesn't this hold? What are the best-known counterexamples?</span>
+- **Ask about scope:** <span class="prompt">In which places, periods, or groups does this apply, and on what evidence?</span>
+- **Test the generalization against your own sources,** especially the ones you know are unusual.
+- **Be wary of *typically*, *generally*, and *in this period*.** They often mark the point where the model stopped looking at your case and started describing the average one.
+:::
+
+## Reasoning Errors
+
+LLMs are not logic engines or calculators. They predict text that *resembles* correct reasoning, which is different from performing it. Newer models are much better at this than earlier ones, and some tools quietly hand calculations to real code, but the risk remains, and it's greatest on exactly the tasks that seem like a natural fit for an assistant.
+
+### Faulty Logic
+
+The model draws a conclusion that doesn't follow from its premises, and presents it in the confident language of a valid argument. Because the steps read smoothly, the gap is easy to miss.
+
+::: {.callout-note}
+# Example
+
+<span class="response">Letters written in Samoa mention Vailima. This letter mentions Vailima. So it was written in Samoa.</span> That doesn't follow: Stevenson could mention his house while away from it, or while planning it. This is the classic error of reasoning backwards from a consequence. A related error is the argument from silence: <span class="response">The letters never mention X, so Stevenson didn't know about X.</span> The letters are a [selection made by an editor](letters.qmd#the-collection), and absence from them proves very little.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Ask the model to set out the argument as numbered premises and a conclusion.** Gaps that are invisible in fluent prose become obvious in a list.
+- **Check each step yourself:** does the conclusion actually follow, or is it only consistent with the premises?
+- **Ask for alternatives:** <span class="prompt">What else could explain this evidence?</span>
+- **Watch for arguments from silence,** and ask what the source would need to contain for the absence to mean something.
+- **Use LLMs to draft, explain, and explore arguments, not to settle them.**
+:::
+
+### Arithmetic Mistakes
+
+Models can state a wrong number as fluently as a right one. The *form* of mathematical confidence is learned, but the calculation isn't reliably performed, unless the tool hands it to code behind the scenes. The longer the calculation, the higher the risk.
+
+::: {.callout-note}
+# Example
+
+<span class="prompt">How old was Stevenson when he wrote this letter?</span> Stevenson was born on 13 November 1850, and the letter to Colvin is dated August 1877. Subtract the years, and you get 27; but his birthday hadn't come yet, so he was 26. It's an easy slip, for a person or a model, and the model will state either answer with the same confidence. Counts are similar: <span class="prompt">How many letters did Stevenson write to Colvin?</span> invites a number that looks exact and may not be.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Have code do the calculation,** and keep the code ([ask for the script](../unit_2/documenting_ai_use.qmd#explicit-processing-requesting-the-script), not the result).
+- **Estimate first.** A rough figure in your head catches the answers that are wildly wrong.
+- **Ask the model to show its working,** and check each step. Then check the final number again: models sometimes show correct working and still state a different result.
+- **For counts in documents, search rather than ask.** Your text editor's search, or a few lines of code, will count exactly.
+:::
+
+### Multi-Step Breakdowns
+
+In a long task with several steps, the model may silently substitute a number or a term, confuse two similar names, or drop a constraint introduced earlier. Each step can look reasonable on its own; the error is in what is carried from one step to the next. The prose stays fluent while the reasoning collapses.
+
+::: {.callout-note}
+# Example
+
+Ask, in one prompt, for the people mentioned in ten letters, with the number of letters each appears in, sorted by that number, with the date of each person's first mention. The final table may look perfect, but somewhere along the way, a count may have moved to the wrong name, or a person who appears in two forms (`COLVIN` and `S. C.`) may have been counted twice, or not at all.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Break the task into steps,** and check each step's output before moving on.
+- **Carry checked results forward yourself.** Paste the corrected output of one step into the next prompt, rather than relying on the model to remember it.
+- **Keep the intermediate results.** When the final answer looks wrong, they show where it went wrong.
+- **If you'll repeat the task, write it down as a script.** A multi-step process that you need to run again belongs in code, where each step does the same thing every time ([Unit 3](../unit_3/index.qmd)).
+:::
+
+## Instruction-Following Errors
+
+You can tell a model what to do, but you can't make it do it: instructions are strong signals, not rules ([Prompt processing](../unit_2/prompts.qmd#instructions-as-strong-signals-not-hard-rules)). [Hack Merlin](../unit_1/hack_merlin.qmd) showed the extreme case: a model explicitly told not to reveal a password did so, given the right framing. Everyday cases are subtler, and more common.
+
+### Ignored Constraints
+
+The model breaks a rule you gave it, about length, format, scope, or wording, usually without saying so. Constraints that run against the model's habits are the most likely to be ignored. For example, models are trained to be helpful and tidy, so they tend to "improve" what you asked them to copy exactly.
+
+::: {.callout-note}
+# Example
+
+<span class="prompt">Summarize in one sentence</span> produces three. <span class="prompt">List only the five most important</span> produces eight. <span class="prompt">Record each name exactly as written</span> produces `Sidney Colvin` for `COLVIN`.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Make constraints checkable:** a number of items, a fixed set of columns, a format you can see at a glance.
+- **Put the most important constraints last,** just before the material or the question, and keep their number small.
+- **Check the output against each constraint,** rather than reading it on the assumption that it complied. For *exactly as written*, search the source for each item.
+- **Ask the model to check its own answer against your constraints,** and to fix what doesn't comply. This catches some problems, but it isn't proof.
+- [Prompting strategies](../unit_2/prompting_strategies.qmd) has more techniques for writing instructions that hold.
+:::
+
+### Over- or Under-Compliance
+
+The model follows an instruction too literally, or too loosely. It does what you said, rather than what you meant, and the gap between the two is something only you can see.
+
+::: {.callout-note}
+# Example
+
+<span class="prompt">Summarize briefly</span> produces a single terse sentence that omits critical information; <span class="prompt">Do not include any personal opinion</span> produces text with an evaluative frame built in anyway (<span class="response">this charming letter</span>).
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Say what you want, not only what you don't.** <span class="prompt">Describe what the letter says, in neutral terms</span> works better than <span class="prompt">no opinions</span>.
+- **Explain the purpose.** <span class="prompt">For a reader who hasn't seen the letter, so include who, where, and when</span> tells the model what *brief* has to keep.
+- **Give an example of the output you have in mind,** even a short one. Models imitate examples far more reliably than they follow descriptions.
+- **Use concrete measures:** <span class="prompt">three bullet points</span>, <span class="prompt">under 100 words</span>, <span class="prompt">one row per person</span>.
+:::
+
+### Overconfidence
+
+LLMs rarely say <span class="response">I don't know</span> unless they've been specifically trained or prompted to. They produce answers, and the confident format of an answer doesn't tell you whether the model had strong or weak grounds for it. A well-documented fact and a guess come out in the same tone.
+
+::: {.callout-note}
+# Example
+
+Ask <span class="prompt">When did Stevenson first meet Sidney Colvin?</span>, and a model will usually give a year, and often a place and the circumstances, in fluent and specific prose. Nothing in the answer tells you whether it is reporting something well documented, or assembling a plausible guess.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Ask the same question in a new conversation, or two.** If the answers differ, the model was guessing, whatever its tone.
+- **Ask what the answer rests on:** <span class="prompt">What is the source for this, and how certain is it?</span> Then check the source.
+- **Ask the model to separate what the source says from what it inferred,** and to mark what is uncertain.
+- **Treat confidence as style, not evidence.**
+:::
+
+### Misread Ambiguity
+
+When a request could mean more than one thing, the model usually picks one meaning and answers it, without telling you that it chose. If it chose differently from you, its answer can be correct, and still not an answer to your question.
+
+::: {.callout-note}
+# Example
+
+Ask about `Stevenson` in the letters, and the model will pick one person and run with it. But in these letters, `Stevenson` can mean Robert Louis, his father Thomas, or his mother, who appears as `Mrs. Thomas Stevenson`. The model usually won't flag the ambiguity unless you ask it to.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Ask the model to list the possible interpretations before answering,** or to state the assumptions it is making.
+- **Define your terms in the prompt:** <span class="prompt">"Stevenson" means Robert Louis Stevenson, his parents are Thomas and Margaret Stevenson.</span>
+- **Ask which parts of your question could be read more than one way.** It is often better at spotting ambiguity than at resolving it.
+:::
+
+## Sycophancy
+
+LLMs are trained on human feedback, and people tend to rate agreeable answers highly. The result is a model that leans towards telling you what you want to hear. This is one of the most important failure modes for research, because it turns your own assumptions into the model's conclusions, and it does so most when you are most invested in the answer.
+
+### Confirming Expectations
+
+The way you ask a question signals the answer you expect, and the model tends to supply it. A leading question gets a leading answer, complete with supporting evidence.
+
+::: {.callout-note}
+# Example
+
+Ask <span class="prompt">Isn't it clear that Stevenson resented Colvin in this letter?</span>, and a model will often find evidence of resentment, even in a warm letter. Ask <span class="prompt">How does Stevenson feel about Colvin in this letter?</span>, and you may get a very different answer.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Ask neutral, open questions,** and don't reveal your hypothesis or the answer you'd like.
+- **Ask for the evidence on both sides:** <span class="prompt">What in the letter supports this reading, and what counts against it?</span>
+- **Ask leading questions in opposite directions,** in separate conversations: <span class="prompt">Isn't it clear that Stevenson resented Colvin?</span> and <span class="prompt">Isn't it clear that Stevenson was grateful to Colvin?</span> If both get a confident yes, you've learned how much either answer is worth.
+- **If you have a hypothesis, ask the model to argue against it.**
+:::
+
+### Giving Way Under Pushback
+
+When you disagree with an answer, the model tends to concede, even when it was right. An apology and a changed answer look like a correction, but they are often just agreement.
+
+::: {.callout-note}
+# Example
+
+The model gives a correct answer, you reply <span class="prompt">Are you sure? I think it's wrong</span>, it apologizes, and changes its answer to a wrong one.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Don't treat a change of answer under pressure as a correction.** Check the source instead.
+- **Ask for evidence, not reassurance:** <span class="prompt">Quote the passage that supports your answer</span> is a better follow-up than <span class="prompt">Are you sure?</span>
+- **If you disagree, say why,** and ask the model to weigh your reason against the evidence, rather than simply telling it it's wrong.
+- **When an answer matters, ask it fresh,** in a new conversation, without your objection.
+:::
+
+### Flattery
+
+Asked to assess your work, the model leans towards praise. Its feedback is often encouraging and vague, with small suggestions, which is pleasant to read and of little use for improving the work.
+
+::: {.callout-note}
+# Example
+
+Asked for feedback on a draft, a model praises its *compelling argument* and *nuanced reading*, and suggests only small changes.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Ask for weaknesses specifically:** <span class="prompt">What are the three biggest weaknesses of this argument?</span>
+- **Ask for the strongest objections a sceptical reviewer would raise,** or for a review in the role of that reviewer.
+- **Present the text as someone else's.** Models are less generous to a draft that isn't yours.
+- **Give explicit criteria,** such as the journal's guidelines or the assignment's rubric, and ask for an assessment against each.
+:::
+
+## Quiet Errors
+
+These are the errors that look like interpretation rather than obvious falsehood, which makes them especially dangerous in humanities work. The main risk isn't only that the model invents, it's that it *smooths over uncertainty*.
+
+### Omission
+
+The model leaves out important evidence, without signalling that it has. Summaries are especially prone to this: they keep the central tendency, and drop the unusual detail that happens to matter. Lists that look complete may not be.
+
+::: {.callout-note}
+# Example
+
+A summary of the [letter to Colvin](letters.qmd#a-sample-letter) may report its literary news (the `Villon` story, `Temple Bar`'s interest, `Leslie Stephen`'s encouragement) and leave out that Stevenson is leaving for Penzance the next day: the one detail you'd need if you were tracing where he was that summer.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Tell the model what matters to you.** A summary for your question keeps different details than a general summary.
+- **Ask for an exhaustive list instead of a summary** when completeness matters: <span class="prompt">List every place mentioned, with the sentence it appears in</span>.
+- **Ask directly:** <span class="prompt">What did you leave out?</span> The answer is often revealing.
+- **Check summaries and lists against the source,** for at least a sample of documents.
+:::
+
+### Over-Interpretation
+
+The model presents a weak inference as an established fact. A single line becomes a relationship, a tone becomes a motive, a possibility becomes a conclusion.
+
+::: {.callout-note}
+# Example
+
+In the letter to Colvin, Stevenson writes `I should so much like to know what you think of it`. A model may describe Colvin as <span class="response">Stevenson's literary mentor, whose approval he depended on</span>. That may even be true, but this one line doesn't show it.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Ask for the phrase that supports each claim,** and judge whether it really does.
+- **Ask the model to grade its claims:** stated in the source, implied by it, or speculation.
+- **Ask for other readings of the same passage.** If several are plausible, the confident one was over-interpretation.
+:::
+
+### False Certainty
+
+The source is uncertain, and the model's account of it isn't. Hedges, gaps, conjectures, and editorial guesses disappear, and what was tentative in the source becomes a plain statement.
+
+::: {.callout-note}
+# Example
+
+The letter to Colvin is headed `[EDINBURGH, AUGUST 1877.]`. The square brackets mean the place and date were supplied by the editor, not written by Stevenson ([The Stevenson letters](letters.qmd#a-sample-letter)). A model will usually report that <span class="response">Stevenson wrote from Edinburgh in August 1877</span>, as a plain fact. The same happens with the source's own hedges (`I believe`, `perhaps`), damaged passages, and uncertain dates.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Ask the model to preserve and mark uncertainty:** <span class="prompt">Note any hedges, gaps, or editorial additions in the source, and keep them in your answer.</span>
+- **Tell it about the conventions of your source,** such as what square brackets, question marks, or ellipses mean in the edition you are using.
+- **Compare the model's confidence with the source's,** for the claims that matter.
+:::
+
+### Muddled Sourcing
+
+The model mixes what the source says with what it knows from its training data, without marking which is which. It may also merge separate people with similar names into one, or split one person into several.
+
+::: {.callout-note}
+# Example
+
+The [letter to Colvin](letters.qmd#a-sample-letter) says only `Stephen`. A model will usually identify him as `Leslie Stephen`, editor of the `Cornhill Magazine`, which is probably right, but presents it as if the letter said so. Elsewhere, two people with the same surname may become one.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Ask the model to label each claim:** <span class="prompt">For each claim, say whether it is stated in the source, inferred, or from outside knowledge</span>, as in [step 2](../unit_2/prompting_strategies.qmd#exercise) of the letter exercise.
+- **Tell it what to do when the source is silent:** <span class="prompt">If the letter doesn't say, write "not stated".</span>
+- **Ask for a quotation for every *stated* item,** and check a sample of them.
+- **For people, ask how each one is identified** in the source, and treat identifications that rely on outside knowledge as research leads to check.
+:::
+
+## Bias
+
+These come mainly from the training data and fine-tuning. [Model training](../unit_1/model_training.qmd#bias-in-training-data) covered how bias gets into models; the focus here is how it shows up in output.
+
+### Stereotypes
+
+If the training data over-represents certain framings of gender, race, nationality, or religion, the model's outputs will too, often in ways that are easy to miss in any single output, but accumulate across a corpus.
+
+::: {.callout-note}
+# Example
+
+Ask a model: <span class="prompt">Describe a typical nineteenth-century scientist</span> or <span class="prompt">Describe a famous Victorian writer</span>, and it will most likely describe a European man. No single answer is wrong, but across hundreds of outputs (summaries, descriptions, classifications), the same defaults shape what your results show.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Swap and compare.** Ask the same question with the gender, nationality, or group changed, and see whether the answer changes in ways it shouldn't.
+- **Read outputs for implicit framings, not just explicit errors.** Who is described by their work, and who by their relationships? Who is the default, and who is marked? The absence of an obvious slur is not the absence of bias.
+- **Look at outputs in aggregate.** Patterns invisible in one answer show up across many.
+:::
+
+### Harmful Content
+
+Safety training suppresses harmful outputs, but doesn't eliminate them. Edge cases, adversarial prompts, or unusual contexts can surface content the training was meant to prevent. It also fails the other way: models can refuse to work with legitimate material that resembles something harmful. Both are real concerns for research on sensitive material.
+
+::: {.callout-note}
+# Example
+
+Historical sources, such as colonial records, court cases, or newspapers, often contain violent or racist language. Given such a source, a model may refuse to summarize or transcribe it, quietly sanitize its language in a way that changes its meaning, or reproduce offensive terms without any context.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Explain the research context** when a legitimate request is refused. Don't try to trick the model into complying: if it still refuses, use another method.
+- **Check that summaries and transcriptions keep the source's actual language,** where your research depends on it.
+- **Don't rely on the model's safety behaviour as a filter** for anything shown to an audience: review it yourself.
+- **Follow your institution's guidance** on sensitive material, and think about what you upload: material about living people, or given to you in confidence, may not belong in a commercial AI tool.
+:::
+
+### Value Misalignment
+
+A model embodies the values in its training data and fine-tuning, largely reflecting the people who produced and labelled that data. These may not match the values of a given researcher, institution, or community, which matters especially for cross-cultural, decolonial, and non-Western scholarship. The values show up less in explicit opinions than in what the model treats as normal, important, or neutral.
+
+::: {.callout-note}
+# Example
+
+Ask a model for the key events in Samoa in the years Stevenson lived there, and it may centre European and American actors (consuls, warships, Stevenson himself), because that's whose writing dominates its training data. Samoan perspectives may appear only as the background to someone else's story.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Notice whose perspective the answer takes for granted,** and ask for others explicitly.
+- **Check the result against scholarship from the communities concerned,** not only against the sources the model is likely to know best.
+- **Treat evaluative words as data:** *important*, *modernizing*, *unrest*. Ask who would describe things this way, and who wouldn't.
+- **State your framework.** If your analysis takes a particular perspective, say so in the prompt, rather than accepting the model's default.
+:::
+
+## Interaction Errors
+
+These errors come from how you use the model over time: across runs, across a long conversation, across small changes in your prompts, or across the material you give it to read.
+
+### Inconsistency
+
+The same prompt can produce different answers, because there's a random choice at every token ([sampling](../unit_1/language_models.qmd#text-generation)). Chat interfaces usually don't let you fix the settings, and the model behind them can change without notice.
+
+::: {.callout-note}
+# Example
+
+Two runs of the same extraction prompt in Gemini Notebook, on the same 20 letters, produced 327 and 325 rows, of which only 288 were the same: 39 rows appeared only in the first run, and 37 only in the second, and several names given a different type ([the Gemini Notebook activity](../unit_2/gemini_notebook.qmd#part-3-reliability)).
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Run anything important more than once, and compare.** Where the runs disagree, the model is uncertain, and that's where to check first.
+- **Keep everything you can stable:** the same prompt, the same tool, the same model, and a note of the date ([Documenting your work](../unit_2/documenting_ai_use.qmd)).
+- **Save the output you used.** You may not be able to get it again.
+- **For results that must be reproducible, use a programmatic approach** with a fixed model version ([Unit 3](../unit_3/index.qmd)).
+:::
+
+### Context Forgetting
+
+As a conversation grows, earlier content is used less reliably, and may be trimmed from the input altogether ([context windows](../unit_2/prompts.qmd#context-windows)). Constraints or corrections you gave early on may quietly stop being honoured.
+
+::: {.callout-note}
+# Example
+
+At the start of a long session, you ask for names *exactly as written*, and the first few tables comply. Twenty exchanges and several letters later, `COLVIN` has become `Sidney Colvin` again, and nothing tells you when the instruction stopped being followed.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Start a fresh conversation for each new task.**
+- **Restate important constraints** in each prompt, or keep your prompts in a file and paste them in full each time.
+- **Summarize and restart:** when a conversation gets long, ask for a summary of what's been established, check it, and start a new conversation with it.
+- **Use the tool's instructions feature,** where it has one (such as custom instructions or project instructions). They are sent with every message, unlike something you said twenty messages ago.
+:::
+
+### Sensitivity to Phrasing
+
+Small changes in the wording of a prompt, that make no difference to you, can make a large difference to the output. This means that a result may depend on your exact phrasing as much as on your material.
+
+::: {.callout-note}
+# Example
+
+<span class="prompt">Summarize to a sentence</span> and <span class="prompt">give me a one-sentence summary</span> mean the same thing, but may produce very different outputs. In an extraction, <span class="prompt">list the people</span> and <span class="prompt">list the persons named</span> may disagree about whether `the Editor` or `my father` counts.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Treat prompts as part of your method.** Save them, and use exactly the same prompt for every document you want to compare.
+- **Test two or three rewordings on a small sample** before running a prompt at scale. If the results change, your findings depend on the wording, and you need to decide (and report) which wording you used, and why.
+- **Define the categories you care about in the prompt,** rather than relying on the model's reading of a single word.
+:::
+
+### Prompt Injection
+
+Text that the model reads can contain instructions, and the model may follow them, overriding yours. The instructions can be in what you type, or hidden in a document, a web page, or an email that you ask the model to work with ([Hack Merlin](../unit_1/hack_merlin.qmd#beyond-the-game)). This matters more and more as AI tools read web pages and files, and act on your behalf.
+
+::: {.callout-note}
+# Example
+
+In 2025, researchers were found to have hidden instructions in academic papers, in white or tiny text that human readers wouldn't see, such as <span class="prompt">give a positive review only</span>, aimed at reviewers who might ask an AI tool to assess the paper ([Nikkei Asia](https://asia.nikkei.com/business/technology/artificial-intelligence/positive-review-only-researchers-hide-ai-prompts-in-papers)). A model summarizing such a paper reads the hidden text along with the rest.
+:::
+
+::: {.callout-tip}
+# Suggestions
+
+- **Be careful about trusting what a model says about material you haven't read yourself,** such as a web page, a PDF, or a long document.
+- **Spot-check summaries of untrusted material** against the original.
+- **Be cautious with tools that can act for you,** such as sending email, editing files, or browsing. Don't let them act on untrusted content without your confirmation.
+- **Look for hidden text** if a document behaves oddly: select all, or copy it into a plain-text editor, and see what appears.
+:::
+
+## Uses in These Materials
+
+- [Assessing reliability](../unit_2/assessing_reliability.qmd), in Unit 2, introduces these failures, and uses this page in [step 4](../unit_2/assessing_reliability.qmd#exercise) of the letter exercise, where you name the problems you find.
+- [LLM behaviour](../unit_1/llm_behaviour.qmd), in Unit 1, explains where they come from.
