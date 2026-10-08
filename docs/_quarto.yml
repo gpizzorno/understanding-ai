@@ -66,6 +66,35 @@ website:
             href: unit_2/ai_assisted_work.qmd
           - text: Acknowledging AI Use
             href: unit_2/acknowledging_ai_use.qmd
+      - section: 'Unit 3: Programmatic Approaches'
+        href: unit_3/index.qmd
+        contents:
+          - text: Setting Up Python
+            href: unit_3/python_setup.qmd
+          - text: Programming Advantages
+            href: unit_3/programming_advantages.qmd
+          - text: Coding with LLMs
+            href: unit_3/coding_with_llms.qmd
+          - text: The NLP Pipeline
+            href: unit_3/nlp_pipeline.qmd
+          - section: 'Case Study: NER'
+            href: unit_3/ner_case_study.qmd
+            contents:
+              - text: The Notebook
+                href: unit_3/ner_pipeline.ipynb
+          - text: 'Activity: Annotation'
+            href: unit_3/annotation.qmd
+          - text: 'Activity: Evaluation'
+            href: unit_3/evaluating_models.qmd
+          - text: Next Steps
+            href: unit_3/next_steps.qmd
+      # Reference material: these pages have no previous/next links
+      - section: Reference
+        contents:
+          - text: The Stevenson Letters
+            href: reference/letters.qmd
+          - text: Failure Modes
+            href: reference/failure_modes.qmd
 
 format:
   html:
