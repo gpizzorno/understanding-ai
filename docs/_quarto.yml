@@ -101,7 +101,7 @@ format:
     theme:
       light: cosmo
     grid:
-      sidebar-width: 330px
+      sidebar-width: 340px
     css: styles.css
     toc: true
     toc-title: On this page

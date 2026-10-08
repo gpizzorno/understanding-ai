@@ -77,13 +77,13 @@ main pre.text {
 
 /* add horizontal padding for figure captions to increase contrast from text */
 figcaption {
-    padding: 0 3rem;
+  padding: 0 3rem;
 }
 
 /* navbar visual fixes */
 .navbar {
-    background-color: #502e74;;
-    color: white;
+  background-color: #502e74;;
+  color: white;
 }
 .navbar-brand {
   font-size: 1.1rem;
@@ -112,15 +112,18 @@ a.navbar-brand:hover, .navbar .quarto-navbar-tools .quarto-navigation-tool:hover
   margin-bottom: .5em;
 }
 .sidebar-menu-container > ul > li > div.sidebar-item-container a {
-  font-weight: 600;
+  font-weight: 700;
 }
 div.sidebar-item-container .active {
   color: #6f1bc3;
 }
 .sidebar nav[role=doc-toc]>h2 {
   margin-bottom: 0.4rem;
+  font-weight: 700;
 }
-
+nav[role=doc-toc] {
+  padding-top: 1em;
+}
 /* home page visual fixes */
 .home-page .quarto-title h1.title {
   font-size: 2.5rem;
@@ -188,20 +191,20 @@ li > ul > li, #TOC li, .quarto-sidebar-section-2 li   {
 
 /* callout visual fixes */
 .callout.callout-style-default .callout-body {
-    padding-left: 1em;
-    padding-right: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 .callout.callout-titled .callout-body>:last-child:not(.sourceCode), .callout.callout-titled .callout-body>div>:last-child:not(.sourceCode) {
-    padding-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 .callout.callout-style-default .callout-body>:first-child:not(.prompt) {
-    padding-top: 1rem;
+  padding-top: 1rem;
 }
 .callout.callout-style-default .callout-body>.prompt {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 .callout.callout-style-default:not(.no-icon) div.callout-title-container {
-    margin-left: 2px;
+  margin-left: 2px;
 }
 .callout-note.callout-style-default>div.callout-header {
   color: #1b68bd;
@@ -239,6 +242,12 @@ a.lightbox + a[data-original-href] {
   margin-right: auto;
   margin-left: auto;
 }
+.table-30 {
+  width: 30%;
+}
+.table-40 {
+  width: 40%;
+}
 .table-50 {
   width: 50%;
 }
@@ -253,6 +262,11 @@ a.lightbox + a[data-original-href] {
 }
 .table-90 {
   width: 90%;
+}
+.table-right {
+  float: right;
+  clear: right;
+  margin: 0.25rem 0 1rem 1.5rem;
 }
 
 /* in-text special tokens */
@@ -319,8 +333,10 @@ a.lightbox + a[data-original-href] {
   border-radius: 3px;
   padding: 0 0.3em;
   font-weight: 500;
-  font-size: 80%;
+  font-size: 85%;
   white-space: nowrap;
+  color: #5e5e5e;
+  border-color: #aeaeae;
 }
 
 /* Prompts and responses longer than a line: ::: {.prompt} and ::: {.response} blocks */
@@ -379,16 +395,18 @@ code {
   font-family: 'Roboto Mono', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 p code:not(.sourceCode), li code:not(.sourceCode), td code:not(.sourceCode) {
-    white-space: break-spaces;
-    background-color: rgb(153 171 184 / 40%);
-    border-radius: 4px;
-    margin: 0;
-    padding: .1em .4em;
-    font-size: 75%;
-    font-weight: 400;
-    color: rgb(31, 35, 40);
+  white-space: break-spaces;
+  background-color: rgb(236 238 241);
+  border-radius: 4px;
+  margin: 0;
+  padding: .2em .4em;
+  font-size: 80%;
+  font-weight: 400;
+  color: rgb(31, 35, 40);
 }
-
+div.sourceCode, div.sourceCode pre.sourceCode {
+  border-radius: 6px;
+}
 /* math */
 mjx-math {
   font-weight: 600 !important;
