@@ -1,0 +1,165 @@
+---
+title: 'Case Study: Named Entities in Stevenson''s Letters'
+---
+
+::: {.callout-note collapse="true"}
+## Activity Details
+
+**Time:** about 90 minutes (plus waiting time while the corpus is processed)  
+**Works:** on your own, or in a group following along together  
+**You need:** a working Python/Jupyter environment (see [Setting up Python](python_setup.qmd)) or Google Colab, and the [NER pipeline notebook](ner_pipeline.ipynb)
+:::
+
+In the [Gemini Notebook activity](../unit_2/gemini_notebook.qmd), you asked a conversational tool to find the people and places in 20 of [Stevenson's letters](../reference/letters.qmd), and found that, however good the results, you couldn't reproduce them, inspect how they were made, or tie them to a model version. In this case study, you'll do the same task programmatically, on all 462 letters, with a pre-trained named-entity recognition (NER) model. Along the way, you'll turn the results into charts, a network, a timeline, and a map, and then check how accurate they actually are.
+
+This guide walks through the notebook section by section. For each section, it tells you what the code does, what to notice, and questions to think about before moving on. Keep the guide open next to the notebook.
+
+If you haven't yet, read [The NLP pipeline](nlp_pipeline.qmd) first. And remember the ground rules from [Coding with LLMs](coding_with_llms.qmd): before running a cell you don't understand, ask an LLM to explain it.
+
+## Getting Started
+
+- **Locally:** open `notebooks/ner_pipeline.ipynb` in Jupyter from your copy of this repository.
+- **In Google Colab:** click the <span class="command">Open in Colab</span> badge at the top of the notebook. The first cell downloads the repository so the notebook can find the data.
+
+Run the cells in order, from the top. The first time you load each model, it downloads a few hundred megabytes.
+
+## Section 1: Setup and Data Exploration
+
+**What the code does:** imports the libraries, loads `data/letters_metadata.csv` (one row per letter: addressee, date, and file name), and prints one letter.
+
+**What to notice:** the letter looks raw. It's the [letter to Colvin](../reference/letters.qmd#a-sample-letter) you worked with in Unit 2: an ALL-CAPS heading (`TO SIDNEY COLVIN`), an ALL-CAPS salutation (`MY DEAR COLVIN`), nineteenth-century spelling and punctuation, and titles of works in quotation marks. Some letters in the metadata have incomplete dates (`WINTER 1884`), and one has no year at all.
+
+**Think about:**
+
+- What challenges might this letter pose for a model trained on modern newspaper text?
+- The metadata tells you who each letter was addressed to and when. How might you combine that with entity data?
+
+## Section 2: Loading a Pre-Trained NER Model
+
+**What the code does:** loads the NER model [`Davlan/bert-base-multilingual-cased-ner-hrl`](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl), runs it on a test sentence, and then on the sample letter, twice: first on the raw text, then after converting ALL-CAPS words to title case.
+
+The model's output has a few fields worth knowing:
+
+- `entity_group`: the type (PER, LOC, ORG)
+- `word`: the text of the entity (renamed `text` later in the notebook)
+- `score`: the model's confidence, from 0 to 1
+- `start` and `end`: where the entity appears in the text
+
+**What to notice:** on the raw letter, the model produces fragments such as `SI` and `L`. The ALL-CAPS words are split into unusual tokens, which [The NLP pipeline](nlp_pipeline.qmd#tokenization-the-problem-of-all-caps-text) explains. After the `normalize_caps` fix, the names come out whole. But even then, look closely: the model tags `Clever` (from `not so CLEVER perhaps`) as a person, with a confidence of 0.98. And it misses `Colvin` in the salutation.
+
+**Think about:**
+
+- What do the confidence scores tell you? What *don't* they tell you?
+- Gemini Notebook, in Unit 2, made different mistakes on the same letter: it caught `COLVIN` in the salutation, but tagged the story titles `Villon` and `Sire de Maletroit` as people. What does each kind of mistake tell you about how each tool works?
+
+Remember that the model gives you [predictions, not explanations](nlp_pipeline.qmd#pre-trained-models-vs.-general-purpose-llms).
+
+## Section 3: Processing the Full Corpus
+
+**What the code does:** defines a function, `extract_entities_from_file`, that reads one letter and runs the model on it; then loops over all 462 letters, collects the results in a table, adds the metadata, and saves everything to `outputs/extracted_entities.csv`.
+
+Before you run the loop, **read the function and ask an LLM to explain it.** This is the habit from [Coding with LLMs](coding_with_llms.qmd) in practice.
+
+**What to notice:**
+
+- The loop prints progress every 50 letters. It can take from a couple of minutes to over ten, depending on your computer.
+- If a letter causes an error, the `try`/`except` block reports it and carries on. That's a deliberate choice for batch processing: one bad file shouldn't stop the whole run.
+- If the loop is too slow, set `USE_PRECOMPUTED = True` at the top of the cell to load results produced earlier with the same model and settings.
+
+**Think about:**
+
+- You've just processed 462 letters. What would the same task have taken by hand? (At five minutes a letter, reading and noting every name would take nearly 40 hours.) How sure could you be that a conversational tool had covered every letter?
+- You now have a table of about 5,000 entities. Run the loop again, and you'll get exactly the same table. Why does that matter?
+
+The CSV export is the moment the analysis becomes reproducible and shareable: it can be opened in Excel, imported into R, or loaded into another notebook.
+
+## Section 4: Exploring the Results
+
+**What the code does:** counts entities by type, and charts the 20 most-mentioned locations and people.
+
+**What to notice:**
+
+- There are many more people and places than organizations. That's what you'd expect in personal correspondence.
+- The top people include real errors and puzzles: `God` is among the most-mentioned "people"; `R. L. S`, `Robert Louis Stevenson`, and `R. L. Stevenson` are counted separately; so are `Colvin` and `Sidney Colvin`, and `Henley` and `W. E. Henley`. `Charles`, `Lloyd`, and `Bob` could be several different people.
+- The top locations include `Treasure Island` (a novel), `Skerryvore` (Stevenson's house in Bournemouth, named after a lighthouse), and `States`.
+
+**Think about:**
+
+- Are the top results what you'd expect? Who is missing that you would have expected to find?
+- Which errors are the model's fault, and which reflect genuine ambiguity in the text?
+- What would you do with this data as a researcher? What would the next step be?
+
+## Section 5: Entity Resolution
+
+**What the code does:** maps different surface forms of the same person to one canonical name, using a hand-written dictionary (for example, `R. L. S.` → `Robert Louis Stevenson`, `Colvin` → `Sidney Colvin`), and stores the result in a new `canonical` column.
+
+This is the entity resolution problem from the Gemini Notebook activity again. Gemini Notebook could work out that `Colvin` and `S. C.` were the same person, but only in conversation, with no record of how. Here, you make the decision explicitly, in code, and it's applied the same way to every letter. You can also see, and argue with, every decision in the dictionary.
+
+**What to notice:** the dictionary deliberately *doesn't* map plain `Stevenson` to Robert Louis Stevenson. In these letters, it can also mean his father or mother. Resolving it needs context that a dictionary doesn't have.
+
+**Think about:**
+
+- How would you decide which surface forms refer to the same person across 462 letters? What would you need to know?
+- What would happen to your analysis if you resolved a name wrongly?
+
+## Section 6: Network Analysis
+
+**What the code does:** connects two people whenever they are mentioned in the same letter, builds a network from those connections, and draws the 30 best-connected people. It then lists the most central figures.
+
+**What to notice:** the drawing takes a moment, because the layout is calculated step by step. When it appears, look at it before reading the list. `God` is one of the most central figures in the network, because the model tagged every `God` as a person and it appears in many letters.
+
+**Think about:**
+
+- What does the network show that the top-20 list doesn't? What is missing from it?
+- Being mentioned in the same letter is a very loose definition of a connection. What would a better one look like?
+- How would errors from Sections 2–5 show up in this picture?
+
+## Section 7: Timeline Analysis
+
+**What the code does:** counts mentions of five of Stevenson's main correspondents (Colvin, Gosse, Henley, Baxter, James) by year, and plots them.
+
+**What to notice:** the matching is by surname, which is crude: `James` matches Henry James, but also anyone else called James. Letters with no known year are silently dropped; that's a data-quality issue, not a code error.
+
+**Think about:**
+
+- What changes over time? Does it match what you know (or can find out) about Stevenson's life?
+- How would you check whether a spike in mentions is real, or an artefact of which letters survive, or which ones [Colvin chose to publish](../reference/letters.qmd#the-collection)?
+
+## Section 8: Mapping Places
+
+**What the code does:** puts the 60 most-mentioned places on an interactive map. Turning place names into coordinates (*geocoding*) was done beforehand with an automatic tool, and every result was then checked by hand. The map colours each place by that check: correct, approximate, wrong, or not a place.
+
+**What to notice:** about a quarter of the automatic lookups were wrong or weren't places at all. `Upolu`, the island in Samoa where Stevenson lived, landed at an airport in Hawaii; `Bush Street`, where he lodged in San Francisco, landed in the Bronx; `Heaven` landed at a London nightclub. Click the red and purple markers to see why.
+
+**Think about:**
+
+- If nobody had checked the geocoding, would you have noticed the errors on the map?
+- Every step in this pipeline (extraction, resolution, geocoding) adds its own errors, and they compound. Which step's errors worry you most?
+
+A map is persuasive, which is exactly why each step behind it needs checking. That's what the rest of the notebook is about.
+
+## Sections 9 and 10: Evaluation and Model Comparison
+
+The last two sections measure how accurate the model actually is, using annotations made by people, and compare it with a second NER model and with Gemini Notebook. They come with their own activities:
+
+- [Ground-truth annotation](annotation.qmd): annotate some letters yourself.
+- [Evaluating and comparing models](evaluating_models.qmd): run Sections 9 and 10 and interpret the results.
+
+## Key Takeaways
+
+- A short loop can apply a model consistently to hundreds of documents and produce a table you can analyse, share, and rerun.
+- The results need human judgement at every step: deciding which names refer to the same person, which "people" aren't people, and which places were put in the wrong place.
+- Charts, networks, and maps make patterns visible, and can make errors invisible. A persuasive visualization is only as good as each step behind it.
+- Structured data raises new questions to take back to the sources.
+
+## Extension Ideas
+
+If you want to go further with this corpus:
+
+- Classify letters by topic (personal, professional, literary).
+- Track the literary projects Stevenson mentions over time.
+- Extract relationship descriptors (`my friend`, `my publisher`) alongside names.
+- Apply sentiment analysis to letters over time, and think hard about what it can and can't tell you about nineteenth-century prose.
+- Compare Stevenson's network with another writer's correspondence.
+
+[Next steps](next_steps.qmd) has more on where to go from here.

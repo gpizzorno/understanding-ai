@@ -1,0 +1,76 @@
+---
+title: 'Activity: Ground-Truth Annotation'
+---
+
+::: {.callout-note collapse="true"}
+## Activity Details
+
+**Time:** about 30 minutes  
+**Works:** on your own, in pairs, or as a group  
+**You need:** the letters in [`data/sample_letters/`](https://github.com/gpizzorno/understanding-ai/blob/main/data/sample_letters/) and the annotation template [`data/annotations/annotation_template.csv`](https://github.com/gpizzorno/understanding-ai/blob/main/data/annotations/annotation_template.csv)
+:::
+
+To know how well a model performs, you need something to compare it against: **ground truth**, a set of correct answers produced by people. In this activity you'll produce some, by annotating a few letters for named entities. You'll use your annotations to evaluate the model in [Evaluating and comparing models](evaluating_models.qmd).
+
+You've done a small version of this already: in [step 4](../unit_2/assessing_reliability.qmd#exercise) of the letter exercise in Unit 2, you checked a table of names against the letter to Colvin, and compared it with two people's annotations. Now you'll make the annotations yourself. Along the way, you'll find that annotation is harder than it looks. Reading a letter casually, you make dozens of small decisions without noticing. Annotating forces you to make them explicitly.
+
+## Instructions
+
+1. Pick 3–5 letters from [`data/sample_letters/`](https://github.com/gpizzorno/understanding-ai/blob/main/data/sample_letters/). These are the same 20 letters you used in the [Gemini Notebook activity](../unit_2/gemini_notebook.qmd). To compare your annotations with the two sets that come with the repository, choose from the eight letters they cover: `vol1_ch1_letter3`, `vol1_ch3_letter14`, `vol1_ch3_letter31`, `vol1_ch4_letter18`, `vol1_ch6_letter27`, `vol2_ch10_letter2`, `vol2_ch11_letter18`, and `vol2_ch12_letter17` (file names start with `wikisource_`). **Don't look at their annotations until you've finished yours.** You've already seen the answer key for `vol1_ch3_letter14`, the letter to Colvin, in Unit 2, so choose others for an honest comparison; or annotate it first, as a warm-up, to settle your decisions before you start on the rest. If you're working in a group, spread the letters out so that together you cover most of them, with some overlap (see below).
+2. Copy `data/annotations/annotation_template.csv` to `data/annotations/my_annotations.csv`. You can edit it in a spreadsheet program or a text editor; if you use a spreadsheet, save it as CSV.
+3. Read each letter carefully, and add one row for **every** mention of a named entity of these types:
+   - **PER:** individual people, including partial names and initials (`Colvin`, `S. Colvin`, `Sidney Colvin`, `R. L. S.`)
+   - **LOC:** places: cities, countries, regions, streets, buildings (`Edinburgh`, `Samoa`, `Heriot Row`)
+   - **ORG:** organizations: institutions, publications, publishers, clubs (`Cornhill Magazine`, `the Savile Club`)
+4. Record the entity text **exactly as it appears** in the letter. Don't normalize: if the letter says `COLVIN`, write `COLVIN`, not `Sidney Colvin`.
+5. Don't skip ambiguous cases. Make a decision, and keep a note of why (in a separate file, or a fourth column called `notes`, which the notebook ignores). Ambiguity is data.
+
+The file should look like this:
+
+<div class="table-container table-70">
+
+| `file_name` | `entity_text` | `entity_type` |
+|---|---|---|
+| wikisource_vol1_ch3_letter14.txt | SIDNEY COLVIN | PER |
+| wikisource_vol1_ch3_letter14.txt | EDINBURGH | LOC |
+| wikisource_vol1_ch3_letter14.txt | TEMPLE BAR | ORG |
+: {.sm}
+
+</div>
+
+The notebook loads every CSV file in `data/annotations/` as a separate annotator, named after the file: yours becomes `my`. The repository already includes two annotators, `person_1` and `person_2`, who annotated the same eight letters independently.
+
+## Annotation Decisions
+
+You'll quickly run into cases like these. There's no single right answer; what matters is being consistent and knowing what you decided.
+
+- **Boundaries:** is `Mr. Henley` one entity, or is it just `Henley`? Is the entity `the Savile Club`, or `Savile Club`?
+- **Types:** is `Cornhill` a place or a publication? Is `the post-office` an organization, a place, or not a named entity at all? (The two annotators of the letter to Colvin disagreed about exactly this.)
+- **Coverage:** do you count titles of works (`Villon`, `Treasure Island`)? They aren't people, places, or organizations in this scheme, so they shouldn't be tagged. But notice how easy it is to disagree.
+- **Salutations and signatures:** is `MY DEAR COLVIN` a mention of Colvin? (Yes: annotate `COLVIN`.)
+
+## Inter-Annotator Agreement
+
+How reliable is your ground truth? One way to find out is to have two people annotate the same letter independently, then compare.
+
+- **In a pair or group:** each of you annotates at least one letter that someone else also annotates, without looking at each other's work. Then compare.
+- **On your own:** annotate a letter, put it away for a few days, and annotate it again without looking at your first attempt. Then compare the two.
+
+Disagreements usually fall into three kinds:
+
+1. **Boundary** disagreements: did you include `Mr.` as part of the name?
+2. **Type** disagreements: is `Cornhill` a location or an organization?
+3. **Coverage** disagreements: one of you marked something the other missed.
+
+Real annotation projects measure agreement before trusting their ground truth, often with a statistic called **Cohen's kappa**, which corrects for agreement you'd expect by chance. (A kappa of 1 means perfect agreement, and 0 means no more than chance; the two people who annotated the repository's eight letters reached 0.89.) The notebook calculates it for you: Section 9 compares every pair of annotators on the letters they share, including `person_1` vs. `person_2`, and yours against both. To compare with a partner, or with your own second attempt, save the other set as another CSV file in `data/annotations/` (for example, `my_second_try_annotations.csv`), and it's included as one more annotator.
+
+## Key Takeaways
+
+- Evaluating a model needs ground truth: correct answers produced by people.
+- Annotating forces you to make explicit decisions about boundaries, types, and coverage that casual reading glosses over.
+- People disagree too. Measuring agreement between annotators tells you how reliable your ground truth is.
+- Ground truth is a human product, with its own errors and judgement calls. Document the decisions you made.
+
+## Next
+
+[Evaluating and comparing models](evaluating_models.qmd): use your annotations to measure how well the model did.
