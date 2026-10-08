@@ -1,0 +1,34 @@
+<!-- A copy button for prompts longer than a line (::: {.prompt} blocks), like the one Quarto adds
+     to code blocks. Included at the end of every page (see _quarto.yml); styled in styles.css. -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (!navigator.clipboard) return; // only available over https (or on localhost)
+  for (const block of document.querySelectorAll('main div.prompt')) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'prompt-copy-button';
+    button.title = 'Copy prompt';
+    button.setAttribute('aria-label', 'Copy prompt');
+    button.innerHTML = '<i class="bi bi-clipboard"></i>';
+    button.addEventListener('click', async () => {
+      // The prompt's text, one paragraph per line, without the button itself
+      const text = [...block.children]
+        .filter((child) => child !== button)
+        .map((child) => child.innerText.trim())
+        .join('\n\n');
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        return;
+      }
+      button.title = 'Copied';
+      button.querySelector('i').className = 'bi bi-check2';
+      setTimeout(() => {
+        button.title = 'Copy prompt';
+        button.querySelector('i').className = 'bi bi-clipboard';
+      }, 1500);
+    });
+    block.append(button);
+  }
+});
+</script>
