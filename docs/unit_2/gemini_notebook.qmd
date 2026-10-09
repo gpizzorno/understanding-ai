@@ -107,7 +107,7 @@ Step 3: the network prompt, and the answer. The image is saved in the Studio pan
 
 - **It works.** In our test, it produced a real, downloadable CSV file covering all 20 letters (320 to 330 rows), and a clear network image with sensible clusters of correspondents.
 - **It's also quite accurate.** Measured against annotations made by people, its results were considerably better than the specialized NER model you'll use in Unit 3. You'll see the numbers in the Unit 3 notebook, which evaluates exactly these exports.
-- **But look at the letter to Colvin.** In our test, it tagged `Villon` and `Sire de Maletroit` as *people*. Both are titles of Stevenson's stories ('Villon' is about the poet François Villon). If your step-2 table got this right, it's because your prompt asked about titles of works, and your follow-ups made the model check. The export had no such prompting, and no one looked.
+- **But look at the letter to Colvin.** In our test, it tagged `Villon` and `Sire de Maletroit` as *people*. Both are Stevenson's works, not people (`Villon` is his name for a story and an essay about the poet François Villon). If your step-2 table got this right, it's because your prompt asked about titles of works, and your follow-ups made the model check. The export had no such prompting, and no one looked.
 - **Can you get the data behind the network?** You can see the picture. Can you download the list of connections, to check it or to use it elsewhere?
 
 :::

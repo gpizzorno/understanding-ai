@@ -89,7 +89,7 @@ Throughout this unit, you'll work with one short letter: Stevenson's letter to S
 ## Points to Notice
 
 - **What did the model add that isn't in the letter?** The letter says only `Stephen`. A chat assistant will probably tell you this is Leslie Stephen, the editor of the *Cornhill Magazine*. That's likely right, but it doesn't come from the letter: it comes from the model's training data, combined with the context clues (`CORNHILL pages`). Did it say so, or present it as if the letter stated it?
-- **Did it list things that aren't people?** `Villon` is the title of Stevenson's story (about the poet François Villon). `CORNHILL` and `TEMPLE BAR` are magazines, though both are also places in London.
+- **Did it list things that aren't people?** `Villon` is Stevenson's name for his own writing about the poet François Villon: in this letter, a story and an essay. `CORNHILL` and `TEMPLE BAR` are magazines, though both are also places in London.
 - **How did the second conversation differ?** The letter and the question were the same, only the earlier turn was different. That earlier turn is part of the bundle the model receives, and it shapes the answer.
 :::
 

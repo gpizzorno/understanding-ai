@@ -96,7 +96,7 @@ Asked <span class="prompt">Who was Sidney Colvin?</span>, a small model gave thr
 
 ### Outdated Knowledge
 
-A model knows only what was in its training data, which was collected up to a cutoff date, often a year or more before you use it. Anything after that (new publications, renamed tools, changed institutions, updated scholarship) is invisible to it, unless the tool searches the web. The model won't necessarily tell you it's out of date; it will describe the world as it was, in the present tense.
+A model knows only what was in its training data, which was collected up to a cutoff date, often a year or more before you use it. Anything after that (new publications, renamed tools, changed institutions, updated scholarship) is invisible to it, unless the tool searches the web. The model won't necessarily tell you it's out of date, it will describe the world as it was, in the present tense.
 
 ::: {.callout-note}
 # Example
@@ -163,7 +163,7 @@ Models can state a wrong number as fluently as a right one. The *form* of mathem
 ::: {.callout-note}
 # Example
 
-<span class="prompt">How old was Stevenson when he wrote this letter?</span> Stevenson was born on 13 November 1850, and the letter to Colvin is dated August 1877. Subtract the years, and you get 27; but his birthday hadn't come yet, so he was 26. It's an easy slip, for a person or a model, and the model will state either answer with the same confidence. Counts are similar: <span class="prompt">How many letters did Stevenson write to Colvin?</span> invites a number that looks exact and may not be.
+<span class="prompt">How old was Stevenson when he wrote this letter?</span> Stevenson was born on 13 November 1850, and the letter to Colvin is dated August 1877. Subtract the years, and you get 27, but his birthday hadn't come yet, so he was 26. It's an easy slip, for a person or a model, and the model will state either answer with the same confidence. Counts are similar: <span class="prompt">How many letters did Stevenson write to Colvin?</span> invites a number that looks exact and may not be.
 :::
 
 ::: {.callout-tip}
@@ -177,7 +177,7 @@ Models can state a wrong number as fluently as a right one. The *form* of mathem
 
 ### Multi-Step Breakdowns
 
-In a long task with several steps, the model may silently substitute a number or a term, confuse two similar names, or drop a constraint introduced earlier. Each step can look reasonable on its own; the error is in what is carried from one step to the next. The prose stays fluent while the reasoning collapses.
+In a long task with several steps, the model may silently substitute a number or a term, confuse two similar names, or drop a constraint introduced earlier. Each step can look reasonable on its own, the error is in what is carried from one step to the next. The prose stays fluent while the reasoning collapses.
 
 ::: {.callout-note}
 # Example
@@ -225,7 +225,7 @@ The model follows an instruction too literally, or too loosely. It does what you
 ::: {.callout-note}
 # Example
 
-<span class="prompt">Summarize briefly</span> produces a single terse sentence that omits critical information; <span class="prompt">Do not include any personal opinion</span> produces text with an evaluative frame built in anyway (<span class="response">this charming letter</span>).
+<span class="prompt">Summarize briefly</span> produces a single terse sentence that omits critical information, <span class="prompt">Do not include any personal opinion</span> produces text with an evaluative frame built in anyway (<span class="response">this charming letter</span>).
 :::
 
 ::: {.callout-tip}
@@ -346,7 +346,7 @@ The model leaves out important evidence, without signalling that it has. Summari
 ::: {.callout-note}
 # Example
 
-A summary of the [letter to Colvin](letters.qmd#a-sample-letter) may report its literary news (the `Villon` story, `Temple Bar`'s interest, `Leslie Stephen`'s encouragement) and leave out that Stevenson is leaving for Penzance the next day: the one detail you'd need if you were tracing where he was that summer.
+A summary of the [letter to Colvin](letters.qmd#a-sample-letter) may report its literary news (the two `Villon` pieces, `Temple Bar`'s interest, `Leslie Stephen`'s encouragement) and leave out that Stevenson is leaving for Penzance the next day: the one detail you'd need if you were tracing where he was that summer.
 :::
 
 ::: {.callout-tip}
@@ -415,7 +415,7 @@ The [letter to Colvin](letters.qmd#a-sample-letter) says only `Stephen`. A model
 
 ## Bias
 
-These come mainly from the training data and fine-tuning. [Model training](../unit_1/model_training.qmd#bias-in-training-data) covered how bias gets into models; the focus here is how it shows up in output.
+These come mainly from the training data and fine-tuning. [Model training](../unit_1/model_training.qmd#bias-in-training-data) covered how bias gets into models, the focus here is how it shows up in output.
 
 ### Stereotypes
 

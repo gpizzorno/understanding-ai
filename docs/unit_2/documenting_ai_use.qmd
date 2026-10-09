@@ -69,7 +69,7 @@ Compare that with the Gemini Notebook exports: the tool ran code, but nobody cou
 | **Purpose** | List the people, places, and organizations mentioned |
 | **Prompts** | Structured extraction prompt (saved in `prompts/colvin_letter.txt`), then three follow-ups about `Villon`, `CORNHILL`, and `TEMPLE BAR` |
 | **Output** | A table of 10 rows, saved in `notes/colvin_letter_entities.csv` |
-| **Verification** | Checked every row against the letter, and against two people's annotations. Removed `Villon` and `Sire de Maletroit` (story titles, not people). `Stephen` identified as Leslie Stephen from outside knowledge: confirmed in the *Cornhill*'s history |
+| **Verification** | Checked every row against the letter, and against two people's annotations. Removed `Villon` and `Sire de Maletroit` (titles of works, not people). `Stephen` identified as Leslie Stephen from outside knowledge: confirmed in the *Cornhill*'s history |
 | **Use** | Corrected table incorporated into my notes on Stevenson's editors |
 | **Disclosure** | Not yet, would need a note if the table is published |
 : {.sm}

@@ -50,7 +50,7 @@ The model's output has a few fields worth knowing:
 **Think about:**
 
 - What do the confidence scores tell you? What *don't* they tell you?
-- Gemini Notebook, in Unit 2, made different mistakes on the same letter: it caught `COLVIN` in the salutation, but tagged the story titles `Villon` and `Sire de Maletroit` as people. What does each kind of mistake tell you about how each tool works?
+- Gemini Notebook, in Unit 2, made different mistakes on the same letter: it caught `COLVIN` in the salutation, but tagged the titles `Villon` and `Sire de Maletroit` as people. What does each kind of mistake tell you about how each tool works?
 
 Remember that the model gives you [predictions, not explanations](nlp_pipeline.qmd#pre-trained-models-vs.-general-purpose-llms).
 

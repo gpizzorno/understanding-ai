@@ -145,7 +145,7 @@ Both annotators marked these eight names (as written in the letter, with their t
 
 </div>
 
-They disagreed on one: one annotator also marked `post-office` (`at the post-office a letter will find me`) as an organization, the other didn't consider it a named entity. Neither marked `Villon` or `The Sire de Maletroit's Mousetrap`, which are titles of Stevenson's stories, not people.
+They disagreed on one: one annotator also marked `post-office` (`at the post-office a letter will find me`) as an organization, the other didn't consider it a named entity. Neither marked `Villon` or `The Sire de Maletroit's Mousetrap`, which are titles of Stevenson's works, not people.
 
 So even the answer key involves judgement calls, and two careful people don't agree completely. What would you have decided about the post-office?
 
