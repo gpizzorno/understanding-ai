@@ -1,0 +1,29 @@
+---
+title: 'About These Materials'
+---
+
+These materials grew out of a series of in-person workshops for humanities and social science researchers, designed and taught by Gabe Pizzorno, with [James Capobianco](https://dsg.fas.harvard.edu/about/people/james-capobianco/) and [Tracy Stuber](https://dsg.fas.harvard.edu/about/people/tracy-stuber/), as part of the programming of the [Digital Scholarship Group](https://dsg.fas.harvard.edu) at Harvard University.
+
+Pizzorno later taught a redesigned version as a seminar at the [United States Holocaust Memorial Museum](https://www.ushmm.org). The materials from that seminar were then adapted for self-study, as the three units on this site.
+
+## Acknowledgements
+
+- The letters were transcribed by the contributors to [Wikisource](https://en.wikisource.org/wiki/The_Letters_of_Robert_Louis_Stevenson_Volume_1).
+- [Jeremy Guillette](https://atg.fas.harvard.edu/people/jeremy-guillette) scraped the letters from Wikisource, and split and parsed them into text files and metadata, in the [`stevenson_letters`](https://github.com/jaguillette/stevenson_letters) repository, created for an earlier workshop on web scraping.
+- Place coordinates come from [OpenStreetMap](https://www.openstreetmap.org/copyright) via the [Nominatim](https://nominatim.org) geocoder (© OpenStreetMap contributors, [ODbL](https://opendatacommons.org/licenses/odbl/)).
+- The case study uses the named-entity recognition models [`Davlan/bert-base-multilingual-cased-ner-hrl`](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl) and [`dslim/bert-base-NER`](https://huggingface.co/dslim/bert-base-NER), via Hugging Face [Transformers](https://github.com/huggingface/transformers).
+- Unit 1 uses [Teachable Machine](https://teachablemachine.withgoogle.com) (Google) and [Hack Merlin](https://hackmerlin.io), Unit 2 uses [Gemini Notebook](https://notebook.google) (Google). These are third-party services, not affiliated with these materials.
+
+## Licence
+
+- **Code** is licensed under the [MIT License](https://github.com/gpizzorno/understanding-ai/blob/main/LICENSE).
+- **Written materials** are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://github.com/gpizzorno/understanding-ai/blob/main/LICENSE-docs). You may share and adapt them for any purpose, including in your own teaching, as long as you give appropriate credit.
+- **Data** in `data/` comes from other sources with their own terms, see the [data README](https://github.com/gpizzorno/understanding-ai/blob/main/data/README.md).
+
+
+## Citation
+
+If you use or adapt these materials, please cite them as:
+
+> Pizzorno, Gabriel H.. *Understanding AI: A Practical Workshop for Humanities and Social Science Researchers*. 2026. https://github.com/gpizzorno/understanding-ai
+
