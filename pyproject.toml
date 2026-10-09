@@ -7,7 +7,7 @@ name = "understanding-ai"
 version = "1.0.0"
 description = "Understanding AI: A Practical Workshop for Humanities and Social Science Researchers"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 license = "MIT"
 license-files = ["LICENSE", "LICENSE-docs"]
 authors = [{ name = "Gabriel H. Pizzorno" }]
@@ -37,7 +37,7 @@ packages = []
 # https://github.com/charliermarsh/ruff#configuration
 [tool.ruff]
 line-length = 120
-target-version = "py310"
+target-version = "py312"
 extend-include = ["*.ipynb"]
 extend-exclude = ["data/"] # files kept exactly as a tool produced them, such as data/gemini_notebook/
 
@@ -127,7 +127,7 @@ section-order = [
 max-line-length = 130 # to detect extra-long lines that the formatter can't automatically split
 
 [tool.ty.environment]
-python-version = "3.10"
+python-version = "3.12"
 python-platform = "linux"
 root = ["."]
 
