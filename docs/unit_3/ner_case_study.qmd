@@ -18,7 +18,7 @@ If you haven't yet, read [The NLP Pipeline](nlp_pipeline.qmd) first. And remembe
 
 ## Getting Started
 
-- **Locally:** open `notebooks/ner_pipeline.ipynb` in Jupyter from your copy of this repository.
+- **Locally:** open `code/ner_pipeline.ipynb` in Jupyter from your copy of this repository.
 - **In Google Colab:** click the <span class="command">Open in Colab</span> badge at the top of the notebook. The first cell downloads the repository so the notebook can find the data.
 
 Run the cells in order, from the top. The first time you load each model, it downloads a few hundred megabytes.

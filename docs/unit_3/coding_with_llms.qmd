@@ -35,9 +35,9 @@ This is a general-purpose chat assistant, such as *ChatGPT*, *Claude*, or *Gemin
 
 The assistant can't see your files, so you have to tell it what it needs to know: where the file is, and what its columns are. Paste in the first few lines of the file:
 
-<div class="prompt">Write Python code for a Jupyter notebook in the 'notebooks/' folder of my project. It should read '../data/letters_metadata.csv', count the letters per year, and draw a bar chart. Here are the first lines of the file: **[paste the header and two or three rows]**</div>
+<div class="prompt">Write Python code for a Jupyter notebook in the 'code/' folder of my project. It should read '../data/letters_metadata.csv', count the letters per year, and draw a bar chart. Here are the first lines of the file: **[paste the header and two or three rows]**</div>
 
-**Running the result:** copy the code into a new cell in a notebook in the `notebooks/` folder, and run it.
+**Running the result:** copy the code into a new cell in a notebook in the `code/` folder, and run it.
 
 **Good for:** small pieces of code, explanations, and error messages. You see every line before it runs, because you're the one who runs it. Some assistants can also run code themselves, in their own sandbox, that tells you the code works on *their* copy of the file, not on yours.
 
@@ -107,10 +107,10 @@ When something works in one place and not another, the difference between the pl
 
 Code finds files by their *path*. A path can be:
 
-- **Relative:** worked out from the folder the code is running in, called the *working directory*. `../data/letters_metadata.csv` means *go up one folder from here, then into `data/`*. This works when the notebook runs from `notebooks/`, and fails anywhere else.
+- **Relative:** worked out from the folder the code is running in, called the *working directory*. `../data/letters_metadata.csv` means *go up one folder from here, then into `data/`*. This works when the notebook runs from `code/`, and fails anywhere else.
 - **Absolute:** the full location on one computer, such as `/Users/yourname/understanding-ai/data/letters_metadata.csv`. This works from anywhere on that computer, and nowhere else.
 
-The case study uses relative paths, so that it works on anyone's computer, as long as it runs from `notebooks/`. If you see a `FileNotFoundError`, check the working directory first:
+The case study uses relative paths, so that it works on anyone's computer, as long as it runs from `code/`. If you see a `FileNotFoundError`, check the working directory first:
 
 ```python
 from pathlib import Path
@@ -122,7 +122,7 @@ Path.cwd()  # the folder this code is running in
 
 A chat assistant will guess where your files are, and often guess wrong. Tell it:
 
-<div class="prompt">My project is laid out like this: 'notebooks/' (where my notebook is), 'data/letters/' (one .txt file per letter), 'data/letters_metadata.csv', and 'outputs/'. The notebook runs from 'notebooks/'. Use relative paths.</div>
+<div class="prompt">My project is laid out like this: 'code/' (where my notebook is), 'data/letters/' (one .txt file per letter), 'data/letters_metadata.csv', and 'outputs/'. The notebook runs from 'code/'. Use relative paths.</div>
 
 It's worth keeping a description like this in a text file, and pasting it in whenever you start a new conversation about the project.
 

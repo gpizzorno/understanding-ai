@@ -1,6 +1,6 @@
 # Gemini Notebook Extractions
 
-This folder contains three sets of named entities, and a network graph, extracted from the 20 letters in [`sample_letters/`](../sample_letters/) by Gemini Notebook. They are used in Section 10 of the [case study notebook](../../notebooks/ner_pipeline.ipynb) to compare a conversational AI tool with the pre-trained NER models, on accuracy and on reproducibility.
+This folder contains three sets of named entities, and a network graph, extracted from the 20 letters in [`sample_letters/`](../sample_letters/) by Gemini Notebook. They are used in Section 10 of the [case study notebook](../../code/ner_pipeline.ipynb) to compare a conversational AI tool with the pre-trained NER models, on accuracy and on reproducibility.
 
 | File | Rows | Produced |
 |---|---|---|

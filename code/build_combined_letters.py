@@ -1,6 +1,6 @@
 """Combine all the letters into a single Markdown file, for tools that limit the number of sources.
 
-Run from the repository root:  python notebooks/build_combined_letters.py
+Run from the repository root:  python code/build_combined_letters.py
 """  # noqa: INP001
 
 import re

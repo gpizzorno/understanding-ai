@@ -10,7 +10,7 @@
 project:
   type: website
   output-dir: _site
-  # the notebook lives in notebooks/ this copies it into unit_3/ for each build
+  # the notebook lives in code/ this copies it into unit_3/ for each build
   pre-render: _scripts/copy_notebook.lua
   render:
     - index.qmd

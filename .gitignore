@@ -7,7 +7,7 @@ tracking_docs/
 
 # website build output (see docs/_quarto.yml; Quarto's cache is ignored in docs/.gitignore)
 docs/_site/
-# copied from notebooks/ at build time (see docs/_scripts/copy_notebook.lua)
+# copied from code/ at build time (see docs/_scripts/copy_notebook.lua)
 docs/unit_3/ner_pipeline.ipynb
 
 # notebook results and user's own annotations

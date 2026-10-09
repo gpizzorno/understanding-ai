@@ -4,7 +4,7 @@ Takes the most frequent LOC entities in data/extracted_entities.csv and looks ea
 with OpenStreetMap's Nominatim geocoder (https://nominatim.org).
 
 Usage (from the repository root):
-    python notebooks/build_place_coordinates.py [number_of_places]
+    python code/build_place_coordinates.py [number_of_places]
 
 Nominatim's usage policy: https://operations.osmfoundation.org/policies/nominatim/)
 """  # noqa: INP001
