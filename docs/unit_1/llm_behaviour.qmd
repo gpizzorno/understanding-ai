@@ -76,7 +76,7 @@ If you can't look inside a model, you have to judge it by testing it. That's har
 
 Some tasks are hard in ways that more fluent text can't fix. Precise logical deduction, exact arithmetic, exhaustive searching, and careful multi-step reasoning all need to be *done*, step by step, not just *described*. LLMs have become much better at them, and some tools quietly hand calculations to real code. But a model can still produce text that has the *form* of a correct solution (the right structure, the right vocabulary, a confident conclusion) without the substance, and the failures don't look like failures.
 
-You don't need the theory to take away the lesson: **fluency is not a signal of correctness, and confidence is not a signal of accuracy.**
+Whatever the task, the lesson is the same: **fluency is not a signal of correctness, and confidence is not a signal of accuracy.**
 
 ## Key Takeaways
 
