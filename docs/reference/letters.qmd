@@ -19,7 +19,7 @@ The people he wrote to most often in the collection:
 <div class="table-container table-90">
 | Correspondent | Who they were | Letters |
 |--|----|:-:|
-| Sidney Colvin | Critic and museum curator; a close friend, and the editor of these letters | 54 |
+| Sidney Colvin | Critic and museum curator, a close friend, and the editor of these letters | 54 |
 | Charles Baxter | A lawyer, and a friend from his student days in Edinburgh | 38 |
 | W. E. Henley | A poet and editor | 35 |
 | Edmund Gosse | A critic and poet | 31 |
@@ -50,10 +50,10 @@ LOUIS STEVENSON.
 
 Even this short letter has most of the features that make the collection hard for software, and for AI models in particular:
 
-- **Capitals.** The heading, the salutation (`MY DEAR COLVIN`), and the signature are in capitals, and so are the magazines (`CORNHILL`, `TEMPLE BAR`) and a word for emphasis (`CLEVER`). Models trained on modern text rely heavily on capital letters to spot names, and are easily misled here.
+- **Capitals.** The heading, the salutation (`MY DEAR COLVIN`), and the signature are in capitals, as they are in the printed edition. So are the place and date (`EDINBURGH, AUGUST`), the magazines (`CORNHILL`, `TEMPLE BAR`), and a word for emphasis (`CLEVER`), but those were italics in print: the transcription turned them into capitals. Models trained on modern text rely heavily on capital letters to spot names, and are easily misled here.
 - **The editor's additions.** The heading (`TO SIDNEY COLVIN`) and the place and date in square brackets (`[EDINBURGH, AUGUST 1877.]`) come from the edition, not from Stevenson's letter.
 - **Old spellings and phrasing:** `to-morrow`, `re-casting`, `a devil of a lot`.
-- **Names that need outside knowledge.** `Stephen` is almost certainly Leslie Stephen, who edited the *Cornhill Magazine*, but the letter never says so. `Villon` is a story Stevenson wrote, not the poet it's named after.
+- **Names that need outside knowledge.** `Stephen` is almost certainly Leslie Stephen, who edited the *Cornhill Magazine*, but the letter never says so. `Villon` isn't the poet François Villon, but Stevenson's own writing about him, and the letter mentions two different pieces: the story that `TEMPLE BAR` liked ("A Lodging for the Night"), and an essay in the *Cornhill* that is `out this month`. Nothing in the letter tells them apart.
 - **The same thing in different forms.** Stevenson's friend is `SIDNEY COLVIN` in the heading and `COLVIN` in the salutation. In other letters, he is `my dear Colvin`, or just `S. C.`.
 
 ## The Choice of Letters
