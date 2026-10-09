@@ -48,7 +48,7 @@ Participants' own results will differ in the details. That's the point, and wort
 
 ### Bridge Discussion
 
-Close with the "Implications" section of the activity page and the [discussion questions](discussion_questions.md#activity-gemini-notebook). The four things research data needs on top of accuracy (reproducibility, transparency, a fixed version, and verifiability) are the thread that runs into [Assessing Reliability](unit_2_outline.md#presentation-assessing-reliability) and all of Unit 3. Frame them as properties of conversational tools in general, not flaws in this product: Unit 3 builds a pipeline that gives up some accuracy in exchange for all four, and evaluates it against these same exports.
+Close with the "Implications" section of the activity page and the [discussion questions](discussion_questions.md#activity-gemini-notebook). The four things research data needs on top of accuracy (reproducibility, transparency, a fixed version, and verifiability) are the thread that runs into [Assessing Reliability](https://gpizzorno.github.io/understanding-ai/unit_2/assessing_reliability.html) and all of Unit 3. Frame them as properties of conversational tools in general, not flaws in this product: Unit 3 builds a pipeline that gives up some accuracy in exchange for all four, and evaluates it against these same exports.
 
 ---
 
@@ -77,6 +77,6 @@ Close with the "Implications" section of the activity page and the [discussion q
 - Don't collapse the discussion into a single rigid answer. Emphasize trade-offs, and the reasons for stronger or weaker transparency requirements.
 - Scenarios 4 and 6 connect directly to the morning: an unchecked bibliography is a hallucination risk passed on to readers, and an AI-generated dataset raises every question from the Gemini Notebook activity.
 - Scenario 3 is the one most likely to raise questions of *authorship* rather than citation, and it's worth discussing the difference.
-- Let the discussion lead into [Acknowledging AI Use](unit_2_outline.md#presentation-acknowledging-ai-use-and-closing): cite sources, not the model; acknowledge material tool use, in proportion; say what you checked; and follow the relevant policy.
+- Let the discussion lead into [Acknowledging AI Use](https://gpizzorno.github.io/understanding-ai/unit_2/acknowledging_ai_use.html): cite sources, not the model; acknowledge material tool use, in proportion; say what you checked; and follow the relevant policy.
 - If time allows, run the writing exercise: each participant writes a two- or three-sentence disclosure statement for one scenario, and the group discusses a few.
 

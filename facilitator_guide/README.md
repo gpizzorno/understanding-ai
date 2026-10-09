@@ -102,9 +102,23 @@ Depending on the audience, Units 1 and 2 can work as a self-contained core that 
 ## Activity Logistics
 
 - **Teachable Machine** (Unit 1): groups of 3–4 post their exported model links to a shared "Model Share" document, then test another group's model. See [unit_1_activities.md](unit_1_activities.md#teachable-machine).
-- **The letter exercise** (Unit 2): six steps follow one letter through the unit. Decide in advance which steps happen in the session and which are homework. See the [Unit 2 outline](unit_2_outline.md#opening-and-the-letter-exercise).
+- **The letter exercise** (Unit 2): six steps follow one letter, [Stevenson to Sidney Colvin, August 1877](https://gpizzorno.github.io/understanding-ai/reference/letters.html#a-sample-letter), through the unit. Show the letter at the start of the morning, and ask everyone to keep a document open for the model's answers, since later steps reuse them. Decide in advance which steps happen in the session and which are homework:
+
+  | Step | Page | In a workshop |
+  |---|---|---|
+  | 1. A loose question, then the same question after a different earlier turn | [Prompt Processing](https://gpizzorno.github.io/understanding-ai/unit_2/prompts.html#exercise) | 5 min, after the presentation |
+  | 2. A structured table of names, refined with follow-ups | [Prompting Strategies](https://gpizzorno.github.io/understanding-ai/unit_2/prompting_strategies.html#exercise) | 5–10 min, after the presentation |
+  | 3. The same letter's rows in the Gemini Notebook export | [Gemini Notebook](https://gpizzorno.github.io/understanding-ai/unit_2/gemini_notebook.html#part-2-structured-output) | Part of the activity |
+  | 4. Checking the table against the letter, and against two people's annotations | [Assessing Reliability](https://gpizzorno.github.io/understanding-ai/unit_2/assessing_reliability.html#exercise) | 5–10 min, after the presentation |
+  | 5. A log entry for steps 1–4 | [Documenting Your Work](https://gpizzorno.github.io/understanding-ai/unit_2/documenting_ai_use.html#exercise) | After the session |
+  | 6. A disclosure statement | [Acknowledging AI Use](https://gpizzorno.github.io/understanding-ai/unit_2/acknowledging_ai_use.html#exercise) | After the session |
+
+  If time is short, steps 1 and 2 can be run as live demonstrations.
 - **Gemini Notebook** (Unit 2): participants upload the 20 letters in [`data/sample_letters/`](../data/sample_letters/). A shared notebook that participants copy saves time if uploads are slow. Some answers take two or three minutes. See [unit_2_activities.md](unit_2_activities.md#gemini-notebook).
-- **Annotation** (Unit 3): assign letters from the eight that the repository's two annotation sets (`person_1`, `person_2`) cover, with some overlap between participants, so that agreement can be measured. Ask participants not to look at the shipped annotations first. Collect annotations in a shared Google Sheet published as CSV (paste the URL into `SHEET_CSV_URL` in notebook Section 9), or as individual files in `data/annotations/`. See the [Unit 3 outline](unit_3_outline.md#activity-ground-truth-annotation).
+- **Annotation** (Unit 3):
+  - The repository's two annotation sets (`person_1` and `person_2`) cover eight of the 20 sample letters, listed on the [activity page](https://gpizzorno.github.io/understanding-ai/unit_3/annotation.html#instructions). Assign participants letters from those eight, so their annotations can be compared with both, and ask them not to look at the shipped annotations until they've finished. Avoid the letter to Colvin (`vol1_ch3_letter14`), whose answer key participants saw in Unit 2, except as a warm-up.
+  - Spread the letters so that every letter is annotated by at least two people: that overlap is what makes agreement measurable. Two or three letters each is realistic in 15 minutes, and some letters are much longer than others.
+  - Before the evaluation starts, get the annotations into the notebook. **Shared sheet:** publish it as CSV (**File** → **Share** → **Publish to web** → **CSV**), and have everyone paste the URL into `SHEET_CSV_URL` in notebook Section 9 (it's loaded as an annotator called `workshop_sheet`). **Individual files:** participants save their rows as `data/annotations/my_annotations.csv` (loaded as `my`). Any other CSV file in that folder is loaded as one more annotator, named after the file. In Colab, files have to be uploaded to `understanding-ai/data/annotations/` with the file browser first.
 - **Colab and data:** in Colab, the notebook's first cell downloads the repository, including the data, so nothing needs to be shared separately. Colab sessions are temporary: participants lose their work, including their annotations, unless they download it or save a copy.
 
 ## Environment Troubleshooting

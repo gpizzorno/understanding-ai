@@ -44,7 +44,7 @@ Run this as a whole group just before the debrief: it's the clearest way to make
 - Use the [discussion questions](discussion_questions.md#activity-teachable-machine), choosing based on what came up.
 - Ask groups what their model *actually* learned, and how they found out. Shortcuts (the background, the lighting, a face) are the best material.
 - Make sure someone mentions the confident wrong answers: a classifier always picks one of its classes, even for something that belongs to none of them.
-- Bridge to [Model Training](unit_1_outline.md#presentation-model-training): training data, the train/test split, generalization, and bias.
+- Bridge to [Model Training](https://gpizzorno.github.io/understanding-ai/unit_1/model_training.html): training data, the train/test split, generalization, and bias.
 
 ---
 
