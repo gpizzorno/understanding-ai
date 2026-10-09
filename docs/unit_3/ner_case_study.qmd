@@ -14,7 +14,7 @@ In the [Gemini Notebook activity](../unit_2/gemini_notebook.qmd), you asked a co
 
 This guide walks through the notebook section by section. For each section, it tells you what the code does, what to notice, and questions to think about before moving on. Keep the guide open next to the notebook.
 
-If you haven't yet, read [The NLP pipeline](nlp_pipeline.qmd) first. And remember the ground rules from [Coding with LLMs](coding_with_llms.qmd): before running a cell you don't understand, ask an LLM to explain it.
+If you haven't yet, read [The NLP Pipeline](nlp_pipeline.qmd) first. And remember the ground rules from [Coding with LLMs](coding_with_llms.qmd): before running a cell you don't understand, ask an LLM to explain it.
 
 ## Getting Started
 
@@ -45,7 +45,7 @@ The model's output has a few fields worth knowing:
 - `score`: the model's confidence, from 0 to 1
 - `start` and `end`: where the entity appears in the text
 
-**What to notice:** on the raw letter, the model produces fragments such as `SI` and `L`. The ALL-CAPS words are split into unusual tokens, which [The NLP pipeline](nlp_pipeline.qmd#tokenization-the-problem-of-all-caps-text) explains. After the `normalize_caps` fix, the names come out whole. But even then, look closely: the model tags `Clever` (from `not so CLEVER perhaps`) as a person, with a confidence of 0.98. And it misses `Colvin` in the salutation.
+**What to notice:** on the raw letter, the model produces fragments such as `SI` and `L`. The ALL-CAPS words are split into unusual tokens, which [The NLP Pipeline](nlp_pipeline.qmd#all-caps-tokenization) explains. After the `normalize_caps` fix, the names come out whole. But even then, look closely: the model tags `Clever` (from `not so CLEVER perhaps`) as a person, with a confidence of 0.98. And it misses `Colvin` in the salutation.
 
 **Think about:**
 
@@ -142,8 +142,8 @@ A map is persuasive, which is exactly why each step behind it needs checking. Th
 
 The last two sections measure how accurate the model actually is, using annotations made by people, and compare it with a second NER model and with Gemini Notebook. They come with their own activities:
 
-- [Ground-truth annotation](annotation.qmd): annotate some letters yourself.
-- [Evaluating and comparing models](evaluating_models.qmd): run Sections 9 and 10 and interpret the results.
+- [Ground-Truth Annotation](annotation.qmd): annotate some letters yourself.
+- [Evaluating and Comparing Models](evaluating_models.qmd): run Sections 9 and 10 and interpret the results.
 
 ## Key Takeaways
 
@@ -162,4 +162,4 @@ If you want to go further with this corpus:
 - Apply sentiment analysis to letters over time, and think hard about what it can and can't tell you about nineteenth-century prose.
 - Compare Stevenson's network with another writer's correspondence.
 
-[Next steps](next_steps.qmd) has more on where to go from here.
+[Next Steps](next_steps.qmd) has more on where to go from here.

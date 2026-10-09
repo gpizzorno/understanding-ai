@@ -172,4 +172,4 @@ The first time the notebook loads a model, it downloads a few hundred megabytes,
 
 ## Next
 
-[Advantages of programmatic approaches](programming_advantages.qmd): why this unit moves from conversational tools to code.
+[Advantages of Programmatic Approaches](programming_advantages.qmd): why this unit moves from conversational tools to code.

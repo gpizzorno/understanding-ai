@@ -51,7 +51,7 @@ You don't need to tell it the columns of the file: it can open the file and look
 
 **Running the result:** start the agent from the repository folder, give it the task, and approve (or refuse) each command it asks to run. When it's done, it will tell you what it created, open the files and check them.
 
-**Good for:** larger tasks, and tasks that need the agent to look at your actual files. The risk is the reverse of the chat assistant's: an agent can do a great deal without you following each step. It can install libraries, create and change files, and run commands. See [Checking a coding agent's work](#checking-a-coding-agents-work), below.
+**Good for:** larger tasks, and tasks that need the agent to look at your actual files. The risk is the reverse of the chat assistant's: an agent can do a great deal without you following each step. It can install libraries, create and change files, and run commands. See [Checking a Coding Agent's Work](#checking-a-coding-agents-work), below.
 
 ### Code Editors with AI Assistance
 
@@ -196,4 +196,4 @@ If any of the Python itself is unfamiliar, the [quick refresher](python_setup.qm
 
 ## Next
 
-[The NLP pipeline](nlp_pipeline.qmd): what the model in the case study actually does, and how it differs from the chat assistants you used in Unit 2.
+[The NLP Pipeline](nlp_pipeline.qmd): what the model in the case study actually does, and how it differs from the chat assistants you used in Unit 2.

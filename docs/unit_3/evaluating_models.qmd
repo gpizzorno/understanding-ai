@@ -12,7 +12,7 @@ title: 'Evaluating and Comparing Models'
 
 This is where the ideas from [Unit 1](../unit_1/model_training.qmd#measuring-performance) become a concrete calculation. You'll compare the model's predictions with human annotations, work out precision, recall, and F1, look at what kinds of errors the model makes, and then compare it with a second model, and with Gemini Notebook.
 
-If you need a refresher on the metrics, see the [worked example](../unit_1/evaluation_metrics.qmd), and especially [From marbles to letters](../unit_1/evaluation_metrics.qmd#from-marbles-to-letters), which explains true positives, false positives, and false negatives with these letters.
+If you need a refresher on the metrics, see the [worked example](../unit_1/evaluation_metrics.qmd), and especially [From Marbles to Letters](../unit_1/evaluation_metrics.qmd#from-marbles-to-letters), which explains true positives, false positives, and false negatives with these letters.
 
 ::: {.callout-note}
 ## About the Data
@@ -110,7 +110,7 @@ But the NER model, run twice on the same letter, gives identical output. Gemini 
 
 - If you had to choose one approach for a research project, which would it be, and why? What would you need to report about it?
 - Two runs of Gemini Notebook scored almost the same, but produced different data. Which matters more for your research: the score, or the data?
-- Could you get some of both? [Advantages of programmatic approaches](programming_advantages.qmd#getting-some-of-both) describes some approaches in between.
+- Could you get some of both? [Advantages of Programmatic Approaches](programming_advantages.qmd#best-of-both-worlds) describes some approaches in between.
 
 ## Options for Improving Results
 
@@ -120,7 +120,7 @@ If a model isn't good enough for your purpose, you have several options, roughly
 2. **Preprocess the text** better (as `normalize_caps` does for ALL-CAPS text).
 3. **Post-process** the predictions: filter known false positives (`God`), and add rules for patterns the model misses.
 4. **Try a different model**, perhaps one trained on historical text or on your language, or an LLM called from code.
-5. **Fine-tune** a model on annotated examples from your own sources ([Next steps](next_steps.qmd#further-directions)).
+5. **Fine-tune** a model on annotated examples from your own sources ([Next Steps](next_steps.qmd#further-directions)).
 
 ## Recording Your Method
 
@@ -132,7 +132,7 @@ The last cell of the notebook prints a record of the models and settings used, a
 - the results: precision, recall, and F1 by entity type, and against which annotator;
 - known systematic errors, and what you did about them.
 
-[Documenting your work](../unit_2/documenting_ai_use.qmd#two-worked-examples), in Unit 2, has a methods paragraph for this case study, built from exactly these figures.
+[Documenting Your Work](../unit_2/documenting_ai_use.qmd#examples), in Unit 2, has a methods paragraph for this case study, built from exactly these figures.
 
 Benchmark scores on a model card tell you how the model performed on *its* test data, typically modern news. Only an evaluation on your own material tells you what you actually need to know.
 
@@ -146,4 +146,4 @@ Benchmark scores on a model card tell you how the model performed on *its* test 
 
 ## Next
 
-[Next steps](next_steps.qmd): what you've learned across the unit, and where to go from here.
+[Next Steps](next_steps.qmd): what you've learned across the unit, and where to go from here.

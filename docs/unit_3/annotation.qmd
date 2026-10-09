@@ -10,7 +10,7 @@ title: 'Activity: Ground-Truth Annotation'
 **You need:** the letters in [`data/sample_letters/`](https://github.com/gpizzorno/understanding-ai/blob/main/data/sample_letters/) and the annotation template [`data/annotations/annotation_template.csv`](https://github.com/gpizzorno/understanding-ai/blob/main/data/annotations/annotation_template.csv)
 :::
 
-To know how well a model performs, you need something to compare it against: **ground truth**, a set of correct answers produced by people. In this activity you'll produce some, by annotating a few letters for named entities. You'll use your annotations to evaluate the model in [Evaluating and comparing models](evaluating_models.qmd).
+To know how well a model performs, you need something to compare it against: **ground truth**, a set of correct answers produced by people. In this activity you'll produce some, by annotating a few letters for named entities. You'll use your annotations to evaluate the model in [Evaluating and Comparing Models](evaluating_models.qmd).
 
 You've done a small version of this already: in [step 4](../unit_2/assessing_reliability.qmd#exercise) of the letter exercise in Unit 2, you checked a table of names against the letter to Colvin, and compared it with two people's annotations. Now you'll make the annotations yourself. Along the way, you'll find that annotation is harder than it looks. Reading a letter casually, you make dozens of small decisions without noticing. Annotating forces you to make them explicitly.
 
@@ -73,4 +73,4 @@ Real annotation projects measure agreement before trusting their ground truth, o
 
 ## Next
 
-[Evaluating and comparing models](evaluating_models.qmd): use your annotations to measure how well the model did.
+[Evaluating and Comparing Models](evaluating_models.qmd): use your annotations to measure how well the model did.

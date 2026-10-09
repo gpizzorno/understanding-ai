@@ -53,10 +53,10 @@ Both are pre-trained neural networks, and both are built on the [transformer arc
 
 Neither is simply better. The NER model gives you fast, consistent, structured output at scale, but it only gives you **predictions, not explanations**. You can't ask it why it labelled something as it did, or ask it follow-up questions, and it doesn't reason about context the way Gemini Notebook did when it worked out that `S. C.` was Colvin. And its confidence scores aren't explanations either: a score of 0.99 says how sure the model is, not why, and not whether it's right. That's the trade-off this unit explores.
 
-::: {.callout-note}
+::: {.callout-note #all-caps-tokenization}
 ## Tokenization: The Problem of ALL-CAPS Text
 
-[Language models](../unit_1/language_models.qmd#tokens) explained that models don't read words, but *tokens*. The NER models in the case study use a scheme called *WordPiece*: common words are single tokens, and rarer words are split into pieces from a fixed vocabulary, with the pieces that continue a word marked `##`.
+[Language Models](../unit_1/language_models.qmd#tokens) explained that models don't read words, but *tokens*. The NER models in the case study use a scheme called *WordPiece*: common words are single tokens, and rarer words are split into pieces from a fixed vocabulary, with the pieces that continue a word marked `##`.
 
 This causes a concrete problem in the case study. The letters are full of ALL-CAPS text: headings (`TO SIDNEY COLVIN`), salutations (`MY DEAR COLVIN`), and signatures (`LOUIS STEVENSON`). The model's vocabulary was built mostly from normally capitalized text, so the capitalized forms are broken into fragments that rarely appeared in its training data:
 
@@ -121,4 +121,4 @@ Read both model cards before you start. What do they tell you about how each mod
 
 ## Next
 
-[Case study: named entities in Stevenson's letters](ner_case_study.qmd): run the pipeline yourself.
+[Case Study: Named Entities in Stevenson''s Letters](ner_case_study.qmd): run the pipeline yourself.

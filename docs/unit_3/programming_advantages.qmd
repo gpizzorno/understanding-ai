@@ -54,7 +54,7 @@ Coding has a real cost: setting up an environment, learning some syntax, debuggi
 
 If none of these apply, a conversational tool may be all you need, as long as you [check its output](../unit_2/assessing_reliability.qmd) and [record what you did](../unit_2/documenting_ai_use.qmd).
 
-::: {.callout-note}
+::: {.callout-note #best-of-both-worlds}
 ## The Best of Both Worlds
 
 The choice isn't strictly between a chat window and a small specialized model. There are approaches in-between, which you may find, or want, once you're comfortable with this unit:

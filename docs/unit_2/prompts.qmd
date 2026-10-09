@@ -2,7 +2,7 @@
 title: 'Prompt Processing'
 ---
 
-Most advice about *prompt engineering* makes more sense once you understand what the model is actually looking at. [Language Models](../unit_1/language_models.qmd#text-generation), in Unit 1, showed *how* a model writes: one likely token at a time. This reading is about *what* it writes from: what happens between the moment you type into a chat assistant and the moment the model starts generating a reply. The discussion is intended to ground the later advice about prompting, verification, and choosing tools in a concrete understanding of the model's behavior.
+Most advice about *prompt engineering* makes more sense once you understand what the model is actually looking at. [Language Models](../unit_1/language_models.qmd#text-generation), in Unit 1, showed *how* a model writes: one likely token at a time. This reading is about *what* it writes from: what happens between the moment you type into a chat assistant and the moment the model starts generating a reply. The discussion is intended to ground the later advice about prompting, verification, and choosing tools in a concrete understanding of the model's behaviour.
 
 The key idea is this: **the model can only respond to the text currently in front of it**, and it responds by extending patterns in that text. In Unit 1, you saw that LLMs can sound authoritative while being wrong, can be nudged by phrasing, and can be tricked into ignoring instructions. This reading explains how the way you use them shapes all three.
 

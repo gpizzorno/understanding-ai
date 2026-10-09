@@ -19,7 +19,7 @@ It is a genuinely capable tool, and you'll find it does most of what you ask. Th
 
 ::: {.callout-warning}
 ## About the Tool
-Gemini Notebook is a third-party Google service. Its features, and limits change over time. The descriptions below were tested at the time of writing. The letters are public-domain texts, so uploading them raises no privacy or copyright concerns, however, you should think carefully before uploading unpublished or sensitive material of your own to any hosted AI tool.
+Gemini Notebook is a third-party Google service. Its features and limits change over time. The descriptions below were tested at the time of writing. The letters are public-domain texts, so uploading them raises no privacy or copyright concerns, however, you should think carefully before uploading unpublished or sensitive material of your own to any hosted AI tool.
 :::
 
 ## Setup

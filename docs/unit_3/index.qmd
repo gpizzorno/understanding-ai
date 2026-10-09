@@ -33,7 +33,7 @@ For this unit, you'll need:
 1. **Setup: [Setting up Python](python_setup.qmd)**
    - Required Python knowledge, and a quick refresher
    - Three ways to get set up: Google Colab, Anaconda, or plain Python
-2. **Reading: [Advantages of programmatic approaches](programming_advantages.qmd)**
+2. **Reading: [Advantages of Programmatic Approaches](programming_advantages.qmd)**
    - Control, not capability: what Gemini Notebook could and couldn't give you
    - The case for code: when a research task is worth writing code for
    - Approaches in between: LLMs called from code, local models, RAG, and GraphRAG
@@ -42,22 +42,22 @@ For this unit, you'll need:
    - Kinds of tools: chat assistants, coding agents, and code editors with AI assistance
    - From code to result: where code runs, file paths, environments, and checking what an agent did
    - Five habits, and prompts to try
-4. **Reading: [The NLP pipeline](nlp_pipeline.qmd)**
+4. **Reading: [The NLP Pipeline](nlp_pipeline.qmd)**
    - Named-entity recognition, and pre-trained models vs. general-purpose LLMs
    - Tokenization and the problem of ALL-CAPS text, and the pipeline step by step
    - Hugging Face and model cards
-5. **Case study: [Named entities in Stevenson's letters](ner_case_study.qmd)**, using the [NER pipeline notebook](ner_pipeline.ipynb)
+5. **Case Study: [Named Entities in Stevenson's Letters](ner_case_study.qmd)**, using the [NER pipeline notebook](ner_pipeline.ipynb)
    - Run a pre-trained NER model on a letter, then on all 462, and export the results as CSV
    - Explore and visualize the results: counts, a co-occurrence network, a timeline, and a map
    - Entity resolution revisited: deciding, in code, which names are the same person
-6. **Activity: [Ground-truth annotation](annotation.qmd)**
+6. **Activity: [Ground-Truth Annotation](annotation.qmd)**
    - Annotating letters for people, places, and organizations
    - Inter-annotator agreement: boundary, type, and coverage disagreements
-7. **Activity: [Evaluating and comparing models](evaluating_models.qmd)**
+7. **Activity: [Evaluating and Comparing Models](evaluating_models.qmd)**
    - Precision, recall, F1, and error analysis against human annotations
    - Confidence thresholds and the precision/recall tradeoff
    - Comparing a second NER model, and Gemini Notebook
-8. **Reading: [Next steps](next_steps.qmd)**
+8. **Reading: [Next Steps](next_steps.qmd)**
    - Writing up AI methods
    - Applying the pipeline to your own sources
    - Further directions: other models, spaCy, fine-tuning, and LLMs from code

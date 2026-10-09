@@ -107,7 +107,7 @@ Even a model that generalizes well only generalizes to data *like its training d
 
 Once a model is trained, its *knowledge* is spread across millions or billions of weights. There is no readable rulebook. You can measure what the model **does**, but you cannot open it up and read **what it learned**.
 
-This matters most for bias. If a model was trained on skewed or unrepresentative data, that bias is encoded in the weights, but you can't point to where it lives. You can only probe the model's behaviour: give it inputs and observe its outputs across a carefully built evaluation set. [LLM Behavior](llm_behaviour.qmd) returns to what this means for LLMs.
+This matters most for bias. If a model was trained on skewed or unrepresentative data, that bias is encoded in the weights, but you can't point to where it lives. You can only probe the model's behaviour: give it inputs and observe its outputs across a carefully built evaluation set. [LLM Behaviour](llm_behaviour.qmd) returns to what this means for LLMs.
 
 ## Key Takeaways
 
