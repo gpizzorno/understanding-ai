@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use or adapt these materials, please cite them as below."
+title: "Understanding AI: A Practical Workshop for Humanities and Social Science Researchers"
+type: software
+authors:
+  - family-names: Pizzorno
+    given-names: Gabriel H.
+repository-code: "https://github.com/gpizzorno/understanding-ai"
+url: "https://github.com/gpizzorno/understanding-ai"
+abstract: >-
+  Teaching materials introducing humanities and social science researchers to
+  contemporary AI systems: key concepts, effective and critical use of large
+  language models, and a Python case study using pre-trained named-entity
+  recognition models on the letters of Robert Louis Stevenson. Designed for
+  self-study and for in-person workshops.
+keywords:
+  - artificial intelligence
+  - large language models
+  - digital humanities
+  - named-entity recognition
+  - teaching materials
+license:
+  - MIT
+  - CC-BY-4.0
+version: 1.0.0
