@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE", "LICENSE-docs"]
-authors = [{ name = "Gabe Pizzorno" }]
+authors = [{ name = "Gabriel H. Pizzorno" }]
 
 dependencies = [
     "notebook>=7",        # Jupyter (tested: 7.5.3)
@@ -37,7 +37,7 @@ packages = []
 # https://github.com/charliermarsh/ruff#configuration
 [tool.ruff]
 line-length = 120
-target-version = "py311"
+target-version = "py310"
 extend-include = ["*.ipynb"]
 extend-exclude = ["data/"] # files kept exactly as a tool produced them, such as data/gemini_notebook/
 
