@@ -1,118 +1,53 @@
 # Understanding AI: A Practical Workshop for Humanities and Social Science Researchers
 
-<img align="right" src="assets/understanding_ai_thumb.png" width=300  />
+<img align="right" src="docs/assets/understanding_ai_thumb.png" width=300  />
 
-Artificial intelligence (AI), large language models (LLMs), and machine learning (ML) are reshaping research across disciplines. This two-day workshop offers humanities and social science researchers a clear, accessible introduction to contemporary AI systems: what they are, how they differ from traditional computing, what they can—and cannot—do, and how to critically assess their outputs. Through guided demonstrations and hands-on exercises participants will gain a grounded understanding of the concepts behind today’s AI tools.
+These materials introduce researchers in the humanities and social sciences to how contemporary AI systems work, what they can and cannot do, and how to use them critically in research. They start from a single idea: AI models learn patterns from data, and both their usefulness and their characteristic failures follow from it.
 
-[Day 1](#day-1-key-concepts-and-off-the-shelf-tools) focuses on conceptual foundations and hands-on exploration with off-the-shelf tools. Participants will see how training data, model limitations, and evaluation methods shape AI behavior, and will practice identifying common failure modes. Day 1 also introduces practical ways to use LLMs to support programming and technical work as a bridge to the more hands-on workflows of Day 2.
+The three units move from concepts to practice to method. Throughout, the question is not only whether a tool gives a good answer, but whether you could check it, repeat it, and report it. The materials are designed for self-study, and no technical background is assumed.
 
-[Day 2](#day-2-programmatic-approaches) shifts toward programming and applied workflows using open-source Python tools and pre-trained models, with an emphasis on choosing appropriate tasks, understanding what a model is doing, and evaluating results.
+## The Materials
 
-A self-paced online introduction to Python will be available for participants who want to learn or brush up on programming basics [between the two workshop days](#between-workshops). 
+**The materials are published as a [website](https://gpizzorno.github.io/understanding-ai/).** They are organized into three units:
 
-## Workshop learning goals
+- **[Unit 1: Key Concepts](https://gpizzorno.github.io/understanding-ai/unit_1/)** covers what AI systems are, how they learn from data, and why they behave the way they do. You'll train a small model yourself with Teachable Machine, and try to talk a chatbot out of its secret password in Hack Merlin.
+- **[Unit 2: Working with LLMs](https://gpizzorno.github.io/understanding-ai/unit_2/)** covers how large language models process your prompts, how to prompt them well, how to judge how far their output can be trusted, and how to be transparent about using them. You'll explore a set of historical letters with an AI research tool, and find out what it does well, and what it can't do reliably.
+- **[Unit 3: Programmatic Approaches](https://gpizzorno.github.io/understanding-ai/unit_3/)** covers what to do when you need scale, structured data, and reproducible results. You'll run a pre-trained model over 462 letters by Robert Louis Stevenson, turn the results into charts, a network, a timeline, and a map, and then measure how accurate the results actually are when compared to annotations made by people, including your own.
 
-By the end of the workshop, participants will be equipped with both a deeper theoretical understanding of AI systems and practical skills for integrating them thoughtfully into their own research. Specific learning goals include:
+Units 1 and 2 need a web browser, a webcam or microphone, a Google account, and access to a general-purpose AI chat assistant (free versions are fine). Unit 3 uses Python, in Google Colab or on your own computer: the first two units need no programming, and the third asks you to read and run code, not to write it.
 
-- distinguish key categories of systems (traditional software vs. ML, generative AI as a subset of AI)
-- explain, at a high level, how models are trained and why training data matters
-- recognize common limitations and failure modes (brittleness, overfitting, hallucination-like behavior, and evaluation pitfalls)
-- apply basic evaluation concepts (training/testing split, accuracy and related metrics, precision/recall) in a research-appropriate way
-- use LLMs more effectively and safely for research and technical support (prompt structuring, asking for explanations, iterative refinement)
-- run and adapt simple Python-based pipelines using pre-trained models for common research tasks
-- document and communicate model choices, assumptions, and limitations in a way that supports responsible use
+## Teaching a Workshop
 
-## Tools
+The [facilitator guide](facilitator_guide/README.md) has suggested schedules, notes for each activity, discussion questions for every page, a preparation checklist, and environment troubleshooting. It lives here in the repository so it can be edited directly on GitHub.
 
-The workshop uses a mix of browser-based tools and Python.
+## Repository Contents
 
-- Browser-based: [Teachable Machine](https://teachablemachine.withgoogle.com), [Gandalf](https://gandalf.lakera.ai/gandalf), and [NotebookLM](https://notebooklm.google.com)
-- Python-based (Day 2): [Jupyter](https://jupyter.org), and libraries/tools for working with pre-trained models such as [Hugging Face](https://huggingface.co).
+| Folder | Contents |
+|--------|----------|
+| [`docs/`](docs/) | The website: the pages for each unit, and the reference pages, written in [Quarto](https://quarto.org) |
+| [`code/`](code/) | The Jupyter notebook for the Unit 3 case study, and the scripts used to prepare the data |
+| [`data/`](data/) | The Robert Louis Stevenson letters and their metadata, a 20-letter sample and a single-file version for the Gemini Notebook activity, pre-computed NER output, annotations, and Gemini Notebook extractions (see the [data README](data/README.md)) |
+| [`facilitator_guide/`](facilitator_guide/) | Schedules and facilitator notes for teaching the units as a workshop |
 
-## Plan
+To preview the website locally, [install Quarto](https://quarto.org/docs/get-started/) and run `quarto preview docs`. The website is published by GitHub Actions ([`.github/workflows/website.yml`](.github/workflows/website.yml)) whenever `docs/` or the notebook changes on `main`.
 
-### Day 1: Key concepts and off-the-shelf tools
+## Licence
 
-#### Learning Objectives
+- **Code** is licensed under the [MIT License](LICENSE).
+- **Written materials** are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE-docs). You may share and adapt them for any purpose, including in your own teaching, as long as you give appropriate credit.
+- **Data** in `data/` comes from other sources with their own terms, see the [data README](data/README.md).
 
-By the end of Day 1, participants will be able to:
+## Acknowledgements
 
-- Distinguish key categories of AI systems: traditional software vs. machine learning, generative AI as a subset of AI
-- Explain, at a high level, how models are trained, what training data is, and why it matters
-- Describe the basic architecture of neural networks and language models (tokens, weights, attention, transformers)
-- Recognize the difference between supervised, unsupervised, and reinforcement learning—and identify which applies in a given context
-- Apply basic evaluation concepts, training/testing split, accuracy, precision, recall, F1, in a research-appropriate way
-- Identify and name common LLM failure modes: hallucination, reasoning failure, instruction-following errors, bias, inconsistency, and adversarial susceptibility
-- Explain why LLM guardrails are brittle, and what prompt injection demonstrates about model behavior
-- Articulate what a conversational LLM interface (like NotebookLM) can and cannot do for systematic research tasks
+- [James Capobianco](https://dsg.fas.harvard.edu/about/people/james-capobianco/) and [Tracy Stuber](https://dsg.fas.harvard.edu/about/people/tracy-stuber/) helped design and teach the original workshops these materials grew out of, as part of the programming of the [Digital Scholarship Group](https://dsg.fas.harvard.edu) at Harvard University.
+- The letters were transcribed by the contributors to [Wikisource](https://en.wikisource.org/wiki/The_Letters_of_Robert_Louis_Stevenson_Volume_1).
+- [Jeremy Guillette](https://atg.fas.harvard.edu/people/jeremy-guillette) scraped the letters from Wikisource, and split and parsed them into text files and metadata, in the [`stevenson_letters`](https://github.com/jaguillette/stevenson_letters) repository, created for an earlier workshop on web scraping.
+- Place coordinates come from [OpenStreetMap](https://www.openstreetmap.org/copyright) via the [Nominatim](https://nominatim.org) geocoder (© OpenStreetMap contributors, [ODbL](https://opendatacommons.org/licenses/odbl/)).
+- The case study uses the named-entity recognition models [`Davlan/bert-base-multilingual-cased-ner-hrl`](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl) and [`dslim/bert-base-NER`](https://huggingface.co/dslim/bert-base-NER), via Hugging Face [Transformers](https://github.com/huggingface/transformers).
+- Unit 1 uses [Teachable Machine](https://teachablemachine.withgoogle.com) (Google) and [Hack Merlin](https://hackmerlin.io), Unit 2 uses [Gemini Notebook](https://notebook.google) (Google). These are third-party services, not affiliated with these materials.
 
-#### Prework
+## Citation
 
-Participants should plan on modest prework in advance of Day 1:
+If you use or adapt these materials, please cite them as:
 
-- Bring a laptop with a modern web browser
-- Have a Google account (for NotebookLM, a g.harvard account is fine)
-- Optional but recommended: a GitHub account (useful for accessing shared materials)
-
-#### Schedule
-
-| Time               | Activity |
-|--------------------|----------|
-| 9:30 – 10:00 | Introduction |
-| 10:00 – 10:45 | Activity: Teachable Machine |
-| 10:45 – 10:55 | *Break* |
-| 10:55 – 11:15 | Discussion: Training and Bias |
-| 11:15 – 11:45 | Activity: Gandalf  |
-| 11:45 – 12:05 | Discussion: LLM Limitations |
-| 12:05 – 12:25 | *Lunch* |
-| 12:25 – 1:00 | Activity: NotebookLM  |
-| 1:00 – 1:25 | Discussion: Failure Modes and Assessment  |
-| 1:25 – 1:35 | *Break* |
-| 1:35 – 1:50 | Coding with LLMs |
-| 1:50 – 2:00 | Closing  |
-
-
-### Between workshops
-
-A [self-paced online introduction to Python](https://github.com/harvard-digital-history/Introduction-to-Python) is available for participants who want to learn or brush up on programming basics between the two workshop days. Follow the [setup instructions](documents/python_setup.md) to get started.
-
-We recommend going over Units 1 and 2 of the Python introduction before Day 2.
-
-### Day 2: Programmatic approaches
-
-#### Learning Objectives
-
-By the end of Day 2, participants will be able to:
-
-- Load and run a pre-trained NER model using Hugging Face Transformers
-- Process a corpus of text files programmatically using a Python loop
-- Transform model output into structured tabular data and export it as CSV
-- Evaluate model performance against self-produced ground-truth annotations, calculating precision, recall, and F1
-- Interpret evaluation results and identify systematic error patterns in model predictions
-- Read, adapt, and debug existing Python code with LLM assistance
-- Document model name, version, and parameters in a way that supports reproducible research
-
-#### Prework
-
-Before Day 2, participants should:
-
-- [Set up a Python/Jupyter environment](documents/python_setup.md)
-- Download the workshop materials and confirm the `data/` directory is accessible from the notebook
-
-#### Plan
-
-- Introduction and Review
-- Coding with LLMs
-- Setup
-- NLP Pipeline, NER, Pre-trained Models
-- Case Study: RLS Letters
-- Activity: Ground-truth Annotation
-- Model Evaluation
-- Activity: Model Comparison
-- Closing Discussion
-
-
-## License
-
-The project is licensed under the [MIT License](LICENSE), allowing free use, modification, and distribution.
-
+> Pizzorno, Gabriel H. *Understanding AI: A Practical Workshop for Humanities and Social Science Researchers*. 2026. https://github.com/gpizzorno/understanding-ai
