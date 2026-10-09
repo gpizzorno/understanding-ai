@@ -1,0 +1,56 @@
+# Build the website with Quarto and publish it to GitHub Pages when it changes on main.
+# Changes elsewhere don't trigger a build.
+name: Website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'code/ner_pipeline.ipynb'
+      - '.github/workflows/website.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deployment at a time, a newer push cancels an older build in progress.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Only Quarto is needed: the notebook is shown with its saved outputs, not executed,
+      # so no Python environment is required to build the site.
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.10.18
+
+      - name: Build the site (fails on warnings, such as links Quarto can't resolve)
+        run: |
+          quarto render docs 2>&1 | tee render.log
+          if grep -q 'WARN' render.log; then echo 'Quarto reported warnings (see above)'; exit 1; fi
+
+      - name: Check links and anchors
+        run: python3 docs/_scripts/check_links.py
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/_site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
