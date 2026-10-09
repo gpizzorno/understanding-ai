@@ -25,5 +25,5 @@ Pizzorno later taught a redesigned version as a seminar at the [United States Ho
 
 If you use or adapt these materials, please cite them as:
 
-> Pizzorno, Gabriel H.. *Understanding AI: A Practical Workshop for Humanities and Social Science Researchers*. 2026. https://github.com/gpizzorno/understanding-ai
+> Pizzorno, Gabriel H. *Understanding AI: A Practical Workshop for Humanities and Social Science Researchers*. 2026. https://github.com/gpizzorno/understanding-ai
 
