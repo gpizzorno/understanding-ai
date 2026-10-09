@@ -26,7 +26,7 @@ Three runs, three different people, each described in fluent, specific, confiden
 
 The random choice at each token has an unexpected use. Some AI providers replace it with a *pseudo*-random choice that depends on a secret key. At each step, the key quietly favours a subset of the possible tokens, nudging the choice towards them without changing the meaning of the text. To a reader, the text looks entirely normal. But someone who has the key can check how often the favoured tokens were chosen: in watermarked text, it's far more often than chance would explain. Google DeepMind uses a scheme like this, called [SynthID Text](https://ai.google.dev/responsible/docs/safeguards/synthid), in its Gemini models.
 
-![](../assets/watermarking.svg){width=760}
+![](../assets/watermarking.png){width=760}
 
 Watermarks have real limits: only the provider can check for its own watermark, heavy editing or paraphrasing weakens it, short texts are hard to judge, and not every provider uses one. They're also quite different from the “AI detectors” that claim to recognize any AI-written text from its style. Those are unreliable, and have been shown to flag writing by non-native English speakers as AI-generated far more often than writing by native speakers. Keep this in mind in [Unit 2](../unit_2/acknowledging_ai_use.qmd), when the question of acknowledging AI use comes up.
 
