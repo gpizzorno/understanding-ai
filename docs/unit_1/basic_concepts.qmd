@@ -62,7 +62,7 @@ The animation follows only a few connections. In a real network, every neuron co
 
 And the weights are what the network *learns*. Before training, they are random, so the output is meaningless. Training nudges each weight up or down, very slightly, over and over, until the network's outputs come out right for its training examples. A small network like the one in the animation has a few dozen weights, a modern LLM has billions. Everything a network “knows” is stored in those numbers, and nowhere else.
 
-Different kinds of networks suit different kinds of data. [Convolutional networks](https://en.wikipedia.org/wiki/Convolutional_neural_network) were long the standard for images. [Recurrent networks](https://en.wikipedia.org/wiki/Recurrent_neural_network) process sequences one step at a time and were the standard for text until the late 2010s. [Transformers](https://en.wikipedia.org/wiki/Transformer_(deep_learning)), described below, have since replaced them for language and are increasingly used for images and audio too.
+Different kinds of networks suit different kinds of data. [Convolutional networks](https://en.wikipedia.org/wiki/Convolutional_neural_network) were long the standard for images. [Recurrent networks](https://en.wikipedia.org/wiki/Recurrent_neural_network) process sequences one step at a time and were the standard for text until the late 2010s. [Transformers](https://en.wikipedia.org/wiki/Transformer_(deep_learning)), explained in [Language Models](language_models.qmd#from-sequence-to-sequence-transformers), have since replaced them for language and are increasingly used for images and audio too.
 
 ## Types of Machine Learning
 
