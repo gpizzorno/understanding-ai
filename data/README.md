@@ -60,7 +60,7 @@ Every letter in `letters/`, in order (volume, chapter, letter), in one Markdown 
 
 ### `extracted_entities.csv`
 
-The output of Sections 1–3 of the [Unit 3 notebook](../code/ner_pipeline.ipynb), saved to avoid the slow step of processing every letter (`USE_PRECOMPUTED = True`). It was produced with the model [`Davlan/bert-base-multilingual-cased-ner-hrl`](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl), with `aggregation_strategy='simple'`, after converting ALL-CAPS words to title case. Re-running the notebook with the same settings reproduces it (verified with `transformers` 5.1.0).
+The output of Sections 1–3 of the [Unit 3 notebook](../code/ner_pipeline.ipynb), saved to avoid the slow step of processing every letter (`USE_PRECOMPUTED = True`). It was produced with the model [`Davlan/bert-base-multilingual-cased-ner-hrl`](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl), with `aggregation_strategy='simple'` and `stride=128` (so long letters are read in full, in overlapping windows), after converting ALL-CAPS words to title case. Re-running the notebook with the same settings reproduces it (verified with `transformers` 5.1.0).
 
 | Column | Description |
 |---|---|
