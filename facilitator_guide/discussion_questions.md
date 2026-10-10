@@ -80,7 +80,7 @@ Questions for group discussion, one set per page, in the order of the website. T
 
 ### [Activity: Gemini Notebook](https://gpizzorno.github.io/understanding-ai/unit_2/gemini_notebook.html)
 
-- The tool was more accurate than the specialized model in Unit 3. Why isn't that enough for research data?
+- The tool was more accurate than the specialized model in Unit 3, at least on people and organizations. Why isn't that enough for research data?
 - Which of the questions in Part 3 (repeating it, the code, the steps, the version, the scale) would matter most for a research project of your own?
 - If you wanted to count every mention of every person across all 462 letters, what would you need that Gemini Notebook can't provide?
 - Which [failure modes](https://gpizzorno.github.io/understanding-ai/reference/failure_modes.html) did you see in action?
@@ -118,7 +118,7 @@ The "Looking Across the Scenarios" questions on the learner page work well for t
 
 ### [Advantages of Programmatic Approaches](https://gpizzorno.github.io/understanding-ai/unit_3/programming_advantages.html)
 
-- On these letters, the NER model was less accurate than Gemini Notebook. When would you still choose it, and why?
+- On these letters, the NER model was less accurate than Gemini Notebook on people and organizations. When would you still choose it, and why?
 - Is there a task in your own research that needs code? Which of the signs on the page does it show: scale, structured output, rerunning, knowing what was done to every document, or privacy?
 - What would you want to do with structured data about your sources that you can't do now?
 

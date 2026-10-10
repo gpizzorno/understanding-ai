@@ -42,7 +42,7 @@ The activity page's expected results come from the authors' test runs. Things to
 - The code behind `Executed code` isn't shown and can't be downloaded.
 - The "steps" the tool gives for its network graph are a reconstruction. In our test, the script it offered drew 14 people in one colour, while its own image had 63 people in three colour-coded groups. The two images are side by side on the activity page.
 - No model name or version is shown anywhere.
-- A notebook holds 50 sources on the free plan (100 on paid plans), so the 462 letters don't fit as separate files. The combined file works around it, but raises the question of whether the whole corpus was really covered.
+- A notebook holds 50 sources on the free plan, and 100 to 600 on paid plans, so on most plans the 462 letters don't fit as separate files. The combined file works around it, but raises the question of whether the whole corpus was really covered.
 
 Participants' own results will differ in the details. That's the point, and worth saying out loud.
 
