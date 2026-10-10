@@ -63,13 +63,14 @@ Before you run the loop, **read the function and ask an LLM to explain it.** Thi
 **What to notice:**
 
 - The loop prints progress every 50 letters. It can take from a couple of minutes to over ten, depending on your computer.
+- About half the letters are longer than the model can read at once (512 tokens, roughly 370 words). The pipeline reads them in overlapping windows (the `stride` setting). Without it, the model would read only the beginning of each long letter, and nothing would tell you.
 - If a letter causes an error, the `try`/`except` block reports it and carries on. That's a deliberate choice for batch processing: one bad file shouldn't stop the whole run.
 - If the loop is too slow, set `USE_PRECOMPUTED = True` at the top of the cell to load results produced earlier with the same model and settings.
 
 **Think about:**
 
 - You've just processed 462 letters. What would the same task have taken by hand? (At five minutes a letter, reading and noting every name would take nearly 40 hours.) How sure could you be that a conversational tool had covered every letter?
-- You now have a table of about 5,000 entities. Run the loop again, and you'll get exactly the same table. Why does that matter?
+- You now have a table of nearly 7,000 entities. Run the loop again, and you'll get exactly the same table. Why does that matter?
 
 The CSV export is the moment the analysis becomes reproducible and shareable: it can be opened in Excel, imported into R, or loaded into another notebook.
 
@@ -80,8 +81,8 @@ The CSV export is the moment the analysis becomes reproducible and shareable: it
 **What to notice:**
 
 - There are many more people and places than organizations. That's what you'd expect in personal correspondence.
-- The top people include real errors and puzzles: `God` is among the most-mentioned "people"; `R. L. S`, `Robert Louis Stevenson`, and `R. L. Stevenson` are counted separately; so are `Colvin` and `Sidney Colvin`, and `Henley` and `W. E. Henley`. `Charles`, `Lloyd`, and `Bob` could be several different people.
-- The top locations include `Treasure Island` (a novel), `Skerryvore` (Stevenson's house in Bournemouth, named after a lighthouse), and `States`.
+- The top people include real errors and puzzles: `God` is among the most-mentioned "people"; `R. L. S`, `Robert Louis Stevenson`, and `R. L. Stevenson` are counted separately; so are `Colvin` and `Sidney Colvin`, and `Henley` and `W. E. Henley`. `Charles` and `James` could be several different people.
+- The top locations include `Skerryvore` (Stevenson's house in Bournemouth, named after a lighthouse), `States`, and `South Seas` (a whole region).
 
 **Think about:**
 
@@ -129,7 +130,7 @@ This is the entity resolution problem from the Gemini Notebook activity again. G
 
 **What the code does:** puts the 60 most-mentioned places on an interactive map. Turning place names into coordinates (*geocoding*) was done beforehand with an automatic tool, and every result was then checked by hand. The map colours each place by that check: correct, approximate, wrong, or not a place.
 
-**What to notice:** about a quarter of the automatic lookups were wrong or weren't places at all. `Upolu`, the island in Samoa where Stevenson lived, landed at an airport in Hawaii; `Bush Street`, where he lodged in San Francisco, landed in the Bronx; `Heaven` landed at a London nightclub. Click the red and purple markers to see why.
+**What to notice:** about a quarter of the automatic lookups were wrong or weren't places at all. `Upolu`, the island in Samoa where Stevenson lived, landed at an airport in Hawaii; `Bush Street`, where he lodged in San Francisco, landed in Brooklyn; `Heaven` landed at a London nightclub. Click the red and purple markers to see why.
 
 **Think about:**
 

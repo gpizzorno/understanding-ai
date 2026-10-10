@@ -87,7 +87,7 @@ $$F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + 
 
 The F1 score for our model is approximately **0.73** (or 73%). A perfect model would score 1.0; a model that gets everything wrong would score 0.
 
-The harmonic mean is used rather than a simple average because it is sensitive to imbalance. A model with 100% precision and 0% recall would have an F1 of 0, correctly reflecting that it is useless, whereas a simple average would give it a misleadingly middling 50%.
+The harmonic mean is used rather than a simple average because it is sensitive to imbalance. Take the cautious model above to an extreme: it calls only one marble Blue, and that marble is blue. Its precision is perfect (1 of 1, or 100%), but it found only 1 of the 6 blue marbles (a recall of about 17%). A simple average would give it a respectable-looking 58%. Its F1 is about **0.29**, which better reflects how little it found.
 
 ## Summary
 

@@ -29,7 +29,7 @@ Run the cells in Section 9. They:
 3. compare the model's predictions with the reference annotations, letter by letter, and calculate precision, recall, and F1 for each entity type;
 4. repeat the evaluation against every annotator, so you can see how much the score depends on whose annotations count as the truth.
 
-**Put the numbers into words.** Before moving on, say what they mean in plain language. If precision for people is 0.60: of every ten names the model tagged as people, six really were people, and four weren't. If recall is 0.53: of every hundred people actually mentioned, the model found 53, and missed 47.
+**Put the numbers into words.** Before moving on, say what they mean in plain language. If precision for people is 0.57: of every hundred names the model tagged as people, 57 really were people, and 43 weren't. If recall is 0.71: of every hundred people the annotator listed, the model found 71, and missed 29.
 
 ### Error Analysis
 
@@ -51,7 +51,7 @@ The agreement cell calculates Cohen's kappa for every pair of annotators on the 
 
 ### Confidence Thresholds
 
-Each prediction has a confidence score. The threshold cell keeps only predictions above a series of cut-offs and recalculates the metrics, so you can see the tradeoff from [Unit 1](../unit_1/evaluation_metrics.qmd#precision-vs-recall-the-tradeoff) on real data. Against `person_1`, keeping every prediction gives a precision of 0.62 and a recall of 0.55. Keeping only predictions with a confidence of 0.99 or more raises precision to 0.75, and drops recall to 0.39: fewer false alarms, but many more misses.
+Each prediction has a confidence score. The threshold cell keeps only predictions above a series of cut-offs and recalculates the metrics, so you can see the tradeoff from [Unit 1](../unit_1/evaluation_metrics.qmd#precision-vs-recall-the-tradeoff) on real data. Against `person_1`, keeping every prediction gives a precision of 0.62 and a recall of 0.73. Keeping only predictions with a confidence of 0.99 or more raises precision to 0.72, and drops recall to 0.55: fewer false alarms, but many more misses.
 
 **Think about:**
 
@@ -101,7 +101,7 @@ Then run the comparison, and the cell after it, which checks whether each approa
 ::: {.callout-tip collapse="true"}
 ## Findings
 
-Gemini Notebook did considerably better than both NER models, with F1 scores of about 0.75 for people, 0.80 for places, and 0.72 for organizations, against 0.57, 0.68, and 0.40 for the main NER model. Most of the difference is in recall: it found names that the NER model missed, such as `COLVIN` in the salutation, initials like `Q.`, and names that are also ordinary words, like `Low` and `Strong`.
+Gemini Notebook did considerably better than both NER models on people and organizations, with F1 scores of about 0.75 and 0.72, against 0.63 and 0.48 for the main NER model. On places, the main NER model caught up (0.82, against about 0.80). Most of the difference is in recall: it found names that the NER model missed, such as `COLVIN` in the salutation, initials like `Q.`, and names that are also ordinary words, like `Low` and `Strong`.
 
 But the NER model, run twice on the same letter, gives identical output. Gemini Notebook's two runs shared only 288 of their 327 and 325 rows, and some mentions changed type between runs. Anything built on its rows (counts, a network, a map) would change too. And you can't see the code that produced them, or which model version did.
 :::
@@ -127,7 +127,7 @@ If a model isn't good enough for your purpose, you have several options, roughly
 The last cell of the notebook prints a record of the models and settings used, and the evaluation. If you used results like these in a publication, your methods section would need at least:
 
 - the model name (and version, if there is one), a link to its model card, and the version of the library that ran it;
-- the preprocessing and settings (here, capitalization normalization and the aggregation strategy);
+- the preprocessing and settings (here, capitalization normalization, the aggregation strategy, and how long texts were split);
 - the evaluation data: how many letters, annotated by whom, following what guidelines, and with what agreement;
 - the results: precision, recall, and F1 by entity type, and against which annotator;
 - known systematic errors, and what you did about them.

@@ -41,7 +41,7 @@ You don't need to change any settings to do the activity. But if you open <span 
 
 <span class="command">Under the hood</span>, at the bottom of the same section, shows how well the model did on the samples it held back. For the model in the videos, it held back 5 of the 28 green-square samples and 4 of the 21 orange-circle samples, and got all 9 right: 100% accuracy on the test samples, reached in about one epoch.
 
-That sounds perfect, but look at what those 9 samples were: taken in the same minute, on the same desk, in the same light as the training samples. A perfect score on them tells you the model learned to separate *those* pictures. It doesn't tell you what the model will do in another room, which is what [Part 2](teachable_machine.qmd#part-2-testing-a-model) is about.
+That sounds perfect, but look at what those 9 samples were: taken in the same minute, on the same desk, in the same light as the training samples. A perfect score on them tells you the model learned to separate *those* pictures. It doesn't tell you what the model will do in another room, which is what [Part 2](teachable_machine.qmd#part-2-testing-a-model) is about. In the terms of [Model Training](model_training.qmd#training-development-and-test-sets), these *test* samples are really a development set: Teachable Machine scores them after every epoch, while it trains. Part 2 is the real test.
 
 ::: {.callout-note collapse="true"}
 ## Under the Hood

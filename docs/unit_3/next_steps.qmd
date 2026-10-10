@@ -7,7 +7,7 @@ You've now worked through a complete pipeline: from raw letters to structured da
 
 ## Key Takeaways
 
-- **Control, not capability.** Gemini Notebook was more accurate on these letters than the NER model. The pipeline's advantage is that you can reproduce it, inspect it, name the model that ran it, and know that every letter was processed.
+- **Control, not capability.** Gemini Notebook was more accurate on these letters than the NER model, at least on people and organizations. The pipeline's advantage is that you can reproduce it, inspect it, name the model that ran it, and know that every letter was processed.
 - **Different tools for different tasks.** Conversational tools are good for exploration and interpretation; programmatic pipelines are good for systematic extraction, structured output, and reproducibility. Many projects use both.
 - **Models are not magic.** They make mistakes, inherit the strengths and blind spots of their training data, and need to be evaluated on your own sources. A high benchmark score on news articles doesn't guarantee good performance on nineteenth-century letters.
 - **Evaluation is how you find out.** Treat model output as a hypothesis to be tested, not an answer to be accepted. Build your own ground truth, calculate precision, recall, and F1, and look at the errors, not just the scores.

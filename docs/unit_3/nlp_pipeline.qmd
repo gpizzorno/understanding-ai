@@ -85,7 +85,7 @@ Put together, the case study is a pipeline, a sequence of steps each feeding the
 
 1. **Load** the letters and their metadata.
 2. **Preprocess** the text (normalize capitalization).
-3. **Run the NER model** on each letter.
+3. **Run the NER model** on each letter. The model reads at most 512 tokens at a time (roughly 370 words), so longer letters are read in overlapping windows.
 4. **Structure** the output as a table, and export it as CSV.
 5. **Resolve** different names for the same entity (`Colvin`, `Sidney Colvin`).
 6. **Analyse and visualize**: frequencies, a network, a timeline, a map.
@@ -95,7 +95,7 @@ Each step can introduce errors, and errors compound: a fragment from step 3 beco
 
 ## Hugging Face
 
-[Hugging Face](https://huggingface.co) hosts hundreds of thousands of pre-trained models, including many for NER in different languages and domains. The `transformers` library lets you load any of them in a few lines:
+[Hugging Face](https://huggingface.co) hosts millions of pre-trained models, including many for NER in different languages and domains. The `transformers` library lets you load any of them in a few lines:
 
 ```python
 from transformers import pipeline

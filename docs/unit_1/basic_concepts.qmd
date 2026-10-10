@@ -18,7 +18,7 @@ Terminology in this area is genuinely confusing. The same words mean different t
 
 **Deep Learning (DL)** is a subfield of ML that uses neural networks with many layers (hence *deep*). It is behind most of the striking AI capabilities of the past decade: image recognition, speech recognition, translation, and language generation. It requires large amounts of data and computing power, which is one reason AI advanced so quickly as both became cheaper.
 
-**Generative AI** is the category of systems that produce new content (text, images, audio, video, code) rather than only classifying or predicting. It is the term most used in public discussion right now, but it groups together systems with very different designs and behaviours: image generators such as [Stable Diffusion](https://stablediffusionweb.com/) or [DALL-E](https://openai.com/index/dall-e/) are generative AI, and so are LLMs.
+**Generative AI** is the category of systems that produce new content (text, images, audio, video, code) rather than only classifying or predicting. It is the term most used in public discussion right now, but it groups together systems with very different designs and behaviours: image generators such as [Stable Diffusion](https://stability.ai) or [DALL-E](https://openai.com/index/dall-e/) are generative AI, and so are LLMs.
 
 **Large Language Models (LLMs)** are deep learning models trained on massive collections of text: a large fraction of the publicly accessible web, plus books, code, and other sources. They learn statistical patterns in language at enormous scale, which lets them generate coherent, contextually appropriate text. *ChatGPT*, *Claude*, *Gemini*, and *Llama* are built on LLMs.
 
