@@ -11,7 +11,7 @@ LLMs have changed what it means to learn to code. You can ask one to explain a l
 
 The difference is whether **you are in the loop**.
 
-[*Vibe-coding*](https://en.wikipedia.org/wiki/Vibe_coding) (a term popularized by the AI researcher Andrej Karpathy) is seductive, and genuinely useful for throwaway scripts and quick prototypes. For research, it's risky:
+[*Vibe-coding*](https://en.wikipedia.org/wiki/Vibe_coding) (a term coined by the AI researcher Andrej Karpathy, [in February 2025](https://x.com/karpathy/status/1886192184808149383)) is seductive, and genuinely useful for throwaway scripts and quick prototypes. For research, it's risky:
 
 - You can't evaluate output from code you don't understand.
 - You can't maintain or modify code you didn't follow.
@@ -91,7 +91,7 @@ Why `1863.0`, and not `1863`? Because one letter in the metadata has no year, an
 
 ## From Code to Result
 
-Most of the trouble beginners have with LLM-written code isn't in the code itself. It's in getting it to run: in the right place, with the right files, and the right libraries. LLMs can't see these things unless you tell them, so this is where their suggestions most often go wrong.
+In our experience, much of the trouble beginners have with LLM-written code isn't in the code itself. It's in getting it to run: in the right place, with the right files, and the right libraries. LLMs can't see these things unless you tell them, so this is where their suggestions most often go wrong.
 
 ### Execution Environments
 
@@ -128,7 +128,7 @@ It's worth keeping a description like this in a text file, and pasting it in whe
 
 ### Installing Libraries into the Right Environment
 
-If a cell fails with `ModuleNotFoundError` even though you installed the library, it was almost certainly installed into a different Python environment from the one running your notebook. Computers often have several. Two ways to avoid it:
+If a cell fails with `ModuleNotFoundError` even though you installed the library, it was most likely installed into a different Python environment from the one running your notebook. Computers often have several. (Two other common causes: the kernel needs restarting after the install, or the name you install isn't the name you import, as with `scikit-learn`, which is imported as `sklearn`.) Two ways to avoid it:
 
 - **In a notebook, install with `%pip`:** `%pip install folium` always installs into the environment the notebook is using. LLMs often suggest `pip install` in a terminal instead, which may install somewhere else.
 - **Check which Python is running:** `import sys; sys.executable` shows the Python the notebook is using. In VS Code, the kernel picker shows it too.

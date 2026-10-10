@@ -27,7 +27,7 @@ That is what an *embedding* does. Each token (here: <span class="token">wolf</sp
 
 Nobody decides these numbers by hand. They are learned during training, in exactly the same way as the weights, in fact, they *are* weights. A model ends up placing words close together when they occur in similar contexts, which is why the positions reflect meaning. It's also why they reflect the assumptions in the training text, as [Model Training](model_training.qmd#bias-in-training-data) showed.
 
-Embeddings give models a way to work with meaning numerically, capturing subtle relationships among words, phrases, and concepts. **A language model doesn't understand language as a human does, but it builds a mathematical model of language patterns that can convincingly mimic understanding.** That makes it a powerful tool for exploring and generating text, and one that needs careful checking.
+Embeddings give models a way to work with meaning numerically, capturing subtle relationships among words, phrases, and concepts. **Whether a language model understands language in any sense is debated, but it certainly doesn't understand it as a human does: it builds a mathematical model of language patterns that can convincingly mimic understanding.** That makes it a powerful tool for exploring and generating text, and one that needs careful checking.
 
 ## From Sequence to Sequence: Transformers
 
@@ -41,13 +41,13 @@ What sits inside the encoder and decoder has changed over time, and each change 
 
 - [**Recurrent neural networks (RNNs)**](https://en.wikipedia.org/wiki/Recurrent_neural_network) read the input one token at a time, carrying a running summary forward from each token to the next. By the end of a long sentence, the beginning has largely faded from that summary, so RNNs struggled to connect words that were far apart.
 - [**Long short-term memory (LSTM)**](https://en.wikipedia.org/wiki/Long_short-term_memory) networks added internal *gates* that decide, at each step, what to keep, what to forget, and what to pass on. They could carry information much further, and were the standard for translation in the mid-2010s. But they still processed text one token at a time, which made them slow to train on large amounts of text.
-- [**Transformers**](https://en.wikipedia.org/wiki/Transformer_(deep_learning)) (introduced in 2017) replaced step-by-step reading with a mechanism called *attention*, which lets the model weigh every token against every other token at once. This way, it can relate words and ideas regardless of how far apart they are, and it can process a whole passage in parallel, which made training on vast amounts of text practical. This is what makes modern models so much more coherent over long passages.
+- [**Transformers**](https://en.wikipedia.org/wiki/Transformer_(deep_learning)) (introduced in 2017) did away with step-by-step reading, and rely instead on a mechanism called *attention* (first used to help recurrent networks with translation), which lets the model weigh every token against every other token at once. This way, it can relate words and ideas regardless of how far apart they are, and it can process a whole passage in parallel, which made training on vast amounts of text practical. This is what makes modern models so much more coherent over long passages.
 
 The original transformer kept the encoder–decoder design. Most of today's chat models use only the decoder half: they read everything so far (your prompt and their own output) and generate the next token, one at a time, each time attending back over the whole text. The *GPT* in *ChatGPT* stands for *Generative Pre-trained Transformer*.
 
 ## Text Generation
 
-Much of the behaviour of an LLM follows from its strategy for generating *the next token*. At each step, the model doesn't choose a single next token. It produces a *probability for every token in its vocabulary*: how likely each one is to come next, given everything so far. Here is a real example, from a small open language model, completing a sentence that could come from one of Stevenson's letters.
+Much of the behaviour of an LLM follows from its strategy for generating *the next token*. At each step, the model doesn't choose a single next token. It produces a *probability for every token in its vocabulary*: how likely each one is to come next, given everything so far. Here is a real example, from a small open language model ([Qwen2.5-0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B)), completing a sentence that could come from one of Stevenson's letters.
 
 ![](../assets/next_token_probabilities.gif){width=700}
 
@@ -59,7 +59,7 @@ A setting called **temperature** controls how adventurous the choice is. The lef
 
 Two consequences you'll find again and again:
 
-- **The same prompt can produce different answers.** There's a random choice at every token, and a different early choice sends the rest of the text in a different direction.
+- **The same prompt can produce different answers.** There's a random choice at every token, and a different early choice sends the rest of the text in a different direction. Even at a temperature of 0, answers can vary slightly, because of how providers' servers process many requests together.
 - **Nothing in this process checks facts.** The model picks likely text. Likely and true sometimes coincide, since the model learned from an enormous amount of human writing, but not always, and the model has no separate way of telling the difference.
 
 This is why **LLMs are not general intelligences.** An LLM is a very sophisticated pattern predictor trained on text. The model itself has no goals and no memory between conversations (products may add memory features on top), and it only knows what was in its training data, unless a tool supplies it with documents or search results. Its outputs can look like careful reasoning, and are sometimes useful as reasoning, but they are produced by predicting likely text, not by checking facts or following logic step by step. [LLM Behaviour](llm_behaviour.qmd) discusses the consequences of this.

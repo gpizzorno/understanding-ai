@@ -66,7 +66,7 @@ It repeats this over thousands or millions of examples, and over many passes thr
 
 The adjustment step uses an algorithm called [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent). A useful picture is a ball rolling downhill: the landscape is the loss, and the ball settles into a low point, which is a set of weights that makes few mistakes on the training data.
 
-This is **[optimization](https://en.wikipedia.org/wiki/Mathematical_optimization), not understanding**. The system is tuning numbers to reduce its errors. The patterns it learns reflect statistical regularities in the data, it has no model of the world and no intentions. Everything that follows (capability, failure, bias, evaluation) flows from this basic fact: **the system learned from data, and what's in the data shapes everything.**
+This is **[optimization](https://en.wikipedia.org/wiki/Mathematical_optimization), not understanding**. The system is tuning numbers to reduce its errors. The patterns it learns reflect statistical regularities in the data. The system has no intentions, and whether those patterns ever add up to anything like a model of the world is a [live debate](https://doi.org/10.1073/pnas.2215907120) among researchers. Everything that follows (capability, failure, bias, evaluation) flows from this basic fact: **the system learned from data, and what's in the data shapes everything.**
 
 ## Measuring Performance
 
@@ -96,7 +96,7 @@ Models can do the same. **[Overfitting](https://en.wikipedia.org/wiki/Overfittin
 
 ![](../assets/overfitting_generalization_curve.gif){.img-right width=450}
 
-- Good models sit somewhere in between: complex enough to capture real patterns, not so complex that they memorize noise. This is known as the [bias–variance tradeoff](https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff) (a different sense of *bias* from the one above): as a model gets more complex, errors from oversimplifying fall and errors from memorizing rise, and the best total sits in the middle.
+- Good models sit somewhere in between: complex enough to capture real patterns, not so complex that they memorize noise. This is known as the [bias–variance tradeoff](https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff) (a different sense of *bias* from the one above): as a model gets more complex, errors from oversimplifying fall and errors from memorizing rise, and the best total sits in the middle. (Very large neural networks complicate this picture: past a certain size, their errors can fall again, which researchers call [*double descent*](https://en.wikipedia.org/wiki/Double_descent).)
 - Tuning is largely about finding that middle. Common remedies for overfitting include more diverse training data, simpler models, techniques that limit how far the model can adjust ([regularization](https://en.wikipedia.org/wiki/Regularization_(mathematics))), and stopping training before the model starts to overfit ([early stopping](https://en.wikipedia.org/wiki/Early_stopping)).
 
 Even a model that generalizes well only generalizes to data *like its training data*. A model trained mostly on modern news articles may be excellent on news and much worse on nineteenth-century letters, with their archaic spellings, and people known only to the writer. You will measure exactly this in [Unit 3](../unit_3/index.qmd).
@@ -107,7 +107,7 @@ Even a model that generalizes well only generalizes to data *like its training d
 
 Once a model is trained, its *knowledge* is spread across millions or billions of weights. There is no readable rulebook. You can measure what the model **does**, but you cannot open it up and read **what it learned**.
 
-This matters most for bias. If a model was trained on skewed or unrepresentative data, that bias is encoded in the weights, but you can't point to where it lives. You can only probe the model's behaviour: give it inputs and observe its outputs across a carefully built evaluation set. [LLM Behaviour](llm_behaviour.qmd) returns to what this means for LLMs.
+This matters most for bias. If a model was trained on skewed or unrepresentative data, that bias is encoded in the weights, but you usually can't point to where it lives. You can only probe the model's behaviour: give it inputs and observe its outputs across a carefully built evaluation set. [LLM Behaviour](llm_behaviour.qmd) returns to what this means for LLMs.
 
 ## Key Takeaways
 

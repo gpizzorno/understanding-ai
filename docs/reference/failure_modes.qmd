@@ -76,7 +76,7 @@ These are errors about the world: claims that are simply wrong. They are the eas
 
 ### Hallucination
 
-The model produces content that is specific, credible, and false: an invented citation, a biographical detail, a quotation, a law or court case. The term *hallucination* is itself somewhat misleading, the model isn't confused or dreaming, it is doing what it was trained to do: predicting likely text, only the prediction happens to be false. The output looks exactly like correct output, and it is often most detailed exactly where it is least reliable.
+The model produces content that is specific, credible, and false: an invented citation, a biographical detail, a quotation, a law or court case. The term *hallucination* is itself somewhat misleading, the model isn't confused or dreaming, it is doing what it was trained to do: predicting likely text, only the prediction happens to be false. The output looks exactly like correct output, and it can be just as detailed where it is least reliable.
 
 ::: {.callout-note}
 # Example
@@ -90,7 +90,7 @@ Asked <span class="prompt">Who was Sidney Colvin?</span>, a small model gave thr
 - **Verify every specific detail you intend to use:** names, dates, quotations, numbers, and references. Check them against primary sources or established references, not against another chatbot.
 - **Never cite a reference you haven't found yourself.** Look it up in a library catalogue, a database, or by its DOI. A reference that looks right is not evidence that it exists.
 - **Ground the model in your sources.** Upload the documents and ask it to quote the passage behind each claim ([grounding](../unit_2/prompting_strategies.qmd#grounding-in-sources)). This makes hallucination less likely and much easier to spot, though it doesn't rule it out.
-- **Give it permission not to know.** Adding <span class="prompt">If you're not sure, say so</span> to your prompt helps a little. It doesn't make the model aware of what it doesn't know.
+- **Give it permission not to know.** Adding <span class="prompt">If you're not sure, say so</span> to your prompt helps a little. It doesn't make the model reliably aware of what it doesn't know.
 - **Be most suspicious of the detail you were hoping to find.** A convenient quotation or a perfect example deserves the hardest check.
 :::
 
@@ -158,7 +158,7 @@ The model draws a conclusion that doesn't follow from its premises, and presents
 
 ### Arithmetic Mistakes
 
-Models can state a wrong number as fluently as a right one. The *form* of mathematical confidence is learned, but the calculation isn't reliably performed, unless the tool hands it to code behind the scenes. The longer the calculation, the higher the risk.
+Models can state a wrong number as fluently as a right one. The *form* of mathematical confidence is learned, but the calculation isn't always performed reliably, unless the tool hands it to code behind the scenes. The longer the calculation, the higher the risk.
 
 ::: {.callout-note}
 # Example
@@ -212,7 +212,7 @@ The model breaks a rule you gave it, about length, format, scope, or wording, us
 # Suggestions
 
 - **Make constraints checkable:** a number of items, a fixed set of columns, a format you can see at a glance.
-- **Put the most important constraints last,** just before the material or the question, and keep their number small.
+- **Put the most important constraints last,** after the material, just before the question, and keep their number small.
 - **Check the output against each constraint,** rather than reading it on the assumption that it complied. For *exactly as written*, search the source for each item.
 - **Ask the model to check its own answer against your constraints,** and to fix what doesn't comply. This catches some problems, but it isn't proof.
 - [Prompting strategies](../unit_2/prompting_strategies.qmd) has more techniques for writing instructions that hold.
@@ -233,7 +233,7 @@ The model follows an instruction too literally, or too loosely. It does what you
 
 - **Say what you want, not only what you don't.** <span class="prompt">Describe what the letter says, in neutral terms</span> works better than <span class="prompt">no opinions</span>.
 - **Explain the purpose.** <span class="prompt">For a reader who hasn't seen the letter, so include who, where, and when</span> tells the model what *brief* has to keep.
-- **Give an example of the output you have in mind,** even a short one. Models imitate examples far more reliably than they follow descriptions.
+- **Give an example of the output you have in mind,** even a short one. Models often imitate examples more reliably than they follow descriptions.
 - **Use concrete measures:** <span class="prompt">three bullet points</span>, <span class="prompt">under 100 words</span>, <span class="prompt">one row per person</span>.
 :::
 
@@ -271,7 +271,7 @@ Ask about `Stevenson` in the letters, and the model will pick one person and run
 
 - **Ask the model to list the possible interpretations before answering,** or to state the assumptions it is making.
 - **Define your terms in the prompt:** <span class="prompt">"Stevenson" means Robert Louis Stevenson, his parents are Thomas and Margaret Stevenson.</span>
-- **Ask which parts of your question could be read more than one way.** It is often better at spotting ambiguity than at resolving it.
+- **Ask which parts of your question could be read more than one way.** It may not notice the ambiguity on its own, but asking can bring up readings you hadn't considered.
 :::
 
 ## Sycophancy
@@ -479,7 +479,7 @@ These errors come from how you use the model over time: across runs, across a lo
 
 ### Inconsistency
 
-The same prompt can produce different answers, because there's a random choice at every token ([sampling](../unit_1/language_models.qmd#text-generation)). Chat interfaces usually don't let you fix the settings, and the model behind them can change without notice.
+The same prompt can produce different answers, because there's a random choice at every token ([sampling](../unit_1/language_models.qmd#text-generation)). Chat interfaces usually don't let you fix the settings (and even fixed settings don't guarantee identical answers), and the model behind them can change without notice.
 
 ::: {.callout-note}
 # Example

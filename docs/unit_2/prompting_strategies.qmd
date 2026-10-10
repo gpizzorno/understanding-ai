@@ -112,7 +112,7 @@ Even grounded prompts need verification, because the model can still misread or 
 
 It's easy to hear *grounded* and think *safe*. **Grounding improves transparency, not certainty**. The model may quote the wrong passage, misidentify a person, overstate what a document shows, or quietly combine evidence with inference. With historical materials, the risk is amplified by OCR problems, archaic phrasing, ambiguous names, and missing context.
 
-Grounding is valuable because it gives you something to inspect. It doesn't remove the need to inspect it. [Assessing reliability](assessing_reliability.qmd) takes this further.
+Grounding is valuable because it gives you something to inspect. It doesn't remove the need to inspect it. [Assessing Reliability](assessing_reliability.qmd) takes this further.
 :::
 
 ## Patterns That Usually Help

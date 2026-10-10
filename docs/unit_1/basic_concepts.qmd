@@ -20,7 +20,7 @@ Terminology in this area is genuinely confusing. The same words mean different t
 
 **Generative AI** is the category of systems that produce new content (text, images, audio, video, code) rather than only classifying or predicting. It is the term most used in public discussion right now, but it groups together systems with very different designs and behaviours: image generators such as [Stable Diffusion](https://stability.ai) or [DALL-E](https://openai.com/index/dall-e/) are generative AI, and so are LLMs.
 
-**Large Language Models (LLMs)** are deep learning models trained on massive collections of text: a large fraction of the publicly accessible web, plus books, code, and other sources. They learn statistical patterns in language at enormous scale, which lets them generate coherent, contextually appropriate text. *ChatGPT*, *Claude*, *Gemini*, and *Llama* are built on LLMs.
+**Large Language Models (LLMs)** are deep learning models trained on massive collections of text: large amounts of text from the web, plus books, code, and other sources. They learn statistical patterns in language at enormous scale, which lets them generate coherent, contextually appropriate text. *ChatGPT*, *Claude*, *Gemini*, and *Llama* are built on LLMs.
 
 Why is *AI* used as a catch-all? Largely for marketing: *machine learning model* is accurate, but it doesn't sell products or generate headlines. Noticing this is itself a useful habit when reading coverage of AI.
 
@@ -88,7 +88,7 @@ This approach combines a small amount of labelled data with a large amount of un
 
 ![](../assets/reinforcement_learning.gif){.img-right width=300}
 
-The model learns by trial and error: it produces outputs, and each one is scored, rewarded or penalized, and the model adjusts to earn more reward. Think of training a dog: no answer key, just rewards for good behaviour. A version called [reinforcement learning from human feedback (RLHF)](https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback) is a key technique for shaping LLMs: people rate model outputs, and the model is tuned towards the kinds of answers they prefer. Much of the behaviour of chat assistants comes from this stage. So do their refusals, which, as the [Hack Merlin activity](hack_merlin.qmd) shows, are learned patterns rather than hard rules.
+The model learns by trial and error: it produces outputs, and each one is scored, rewarded or penalized, and the model adjusts to earn more reward. Think of training a dog: no answer key, just rewards for good behaviour. A version called [reinforcement learning from human feedback (RLHF)](https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback) is a key technique for shaping LLMs: people compare model outputs, and the model is tuned towards the kinds of answers they prefer. Much of the behaviour of chat assistants comes from this stage, and from similar kinds of tuning. So do their refusals, which, as the [Hack Merlin activity](hack_merlin.qmd) shows, are learned patterns rather than hard rules.
 
 ## Key Takeaways
 

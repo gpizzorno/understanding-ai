@@ -21,7 +21,7 @@ Given a sentence like <span class="quote">Robert Louis Stevenson wrote to Sidney
 </div>
 
 ::: {.callout-note}
-The table above is the actual output of the case study's model. Notice that `August 1877` isn't there: this model doesn't recognize dates.
+The table above is the actual output of the case study's model. Notice that `August 1877` isn't there: this model isn't trained to label dates.
 :::
 
 For researchers, NER is a way to turn unstructured text into structured data: who is mentioned, where, and how often. It's a common first step for network analysis, mapping, and indexing collections.
@@ -43,7 +43,7 @@ Both are pre-trained neural networks, and both are built on the [transformer arc
 |-|--|--|
 | Task | One narrow task: label names in text | Almost any text task, described in a prompt |
 | Output | Structured: entity, type, position, confidence score | Free text (which can be asked to look like data) |
-| Consistency | Same input, same settings, same output | Varies between runs by default |
+| Consistency | Same input, same settings, same versions, same output | Varies between runs by default |
 | Size and cost | Small; runs on a laptop | Very large; usually runs on a company's servers |
 | Transparency | Published model with a documented training set | Often opaque about training data |
 | Flexibility | Low: only does what it was trained for | High: can explain, summarize, translate, reason about context |
@@ -51,7 +51,7 @@ Both are pre-trained neural networks, and both are built on the [transformer arc
 
 </div>
 
-Neither is simply better. The NER model gives you fast, consistent, structured output at scale, but it only gives you **predictions, not explanations**. You can't ask it why it labelled something as it did, or ask it follow-up questions, and it doesn't reason about context the way Gemini Notebook did when it worked out that `S. C.` was Colvin. And its confidence scores aren't explanations either: a score of 0.99 says how sure the model is, not why, and not whether it's right. That's the trade-off this unit explores.
+Neither is simply better. The NER model gives you fast, consistent, structured output at scale, but it only gives you **predictions, not explanations**. You can't ask it why it labelled something as it did, or ask it follow-up questions, and it doesn't reason about context the way Gemini Notebook did when it worked out that `S. C.` was Colvin. And its confidence scores aren't explanations either: a score of 0.99 says how confident the model is, which isn't the same as how likely it is to be right, and says nothing about why. That's the trade-off this unit explores.
 
 ::: {.callout-note #all-caps-tokenization}
 ## Tokenization: The Problem of ALL-CAPS Text
@@ -74,7 +74,7 @@ This causes a concrete problem in the case study. The letters are full of ALL-CA
 
 Normally, the pipeline merges the `##` pieces back into whole words (that's what `aggregation_strategy='simple'` does). But the model has rarely seen fragments like these in training, so it may give different labels to different pieces of the same word. Then they can't be merged, and they come out as meaningless entities like `SI` or `L`.
 
-The fix is simple: convert ALL-CAPS words to title case (`Sidney Colvin`) before running the model. The notebook does this with a small function called `normalize_caps`, and shows the output before and after in Section 2.
+The simplest fix is to convert ALL-CAPS words to title case (`Sidney Colvin`) before running the model. The notebook does this with a small function called `normalize_caps`, and shows the output before and after in Section 2. (A different aggregation strategy, such as `'first'`, would keep each word in one piece, but the model would still be reading fragments it rarely saw in training.)
 
 This is a small example of a general lesson: **preprocessing decisions matter**, and a mismatch between your text and the model's training data can cause failures that look mysterious until you know where to look.
 :::

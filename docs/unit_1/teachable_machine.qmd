@@ -146,7 +146,7 @@ That's what we wanted, but nothing in the training data could have told us so in
 
 Everything the model knows comes from your examples. It found whatever statistical pattern best separated your classes in the samples you gave it, and that pattern may or may not be the one you had in mind. It can't tell the difference between the object and everything else in the picture, unless your examples made the difference clear: the same object in different places, lights, and angles, and different objects in the same place.
 
-This is the same for every model, including the largest of them. The data is where the model's abilities come from, and also where its blind spots come from. [Model Training](model_training.qmd) looks at how this works, and why testing a model on data unlike its training data is the only way to find out what it actually learned.
+This is the same for every model, including the largest of them. The data is where the model's abilities come from, and also where its blind spots come from. [Model Training](model_training.qmd) looks at how this works, and why testing a model on data unlike its training data is the most reliable way to find out what it actually learned.
 
 ## Key Takeaways
 

@@ -19,7 +19,7 @@ Your visible message is only part of that bundle. Imagine you've uploaded some o
 ![](../assets/what-the-model-sees.gif){width=949}
 
 - **Your prompt:** the question you typed.
-- **The system prompt:** hidden instructions from the application, which you never see. They typically say what role to play and how to behave: <span class="prompt">You are a research assistant helping a user analyze uploaded historical documents</span>, <span class="prompt">Base your response primarily on the uploaded sources and quote them when useful</span>, <span class="prompt">If the evidence is ambiguous or incomplete, say so</span>.
+- **The system prompt:** hidden instructions from the application, which you usually don't see. They typically say what role to play and how to behave: <span class="prompt">You are a research assistant helping a user analyze uploaded historical documents</span>, <span class="prompt">Base your response primarily on the uploaded sources and quote them when useful</span>, <span class="prompt">If the evidence is ambiguous or incomplete, say so</span>.
 - **Documents:** text from the sources you've uploaded, such as a letter to Stevenson's mother that mentions that `Colvin is gone`.
 - **Chat history:** the earlier turns of your conversation, your questions and the model's answers, which the application sends again every time.
 - **Other context:** anything else the application adds. Here, it's passages that a search system picked out as relevant to your question: the heading `TO SIDNEY COLVIN`, the salutation `MY DEAR COLVIN`, and a line from another letter, `I have asked Colvin to send you a copy...`.

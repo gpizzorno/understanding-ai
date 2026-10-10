@@ -136,7 +136,7 @@ The output looks like research data. The questions in this part are the ones a r
    :::
 
    The tool's graph has 63 people in three colour-coded groups, with RLS at the centre, and counts characters from Stevenson's stories, such as *Prince Otto* and *Princess Seraphina*, as people. The script's graph has 14 people, in one colour, without RLS. It doesn't use the CSV, or any list of entities: it searches the letters for a short list of names written into the script, and for words like `father`, `mother`, and `my wife`, so any father in any letter counts as Stevenson's father. It's a plausible method, written after the fact, the same way as any other answer, but it isn't what produced the image. [LLM Behaviour](../unit_1/llm_behaviour.qmd#the-black-box-problem-again) warned about this.
-4. **There's no version.** No model name or version is shown anywhere. If the product is updated next month, the same prompt may give different results, and you won't be told.
+4. **There's no version.** No model version is shown anywhere: Google's announcements name the family of models, but not the version behind a given answer. If the product is updated next month, the same prompt may give different results, and you won't be told.
 5. **Scale is a soft limit.** A notebook holds 50 sources on the free plan, and 100 to 600 on paid plans, so on most plans you can't upload all 462 letters as separate files. The combined file works around it: the tool answers questions about individual letters correctly, because the headings let it find them. But when you ask for the whole corpus, remember that, with a collection this size, the model probably works from passages a search picked out, not the whole file. Does your CSV cover all 462 letters? How would you check?
 
 :::

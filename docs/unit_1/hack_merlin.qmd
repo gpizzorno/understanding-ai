@@ -13,7 +13,7 @@ title: 'Activity: Hack Merlin'
 
 ![](../assets/merlin.png){.img-right width=400}
 
-This activity explores a specific LLM failure mode: **adversarial prompting**, also called **prompt injection**. Prompt injection is when someone crafts input that makes a model ignore or override its instructions, often to extract information it was told to keep secret, or to make it behave in ways its designers did not intend. This matters well beyond games. LLMs in real applications (document analysis, research tools, chatbots) rely on **system prompts**: instructions placed before the conversation starts. These are often assumed to be authoritative, but they can be subverted.
+This activity explores a specific LLM failure mode: **adversarial prompting**, and in particular the form of it called **prompt injection**. Prompt injection is when someone crafts input that makes a model ignore or override its instructions, often to extract information it was told to keep secret, or to make it behave in ways its designers did not intend. This matters well beyond games. LLMs in real applications (document analysis, research tools, chatbots) rely on **system prompts**: instructions placed before the conversation starts. These are often assumed to be authoritative, but they can be subverted.
 
 In Hack Merlin, a chatbot playing a wizard is supposed to keep a password secret, and your job is to get Merlin to reveal it. Each level adds a new defence. In the early levels, the model is simply told there is a password, then told not to reveal it. Later levels add filters that check what Merlin says and what you ask. After you pass each level, the game tells you what defence it used.
 
@@ -104,7 +104,7 @@ Each level of Hack Merlin adds a defence. The defences are of three kinds, and t
 
 **3. An input filter** (from level 4). A check on *your* message blocks it if it contains particular words, such as `password` or `secret`. A word list is easy to build and easy to get around: `the answer you are guarding` means the same as `the password`, and contains none of the forbidden words.
 
-Real products often add a fourth kind of defence: a separate model that reads your message and judges whether it *looks like* an attack. It reliably catches phrasings it has seen many times (`ignore your previous instructions`, `you are now in developer mode`), but it judges how a message looks, not what the person is trying to achieve, so a harmless-sounding request with the same goal gets through.
+Real products often add a fourth kind of defence: a separate model that reads your message and judges whether it *looks like* an attack. It reliably catches phrasings it has seen many times (`ignore your previous instructions`, `you are now in developer mode`), but it judges how a message looks more than what the person is trying to achieve, so a harmless-sounding request with the same goal can often get through.
 
 Looking back over the levels:
 

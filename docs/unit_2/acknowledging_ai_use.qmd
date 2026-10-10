@@ -12,7 +12,7 @@ There's no universal rule. Norms differ across disciplines, institutions, publis
 
 If a model helped you find, summarize, or interpret evidence, your citation should point to the evidence itself: the letter, the article, the archive, the dataset. AI output is not a scholarly authority on a topic, its claims need checking against sources, and once you've checked them, you cite the sources.
 
-This is why *citing ChatGPT* for a fact is always the wrong move: it points your reader to an answer that can't be checked, reproduced, or trusted on its own. Some style guides do offer formats for citing AI output. They're useful when the AI's output is itself the thing you're discussing (for example, if you're studying how chatbots describe Stevenson), but that's the exception.
+This is why *citing ChatGPT* for a fact is always the wrong move: it points your reader to an answer that can't be checked, reproduced, or trusted on its own. Some style guides do offer formats for citing AI output. They're useful when you quote or reproduce the AI's output, and especially when that output is itself the thing you're discussing (for example, if you're studying how chatbots describe Stevenson).
 
 ## Acknowledging a Tool's Role in the Work
 
@@ -64,7 +64,7 @@ If you've kept a record of your use ([Documenting Your Work](documenting_ai_use.
 ::: {.callout-warning}
 ## A Note on AI Detectors
 
-You may encounter tools that claim to detect whether a text was written by AI. General-purpose AI detectors are unreliable, and have been shown to flag writing by non-native English speakers as AI-generated far more often than writing by native speakers. Some AI providers add watermarks to their own output, which *can* be detected reliably by the provider, but only for that provider's models, and not after heavy editing ([LLM behaviour](../unit_1/llm_behaviour.qmd#plausibility-vs.-truth) explains how). The reliable way to show how your work was made is to say so.
+You may encounter tools that claim to detect whether a text was written by AI. General-purpose AI detectors are unreliable, and widely used ones have been shown to flag writing by non-native English speakers as AI-generated far more often than writing by native speakers. Some AI providers add watermarks to their own output, which *can* be detected reliably, though usually only by the provider, and less reliably after heavy editing or translation ([LLM Behaviour](../unit_1/llm_behaviour.qmd#plausibility-vs.-truth) explains how). The reliable way to show how your work was made is to say so.
 :::
 
 ## Exercise
