@@ -94,6 +94,12 @@ Two things to know about Colab:
 
 The [Anaconda distribution](https://www.anaconda.com/download) installs Python, Jupyter, and many common libraries in one go, on Windows, macOS, or Linux.
 
+::: {.callout-warning collapse="true"}
+## Anaconda Licensing
+
+Anaconda is free for individuals, for teaching, and for organizations with fewer than 200 employees, but [its terms](https://www.anaconda.com/blog/update-on-anacondas-terms-of-service-for-academia-and-research) may require a paid licence for other uses at larger organizations, research included. If that might apply to you, check with your institution, or install [Miniforge](https://conda-forge.org/download/) instead: it's free for everyone, and the steps below are the same, with <span class="command">Miniforge Prompt</span> in place of <span class="command">Anaconda Prompt</span>.
+:::
+
 1. Download and run the installer from [anaconda.com/download](https://www.anaconda.com/download). You can install it like any other program (the defaults are fine).
 2. Get a copy of this repository: on its GitHub page, click <span class="command">Code</span> → <span class="command">Download ZIP</span> and unzip it (or use `git clone` if you know git).
 3. Open <span class="command">Anaconda Prompt</span> (Windows) or <span class="command">Terminal</span> (macOS and Linux), move into the repository folder, and install the libraries the notebooks need (the `.` means *this folder*, the list of libraries is in `pyproject.toml`):
@@ -119,7 +125,7 @@ If you're comfortable with a terminal, you can use a standard Python installatio
 
 1. Install **Python 3.12** or later.
    - **macOS:** with [Homebrew](https://brew.sh): `brew install python@3.12`, or use the installer from [python.org](https://www.python.org/downloads/).
-   - **Windows:** use the installer from [python.org](https://www.python.org/downloads/), and tick <span class="command">Add python.exe to PATH</span>.
+   - **Windows:** install the Python Install Manager, from [python.org](https://www.python.org/downloads/) or the [Microsoft Store](https://apps.microsoft.com/detail/9NQ7512CXL7T). Then, in Command Prompt, run `py install 3.12`.
    - **Linux:** use your distribution's package manager (for example, `sudo apt install python3 python3-venv`).
 2. Get this repository: `git clone https://github.com/gpizzorno/understanding-ai.git`, or download and unzip it from [GitHub](https://github.com/gpizzorno/understanding-ai).
 3. Create and activate a virtual environment in the repository folder:
