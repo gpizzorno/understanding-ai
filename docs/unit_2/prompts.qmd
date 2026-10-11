@@ -16,7 +16,7 @@ The model does not receive *a question* in the abstract. It receives a bundle of
 
 Your visible message is only part of that bundle. Imagine you've uploaded some of [Stevenson's letters](../reference/letters.qmd) to a research tool such as Gemini Notebook, discussed them for a while, and now ask: <span class="prompt">Who is Colvin, and how does Stevenson talk about him?</span> Here is what the model may actually receive:
 
-![](../assets/what-the-model-sees.gif){width=949}
+![](../assets/what-the-model-sees.gif){width=949 fig-alt="Animation: the user's prompt is joined by the other parts of the model's input, stacked into a single bundle: a system prompt (instructions such as “You are a research assistant helping a user analyze uploaded historical documents”), the user prompt, the documents, the chat history of earlier questions and answers, and other context found by a search (“TO SIDNEY COLVIN”, “MY DEAR COLVIN”, “I have asked Colvin to send you a copy…”)."}
 
 - **Your prompt:** the question you typed.
 - **The system prompt:** hidden instructions from the application, which you usually don't see. They typically say what role to play and how to behave: <span class="prompt">You are a research assistant helping a user analyze uploaded historical documents</span>, <span class="prompt">Base your response primarily on the uploaded sources and quote them when useful</span>, <span class="prompt">If the evidence is ambiguous or incomplete, say so</span>.
@@ -34,7 +34,7 @@ The model is not reading your intentions. It is responding to the package of tex
 
 An LLM can only work with a limited amount of text at one time. That limit is called the **context window**.
 
-![](../assets/context-window.gif){.img-right width=600}
+![](../assets/context-window.gif){.img-right width=600 fig-alt="Animation: a stack of blocks (the system prompt, prompts, documents, chat history, and other context) inside a band labelled Context window. As the conversation goes on, blocks are added, the stack grows taller than the band, and the oldest blocks are pushed out of it."}
 
 Everything in the bundle has to fit into the window: the system prompt, your prompt, the documents, the chat history, and any retrieved passages. As a conversation goes on, the bundle grows. Every new question and answer is added to the history, and every new upload adds documents, until it no longer fits. Then something has to give: the application drops or compresses parts of the input, often the oldest turns of the conversation, and the model never sees them.
 

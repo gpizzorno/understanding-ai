@@ -20,7 +20,7 @@ Suppose you've trained a machine learning model to classify marbles by colour. T
 
 This table is called a **confusion matrix**. Here are the same results as marbles: each marble is its actual colour, placed in the column of what the model said it was. (Blue and Orange correspond to the positive and negative classes, respectively.)
 
-![](../assets/marbles_confusion_matrix.gif){width=600}
+![](../assets/marbles_confusion_matrix.gif){width=600 fig-alt="A confusion matrix of the ten marbles, with what each marble actually was in the rows, and what the model said in the columns. Blue called blue: 4 true positives. Blue called orange: 2 false negatives (missed). Orange called blue: 1 false positive (a false alarm). Orange called orange: 3 true negatives."}
 
 Each cell tells you something specific:
 

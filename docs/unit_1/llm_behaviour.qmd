@@ -17,7 +17,7 @@ Recall [how a language model writes](language_models.qmd#text-generation): at ea
 
 Here is what the last two points look like together. A small open model was asked the same question three times:
 
-![](../assets/same_prompt_different_answers.gif){width=760}
+![](../assets/same_prompt_different_answers.gif){width=760 fig-alt="Animation: the prompt “In one sentence, tell me who was Sidney Colvin?” answered three times by a small model, differently each time: an American actor and singer in Westerns, an African American civil rights activist, and a governor of Louisiana."}
 
 Three runs, three different people, each described in fluent, specific, confident detail, and **all of them invented**. Sidney Colvin (1845–1927) was an English art and literary critic, and one of Stevenson’s closest friends. This is a very small model ([Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct), about 0.5 billion weights), chosen because its failures are easy to see, the chat assistants you use are much larger, and generally know who Sidney Colvin was. But the mechanism is the same, and it shows up in larger models too, wherever their training data runs thin: a minor correspondent, a small archive, a local event. The answer doesn't tell you when that has happened.
 
@@ -26,7 +26,7 @@ Three runs, three different people, each described in fluent, specific, confiden
 
 The random choice at each token has an unexpected use. Some AI providers replace it with a *pseudo*-random choice that depends on a secret key. At each step, the key quietly favours a subset of the possible tokens, nudging the choice towards them without changing the meaning of the text. To a reader, the text looks entirely normal. But someone who has the key can check how often the favoured tokens were chosen: in watermarked text, it's far more often than chance would explain. Google DeepMind uses a more elaborate scheme along these lines, called [SynthID Text](https://ai.google.dev/responsible/docs/safeguards/synthid), in its Gemini models.
 
-![](../assets/watermarking.png){width=760}
+![](../assets/watermarking.png){width=760 fig-alt="Diagram of a text watermark. Adding it: a secret key marks about half the possible tokens as favoured (for example week, year, and summer), their probabilities are nudged up a little (week from 41% to 47%), and a token is then chosen as usual. Detecting it: someone with the key counts how many tokens were favoured. In ordinary text, it's about 10 of 20, as chance would give. In watermarked text, it's 17 of 20, far more than chance."}
 
 Watermarks have real limits: usually only the provider (or whoever it gives access to) can check for its watermark, heavy editing, paraphrasing, or translation weakens it, short texts are hard to judge, and not every provider uses one. They're also quite different from the “AI detectors” that claim to recognize any AI-written text from its style. Those are unreliable, and widely used ones have been shown to flag writing by non-native English speakers as AI-generated far more often than writing by native speakers. Keep this in mind in [Unit 2](../unit_2/acknowledging_ai_use.qmd), when the question of acknowledging AI use comes up.
 
@@ -39,7 +39,7 @@ Hack Merlin showed that an LLM's rules can be talked around. The reason is that 
 
 Here is a small example of a learned pattern overpowering the text in front of the model:
 
-![](../assets/trolley-problem.gif){width=760}
+![](../assets/trolley-problem.gif){width=760 fig-alt="Animation: a prompt describes a runaway trolley heading towards five dead people, and a lever that would divert it onto a track where one living person is tied up, and asks whether to pull the lever. ChatGPT (GPT-4o) answers that the right thing is to pull it, sacrificing one person to minimize the number of people killed."}
 
 The prompt is a variation on a famous philosophy puzzle, the [**trolley problem**](https://en.wikipedia.org/wiki/Trolley_problem), in which you can divert a runaway trolley away from five people and towards one. But read the prompt carefully: here, the five people on the track are **already dead**. There is no dilemma, pulling the lever would kill one person for no reason. The model (GPT-4o, in this exchange) answers the famous version anyway, confidently and at length. The classic puzzle appears so often in its training data that the pattern outweighs what the prompt actually says.
 

@@ -16,7 +16,7 @@ That is the core insight of this reading: **models learn from data, and the data
 
 Training a model is not a single step, but a cycle:
 
-![](../assets/training_loop.gif){width=700}
+![](../assets/training_loop.gif){width=700 fig-alt="Animation of the training loop. The data is split into training, development, and test sets. The training set is used to train the model, the model predicts answers for the development set, the predictions are evaluated, the results guide tuning, and the cycle repeats. At the end, the test set is used once, for the final evaluation."}
 
 1. **The data is split** into three parts before anything else happens: a **training** set, a **development** set, and a **test** set.
 2. The model is **trained** on the training set.
@@ -60,7 +60,7 @@ Bias is not simply a bug to be fixed. It is a property of the data and of the ch
 3. It compares the prediction with the correct answer and calculates how wrong it was. This measure of error is called the [**loss**](https://en.wikipedia.org/wiki/Loss_function). If the right answer is `Green Square` and the model confidently says `Orange Circle`, the loss is high.
 4. It adjusts its weights slightly, in whichever direction reduces the loss.
 
-![](../assets/loss_function.gif){.img-right width=500}
+![](../assets/loss_function.gif){.img-right width=500 fig-alt="Line chart of loss over 50 epochs: the training loss and the validation loss both start at about 2.3, and fall together, with small bumps, to about 1.65."}
 
 It repeats this over thousands or millions of examples, and over many passes through the whole training set (called *epochs*). The chart shows what that looks like: the loss starts high and falls, epoch by epoch, as the weights improve. The two lines show the loss on the training set and on the development set, here they fall together, which is a good sign (see [Overfitting](#tuning-overfitting-and-generalization) below).
 
@@ -87,14 +87,14 @@ For a step-by-step example with numbers, see [Evaluation Metrics](evaluation_met
 
 What is tuning trying to achieve? Not simply a lower loss on the training data. Think of a student who memorizes past exam papers instead of learning the material: they ace the practice tests but struggle on the real exam, because the real exam asks new questions.
 
-![](../assets/overfitting_generalization.gif){.img-right width=500}
+![](../assets/overfitting_generalization.gif){.img-right width=500 fig-alt="Animation: data points over time that fall and then rise. A straight line misses the pattern (underfitted), a wiggly line passes through every single point (overfitted), and a smooth curve follows the real trend (a good fit)."}
 
 Models can do the same. **[Overfitting](https://en.wikipedia.org/wiki/Overfitting)** happens when a model learns its training data *too well*, including its noise and quirks. It performs well on the training data and poorly on anything new. The goal of model training is **generalization**: doing well on examples the model has never seen. This is exactly what the development set is for: if the loss keeps falling on the training set but starts rising on the development set, the model has begun to memorize.
 
 - In Teachable Machine terms: if every green square had been photographed on a desk and every orange circle on the floor, the model may have learned `desk` as part of `green square`. New examples in a different setting will fail.
 - The opposite problem is **underfitting**: a model too simple to capture the real pattern, which does poorly everywhere. The figure shows all three: a model that misses the pattern, one that captures it, and one that follows every quirk of its training points.
 
-![](../assets/overfitting_generalization_curve.gif){.img-right width=450}
+![](../assets/overfitting_generalization_curve.gif){.img-right width=450 fig-alt="Chart of error against model complexity: as complexity grows, bias falls and variance rises, so the total error is U-shaped, and lowest at an optimum complexity in the middle."}
 
 - Good models sit somewhere in between: complex enough to capture real patterns, not so complex that they memorize noise. This is known as the [bias–variance tradeoff](https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff) (a different sense of *bias* from the one above): as a model gets more complex, errors from oversimplifying fall and errors from memorizing rise, and the best total sits in the middle. (Very large neural networks complicate this picture: past a certain size, their errors can fall again, which researchers call [*double descent*](https://en.wikipedia.org/wiki/Double_descent).)
 - Tuning is largely about finding that middle. Common remedies for overfitting include more diverse training data, simpler models, techniques that limit how far the model can adjust ([regularization](https://en.wikipedia.org/wiki/Regularization_(mathematics))), and stopping training before the model starts to overfit ([early stopping](https://en.wikipedia.org/wiki/Early_stopping)).
@@ -103,7 +103,7 @@ Even a model that generalizes well only generalizes to data *like its training d
 
 ## The Black Box Problem
 
-![](../assets/black_box.png){.img-right width=350}
+![](../assets/black_box.png){.img-right width=350 fig-alt="Diagram: an arrow labelled Input goes into a black box, and an arrow labelled Output comes out of it."}
 
 Once a model is trained, its *knowledge* is spread across millions or billions of weights. There is no readable rulebook. You can measure what the model **does**, but you cannot open it up and read **what it learned**.
 

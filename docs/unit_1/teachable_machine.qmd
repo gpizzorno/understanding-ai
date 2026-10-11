@@ -60,25 +60,25 @@ The videos below show the whole process, with two classes: a green paper square 
 ::: {.panel-tabset}
 ### Starting a Project
 
-![](../assets/teachable_machine/start.mp4){poster="../assets/teachable_machine/start.jpg" preload="none"}
+![](../assets/teachable_machine/start.mp4){poster="../assets/teachable_machine/start.jpg" preload="none" aria-label="Screen recording: from Teachable Machine's home page, choosing Get Started, then Image Project, then Standard image model."}
 
 Step 1: from the home page, <span class="command">Get Started</span>, then <span class="command">Image Project</span> → <span class="command">Standard image model</span>.
 
 ### Adding Samples
 
-![](../assets/teachable_machine/samples.mp4){poster="../assets/teachable_machine/samples.jpg" preload="none"}
+![](../assets/teachable_machine/samples.mp4){poster="../assets/teachable_machine/samples.jpg" preload="none" aria-label="Screen recording: renaming the two classes Green Square and Orange Circle, and recording webcam samples of each paper shape."}
 
 Steps 2–3: rename the classes, then hold <span class="command">Hold to Record</span> to capture webcam samples for each one.
 
 ### Training
 
-![](../assets/teachable_machine/train.mp4){poster="../assets/teachable_machine/train.jpg" autoplay="" loop="" muted="" playsinline=""}
+![](../assets/teachable_machine/train.mp4){poster="../assets/teachable_machine/train.jpg" autoplay="" loop="" muted="" playsinline="" aria-label="Screen recording: clicking Train Model, and the training progress bar, sped up."}
 
 Step 4: <span class="command">Train Model</span>. (The progress bar is sped up.)
 
 ### Testing
 
-![](../assets/teachable_machine/test.mp4){poster="../assets/teachable_machine/test.jpg" preload="none"}
+![](../assets/teachable_machine/test.mp4){poster="../assets/teachable_machine/test.jpg" preload="none" aria-label="Screen recording: the Preview panel classifying the webcam image live, as the green square, the orange circle, and then both shapes are held up."}
 
 Step 5: the `Preview` panel classifies the webcam image live. Notice what happens when both shapes are in view.
 :::
@@ -135,7 +135,7 @@ Predict, before you look: what will it say about a green circle? And an orange s
 ::: {.callout-note collapse="true"}
 ## Answer
 
-![](../assets/teachable_machine/colour_shape.mp4){poster="../assets/teachable_machine/colour_shape.jpg" preload="none"}
+![](../assets/teachable_machine/colour_shape.mp4){poster="../assets/teachable_machine/colour_shape.jpg" preload="none" aria-label="Screen recording: the trained model shown a green circle and an orange square. It classifies the green circle as Orange Circle, and the orange square as Green Square."}
 
 The model learned shapes. The green circle came out as Orange Circle (96%), and the orange square as Green Square (99–100%).
 

@@ -8,7 +8,7 @@ title: 'Language Models'
 
 A language model processes text by breaking it into small pieces called [tokens](https://en.wikipedia.org/wiki/Large_language_model#Tokenization): whole words, parts of words, or punctuation. A common word is usually a single token, while a rare name or an unusual spelling may be split into several.
 
-![](../assets/tokenization.gif){.img-right width=300}
+![](../assets/tokenization.gif){.img-right width=300 fig-alt="Animation: examples split into tokens by GPT-4o's tokenizer. “The letter arrived yesterday.”, “Robert Louis Stevenson”, and “Stevenson” come out as whole words. “MY DEAR COLVIN” splits into MY, DE, AR, COL, VIN; “Vailima” into V, ail, ima; and “to-morrow” into to, -m, orrow."}
 
 The figure to the right shows how the tokenizer used by OpenAI's GPT-4o model splits some examples, most of them from [Stevenson's letters](../reference/letters.qmd). Common words, spaces included, are single tokens. Names, ALL-CAPS text, and old spellings are broken into fragments that often don't correspond to anything meaningful. The same text can even be split differently depending on what comes before it.
 
@@ -18,7 +18,7 @@ This can be seen even more clearly in the case of inflected and agglutinative la
 
 You might be wondering: if a neural network works by adding and multiplying numbers along its connections (see [Neural Networks and Weights](basic_concepts.qmd#neural-networks-and-weights)), how can it do anything with *words*, or even tokens? It can't, at least not directly. Before a network can do anything with text, every token has to become numbers.
 
-![](../assets/word_embeddings.gif){width=949}
+![](../assets/word_embeddings.gif){width=949 fig-alt="Animation: the words wolf, dog, cat, banana, and apple go into an embedding model, and each comes out as a list of six numbers. The lists are then placed as points in a space, where wolf, dog, and cat sit close together, and banana and apple sit together elsewhere."}
 
 That is what an *embedding* does. Each token (here: <span class="token">wolf</span>, <span class="token">dog</span>, <span class="token">cat</span>, <span class="token">banana</span>, <span class="token">apple</span>) is turned into a list of numbers. The figure shows six numbers per word, real models use hundreds or thousands. Each list places its word as a point in a space with that many dimensions, and in that space:
 
@@ -33,7 +33,7 @@ Embeddings give models a way to work with meaning numerically, capturing subtle 
 
 Many language tasks turn one sequence of tokens into another. The classic example is translation:
 
-![](../assets/encoder-decoder_translation.gif){width=600}
+![](../assets/encoder-decoder_translation.gif){width=600 fig-alt="Animation: “They are watching.” is split into tokens, which form the input sequence. An encoder–decoder turns it into an output sequence, which becomes the French “Ils regardent.”"}
 
 <span class="quote">They are watching.</span> is split into tokens (<span class="token">They</span> <span class="token">are</span> <span class="token">watching</span> <span class="token">.</span>), which form the **input sequence**. An **encoder** reads the input sequence and turns it into an internal representation of its meaning (numbers, like everything else in a network). A **decoder** then uses that representation to produce the **output sequence**, one token at a time: <span class="token">Ils</span> <span class="token">regardent</span> <span class="token">.</span> The same design works for other tasks that turn one text into another, such as turning a question into an answer, or a long text into a summary.
 
@@ -49,7 +49,7 @@ The original transformer kept the encoder–decoder design. Most of today's chat
 
 Much of the behaviour of an LLM follows from its strategy for generating *the next token*. At each step, the model doesn't choose a single next token. It produces a *probability for every token in its vocabulary*: how likely each one is to come next, given everything so far. Here is a real example, from a small open language model ([Qwen2.5-0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B)), completing a sentence that could come from one of Stevenson's letters.
 
-![](../assets/next_token_probabilities.gif){width=700}
+![](../assets/next_token_probabilities.gif){width=700 fig-alt="Animation: the probabilities a small language model (Qwen2.5-0.5B) gives to the next word of “…and I hope to send it to you before the end of the ____”, at three temperatures. At 1.0: week 41%, month 28%, year 17%, day 4%, and semester, weekend, school, and summer 1–2% each. At a low temperature (0.5), week rises to 60%. At a high one (1.5), it falls to 19%, and the other words gain."}
 
 In the middle panel, the model gives <span class="token">week</span> a 41% chance of coming next, <span class="token">month</span> 28%, <span class="token">year</span> 17%, and so on down a long tail of thousands of other tokens. Notice <span class="token">semester</span> and <span class="token">school</span> in that tail: the model has no idea the sentence is from the 1880s. It has learned what usually follows these words in the (mostly modern) text it was trained on.
 

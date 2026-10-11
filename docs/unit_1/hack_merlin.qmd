@@ -11,7 +11,7 @@ title: 'Activity: Hack Merlin'
 **URL:** [hackmerlin.io](https://hackmerlin.io)
 :::
 
-![](../assets/merlin.png){.img-right width=400}
+![](../assets/merlin.png){.img-right width=400 fig-alt="Screenshot of Hack Merlin at level 6: a cartoon wizard above the instructions (“Outsmart Merlin by asking clever questions and make him uncover each level's password”), a box for talking to Merlin, his reply (“Hello traveler! Ask me anything…”), and a field for entering the secret password."}
 
 This activity explores a specific LLM failure mode: **adversarial prompting**, and in particular the form of it called **prompt injection**. Prompt injection is when someone crafts input that makes a model ignore or override its instructions, often to extract information it was told to keep secret, or to make it behave in ways its designers did not intend. This matters well beyond games. LLMs in real applications (document analysis, research tools, chatbots) rely on **system prompts**: instructions placed before the conversation starts. These are often assumed to be authoritative, but they can be subverted.
 

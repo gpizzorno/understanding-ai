@@ -28,7 +28,7 @@ Gemini Notebook is a third-party Google service. Its features and limits change 
 2. Go to [notebook.google.com](https://notebook.google.com), sign in, and create a new notebook.
 3. Add the 20 letters as sources. They're plain-text files and upload easily. Gemini Notebook will write a short description of your sources and suggest some questions.
 
-![](../assets/gemini_notebook/start.mp4){poster="../assets/gemini_notebook/start.jpg" preload="none"}
+![](../assets/gemini_notebook/start.mp4){poster="../assets/gemini_notebook/start.jpg" preload="none" aria-label="Screen recording: creating a notebook in Gemini Notebook and adding the 20 letters as sources. The tool then writes a short summary of them, and suggests questions."}
 
 The screen has three panels: your **sources** on the left, the **chat** in the middle, and the **Studio** on the right, where files, reports, and other things the tool creates for you are saved. Above each answer, a collapsed <span class="command">Thoughts</span> panel shows the steps the model took, including when it ran code.
 
@@ -50,13 +50,13 @@ You'll likely find the answers rich, aware of context, and backed by citations y
 ::: {.panel-tabset}
 ### Identifying the People
 
-![](../assets/gemini_notebook/people.mp4){poster="../assets/gemini_notebook/people.jpg" preload="none"}
+![](../assets/gemini_notebook/people.mp4){poster="../assets/gemini_notebook/people.jpg" preload="none" aria-label="Screen recording: asking Gemini Notebook to identify the people mentioned in the letters, its answer, and the Thoughts panel opened to show its steps, including Executed code."}
 
 The first prompt above, the answer, and the <span class="command">Thoughts</span> panel, opened to show the steps, including `Executed code`.
 
 ### Counting the Mentions of Colvin
 
-![](../assets/gemini_notebook/colvin.mp4){poster="../assets/gemini_notebook/colvin.jpg" preload="none"}
+![](../assets/gemini_notebook/colvin.mp4){poster="../assets/gemini_notebook/colvin.jpg" preload="none" aria-label="Screen recording: asking Gemini Notebook how many times Colvin is mentioned, and its answer: four mentions by name in three letters, and one by initials in a fourth."}
 
 The Colvin prompt, and the answer: four mentions by name in three letters, and one by initials in a fourth.
 :::
@@ -91,13 +91,13 @@ Filter the spreadsheet to `wikisource_vol1_ch3_letter14.txt`, and compare its ro
 ::: {.panel-tabset}
 ### Exporting a CSV File
 
-![](../assets/gemini_notebook/csv.mp4){poster="../assets/gemini_notebook/csv.jpg" preload="none"}
+![](../assets/gemini_notebook/csv.mp4){poster="../assets/gemini_notebook/csv.jpg" preload="none" aria-label="Screen recording: asking Gemini Notebook for a CSV file of the people, places, and organizations in the letters, its answer, and downloading the file from the Studio panel."}
 
 Steps 1 and 2: the CSV prompt, the answer, and the file in the Studio panel, with its menu open to download it.
 
 ### Drawing a Network
 
-![](../assets/gemini_notebook/network.mp4){poster="../assets/gemini_notebook/network.jpg" preload="none"}
+![](../assets/gemini_notebook/network.mp4){poster="../assets/gemini_notebook/network.jpg" preload="none" aria-label="Screen recording: asking Gemini Notebook to draw a network of the people mentioned in the letters, its answer, and the image saved in the Studio panel."}
 
 Step 3: the network prompt, and the answer. The image is saved in the Studio panel, above the CSV file.
 :::

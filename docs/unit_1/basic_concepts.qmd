@@ -10,7 +10,7 @@ This page gives you a working vocabulary and a mental model of how these systems
 
 Terminology in this area is genuinely confusing. The same words mean different things to different people, and press coverage uses *AI* for everything from a voice assistant, to a self-driving car, to a hypothetical sentient machine. The terms below are nested, from broadest to narrowest.
 
-![](../assets/overlapping_terms.png){.img-right width=400}
+![](../assets/overlapping_terms.png){.img-right width=400 fig-alt="Nested circles: Artificial Intelligence contains Machine Learning, which contains Deep Learning, which contains Generative AI, which contains Large Language Models."}
 
 **Artificial Intelligence (AI)** is the broadest term: a field with the ambition of building systems that perform tasks we would call *intelligent* if a human did them. It covers chess engines, spam filters, image recognition, and language generation. The term has been in use since the 1950s and carries a lot of historical baggage and hype. It is useful as a category label, but too broad to tell you much about how any specific system works.
 
@@ -38,7 +38,7 @@ How a system actually learns from its examples is the subject of [Model Training
 
 ## Neural Networks and Weights
 
-![](../assets/nn_structure_static.png){.img-right width=500}
+![](../assets/nn_structure_static.png){.img-right width=500 fig-alt="A neural network drawn as columns of circles: an input layer of five neurons, three hidden layers of six, and an output layer of three, with every neuron connected to every neuron in the next layer."}
 
 The most common learning architecture is a [neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning)), a mathematical structure loosely inspired by the brain.
 
@@ -49,7 +49,7 @@ The most common learning architecture is a [neural network](https://en.wikipedia
 
 The weights are the key to everything, so it's worth following some values through a network:
 
-![](../assets/nn_weights.gif){width=949}
+![](../assets/nn_weights.gif){width=949 fig-alt="Animation: the values 1 and 2 enter the network, and are multiplied by the weight on each connection they follow. One hidden neuron receives 1 × 1 + 2 × 3 = 7, and another 2 × 2 = 4. The next layers give 26 and 26, and 52 arrives at the output."}
 
 Two values, `1` and `2`, enter at the *input layer*. Each connection multiplies the value passing along it by the connection's weight, and each neuron adds up everything that arrives:
 
@@ -70,13 +70,13 @@ There are several basic ways to train a model. They differ in what the model lea
 
 ### Supervised Learning
 
-![](../assets/supervised_learning.gif){.img-right width=320}
+![](../assets/supervised_learning.gif){.img-right width=320 fig-alt="Animation: a model receives inputs (orange circles and green squares) together with labels outlining which group each belongs to, and learns to produce outputs sorted into the same two groups."}
 
 The model learns from examples that come with the correct answer: inputs paired with **labels**. Think of teaching with an answer key. To build a model that finds names in text, people annotate thousands of sentences, marking every name and whether it's a person, a place, or an organization; the model learns patterns that predict those labels, and can then label new text it has never seen. The [named-entity recognition (NER)](https://en.wikipedia.org/wiki/Named-entity_recognition) models in [Unit 3](../unit_3/index.qmd) were trained this way.
 
 ### Unsupervised Learning
 
-![](../assets/unsupervised_learning.gif){.img-right width=300}
+![](../assets/unsupervised_learning.gif){.img-right width=300 fig-alt="Animation: a model receives orange circles and green squares with no labels, and sorts them into groups of its own: circles with circles, squares with squares."}
 
 There is no answer key. The model looks for structure in the data on its own and groups similar items together. Given all 462 of Stevenson's letters, unlabelled, it might group them into clusters that turn out to correspond to correspondents, periods, or topics, or to something nobody expected. It is more a tool for exploring and discovering patterns than for confirming known ones, and it's up to you to work out what the groups mean.
 
@@ -86,7 +86,7 @@ This approach combines a small amount of labelled data with a large amount of un
 
 ### Reinforcement Learning
 
-![](../assets/reinforcement_learning.gif){.img-right width=300}
+![](../assets/reinforcement_learning.gif){.img-right width=300 fig-alt="Animation: a model sorts circles and squares into groups. Each result is marked with ticks (rewards) or crosses (penalties), and the feedback goes back into the model, until its groups are right."}
 
 The model learns by trial and error: it produces outputs, and each one is scored, rewarded or penalized, and the model adjusts to earn more reward. Think of training a dog: no answer key, just rewards for good behaviour. A version called [reinforcement learning from human feedback (RLHF)](https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback) is a key technique for shaping LLMs: people compare model outputs, and the model is tuned towards the kinds of answers they prefer. Much of the behaviour of chat assistants comes from this stage, and from similar kinds of tuning. So do their refusals, which, as the [Hack Merlin activity](hack_merlin.qmd) shows, are learned patterns rather than hard rules.
 
