@@ -85,6 +85,11 @@ figcaption {
   background-color: #502e74;;
   color: white;
 }
+/* the logo (assets/logo.svg) beside the site title */
+.navbar-brand-logo .navbar-logo {
+  max-height: 24px;
+  margin-right: 0.4rem;
+}
 .navbar-brand {
   font-size: 1.1rem;
   font-weight: 700;
@@ -411,4 +416,19 @@ div.sourceCode, div.sourceCode pre.sourceCode {
 mjx-math {
   font-weight: 600 !important;
   font-size: 90% !important;
+}
+
+/* references */
+.references {
+  font-size: 0.9em;
+}
+.references .csl-entry {
+  margin-bottom: 0.6em;
+  margin-right: 3em;
+}
+
+/* glossary */
+.quarto-listing-filter {
+  width: 100%;
+  margin-left: 15px;
 }
