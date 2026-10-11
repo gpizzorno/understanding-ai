@@ -30,6 +30,7 @@ website:
   title: Understanding AI
   description: A Practical Workshop for Humanities and Social Science Researchers
   site-url: https://gpizzorno.github.io/understanding-ai/
+  favicon: assets/favicon.png
   repo-url: https://github.com/gpizzorno/understanding-ai
   page-navigation: true
   bread-crumbs: true

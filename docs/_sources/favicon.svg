@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Favicon source: the home page illustration's purple-to-teal gradient, and a network of three nodes.
+       Export, from docs/: rsvg-convert -w 96 -h 96 _sources/favicon.svg -o assets/favicon.png -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#532d74"/>
+      <stop offset="1" stop-color="#449daa"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <g stroke="#fff" stroke-width="4" stroke-linecap="round">
+    <line x1="32" y1="15" x2="15" y2="46"/>
+    <line x1="32" y1="15" x2="49" y2="46"/>
+    <line x1="15" y1="46" x2="49" y2="46"/>
+  </g>
+  <g fill="#fff">
+    <circle cx="32" cy="15" r="7"/>
+    <circle cx="15" cy="46" r="7"/>
+    <circle cx="49" cy="46" r="7"/>
+  </g>
+</svg>
