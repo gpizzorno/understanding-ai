@@ -38,6 +38,13 @@ Unit 3 covers what to do when you need scale, structured data, and reproducible 
 - **Work through the units in order.** Each builds on the one before. Within a unit, follow the pages in the order shown in the menu.
 - **Do the activities.** They're where most of the learning happens. Each one tells you how long it takes and what you need.
 - **Before Unit 3,** [set up Python](unit_3/python_setup.qmd) (the quickest option runs in your browser, with nothing to install). If you're new to Python, work through the first two units of this [self-paced introduction to Python](https://github.com/gpizzorno/introduction-to-python). You'll need to read and run code, not write it from scratch.
+- **Look up unfamiliar terms** in the [Glossary](reference/glossary.qmd). Each entry gives a short definition, and links to the page that explains the term in full.
+
+::: {.callout-warning}
+## About Citations
+
+The pages in this website follow standard academic practice and cite their sources. Most of them, however, are research papers written for specialists, and reading them is not necessary to follow the materials. If you do open one, the abstract and introduction usually make the main point without the technical detail. Many of the pages include **Going Further** boxes that list readings chosen for non-specialists.
+:::
 
 ## Requirements
 
