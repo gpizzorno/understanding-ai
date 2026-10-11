@@ -1,0 +1,11 @@
+---
+title: 'Bibliography'
+nocite: '@*'
+---
+
+The list below includes every publication cited on the site, alongside the primary sources behind the textbook chapters mentioned in the different pages. Each entry links to a free online copy of the work.
+
+Most of these are research papers written for specialists, and you don't need to read them to follow the materials. If you do open one, the abstract and introduction usually make the main point without the technical detail. For readings chosen for non-specialists, see the **Going Further** boxes at the end of each page.
+
+::: {#refs}
+:::
