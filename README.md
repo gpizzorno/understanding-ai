@@ -1,6 +1,6 @@
 # Understanding AI: A Practical Workshop for Humanities and Social Science Researchers
 
-<img align="right" src="docs/assets/understanding_ai_thumb.png" width=300  />
+<img align="right" src="docs/assets/home_illustration.jpg" width=300  />
 
 These materials introduce researchers in the humanities and social sciences to how contemporary AI systems work, what they can and cannot do, and how to use them critically in research. They start from a single idea: AI models learn patterns from data, and both their usefulness and their characteristic failures follow from it.
 
