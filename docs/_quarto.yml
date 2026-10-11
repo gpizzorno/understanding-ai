@@ -110,6 +110,8 @@ website:
             href: reference/letters.qmd
           - text: Failure Modes
             href: reference/failure_modes.qmd
+          - text: Bibliography
+            href: reference/bibliography.qmd
   page-footer:
     center: 'Written materials [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · Code [MIT](https://github.com/gpizzorno/understanding-ai/blob/main/LICENSE)'
 
@@ -126,3 +128,7 @@ format:
     code-copy: true
     code-overflow: wrap
     link-external-newwindow: false
+    # citations: Zotero's Better CSL JSON auto-export
+    bibliography: _references/zotero.json
+    link-citations: true
+    citations-hover: true
