@@ -18,7 +18,7 @@ Suppose you've trained a machine learning model to classify marbles by colour. T
 
 </div>
 
-This table is called a **confusion matrix**. Here are the same results as marbles: each marble is its actual colour, placed in the column of what the model said it was. (Blue and Orange correspond to the positive and negative classes, respectively.)
+This table is called a **confusion matrix** [@jurafskySpeechLanguageProcessing2026, chap. 4]. Here are the same results as marbles: each marble is its actual colour, placed in the column of what the model said it was. (Blue and Orange correspond to the positive and negative classes, respectively.)
 
 ![](../assets/marbles_confusion_matrix.gif){width=600 fig-alt="A confusion matrix of the ten marbles, with what each marble actually was in the rows, and what the model said in the columns. Blue called blue: 4 true positives. Blue called orange: 2 false negatives (missed). Orange called blue: 1 false positive (a false alarm). Orange called orange: 3 true negatives."}
 
@@ -43,7 +43,7 @@ $$\text{Accuracy} = \frac{TP + TN}{\text{Total}} = \frac{4 + 3}{10} = \frac{7}{1
 
 The model correctly classified 7 out of 10 marbles, giving an accuracy of **70%**.
 
-Accuracy is intuitive, but it can be misleading. Imagine a bag with 9 blue marbles and 1 orange marble: a model that always guesses Blue would score 90% accuracy while completely failing to detect any orange marbles. When classes are imbalanced, accuracy alone doesn't tell the whole story.
+**Accuracy is intuitive, but it can be misleading.** Imagine a bag with 9 blue marbles and 1 orange marble: a model that always guesses Blue would score 90% accuracy while completely failing to detect any orange marbles. When classes are imbalanced, accuracy alone doesn't tell the whole story [@saitoPrecisionRecallPlotMore2015].
 
 ## Precision
 
@@ -55,7 +55,7 @@ Accuracy is intuitive, but it can be misleading. Imagine a bag with 9 blue marbl
 $$\text{Precision} = \frac{TP}{TP + FP} = \frac{4}{4 + 1} = \frac{4}{5} = 0.80$$
 :::
 
-When the model predicted Blue, it was right **80%** of the time. Precision measures how trustworthy the model's positive predictions are. A low precision means lots of false alarms.
+When the model predicted Blue, it was right **80%** of the time. Precision measures how trustworthy the model's positive predictions are. A low precision means lots of *false alarms*.
 
 ## Recall
 
@@ -77,7 +77,7 @@ Which matters more depends on the task. If you are collecting every blue marble 
 
 ## F1 Score
 
-The *F1 score* combines precision and recall into a single number. It is the **harmonic mean** of the two, a form of average that penalizes large imbalances between them:
+The *F1 score* combines precision and recall into a single number. It is the **harmonic mean** of the two, a form of average that penalizes large imbalances between them [@vanrijsbergenInformationRetrieval1979, chap. 7; @jurafskySpeechLanguageProcessing2026, chap. 4]:
 
 ::: {.callout-note collapse="true"}
 ## Calculation
@@ -85,7 +85,7 @@ The *F1 score* combines precision and recall into a single number. It is the **h
 $$F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} = 2 \times \frac{0.80 \times 0.667}{0.80 + 0.667} = 2 \times \frac{0.533}{1.467} \approx 0.727$$
 :::
 
-The F1 score for our model is approximately **0.73** (or 73%). A perfect model would score 1.0; a model that gets everything wrong would score 0.
+The F1 score for our model is approximately **0.73** (or 73%). A perfect model would score 1.0, and a model that gets everything wrong would score 0.
 
 The harmonic mean is used rather than a simple average because it is sensitive to imbalance. Take the cautious model above to an extreme: it calls only one marble Blue, and that marble is blue. Its precision is perfect (1 of 1, or 100%), but it found only 1 of the 6 blue marbles (a recall of about 17%). A simple average would give it a respectable-looking 58%. Its F1 is about **0.29**, which better reflects how little it found.
 
@@ -112,8 +112,20 @@ In Unit 3, the *marbles* are the names in [Stevenson's letters](../reference/let
 - A **true positive** is a person the model marked who is also in the annotations, such as `Sidney Colvin`.
 - A **false positive** is something the model marked as a person that isn't one. In one letter, the model marks `Clever` (from `not so CLEVER perhaps`) as a person.
 - A **false negative** is a person the model missed. In the same letter, it misses `COLVIN` in `MY DEAR COLVIN`.
-- **True negatives** would be every other word in the letters, correctly left unmarked. There are so many of them that accuracy would be close to 100% for almost any model, which is why the evaluation in Unit 3 uses only precision, recall, and F1.
+- **True negatives** would be every other word in the letters, correctly left unmarked. There are so many of them that accuracy would be close to 100% for almost any model, which is why the evaluation in Unit 3 uses only precision, recall, and F1, as is standard for this task [@sangIntroductionCoNLL2003Shared2003].
 
-## Next
+If you came here from [Model Training](model_training.qmd), you can pick up where you left off, at [The Black Box Problem](model_training.qmd#the-black-box-problem).
 
-Continue with [Language Models](language_models.qmd), or go back to [Model Training](model_training.qmd#the-black-box-problem) if you jumped here from there.
+::: {.callout-note}
+## Going Further
+
+If you want to read more, the following are a good place to start:
+
+- Google, [*Classification: Accuracy, Recall, Precision, and Related Metrics*](https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall): a short lesson from Google's Machine Learning Crash Course, with interactive examples of the trade-off between precision and recall.
+- @jurafskySpeechLanguageProcessing2026, chapter 4: the textbook treatment of these measures, including how to average them across several classes. It assumes a little more mathematics than this page.
+:::
+
+## References
+
+::: {#refs}
+:::

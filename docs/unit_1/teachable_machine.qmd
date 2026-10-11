@@ -7,14 +7,14 @@ lightbox: auto
 ## Activity Details
 
 **Time:** about 30 minutes  
-**Works:** on your own, or in a small group  
-**You need:** a web browser and a webcam (for image or pose models) or a microphone (for sound models)  
+**Setup:** on your own, or in a small group  
+**Requirements:** a web browser and a webcam (for image or pose models) or a microphone (for sound models)  
 **URL:** [teachablemachine.withgoogle.com](https://teachablemachine.withgoogle.com)
 :::
 
 This activity is about the most basic idea in machine learning: that a model learns from examples, and only from examples. [Teachable Machine](https://teachablemachine.withgoogle.com) is a free Google tool that lets you train a small image, sound, or pose classifier in your browser, with no code. You decide on the categories, show it examples of each, and it trains a model to tell them apart.
 
-The goal is not to build a useful model. It is to develop an intuition for what training data is, how your choices of categories and examples shape a model, and what “training” involves in practice. What you do here mirrors, on a tiny scale, what happens inside much larger models. You'll also see, in miniature, the training cycle that [Model Training](model_training.qmd) describes next.
+The goal is not to build a useful model. It is to develop an intuition for what training data is, how your choices of categories and examples shape a model, and what *training* involves in practice. What you do here mirrors, on a tiny scale, what happens inside much larger models. You'll also see, in miniature, the training cycle that [Model Training](model_training.qmd) describes next.
 
 ![](../assets/teachable_machine/test_page_top.jpg){fig-alt="The Teachable Machine training screen: two classes, Green Square and Orange Circle, each with image samples; the Training panel shows Model Trained; the Preview panel shows the webcam view of an orange paper circle, classified as Orange Circle with 100% confidence."}
 
@@ -22,18 +22,18 @@ Before you start, you may want to read [Basic Concepts](basic_concepts.qmd), esp
 
 ::: {.callout-warning}
 ## About the Tool
-Teachable Machine is a third-party site and may change over time. Your images and sounds are processed in your browser and are not uploaded unless you choose to export your model to the cloud.
+Teachable Machine is a third-party site and may change over time. Your images and sounds are [processed in your browser](https://github.com/googlecreativelab/teachablemachine-community) and are not uploaded unless you choose to export your model to the cloud.
 :::
 
 ## Transfer Learning
 
-When you click <span class="command">Train Model</span>, Teachable Machine doesn't build a model from nothing. It starts from a model that has already been trained, by Google, on millions of images (or sounds, or poses), and has learned general visual features: edges, textures, shapes. It then trains only the last part of that model, on your examples, to separate *your* classes. This is called [**transfer learning**](https://en.wikipedia.org/wiki/Transfer_learning), and it's why a few dozen examples are enough, where training from scratch would need thousands. (The NER models in Unit 3 are *pre-trained* in the same sense.)
+When you click <span class="command">Train Model</span>, Teachable Machine doesn't build a model from nothing. It starts from a model that has already been trained, by Google, on millions of images (or sounds, or poses), and has learned general visual features: edges, textures, shapes [@russakovskyImageNetLargeScale2015; @howardMobileNetsEfficientConvolutional2017; @zeilerVisualizingUnderstandingConvolutional2013]. It then trains only the last part of that model, on your examples, to separate *your* classes. This is called [**transfer learning**](https://en.wikipedia.org/wiki/Transfer_learning), and it's why a few dozen examples are enough, where training from scratch would need thousands [@yosinskiHowTransferableAre2014; @goodfellowDeepLearning2016, chap. 15]. (The NER models in Unit 3 are *pre-trained* in the same sense.)
 
 ![](../assets/teachable_machine/advanced_settings.png){.img-right width=220 fig-alt="The Advanced section of the Training panel: Epochs 50, Batch Size 16, Learning Rate 0.001, Reset Defaults, and Under the hood."}
 
 Training follows the cycle you'll read about in [Model Training](model_training.qmd#the-training-loop), in short:
 
-- **It splits your examples.** For each class, 15% of the samples (rounded up) are held back to test the model on examples it hasn't seen, and the rest are used for training.
+- **It splits your examples.** For each class, 15% of the samples (rounded up, according to its [source code](https://github.com/googlecreativelab/teachablemachine-community/blob/master/libraries/image/src/teachable-mobilenet.ts)) are held back to test the model on examples it hasn't seen, and the rest are used for training.
 - **It trains in epochs.** Each *epoch* is one pass through all your training samples, adjusting the model's weights a little each time.
 - **It shows you the result.** The `Preview` panel runs the trained model live on your webcam or microphone, with a bar for each class showing how confident it is.
 
@@ -121,8 +121,8 @@ Focus on *why* the model fails when it does, not just *that* it fails. The failu
 ## Expected Results
 
 - **It works well on examples like its training data, and much less well on anything else.** A model trained in one room, in one light, often fails in another.
-- **It learns shortcuts.** If everything in one class shared a background, a colour, or a person, the model may have learned that instead of the thing you meant. You'll often find this out only by changing that one thing.
-- **It's always confident about something.** Show it something that belongs to none of your classes, and it still has to choose one, often with high confidence. A classifier can only answer the question it was trained on: it has no way of saying "none of these".
+- **It learns shortcuts.** If everything in one class shared a background, a colour, or a person, the model may have learned that instead of the thing you meant. You'll often find this out only by changing that one thing [@geirhosShortcutLearningDeep2020; @ribeiroWhyShouldTrust2016].
+- **It's always confident about something.** Show it something that belongs to none of your classes, and it still has to choose one, often with high confidence. A classifier can only answer the question it was trained on: it has no way of saying "none of these" [@nguyenDeepNeuralNetworks2015; @hendrycksBaselineDetectingMisclassified2017].
 - **More examples of one class can change the others.** The model learns what *separates* the classes, so changing one changes the boundary for all of them.
 :::
 
@@ -139,7 +139,7 @@ Predict, before you look: what will it say about a green circle? And an orange s
 
 The model learned shapes. The green circle came out as Orange Circle (96%), and the orange square as Green Square (99–100%).
 
-That's what we wanted, but nothing in the training data could have told us so in advance: both explanations fit every example the model had seen. Only an input that pulls the two apart, a green circle, could reveal which one it had learned. With different samples (other lighting, other paper, other shapes) it could have gone the other way. To find out what a model has learned, you have to test it on the cases your training data didn't cover.
+That's what we wanted, but nothing in the training data could have told us so in advance: both explanations fit every example the model had seen. Only an input that pulls the two apart, a green circle, could reveal which one it had learned. With different samples (other lighting, other paper, other shapes) it could have gone the other way: image models trained on large photo collections often rely more on texture than on shape, the opposite of people [@geirhosImageNettrainedCNNsAre2018]. To find out what a model has learned, you have to test it on the cases your training data didn't cover.
 :::
 
 ## Explaining Model Behaviour
@@ -156,6 +156,16 @@ This is the same for every model, including the largest of them. The data is whe
 - The real test of a model is data that differs from its training data. How and why it fails there tells you what it actually learned.
 - Large models are trained on the same basic principle, at vastly greater scale, with the same dependence on their data.
 
-## Next
+::: {.callout-note}
+## Going Further
 
-[Model Training](model_training.qmd) connects this experience to what actually happens during training, how you find out whether it worked, and where bias gets in.
+If you want to read more, the following are a good place to start:
+
+- @geirhosShortcutLearningDeep2020: a short essay on how models learn *shortcuts* instead of the thing you meant, with examples from image recognition, medicine, and language. The figures make the point without the technical detail.
+- @nguyenDeepNeuralNetworks2015: a research paper, but its images are worth a look on their own: white noise and abstract patterns that a model classified, with 99.99% confidence, as a lion and other familiar things.
+:::
+
+## References
+
+::: {#refs}
+:::
