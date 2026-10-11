@@ -1,0 +1,25 @@
+<!doctype html>
+<!-- Source of assets/og_card.jpg, the preview image shown when a link to the site is shared (1200 x 630).
+     To regenerate, from docs/:
+       "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+         --window-size=1200,630 --virtual-time-budget=5000 --allow-file-access-from-files \
+         --screenshot=og_card.png "file://$PWD/_sources/og_card.html"
+       magick og_card.png -quality 88 assets/og_card.jpg && rm og_card.png -->
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0}
+.card{width:1200px;height:630px;position:relative;overflow:hidden;
+  background:linear-gradient(to bottom,#532d74,#449daa);font-family:"Source Sans 3",sans-serif;color:#fff}
+.art{position:absolute;top:0;right:-205px;height:630px;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 220px);mask-image:linear-gradient(to right,transparent 0,#000 220px)}
+.text{position:absolute;left:72px;top:0;bottom:0;width:600px;display:flex;flex-direction:column;justify-content:center}
+.mark{width:72px;margin-bottom:28px}
+h1{font-size:76px;white-space:nowrap;font-weight:700;line-height:1;margin:0 0 22px}
+p{font-size:32px;max-width:500px;font-weight:400;line-height:1.25;margin:0;opacity:.95}
+.url{position:absolute;left:72px;bottom:44px;font-size:24px;font-weight:600;opacity:.85}
+</style></head><body><div class="card">
+<img class="art" src="../assets/home_illustration.jpg">
+<div class="text"><img class="mark" src="../assets/logo.svg"><h1>Understanding AI</h1>
+<p>A Practical Workshop for Humanities and Social Science Researchers</p></div>
+<div class="url">gpizzorno.github.io/understanding-ai</div>
+</div></body></html>
