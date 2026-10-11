@@ -5,7 +5,7 @@ toc: false
 body-classes: home-page
 ---
 
-![](assets/understanding_ai_thumb.png){.img-right width=300}
+![](assets/home_illustration.jpg){.img-right width=300 fig-alt="Illustration: a network of connected points arching over symbols of scholarship (open books, a quill, a classical column, a globe) and of computing (a laptop and bar charts)."}
 
 These materials introduce researchers in the humanities and social sciences to how contemporary AI systems work, what they can and cannot do, and how to use them critically in research. They start from a single idea: AI models learn patterns from data, and both their usefulness and their characteristic failures follow from it.
 
