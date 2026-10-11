@@ -35,6 +35,8 @@ website:
   page-navigation: true
   bread-crumbs: true
   navbar:
+    logo: assets/logo.svg
+    logo-alt: ''
     search: true
     tools:
       - icon: info-circle-fill

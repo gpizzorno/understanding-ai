@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="46" viewBox="8 8 48 46">
+  <!-- Navbar logo: the favicon's three-node network, in white, without the background -->
+  <g stroke="#fff" stroke-width="4" stroke-linecap="round">
+    <line x1="32" y1="15" x2="15" y2="46"/>
+    <line x1="32" y1="15" x2="49" y2="46"/>
+    <line x1="15" y1="46" x2="49" y2="46"/>
+  </g>
+  <g fill="#fff">
+    <circle cx="32" cy="15" r="7"/>
+    <circle cx="15" cy="46" r="7"/>
+    <circle cx="49" cy="46" r="7"/>
+  </g>
+</svg>
