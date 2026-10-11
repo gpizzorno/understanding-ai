@@ -83,7 +83,7 @@ Depending on the audience, Units 1 and 2 can work as a self-contained core that 
 
 **A few weeks before:**
 
-- [ ] Decide how participants will run Python. [Google Colab](https://gpizzorno.github.io/understanding-ai/unit_3/python_setup.html#option-1-google-colab) (no installation, but it needs a Google account) is the easiest for a group. If participants install locally, send the [setup instructions](https://gpizzorno.github.io/understanding-ai/unit_3/python_setup.html) early.
+- [ ] Decide how participants will run Python. [Google Colab](https://gpizzorno.github.io/understanding-ai/unit_3/python_setup.html#setup-options) (no installation, but it needs a Google account) is the easiest for a group. If participants install locally, send the [setup instructions](https://gpizzorno.github.io/understanding-ai/unit_3/python_setup.html) early.
 - [ ] Tell participants what they need: a laptop with a modern browser, a webcam or microphone (Teachable Machine), a Google account (Gemini Notebook, and Colab if used), and access to a general-purpose chat assistant (free versions are fine).
 - [ ] Create copies of the shared resources: a "Model Share" document for Teachable Machine, a Google Sheet for annotations (columns `file_name`, `entity_text`, `entity_type`), and, if desired, a notebook in Gemini Notebook with the 20 sample letters, for participants to copy. See [unit_3_workshop_resources.md](unit_3_workshop_resources.md).
 
