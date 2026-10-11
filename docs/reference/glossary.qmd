@@ -1,0 +1,22 @@
+---
+title: 'Glossary'
+toc: false
+listing:
+  id: glossary
+  contents: glossary.yml
+  type: table
+  fields: [title, description]
+  field-display-names:
+    title: Term
+    description: Definition
+  sort: title
+  sort-ui: true
+  filter-ui: true
+  page-size: 500
+  table-hover: false
+---
+
+The list below includes short definitions of the terms used across the site. They're deliberately brief: each one links to the page that explains the term in context, with examples. Type in the box to filter the list.
+
+::: {#glossary}
+:::

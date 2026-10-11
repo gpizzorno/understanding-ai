@@ -1,0 +1,482 @@
+# Glossary entries, listed and filtered by glossary.qmd. Each definition links to the page that explains the term.
+# Unit 1: core concepts
+
+- title: Artificial Intelligence (AI)
+  description: >-
+    The broadest term: a field that aims to build systems that perform tasks we would call intelligent if a person did them.
+    It covers everything from spam filters to language generation, so on its own it says little about how a system works.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#terminology).
+
+- title: Machine Learning (ML)
+  description: >-
+    The part of AI in which systems learn patterns from examples, instead of following rules a programmer wrote.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#from-rules-to-examples).
+
+- title: Deep Learning (DL)
+  description: >-
+    Machine learning with neural networks that have many layers (hence *deep*).
+    It is behind most recent advances in image recognition, speech, translation, and language generation.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#terminology).
+
+- title: Generative AI
+  description: >-
+    Systems that produce new content, such as text, images, audio, or code, instead of only classifying or predicting.
+    It groups together systems with very different designs, from image generators to LLMs.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#terminology).
+
+- title: Large Language Model (LLM)
+  description: >-
+    A deep learning model trained on very large collections of text, which generates text by predicting one token at a time.
+    Chat assistants are built on LLMs.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#terminology) and [Language Models](../unit_1/language_models.qmd).
+
+- title: Chat assistant
+  description: >-
+    An application, such as *ChatGPT*, *Claude*, or *Gemini*, that lets you hold a conversation with an LLM, and adds its own instructions and tools around it.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#terminology).
+
+- title: Open model
+  description: >-
+    A model whose weights are published, so anyone can download it and run it on their own computer, where it never changes unless you change it.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#terminology) and [Advantages of Programmatic Approaches](../unit_3/programming_advantages.qmd#best-of-both-worlds).
+
+- title: Neural network
+  description: >-
+    A mathematical structure, loosely inspired by the brain, made of simple connected units called *neurons*.
+    The neurons are arranged in *layers*: data enters at the input layer, passes through one or more hidden layers, and emerges at the output layer.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#neural-networks-and-weights).
+
+- title: Weight
+  description: >-
+    A number on each connection in a neural network, which determines how the value passing along it changes.
+    The weights are what a network learns in training, and everything it "knows" is stored in them.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#neural-networks-and-weights).
+
+- title: Activation function
+  description: >-
+    A simple function that each neuron applies to the sum of its inputs before passing it on.
+    It is what lets a neural network represent complex patterns.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#neural-networks-and-weights).
+
+- title: Supervised learning
+  description: >-
+    Learning from examples that come with the correct answers (labels), as if with an answer key.
+    The NER models in Unit 3 were trained this way.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#supervised-learning).
+
+- title: Unsupervised learning
+  description: >-
+    Learning from data without labels: the model looks for structure on its own, and groups similar items together.
+    It's up to you to work out what the groups mean.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#unsupervised-learning).
+
+- title: Semi-supervised learning
+  description: >-
+    Learning from a small amount of labelled data together with a large amount of unlabelled data.
+    It is useful when labelling is slow or expensive.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#semi-supervised-learning).
+
+- title: Reinforcement learning
+  description: >-
+    Learning by trial and error: each output is scored, rewarded or penalized, and the model adjusts to earn more reward.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#reinforcement-learning).
+
+- title: Reinforcement Learning from Human Feedback (RLHF)
+  description: >-
+    A form of reinforcement learning in which people compare a model's outputs, and the model is tuned towards the answers they prefer.
+    Much of the behaviour of chat assistants, including their refusals, comes from this stage.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#reinforcement-learning).
+
+- title: Label
+  description: >-
+    The correct answer attached to an example in supervised learning, such as the category of an image, or whether a name is a person, a place, or an organization.
+    See [Basic Concepts](../unit_1/basic_concepts.qmd#supervised-learning).
+
+- title: Transfer learning
+  description: >-
+    Starting from a model that has already been trained on a large dataset, and training only part of it on your own examples.
+    It's why Teachable Machine needs only a few dozen examples.
+    See [Teachable Machine](../unit_1/teachable_machine.qmd#transfer-learning).
+
+- title: Training set
+  description: >-
+    The part of the data a model learns from.
+    See also *development set* and *test set*.
+    See [Model Training](../unit_1/model_training.qmd#training-development-and-test-sets).
+
+- title: Development set
+  description: >-
+    Data held back from training, and used to check the model's progress and guide tuning.
+    Also called a *validation set*.
+    See [Model Training](../unit_1/model_training.qmd#training-development-and-test-sets).
+
+- title: Test set
+  description: >-
+    Data the model never sees during training or tuning, used once at the end to measure how well it performs on new examples.
+    See [Model Training](../unit_1/model_training.qmd#training-development-and-test-sets).
+
+- title: Epoch
+  description: >-
+    One complete pass through the training set.
+    Training usually takes many epochs.
+    See [Model Training](../unit_1/model_training.qmd#training-loss-and-optimization).
+
+- title: Loss
+  description: >-
+    A measure of how wrong a model's prediction was.
+    Training adjusts the weights, step by step, to reduce it.
+    See [Model Training](../unit_1/model_training.qmd#training-loss-and-optimization).
+
+- title: Tuning
+  description: >-
+    Adjusting the settings of training, such as how large the model is or how long to train it, guided by results on the development set.
+    See [Model Training](../unit_1/model_training.qmd#the-training-loop).
+
+- title: Overfitting
+  description: >-
+    When a model learns its training data too well, noise and quirks included, so it does well on that data and poorly on anything new.
+    See also *underfitting*.
+    See [Model Training](../unit_1/model_training.qmd#tuning-overfitting-and-generalization).
+
+- title: Underfitting
+  description: >-
+    When a model is too simple to capture the real pattern, so it does poorly everywhere.
+    See also *overfitting*.
+    See [Model Training](../unit_1/model_training.qmd#tuning-overfitting-and-generalization).
+
+- title: Generalization
+  description: >-
+    Doing well on examples a model has never seen: the goal of training.
+    See [Model Training](../unit_1/model_training.qmd#tuning-overfitting-and-generalization).
+
+- title: Bias–variance tradeoff
+  description: >-
+    As a model gets more complex, errors from oversimplifying (bias) fall and errors from memorizing (variance) rise, so the lowest total error sits in between.
+    This sense of *bias* is statistical, and differs from bias in training data.
+    See [Model Training](../unit_1/model_training.qmd#tuning-overfitting-and-generalization).
+
+- title: Bias (in training data)
+  description: >-
+    Systematic skew in what a model learns, which comes from what is, and isn't, in its data, and from choices made in designing it.
+    A model reproduces the patterns of its data, including its gaps and prejudices.
+    See [Model Training](../unit_1/model_training.qmd#bias-in-training-data).
+
+- title: Black box
+  description: >-
+    A system whose workings you can't inspect: you can measure what a trained model does, but not read what it learned, because its knowledge is spread across its weights.
+    See [Model Training](../unit_1/model_training.qmd#the-black-box-problem).
+
+# Unit 1: evaluation
+
+- title: Accuracy
+  description: >-
+    The fraction of all predictions that were right.
+    It can be misleading when one class is much more common than the others.
+    See [Evaluation Metrics](../unit_1/evaluation_metrics.qmd#accuracy).
+
+- title: Precision
+  description: >-
+    Of everything the model labelled as positive, the fraction that really was.
+    Low precision means many false alarms.
+    See [Evaluation Metrics](../unit_1/evaluation_metrics.qmd#precision).
+
+- title: Recall
+  description: >-
+    Of everything that really was positive, the fraction the model found.
+    Low recall means many misses.
+    See [Evaluation Metrics](../unit_1/evaluation_metrics.qmd#recall).
+
+- title: F1 score
+  description: >-
+    A single number combining precision and recall (their harmonic mean), from 0 to 1.
+    It is low if either of them is low.
+    See [Evaluation Metrics](../unit_1/evaluation_metrics.qmd#f1-score).
+
+- title: Harmonic mean
+  description: >-
+    A kind of average that is pulled down by the smaller of the values, so it penalizes a large gap between them.
+    The F1 score is the harmonic mean of precision and recall.
+    See [Evaluation Metrics](../unit_1/evaluation_metrics.qmd#f1-score).
+
+- title: Confusion matrix
+  description: >-
+    A table of a model's results, with what each item actually was in the rows, and what the model said it was in the columns.
+    See [Evaluation Metrics](../unit_1/evaluation_metrics.qmd#classification-example).
+
+- title: True and false positives and negatives
+  description: >-
+    The four outcomes of a prediction.
+    *Positive* and *negative* are what the model predicted (positive being the class you're looking for), and *true* and *false* are whether it was right.
+    A false positive is a false alarm, and a false negative is a miss.
+    See [Evaluation Metrics](../unit_1/evaluation_metrics.qmd#classification-example).
+
+- title: Benchmark
+  description: >-
+    A standard test that AI companies report scores on.
+    Benchmarks become targets, and a high score says little about how a model will do on your own material.
+    See [LLM Behaviour](../unit_1/llm_behaviour.qmd#the-limits-of-benchmarks).
+
+# Unit 1: language models
+
+- title: Language model
+  description: >-
+    A model trained to predict the next token in a text.
+    It generates text by repeating that prediction, one token at a time.
+    See [Language Models](../unit_1/language_models.qmd).
+
+- title: Token
+  description: >-
+    The unit a language model reads and writes: a whole word, part of a word, or punctuation.
+    Rare names, ALL-CAPS text, and old spellings are often split into several tokens.
+    See [Language Models](../unit_1/language_models.qmd#tokens).
+
+- title: Tokenizer
+  description: >-
+    The part of a language model's system that splits text into tokens, from a fixed vocabulary.
+    See [Language Models](../unit_1/language_models.qmd#tokens).
+
+- title: Embedding
+  description: >-
+    A list of numbers that represents a token, placing it as a point in a space where tokens with related meanings sit close together.
+    See [Language Models](../unit_1/language_models.qmd#word-embeddings).
+
+- title: Sequence-to-sequence
+  description: >-
+    A task that turns one sequence of tokens into another, such as translation.
+    See [Language Models](../unit_1/language_models.qmd#from-sequence-to-sequence-transformers).
+
+- title: Encoder and decoder
+  description: >-
+    The two halves of a sequence-to-sequence model.
+    The encoder reads the input and turns it into an internal representation of its meaning, and the decoder produces the output from it, one token at a time.
+    See [Language Models](../unit_1/language_models.qmd#from-sequence-to-sequence-transformers).
+
+- title: Recurrent Neural Network (RNN)
+  description: >-
+    A neural network that reads text one token at a time, carrying a running summary forward.
+    RNNs struggled to connect words that were far apart.
+    See also *LSTM* and *transformer*.
+    See [Language Models](../unit_1/language_models.qmd#from-sequence-to-sequence-transformers).
+
+- title: Long Short-Term Memory (LSTM)
+  description: >-
+    A kind of recurrent network with internal *gates* that decide what to keep and what to forget, so it can carry information further.
+    LSTMs were the standard for translation in the mid-2010s.
+    See [Language Models](../unit_1/language_models.qmd#from-sequence-to-sequence-transformers).
+
+- title: Transformer
+  description: >-
+    The neural network design behind modern language models (introduced in 2017), which uses attention to process a whole passage at once.
+    Not to be confused with `transformers`, the Python library used in Unit 3.
+    See [Language Models](../unit_1/language_models.qmd#from-sequence-to-sequence-transformers).
+
+- title: Attention
+  description: >-
+    The mechanism in a transformer that weighs every token against every other token at once, so the model can relate words however far apart they are.
+    See [Language Models](../unit_1/language_models.qmd#from-sequence-to-sequence-transformers).
+
+- title: Sampling
+  description: >-
+    Choosing the next token at random, weighted by the probabilities the model gives each one, instead of always taking the most likely.
+    It's why the same prompt can produce different answers.
+    See [Language Models](../unit_1/language_models.qmd#text-generation).
+
+- title: Temperature
+  description: >-
+    A setting that controls how adventurous sampling is.
+    At low temperature, the most likely tokens dominate, and at high temperature, less likely ones are chosen more often.
+    See [Language Models](../unit_1/language_models.qmd#text-generation).
+
+- title: Hallucination
+  description: >-
+    The usual name for fluent, confident output that is false or invented, such as a biography of a person the model knows little about.
+    See [LLM Behaviour](../unit_1/llm_behaviour.qmd#plausibility-vs.-truth), and [Failure Modes](failure_modes.qmd) on the term itself.
+
+- title: Watermark
+  description: >-
+    A hidden statistical pattern, added to AI-generated text by nudging the choice of tokens with a secret key.
+    Usually only the provider can check for it, and heavy editing weakens it.
+    See [LLM Behaviour](../unit_1/llm_behaviour.qmd#watermarks).
+
+# Unit 1 (Hack Merlin) and Unit 2: prompts
+
+- title: Prompt
+  description: >-
+    The text you give a model.
+    The model's actual input also includes a system prompt, documents, and the chat history.
+    See [Prompt Processing](../unit_2/prompts.qmd#the-models-actual-input).
+
+- title: System prompt
+  description: >-
+    Hidden instructions from the application, added to the model's input, that say what role to play and how to behave.
+    See [Prompt Processing](../unit_2/prompts.qmd#the-models-actual-input) and [Hack Merlin](../unit_1/hack_merlin.qmd).
+
+- title: Adversarial prompting
+  description: >-
+    Writing input designed to make a model behave in ways its designers did not intend.
+    See [Hack Merlin](../unit_1/hack_merlin.qmd).
+
+- title: Prompt injection
+  description: >-
+    Input crafted to make a model ignore or override its instructions.
+    In *indirect* prompt injection, the text comes from somewhere else, such as a web page or a document the model is asked to read.
+    See [Hack Merlin](../unit_1/hack_merlin.qmd).
+
+- title: Context window
+  description: >-
+    The limit on how much text a model can work with at one time.
+    Everything in the model's input, including the chat history and any documents, has to fit into it.
+    See [Prompt Processing](../unit_2/prompts.qmd#context-windows).
+
+- title: Retrieval-Augmented Generation (RAG)
+  description: >-
+    Searching your documents (or the web) for passages related to a question, and adding them to the model's input.
+    The model sees only the passages the search found, not the whole document.
+    See [Prompt Processing](../unit_2/prompts.qmd#the-models-actual-input).
+
+- title: GraphRAG
+  description: >-
+    A variant of RAG that first uses an LLM to extract the entities and relationships in a collection into a network (a *graph*), and then uses the graph to answer questions about the collection as a whole.
+    See [Advantages of Programmatic Approaches](../unit_3/programming_advantages.qmd#best-of-both-worlds).
+
+- title: Grounding
+  description: >-
+    Anchoring a prompt in specific material: telling the model which documents to use, and asking it to show where each claim comes from.
+    It improves transparency, not certainty.
+    See [Prompting Strategies](../unit_2/prompting_strategies.qmd#grounding-in-sources).
+
+- title: Sycophancy
+  description: >-
+    A model's tendency to agree with you, flatter you, or give way when you push back.
+    See [Assessing Reliability](../unit_2/assessing_reliability.qmd#failure-modes-patterns-not-accidents) and [Failure Modes](failure_modes.qmd).
+
+- title: Failure mode
+  description: >-
+    A characteristic way in which a kind of system goes wrong.
+    LLMs fail in patterns that follow from how they work, so you can learn to anticipate them.
+    See [Assessing Reliability](../unit_2/assessing_reliability.qmd#failure-modes-patterns-not-accidents) and [Failure Modes](failure_modes.qmd).
+
+- title: Ground truth
+  description: >-
+    The set of correct answers that a model's output is compared with, usually made by people with the relevant expertise annotating a sample of documents.
+    See [Assessing Reliability](../unit_2/assessing_reliability.qmd#from-spot-checks-to-systematic-evaluation).
+
+# Unit 3: NLP and the case study
+
+- title: Natural Language Processing (NLP)
+  description: >-
+    Computational methods for working with human language.
+    See [The NLP Pipeline](../unit_3/nlp_pipeline.qmd).
+
+- title: Named-Entity Recognition (NER)
+  description: >-
+    The task of finding and classifying names in a text: people, places, organizations, and sometimes dates, works, or other categories.
+    See [The NLP Pipeline](../unit_3/nlp_pipeline.qmd#named-entity-recognition).
+
+- title: Named entity
+  description: >-
+    A name in a text, of a type a model or an annotator is looking for.
+    The case study uses three types: PER (people), LOC (places), and ORG (organizations).
+    See [Ground-Truth Annotation](../unit_3/annotation.qmd#instructions).
+
+- title: Pre-trained model
+  description: >-
+    A model that someone else has already trained, and published for others to use.
+    You download it and run it on your own text, without training anything.
+    See [The NLP Pipeline](../unit_3/nlp_pipeline.qmd#pre-trained-models).
+
+- title: Model card
+  description: >-
+    A page describing a published model: what it was trained on, which labels it predicts, how it was evaluated, and its known limitations.
+    See [The NLP Pipeline](../unit_3/nlp_pipeline.qmd#hugging-face).
+
+- title: Confidence score
+  description: >-
+    A number from 0 to 1 that a model gives each prediction.
+    Keeping only predictions above a *threshold* trades recall for precision.
+    See [Evaluating and Comparing Models](../unit_3/evaluating_models.qmd#confidence-thresholds).
+
+- title: Pipeline
+  description: >-
+    A fixed series of steps that turns raw material into results, such as loading, preprocessing, running a model, and analysing its output.
+    Each step can introduce errors, and errors compound.
+    See [The NLP Pipeline](../unit_3/nlp_pipeline.qmd#the-pipeline).
+
+- title: Preprocessing
+  description: >-
+    Preparing text before a model reads it, such as converting ALL-CAPS words to title case.
+    A mismatch between your text and a model's training data can cause failures that look mysterious.
+    See [The NLP Pipeline](../unit_3/nlp_pipeline.qmd#the-pipeline).
+
+- title: Entity resolution
+  description: >-
+    Working out which different names refer to the same entity, such as `Colvin`, `S. C.`, and `Sidney Colvin`.
+    See [Gemini Notebook](../unit_2/gemini_notebook.qmd#part-1-exploration) and [The NLP Pipeline](../unit_3/nlp_pipeline.qmd#the-pipeline).
+
+- title: Geocoding
+  description: >-
+    Turning place names into coordinates, so they can be put on a map.
+    Automatic geocoding needs checking: in the case study, a place where Stevenson lodged in San Francisco landed in Brooklyn.
+    See [Named Entities in Stevenson's Letters](../unit_3/ner_case_study.qmd).
+
+- title: Annotation
+  description: >-
+    Marking up a text by hand, such as recording every named entity in a letter and its type.
+    Annotations made by people are the usual ground truth for evaluating a model.
+    See [Ground-Truth Annotation](../unit_3/annotation.qmd).
+
+- title: Inter-annotator agreement
+  description: >-
+    How far two or more people annotating the same material agree.
+    It tells you how reliable the ground truth itself is.
+    See [Ground-Truth Annotation](../unit_3/annotation.qmd#inter-annotator-agreement).
+
+- title: Cohen's kappa
+  description: >-
+    A measure of agreement between two annotators that corrects for agreement expected by chance.
+    A kappa of 1 means perfect agreement, and 0 means no more than chance.
+    See [Ground-Truth Annotation](../unit_3/annotation.qmd#inter-annotator-agreement).
+
+- title: Fine-tuning
+  description: >-
+    Continuing to train a pre-trained model on annotated examples from your own sources, so that it learns their particular names, spellings, and conventions.
+    See [Next Steps](../unit_3/next_steps.qmd#further-directions).
+
+# Unit 3: Python and coding
+
+- title: Jupyter notebook
+  description: >-
+    A document that mixes code, its output, and explanatory text.
+    You run the code in small cells, one at a time, and see each result immediately below.
+    See [Setting Up Python](../unit_3/python_setup.qmd).
+
+- title: Library
+  description: >-
+    Code that someone else has written, which you install and import into your own, such as `pandas` for tables or `transformers` for models.
+    See [Setting Up Python](../unit_3/python_setup.qmd#required-python-knowledge).
+
+- title: Virtual environment
+  description: >-
+    An isolated set of Python libraries for one project, so that it doesn't interfere with anything else on your computer.
+    See [Setting Up Python](../unit_3/python_setup.qmd#setup-options) and [Coding with LLMs](../unit_3/coding_with_llms.qmd#installing-libraries-into-the-right-environment).
+
+- title: Traceback
+  description: >-
+    The error message Python prints when something goes wrong, listing the steps that led to the error.
+    Read the last line first: it usually names the problem.
+    See [Coding with LLMs](../unit_3/coding_with_llms.qmd#five-good-habits).
+
+- title: Vibe-coding
+  description: >-
+    Running whatever code an LLM produces, and iterating until it seems to work, without understanding the code in between.
+    See [Coding with LLMs](../unit_3/coding_with_llms.qmd#vibe-coding-vs.-coding-with-llms).
+
+- title: Coding agent
+  description: >-
+    An AI tool that works inside your project folder, and can read your files, write and run code, read the errors, and try again until a task is done.
+    See [Coding with LLMs](../unit_3/coding_with_llms.qmd#coding-agents).
+
+- title: Reproducibility
+  description: >-
+    Getting the same result from the same input, with the same settings and the same versions, so that others (and you, later) can check and build on it.
+    See [Advantages of Programmatic Approaches](../unit_3/programming_advantages.qmd#control-not-capability).

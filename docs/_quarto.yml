@@ -124,6 +124,8 @@ website:
             href: reference/letters.qmd
           - text: Failure Modes
             href: reference/failure_modes.qmd
+          - text: Glossary
+            href: reference/glossary.qmd
           - text: Bibliography
             href: reference/bibliography.qmd
   page-footer:
