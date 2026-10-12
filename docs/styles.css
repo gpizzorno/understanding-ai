@@ -439,3 +439,8 @@ mjx-math {
 .ner-case-study #quarto-appendix {
   display: none;
 }
+
+/* fix the issue reporting link */
+.toc-actions {
+  margin-left: 1.05em;
+}

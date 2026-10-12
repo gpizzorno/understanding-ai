@@ -13,7 +13,10 @@ project:
   # the notebook lives in code/ this copies it into unit_3/ for each build
   pre-render: _scripts/copy_notebook.lua
   # make references link their publication details
-  post-render: _scripts/link_references.py
+  post-render:
+    - _scripts/link_references.py
+    # the "Report an issue" links name the page they're on
+    - _scripts/issue_links.py
   render:
     - index.qmd
     - about.qmd
@@ -41,6 +44,7 @@ website:
   open-graph: true
   twitter-card: true
   repo-url: https://github.com/gpizzorno/understanding-ai
+  repo-actions: [issue] # a "Report an issue" link on every page
   page-navigation: true
   bread-crumbs: true
   navbar:
