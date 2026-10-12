@@ -226,7 +226,9 @@ li > ul > li, #TOC li, .quarto-sidebar-section-2 li   {
 .callout-caution.callout-style-default>div.callout-header {
   color: #8d6328;
 }
-
+.indent-1 {
+  margin-left: 2rem;
+}
 /* fix for sections with id = contents*/
 section:target::before {
   content: "";
@@ -431,4 +433,9 @@ mjx-math {
 .quarto-listing-filter {
   width: 100%;
   margin-left: 15px;
+}
+
+/* hide footnotes in certain pages */
+.ner-case-study #quarto-appendix {
+  display: none;
 }
