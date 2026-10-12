@@ -6,22 +6,22 @@ title: 'Activity: AI-Assisted Work'
 ## Activity Details
 
 **Time:** about 30–45 minutes  
-**Works:** on your own, or (better) in pairs or small groups  
-**You need:** nothing but this page, a [printable version of the scenarios](https://github.com/gpizzorno/understanding-ai/blob/main/facilitator_guide/unit_2_scenarios_handout.md) is available for groups
+**Setup:** on your own, or in pairs/small groups (better)<br />
+**Requirements:** this page only (a [printable version of the scenarios](https://github.com/gpizzorno/understanding-ai/blob/main/facilitator_guide/unit_2_scenarios_handout.md) is also available for groups)
 :::
 
-Many researchers now use AI in ordinary, low-visibility ways: brainstorming search terms, refining prose, summarizing notes, drafting code, translating. Some of these uses seem obviously fine, some seem obviously not. Most fall somewhere in between, and reasonable people disagree about where.
+Many researchers now use AI in ordinary, low-visibility ways: brainstorming search terms, refining prose, summarizing notes, drafting code, translating ([one survey of 1,600 researchers](https://www.nature.com/articles/d41586-023-02980-0) found much of this already in 2023). Some of these uses seem obviously fine, some seem obviously not. Most fall somewhere in the middle, and reasonable people disagree about where.
 
-This activity is a discussion, not a test. Each scenario describes a real kind of AI-assisted work. Your task is to decide whether it's acceptable, and, more importantly, **under what conditions, and why**. There's no answer key: norms differ across disciplines, institutions, publishers, and classrooms, and they are still changing. What you'll get from it is a clearer sense of your own reasoning, and of the considerations that other people weigh differently.
+This activity is a discussion, not a test. Each scenario describes a real type of AI-assisted work. Your task is to decide whether it's acceptable, and, more importantly, **under what conditions, and why**. There's no answer key: norms differ across disciplines, institutions, publishers, and classrooms, and they are still changing. What you'll get from it is a clearer sense of your own reasoning, and of the considerations that other people weigh differently.
 
 ## Four Lenses
 
-These four distinctions come up in almost every case. Use them to structure your discussion, not as rules.
+The following are four important distinctions that come up in almost every case. Use them to structure your discussion, not as fast-and-hard rules.
 
 1. **Source or tool?** A letter, an article, or a dataset provides *evidence*. An AI assistant is usually a *tool* that helped with drafting, summarizing, coding, or brainstorming. When does AI output start to function as evidence in your work, and what follows from that?
 2. **Light assistance or substantive contribution?** Rephrasing a sentence is different from drafting an argument, translating a source, or producing the data an analysis rests on. How much did the AI shape the result?
-3. **Private or public?** Exploratory use in your own notes is different from a publication, a classroom submission, an exhibition label, or teaching materials. Who will rely on the result, and what will they assume about how it was made?
-4. **What does the relevant policy say?** Journals, instructors, archives, funders, and employers increasingly have rules. Where none exists, what standard would you be comfortable defending?
+3. **Private or public?** Exploratory use in your own notes is different from a publication or a classroom submission. Who will rely on the result, and what will they assume about how it was made?
+4. **What does the relevant policy say?** Journals, instructors, archives, funders, and employers increasingly have rules (for example, [COPE](https://publicationethics.org/guidance/cope-position/authorship-and-ai-tools) for publishers, *Nature* for its journals [@ToolsSuchChatGPT2023], and [UKRI](https://www.ukri.org/publications/generative-artificial-intelligence-in-application-and-assessment-policy/) for funding applications). Where none exists, what standard would you be comfortable defending?
 
 ## Instructions
 
@@ -30,7 +30,7 @@ For each scenario:
 1. Decide, before discussing: **Is this acceptable? Under what conditions?**
 2. Consider: Is the AI acting as a tool, a source, or both? What would you want to check before relying on the result? What, if anything, should be said about the AI's role, and to whom?
 3. **What would change your answer?** A different discipline, a different audience, more checking, a different tool?
-4. Only then open <span class="command">Things to Consider</span>. It doesn't tell you the answer, it suggests things on both sides that you may or may not have thought of.
+4. Only then open <span class="command">Things to Consider</span>, which suggests things on both sides of the argument that you may or may not have thought of.
 
 If you're working with others, compare your answers and discuss them. Disagreement is the point: try to find out *why* you disagree.
 
@@ -82,7 +82,7 @@ A researcher asks an LLM to generate a bibliography of scholarship on Victorian 
 ::: {.callout-tip collapse="true"}
 ## Things to Consider
 
-- **Against:** LLMs are known to invent plausible citations: real-sounding authors, titles, journals, and page ranges that don't exist ([hallucination](../reference/failure_modes.qmd#hallucination)). Unchecked references in a handout pass that risk on to everyone who reads it.
+- **Against:** LLMs are known to invent plausible citations: real-sounding authors, titles, journals, and page ranges that [don't exist](../reference/failure_modes.qmd#hallucination) [@waltersFabricationErrorsBibliographic2023]. Unchecked references in a handout pass that risk on to everyone who reads it.
 - **For, with conditions:** as a starting point for a literature search, an LLM's suggestions can be useful, *if* every item is found and read before it's used.
 - **What might change the answer:** checking every reference, and citing the works themselves. Once they're verified, is there anything left to say about how they were found?
 
@@ -96,7 +96,7 @@ A researcher uses an LLM to produce a first-pass translation of a short letter i
 ## Things to Consider
 
 - **For:** the researcher revised the translation against the original, and flagged the ambiguities: the final translation is their responsibility, and they've taken it.
-- **Against, or at least worth thinking about:** a first draft anchors what follows, word choices from the draft may survive revision without being questioned. Does the researcher read French well enough to catch what the model got subtly wrong?
+- **Against, or at least worth thinking about:** a first draft anchors what follows, word choices from the draft may survive revision without being questioned [@toralPostediteseExacerbatedTranslationese2019]. Does the researcher read French well enough to catch what the model got subtly wrong?
 - **What might change the answer:** whether the translation will be published or quoted, the researcher's own competence in the language, whether readers would assume the translation is entirely the researcher's.
 
 :::
@@ -110,7 +110,7 @@ A researcher asks an LLM to extract all the person names from 200 letters, and p
 
 - **Against, or at least worth thinking about:** the AI output has become *data*, and the visualization presents it as evidence. A handful of spot checks says little about 200 letters. And, as you saw in the [Gemini Notebook activity](gemini_notebook.qmd#part-3-reliability), running the same extraction again might produce a different network.
 - **For, with conditions:** for an exploratory presentation, clearly labelled as such, a rough network may be a reasonable way to raise questions.
-- **What might change the answer:** a systematic check of accuracy on a sample, a stated method and its limitations, a reproducible process instead of a conversational one ([Unit 3](../unit_3/index.qmd) shows one); how the visualization is presented to the audience.
+- **What might change the answer:** a systematic check of accuracy on a sample, a stated method and its limitations, a reproducible process instead of a conversational one ([Unit 3](../unit_3/index.qmd) shows one), and how the visualization is presented to the audience.
 
 :::
 
@@ -129,6 +129,19 @@ A researcher asks an LLM to extract all the person names from 200 letters, and p
 - Checking the output, and being able to describe the process, turn many doubtful cases into defensible ones.
 - Reasonable people weigh these cases differently. What matters is being able to explain your reasoning.
 
-## Next
+::: {.callout-note}
+## Going Further
 
-[Acknowledging AI Use](acknowledging_ai_use.qmd): practical advice on what to say about AI assistance, and how to say it.
+If you want to read more, the following are a good place to start:
+
+- COPE, [*Authorship and AI Tools*](https://publicationethics.org/guidance/cope-position/authorship-and-ai-tools): the short position statement, used by many academic publishers, on why AI tools can't be authors, and what authors should disclose.
+- @ToolsSuchChatGPT2023: *Nature*'s one-page editorial setting out its own rules, an early and influential example of a journal policy.
+
+- American Historical Association, [*Guiding Principles for Artificial Intelligence in History Education*](https://www.historians.org/resource/guiding-principles-for-artificial-intelligence-in-history-education/): guidance on the use of AI tools in teaching history.
+
+:::
+
+## References
+
+::: {#refs}
+:::

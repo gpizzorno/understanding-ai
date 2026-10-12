@@ -2,24 +2,24 @@
 title: 'Prompting Strategies'
 ---
 
-This page follows [Prompt Processing](prompts.qmd). If the model works by responding to the text in its context, then prompting *is the practice of shaping that context so the task is easier for the model to perform and easier for you to evaluate.*
+If, as explained in [Prompt Processing](prompts.qmd), the model works by responding to the text in its context, then prompting *is the practice of shaping that context so the task is easier for the model to perform and easier for you to evaluate.*
 
-You may have come across online advice that treats prompting as a hidden craft. It mostly isn't. Prompting is usually **task design**. If you can describe a research task clearly to a student assistant or a collaborator, you can usually write a good prompt. The challenge is being explicit about your **sources**, the **task**, the **output** you want, and the **level of certainty** you need.
+You may have come across online advice that treats prompting as a hidden craft. It mostly isn't. Prompting is usually **task design**. If you can describe a research task clearly to a student assistant or a collaborator, you can usually write a good prompt. The challenge is being explicit about your **sources**, the **task** itself, the **output** you want, and the **level of certainty** you need.
 
 Four key ideas run through this page:
 
-- Better prompts are usually clearer prompts, not cleverer ones.
+- Better prompts are usually clearer prompts, not smarter ones.
 - Prompting is iterative: useful results usually come from a sequence of refinements, not one perfect request.
-- Grounding the model in specific sources improves transparency and reduces unsupported invention.
+- Grounding the model in specific sources improves transparency and reduces unsupported invention [@shusterRetrievalAugmentationReduces2021].
 - A good prompt makes the output easier to inspect, question, and reuse.
 
 ## Prompting as Task Design
 
-The best prompts come from **defining the task clearly**, not from discovering secret phrases.
+The best prompts come from **defining the task clearly**. The AI companies' own guides say much the same ([Anthropic](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices), [Google](https://ai.google.dev/gemini-api/docs/prompting-strategies)).
 
 A common misconception is that if you can only find the perfect wording, the model will suddenly become reliable. Here's a more grounded view: a prompt works well when it answers a few practical questions clearly. What material should the model use? What should it do with that material? What kind of output do you want? How should it handle uncertainty?
 
-These are familiar scholarly habits. Researchers already know how to define a source base, distinguish evidence from interpretation, and ask whether a claim is justified. Good prompting extends those habits to a new tool.
+These questions reflect familiar scholarly habits. Researchers already know how to define a source base, distinguish evidence from interpretation, and ask whether a claim is justified. Good prompting extends those habits to a new tool.
 
 ## The Four Parts of a Strong Prompt
 
@@ -42,7 +42,7 @@ Structure improves both the model's performance and your ability to evaluate it.
 
 Structure is useful even when the model still makes mistakes. If you ask a vague question and get a vague answer, it's hard to tell whether the problem was comprehension, evidence, or formatting. A structured prompt gives you clear failure points. If you asked the model to quote evidence and it didn't, that's visible. If you asked it to separate explicit statements from inference and it blended them, that's visible too.
 
-This matters because it's tempting to judge a model only by whether its prose sounds good. A structured prompt pushes you to judge whether the answer is actually usable. A beautiful synthesis that can't be traced back to sources is often less useful than a simpler answer with clear grounding.
+The latter matters because it's tempting to judge a model only by whether its prose sounds good. A structured prompt pushes you to judge whether the answer is actually usable. A beautiful synthesis that can't be traced back to sources is often less useful than a simpler answer with clear grounding.
 
 ::: {.callout-note}
 ## A Before-and-After Example
@@ -58,7 +58,7 @@ Why is the second better?
 - It specifies the kind of summary wanted.
 - It asks for a separate extraction task instead of blending everything into prose.
 - It demands evidence.
-- It allows uncertainty instead of encouraging the model to bluff.
+- It allows uncertainty instead of encouraging the model to bluff [@kalaiWhyLanguageModels2025].
 
 The second prompt doesn't eliminate errors, but it produces output that is easier to inspect and revise. Which would you trust more as a starting point for your notes?
 :::
@@ -86,18 +86,18 @@ The best follow-up prompts target a specific weakness in the previous answer.
 - Ask for a separation: <span class="prompt">Separate what the text states directly from what you inferred.</span>
 - Ask the model to label uncertainty: <span class="prompt">Which parts of your answer are uncertain or depend on outside knowledge?</span>
 
-These aren't tricks. They are ways of auditing and refining the model's work. Think like an editor rather than a passive recipient: if an answer is too broad, force it narrower; if it's too polished, demand evidence; if it's too vague, ask for categories or structure.
+These follow-up questions aren't tricks, they are ways of auditing and refining the model's work. Think like an editor rather than a passive recipient: if an answer is too broad, force it narrower; if it's too polished, demand evidence; if it's too vague, ask for categories or structure.
 :::
 
 ## Grounding in Sources
 
 Grounding improves prompts by anchoring them in specific material instead of inviting free-floating synthesis.
 
-In practical terms, grounding means telling the model which documents to use and asking it to show where each claim comes from. This matters for researchers because LLMs are very good at producing plausible generalizations that *sound* source-based even when they aren't.
+In practical terms, grounding means telling the model which documents to use and asking it to show where each claim comes from. This matters for researchers because LLMs are very good at producing plausible generalizations that *sound* source-based even when they aren't [@petersGeneralizationBiasLarge2025].
 
-A strong default rule: **if the source matters, name it and ask the model to stay within it.** You can do this by pasting text directly, uploading specific files, or clearly marking off the relevant material in your prompt.
+Here's a strong default rule to follow: **if the source matters, name it and ask the model to stay within it.** You can do this by pasting text directly, uploading specific files, or clearly marking off the relevant material in your prompt.
 
-Be aware that some tools will mix in background knowledge unless told otherwise. That may sometimes be useful, but it should be explicit rather than invisible.
+Be aware that some tools will mix in background knowledge [unless told otherwise](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). That may sometimes be useful, but it should be explicit rather than invisible.
 
 Useful phrasing:
 
@@ -110,7 +110,7 @@ Useful phrasing:
 
 Even grounded prompts need verification, because the model can still misread or over-interpret its sources.
 
-It's easy to hear *grounded* and think *safe*. **Grounding improves transparency, not certainty**. The model may quote the wrong passage, misidentify a person, overstate what a document shows, or quietly combine evidence with inference. With historical materials, the risk is amplified by OCR problems, archaic phrasing, ambiguous names, and missing context.
+It's easy to hear *grounded* and think *safe*. **Grounding improves transparency, not certainty**. The model may quote the wrong passage, misidentify a person, overstate what a document shows, or quietly combine evidence with inference. With historical materials, the risk is amplified by OCR problems, archaic phrasing, ambiguous names, and missing context [@ehrmannNamedEntityRecognition2023].
 
 Grounding is valuable because it gives you something to inspect. It doesn't remove the need to inspect it. [Assessing Reliability](assessing_reliability.qmd) takes this further.
 :::
@@ -125,7 +125,7 @@ A small set of habits does most of the real work in research prompting.
 - **Ask for evidence and uncertainty** when correctness matters.
 - **Revise based on what went wrong**, not on generic advice from the internet.
 
-Prompting goals differ by task. A brainstorming prompt can be loose; a prompt for analysing sources should usually be tight.
+Prompting goals differ by task. A brainstorming prompt can be loose, but a prompt for analysing sources should usually be tight.
 
 ::: {.callout-tip}
 ## A Reusable Prompt Template
@@ -148,10 +148,10 @@ This moves you beyond casual chat towards methodical research support. It also r
 
 ## Exercise
 
-::: {.callout-note}
+::: {.callout-note #ltc-step-2}
 ## The Letter to Colvin: Step 2 of 6
 
-Go back to the [letter to Colvin](https://github.com/gpizzorno/understanding-ai/blob/main/data/sample_letters/wikisource_vol1_ch3_letter14.txt) from step 1. This time, instead of asking a loose question, you'll design the task. After completing the table, save it, you'll check it against people's annotations of the same letter in step 4.
+Go back to the [letter to Colvin](https://github.com/gpizzorno/understanding-ai/blob/main/data/sample_letters/wikisource_vol1_ch3_letter14.txt) from [step 1](prompts.qmd#ltc-step-1). This time, instead of asking a loose question, you'll design the task. After completing the table, save it, you'll check it against people's annotations of the same letter in [step 4](assessing_reliability.qmd#ltc-step-4).
 :::
 
  In a new conversation, paste the letter and ask:
@@ -174,19 +174,23 @@ Then refine it with follow-ups, one weakness at a time. For example:
 - **Did the model follow your instructions exactly?** Names as written (`COLVIN`, not `Sidney Colvin`)? Only the letter, or outside knowledge too? Where it didn't, a targeted follow-up usually fixes it. That's iteration at work.
 :::
 
-## Common Misconceptions
-
-- <span class="quote">Prompt engineering means learning special formulas.</span> Usually it means being explicit about task design.
-- <span class="quote">If I keep refining the prompt, I can force the model to become reliable.</span> Iteration improves usefulness, but it doesn't remove the need for verification.
-- <span class="quote">Grounding in sources guarantees accuracy.</span> Grounding makes claims easier to inspect, it doesn't guarantee a correct reading.
-- <span class="quote">A polished answer is a trustworthy answer.</span> Fluent writing and reliable reasoning are not the same thing.
-
 ## Key Takeaways
 
 - Better prompts are clearer prompts, not cleverer ones: state the source, the task, the output, and the standard.
 - Strong results usually come through iteration. Treat the first response as diagnostic.
 - Grounding improves transparency, not certainty.
 
-## Next
+::: {.callout-note}
+## Going Further
 
-Try the [Gemini Notebook activity](gemini_notebook.qmd), where you'll apply these strategies to 20 of Stevenson's letters at once, with a research tool built for working with your own sources, and find out what it can and can't do.
+If you want to read more, the following are a good place to start:
+
+- Anthropic, [*Prompting Best Practices*](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices), and Google, [*Prompt Design Strategies*](https://ai.google.dev/gemini-api/docs/prompting-strategies): the AI companies' own advice on prompting, written for developers but readable without code. Notice how much of it is about stating the task clearly.
+- Anthropic, [*Reduce Hallucinations*](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations): a short list of prompting techniques for grounding answers in sources, such as asking for direct quotations and allowing the model to say it doesn't know.
+:::
+
+## References
+
+::: {#refs}
+:::
+

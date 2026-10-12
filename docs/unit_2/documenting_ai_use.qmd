@@ -2,21 +2,21 @@
 title: 'Documenting Your Work'
 ---
 
-If AI meaningfully shaped your research, you should be able to say how. That's not only a matter of honesty towards readers: it's what lets you check your own work, repeat it, fix it when something goes wrong, and describe it in a methods section. This page covers what to record, how much, and how to make the record easy to keep.
+If AI meaningfully shaped your research, you should be able to say how. That's not only a matter of honesty towards readers [@hosseiniEthicsDisclosingUse2023]: it's what lets you check your own work, repeat it, fix it when something goes wrong, and describe it in a methods section. This page covers what to record and how to make the record easy to keep.
 
-The [Gemini Notebook activity](gemini_notebook.qmd) showed why this matters. The tool produced a good data file, but afterwards, nobody could say exactly how: the code it ran wasn't visible, its own account of its steps didn't match what it had done, and a second run gave different data. Documentation can't fix all of that, but it can make sure that *your* part of the process is never a mystery.
+The [Gemini Notebook activity](gemini_notebook.qmd) showed why this matters. The tool produced a good data file, but afterwards, it was impossible to determine exactly how: the code it ran wasn't visible, its own account of its steps didn't match what it had done, and a second run gave different data. Documentation can't fix all of that, but it can make sure that *your* part of the process is never a mystery.
 
 ## Reasons to Document
 
 - **Transparency:** readers, reviewers, instructors, and collaborators can see what the AI did, and judge your results accordingly.
 - **Reproducibility:** you, or someone else, can repeat the process, or at least understand why repeated results came out differently.
-- **Troubleshooting:** when a result looks wrong months later, you can trace where it came from.
+- **Troubleshooting:** when a result looks wrong months later, you can find where it came from.
 - **Acknowledgement:** a record makes it easy to write an accurate disclosure statement or methods paragraph (see [Acknowledging AI Use](acknowledging_ai_use.qmd)).
 - **Your future self:** six months from now, you won't remember which summary came from a model, which prompt worked, or what you checked.
 
 ## Proportionality
 
-The key principle is proportionality: **the more your research depends on it, the more you should document.**
+The key principle to follow, as far as documentation is concerned, is *proportionality*: the more your research depends on it, the more you should document.
 
 - **Casual help** such as brainstorming search terms, or rephrasing a sentence in your notes, needs little or nothing, a line in a research log is plenty.
 - **Substantive help** such as a summary you rely on, a translation draft, or code for your analysis, needs a short entry: what you asked for, what you got, and what you checked.
@@ -31,7 +31,7 @@ One template covers most cases. Fill in as much as the stakes require.
 | Field | What to write |
 |-|---|
 | **Tool and model** | The product (*ChatGPT*, *Claude*, *Gemini Notebook*) + model name and version (if known) |
-| **Date** | When you used it (tools and models change, often without notice) |
+| **Date** | When you used it (tools and models change, often without notice [@chenHowChatGPTsBehavior2024]) |
 | **Material** | What you supplied: which documents, notes, data, or code |
 | **Purpose** | What you were trying to do: summarize, brainstorm, extract, translate, write code |
 | **Prompts** | The prompts themselves, or for a long conversation, a summary and the key prompts |
@@ -46,18 +46,20 @@ This is a record of method, not a citation format. [Acknowledging AI Use](acknow
 
 ## Explicit Processing: Requesting the Script
 
-When you ask an AI tool to *do* something to your data (count, sort, extract, convert, clean), many tools now write and run a small program behind the scenes, and show you only the result. You get an answer, but not the procedure that produced it.
+When you ask an AI tool to *do* something to your data (count, sort, extract, convert, clean), many tools now [write and run a small program](https://blog.google/innovation-and-ai/products/notebooklm/better-research-notebooklm/) behind the scenes, and show you only the result. You get an answer, but not the procedure that produced it.
 
-A better habit: **ask for the script, not the result.** Instead of <span class="prompt">How many letters did Stevenson write each year?</span>, ask <span class="prompt">Write a Python script that counts the letters per year in letters_metadata.csv</span>. Then run the script yourself ([Coding with LLMs](../unit_3/coding_with_llms.qmd), in Unit 3, shows how), and keep it alongside your results.
+A better habit is to **ask for the script.** Instead of <span class="prompt">How many letters did Stevenson write each year?</span>, ask <span class="prompt">Write a Python script that counts the letters per year in letters_metadata.csv</span>. Then run the script yourself ([Coding with LLMs](../unit_3/coding_with_llms.qmd), in Unit 3, shows how), and keep it alongside your results.
 
-- **Ideally, you read the script and check that it does what you asked.** Even without much programming experience, you can often follow the logic, especially if you ask the LLM to explain it line by line.
+- **Ideally, you would read the script and check that it does what you asked.** Even without much programming experience, you can often follow the logic, especially if you ask the LLM to explain it line by line.
 - **Even if you can't fully check it, keep it.** The script is an exact, runnable record of what was done to your data. You can rerun it on new data, and get the same result every time. Someone who can read code can check it for you. And when a result looks wrong, the script is where you'll find out why.
 
-Compare that with the Gemini Notebook exports: the tool ran code, but nobody could see it, and when asked for its steps, it produced a script that didn't reproduce its own result. A script you asked for, ran, and saved doesn't have that problem.
+Compare that with the Gemini Notebook exports: the tool ran code, but you couldn't see it, and when asked for its steps, it produced a script that didn't reproduce its own result. A script you asked for, ran, and saved doesn't have that problem.
 
 ## Examples
 
-**A log entry for chat-assistant use.** Suppose you've done the letter exercise in this unit, and used the resulting table in your notes:
+### A Log Entry for Chat-Assistant Use
+
+Suppose you've done the letter exercise in this unit, and used the resulting table in your notes:
 
 <div class="table-container table-90">
 
@@ -75,7 +77,9 @@ Compare that with the Gemini Notebook exports: the tool ran code, but nobody cou
 : {.sm}
 </div>
 
-**A methods paragraph for a pipeline.** For the programmatic approach in [Unit 3](../unit_3/index.qmd), the record is mostly the code and data themselves, and the documentation becomes a methods paragraph like this one:
+### A Methods Paragraph for a Pipeline
+
+For the programmatic approach in [Unit 3](../unit_3/index.qmd), the record is mostly the code and data themselves, and the documentation becomes a methods paragraph like this one:
 
 > Named entities (people, places, and organizations) were extracted from 462 letters with the pre-trained model `Davlan/bert-base-multilingual-cased-ner-hrl` (Hugging Face Transformers 5.1.0, simple aggregation, long letters read in overlapping 512-token windows), after converting ALL-CAPS words to title case. To evaluate the extraction, two annotators independently annotated eight letters (Cohen's kappa 0.89). Against the first annotator's annotations, the model achieved F1 scores of 0.63 for people, 0.82 for places, and 0.48 for organizations. Its most common errors were names cut off or run together at the wrong point (`R. L. S` for `R. L. S.`), and words tagged as people that aren't, such as `God` and `Clever`. The code, data, and annotations are available at [repository link].
 
@@ -93,20 +97,15 @@ Every number in it can be checked, and every step can be rerun. That's the stand
 
 ## Exercise
 
-::: {.callout-note}
+::: {.callout-note #ltc-step-5}
 ## The Letter to Colvin: Step 5 of 6
 
-Write a log entry, using the template, for what you did in steps 1 to 4: the prompts, the tools, the table, and what your check in step 4 found. Use the example above as a model, but write down what *you* actually did, including what you'd change.
+Write a log entry, using the template, for what you did in steps 1 to 4: the prompts, the tools, the table, and what your check in [step 4](assessing_reliability.qmd#ltc-step-4) found. Use the example above as a model, but write down what *you* actually did, including what you'd change.
 :::
 
 Then ask yourself: if you came back to this in a year, could you tell from your entry exactly how the table was made, and how far to trust it?
 
-## Common Misconceptions
-
-- <span class="quote">Documentation is only for formal publication.</span> It also helps teaching, collaboration, and your own later review of your work.
-- <span class="quote">I'd have to record every conversation in full.</span> Proportionality: most use needs a line, only use that produces evidence or data needs a full record.
-- <span class="quote">If the tool keeps a history, I don't need to.</span> Histories can be deleted, changed, or become inaccessible, and they don't record what you checked.
-- <span class="quote">I can't read code, so there's no point asking for it.</span> A saved script is still an exact record of what was done, and someone else can read it.
+With a record of what you did, the next question is what you should say about it, and when. The [AI-Assisted Work activity](ai_assisted_work.qmd) takes that up through six scenarios.
 
 ## Key Takeaways
 
@@ -115,6 +114,16 @@ Then ask yourself: if you came back to this in a year, could you tell from your 
 - When AI processes your data, ask for the script rather than the result, run it yourself, and keep it.
 - A good record makes acknowledgement, methods writing, and troubleshooting straightforward.
 
-## Next
+::: {.callout-note}
+## Going Further
 
-With a record of what you did, the next question is what you should say about it, and when. The [AI-Assisted Work activity](ai_assisted_work.qmd) takes that up through six scenarios.
+If you want to read more, the following are a good place to start:
+
+- @hosseiniEthicsDisclosingUse2023: an essay on why, and how, researchers should disclose their use of AI tools, written for a general academic audience.
+- @sandveTenSimpleRules2013: ten short rules for keeping computational work reproducible, from recording every step to keeping the exact versions of tools. Most apply just as well to work with AI tools.
+:::
+
+## References
+
+::: {#refs}
+:::

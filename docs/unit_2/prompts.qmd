@@ -2,51 +2,49 @@
 title: 'Prompt Processing'
 ---
 
-Most advice about *prompt engineering* makes more sense once you understand what the model is actually looking at. [Language Models](../unit_1/language_models.qmd#text-generation), in Unit 1, showed *how* a model writes: one likely token at a time. This reading is about *what* it writes from: what happens between the moment you type into a chat assistant and the moment the model starts generating a reply. The discussion is intended to ground the later advice about prompting, verification, and choosing tools in a concrete understanding of the model's behaviour.
+Most advice about *prompt engineering* [@schulhoffPromptReportSystematic2024] makes more sense once you understand what the model is actually looking at. [Language Models](../unit_1/language_models.qmd#text-generation), in Unit 1, explained *how* a model writes: one likely token at a time. This page is about *what* informs its output, specifically what happens between the moment you type into a chat assistant and the moment the model starts generating a reply. The discussion is intended to ground the later advice about prompting, verification, and choosing tools in a concrete understanding of the model's behaviour.
 
-The key idea is this: **the model can only respond to the text currently in front of it**, and it responds by extending patterns in that text. In Unit 1, you saw that LLMs can sound authoritative while being wrong, can be nudged by phrasing, and can be tricked into ignoring instructions. This reading explains how the way you use them shapes all three.
+The key idea is this: **the model can only respond to the text currently in front of it**, and it responds by extending patterns in that text. In Unit 1, you saw that LLMs can sound authoritative while being wrong, can be nudged by phrasing, and can be tricked into ignoring instructions. This page explains how the way you use them shapes all three.
 
 ## Interface vs. Process
 
-The conversational interface of chat assistants can make them seem like a knowledgeable conversation partner with a stable understanding of your question. The underlying process, however, is statistical text prediction based on the text currently in front of the model. This tension between the conversational interface and the underlying statistical process is exactly why these systems can be so useful, and also why they can drift, flatter, invent, or overstate.
+The conversational interface of chat assistants can make them seem like a knowledgeable conversation partner with a stable understanding of your question. The underlying process, however, is statistical text prediction based on the text currently in front of the model. This tension between the conversational interface and the underlying statistical process is exactly why these systems can be so useful, and also why they can drift, flatter, invent, and overstate claims.
 
 ## The Model's Actual Input
 
-The model does not receive *a question* in the abstract. It receives a bundle of text assembled into a single input.
-
-Your visible message is only part of that bundle. Imagine you've uploaded some of [Stevenson's letters](../reference/letters.qmd) to a research tool such as Gemini Notebook, discussed them for a while, and now ask: <span class="prompt">Who is Colvin, and how does Stevenson talk about him?</span> Here is what the model may actually receive:
+The model does not receive *a question* in the abstract. It receives a bundle of text assembled into a single input. Your visible message is only part of that bundle. Imagine you've uploaded some of [Stevenson's letters](../reference/letters.qmd) to a research tool such as Gemini Notebook, discussed them for a while, and now ask: <span class="prompt">Who is Colvin, and how does Stevenson talk about him?</span> Here is what the model may actually receive:
 
 ![](../assets/what-the-model-sees.gif){width=949 fig-alt="Animation: the user's prompt is joined by the other parts of the model's input, stacked into a single bundle: a system prompt (instructions such as “You are a research assistant helping a user analyze uploaded historical documents”), the user prompt, the documents, the chat history of earlier questions and answers, and other context found by a search (“TO SIDNEY COLVIN”, “MY DEAR COLVIN”, “I have asked Colvin to send you a copy…”)."}
 
 - **Your prompt:** the question you typed.
-- **The system prompt:** hidden instructions from the application, which you usually don't see. They typically say what role to play and how to behave: <span class="prompt">You are a research assistant helping a user analyze uploaded historical documents</span>, <span class="prompt">Base your response primarily on the uploaded sources and quote them when useful</span>, <span class="prompt">If the evidence is ambiguous or incomplete, say so</span>.
+- **The system prompt:** hidden instructions from the application, which you usually don't see (a few providers [publish theirs](https://platform.claude.com/docs/en/release-notes/system-prompts)). They typically say what role to play and how to behave: <span class="prompt">You are a research assistant helping a user analyze uploaded historical documents</span>, <span class="prompt">Base your response primarily on the uploaded sources and quote them when useful</span>, <span class="prompt">If the evidence is ambiguous or incomplete, say so</span>.
 - **Documents:** text from the sources you've uploaded, such as a letter to Stevenson's mother that mentions that `Colvin is gone`.
 - **Chat history:** the earlier turns of your conversation, your questions and the model's answers, which the application sends again every time.
 - **Other context:** anything else the application adds. Here, it's passages that a search system picked out as relevant to your question: the heading `TO SIDNEY COLVIN`, the salutation `MY DEAR COLVIN`, and a line from another letter, `I have asked Colvin to send you a copy...`.
 
-That last part has a name. When a tool searches your documents (or the web) for passages related to your question, and adds them to the model's input, it's called [**retrieval-augmented generation (RAG)**](https://en.wikipedia.org/wiki/Retrieval-augmented_generation). It's how research tools usually handle sources too long to send in full, and probably part of how Gemini Notebook works (Google doesn't say exactly): the model only sees the passages the search found, not the whole document. If the search misses something, so does the model.
+When a tool searches your documents (or the web) for passages related to your question, and adds them to the model's input, it's called [**retrieval-augmented generation (RAG)**](https://en.wikipedia.org/wiki/Retrieval-augmented_generation). It's how research tools usually handle sources too long to send in full, and probably part of how Gemini Notebook works (Google doesn't say exactly): the model only sees the passages the search found, not the whole document. If the search misses something, so does the model [@lewisRetrievalaugmentedGenerationKnowledgeintensive2020; @jurafskySpeechLanguageProcessing2026, chap. 11].
 
-The answer is shaped by all of this together. If the retrieved passages are partial, if an earlier turn emphasized biography, or if the system prompt pushes for short answers, the response can change even though your visible question stays the same. This also explains several things you may have seen: why a model can refer back to something you said earlier, why a research tool can answer questions about your uploads, and why prompt injection works (competing instructions all end up in the same bundle of text, as you saw in [Hack Merlin](../unit_1/hack_merlin.qmd#beyond-the-game)).
+The model's response is shaped by all of this together. If the retrieved passages are partial, if an earlier turn emphasized biography, or if the system prompt pushes for short answers, the response can change even though your visible question stays the same. This also explains several things you may have seen: why a model can refer back to something you said earlier, why a research tool can answer questions about your uploads, and why prompt injection works (competing instructions all end up in the same bundle of text, as you saw in [Hack Merlin](../unit_1/hack_merlin.qmd#beyond-the-game)) [@greshakeNotWhatYouve2023].
 
 The model is not reading your intentions. It is responding to the package of text the application has assembled.
 
 ## Context Windows
 
-An LLM can only work with a limited amount of text at one time. That limit is called the **context window**.
+An LLM can only work with a limited amount of text at a time. That limit is called the **context window**.
 
 ![](../assets/context-window.gif){.img-right width=600 fig-alt="Animation: a stack of blocks (the system prompt, prompts, documents, chat history, and other context) inside a band labelled Context window. As the conversation goes on, blocks are added, the stack grows taller than the band, and the oldest blocks are pushed out of it."}
 
-Everything in the bundle has to fit into the window: the system prompt, your prompt, the documents, the chat history, and any retrieved passages. As a conversation goes on, the bundle grows. Every new question and answer is added to the history, and every new upload adds documents, until it no longer fits. Then something has to give: the application drops or compresses parts of the input, often the oldest turns of the conversation, and the model never sees them.
+Everything in the bundle has to fit into the window: the system prompt, your prompt, the documents, the chat history, and any retrieved passages. As a conversation goes on, the bundle grows. Every new question and answer is added to the history, and every new upload adds documents, until it no longer fits. Then something has to give: the application [drops or compresses parts of the input](https://platform.claude.com/docs/en/build-with-claude/context-windows), often the oldest turns of the conversation, and the model never sees them.
 
 - The window is shared space. If you paste in a long article, the article competes with everything else that has to fit.
 - It is measured in tokens, not words or pages (see [Language Models](../unit_1/language_models.qmd#tokens)).
-- Even inside the window, attention isn't even. Information in the middle of a long input is often used less reliably than information at the start or the end (the *lost in the middle* problem).
+- Even inside the window, attention isn't evenly spread. Information in the middle of a long input is often used less reliably than information at the start or the end—the *lost in the middle* problem [@liuLostMiddleHow2024a].
 
-This is one reason long conversations degrade: constraints or corrections you gave early on may quietly stop being honoured. Tools often advertise very large context windows, but even so, assume that where material sits in the input, how prominent it is, and whether it has been compressed all affect the answer.
+This is one of the reasons long conversations degrade: constraints or corrections you gave early on may quietly stop being honoured. Tools often advertise very large context windows, but even so, assume that where material sits in the input, how prominent it is, and whether it has been compressed all affect the answer [@hsiehRULERWhatsReal2024].
 
 If you paste ten letters, ask three multi-part questions, and request a strict output format, the model is juggling all of that at once. A weak or partial answer may reflect overload, not just *bad prompting*. And if you work with long sources (whole books, archival collections, long interviews), you often can't just feed everything in: material has to be split into chunks, or searched with RAG, and both introduce their own gaps.
 
-**Summaries** deserve particular attention here. A model produces a summary by predicting what a likely summary looks like, not by reading and distilling the way a human would. Summaries can therefore be fluent but misleading: they tend to drop unusual or low-frequency details that happen to be important, and to reproduce common framings.
+**Summaries** deserve special attention. A model produces a summary by predicting what a likely summary looks like, not by reading and distilling the way a human would. Summaries can therefore be fluent but misleading: they tend to drop unusual or low-frequency details that happen to be important, and to reproduce common framings [@petersGeneralizationBiasLarge2025].
 
 ## Tokens and Messy Sources
 
@@ -54,7 +52,7 @@ If you paste ten letters, ask three multi-part questions, and request a strict o
 
 ## Instructions as Strong Signals, Not Hard Rules
 
-Instructions strongly influence the model, but they don't constrain it the way a program constrains software. This is what the [Hack Merlin activity](../unit_1/hack_merlin.qmd) demonstrated. LLMs are trained to respond helpfully to instructions, and products add their own instructions above yours. In practice, this creates something like a hierarchy: the application's hidden directions, then your request, then quoted material or examples. But the hierarchy isn't absolute, the way a security rule in traditional software is. That is why models sometimes ignore part of an instruction, follow the wrong one, or get manipulated by cleverly framed conflicting text.
+Instructions strongly influence the model, but they don't constrain it the way a program constrains software. This is what the [Hack Merlin activity](../unit_1/hack_merlin.qmd) demonstrated. LLMs are trained to respond helpfully to instructions [@ouyangTrainingLanguageModels2022; @jurafskySpeechLanguageProcessing2026, chap. 8], and products add their own instructions above yours. In practice, this creates something like a hierarchy: the application's hidden directions, then your request, then quoted material or examples. But the hierarchy isn't absolute, the way a security rule in traditional software is [@wallaceInstructionHierarchyTraining2024]. That is why models sometimes ignore part of an instruction, follow the wrong one, or get manipulated by cleverly framed prompts.
 
 A spreadsheet formula, for example, follows exact rules, while an LLM follows learned patterns of what instruction-following usually looks like. Prompting is mostly the practice of *reducing ambiguity and building better constraints inside a system that doesn't obey constraints perfectly*. [Prompting Strategies](prompting_strategies.qmd) turns this insight into practical advice.
 
@@ -62,19 +60,19 @@ A spreadsheet formula, for example, follows exact rules, while an LLM follows le
 
 Many frustrating LLM behaviours follow directly from context dependence and probabilistic generation.
 
-- Recent or repeated text often has outsized influence.
+- Recent or repeated text often has outsized influence [@zhaoCalibrateUseImproving2021].
 - Conflicting instructions can produce unstable behaviour.
-- Small wording changes can change the response.
-- There's a random choice at every token ([sampling](../unit_1/language_models.qmd#text-generation)), so the same prompt can produce a different answer.
+- Small changes in the wording of the question can significantly alter the response [@sclarQuantifyingLanguageModels2024].
+- There's random choice involved in the selection of every token ([sampling](../unit_1/language_models.qmd#text-generation)), so the same prompt can produce a different answer.
 - The model may *sound* consistent even when its underlying judgement is unstable.
 
 The model doesn't keep a stable interpretation of your material stored somewhere off to the side. Its behaviour emerges from the conditions of the current input. A slightly different framing shifts which patterns are most prominent, and a good answer once is no guarantee of the same answer again.
 
-A conversation with an LLM is not a stable analytical pipeline. It is an interaction whose output depends on the exact context of that moment. That's fine for exploration, and a real problem for research that needs to be repeatable, a theme that runs through the rest of this unit and into [Unit 3](../unit_3/index.qmd).
+A conversation with an LLM is not a stable analytical pipeline. It is an interaction whose output depends on the exact context of that moment. That's fine for exploration, but a real problem for research that needs to be repeatable, a theme that runs through the rest of this unit and into [Unit 3](../unit_3/index.qmd).
 
 ## Exercise
 
-::: {.callout-note}
+::: {.callout-note #ltc-step-1}
 ## The Letter to Colvin: Step 1 of 6
 
 Throughout this unit, you'll work with one short letter: Stevenson's letter to Sidney Colvin of August 1877, [`wikisource_vol1_ch3_letter14.txt`](https://github.com/gpizzorno/understanding-ai/blob/main/data/sample_letters/wikisource_vol1_ch3_letter14.txt). Read it first, it takes just a couple of minutes. Keep a document open to paste the model's answers into as you go: you'll need them in later steps.
@@ -93,13 +91,6 @@ Throughout this unit, you'll work with one short letter: Stevenson's letter to S
 - **How did the second conversation differ?** The letter and the question were the same, only the earlier turn was different. That earlier turn is part of the bundle the model receives, and it shapes the answer.
 :::
 
-## Common Misconceptions
-
-- <span class="quote">If the model sounds confident, it probably found the answer.</span> Confidence is a feature of style, not proof.
-- <span class="quote">If I phrase the prompt perfectly, the model will become reliable.</span> Prompting helps, but it doesn't remove uncertainty, bias, or the risk of hallucination.
-- <span class="quote">A larger context window means the model fully understands long documents.</span> More context helps, but long inputs still create problems of attention, prominence, and verification.
-- <span class="quote">If the tool has my documents, it is reasoning directly from them.</span> Sometimes it is; sometimes it only sees the passages a search picked out. Ask for evidence, and inspect the quotations.
-
 ## Key Takeaways
 
 - The model only knows the text currently in its input: your message, plus hidden instructions, chat history, uploaded documents, and retrieved passages, and whatever it learned in training.
@@ -108,6 +99,18 @@ Throughout this unit, you'll work with one short letter: Stevenson's letter to S
 - Instructions help, but they don't work like hard program rules.
 - A conversation is not a stable pipeline: the same question can get a different answer.
 
-## Next
+::: {.callout-note}
+## Going Further
 
-Now that you have a mental model of what the system is doing, [Prompting Strategies](prompting_strategies.qmd) covers how to shape that input so the model is more likely to produce useful, checkable output.
+If you want to read more, the following are a good place to start:
+
+- @liuLostMiddleHow2024a: a research paper, but its first figure shows the *lost in the middle* problem at a glance: how accuracy drops when the relevant passage sits in the middle of a long input.
+- Kelly Hong, Anton Troynikov, and Jeff Huber, [*Context Rot*](https://www.trychroma.com/research/context-rot) (2025): a readable report, with charts, on how current models do worse as their input gets longer.
+- @petersGeneralizationBiasLarge2025: a study of how LLM summaries of scientific papers overstate their findings, by leaving out the details that limit them.
+:::
+
+## References
+
+::: {#refs}
+:::
+
