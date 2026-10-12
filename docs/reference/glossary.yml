@@ -398,7 +398,7 @@
 
 - title: Pipeline
   description: >-
-    A fixed series of steps that turns raw material into results, such as loading, preprocessing, running a model, and analysing its output.
+    A fixed series of steps that turns raw material into results, such as loading, preprocessing, running a model, and analyzing its output.
     Each step can introduce errors, and errors compound.
     See [The NLP Pipeline](../unit_3/nlp_pipeline.qmd#the-pipeline).
 
@@ -410,8 +410,14 @@
 
 - title: Entity resolution
   description: >-
-    Working out which different names refer to the same entity, such as `Colvin`, `S. C.`, and `Sidney Colvin`.
+    Working out which different names (surface forms) refer to the same entity, such as `Colvin`, `S. C.`, and `Sidney Colvin`.
     See [Gemini Notebook](../unit_2/gemini_notebook.qmd#part-1-exploration) and [The NLP Pipeline](../unit_3/nlp_pipeline.qmd#the-pipeline).
+
+- title: Surface form
+  description: >-
+    A name exactly as it's written in a text, such as `Colvin`, `S. C.`, or `MY DEAR COLVIN`.
+    NER models find surface forms, and entity resolution maps the different surface forms of one person or place to a single name.
+    See [Named Entities in Stevenson's Letters](../unit_3/ner_case_study.qmd#section-5-entity-resolution).
 
 - title: Geocoding
   description: >-
