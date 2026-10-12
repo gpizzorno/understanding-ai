@@ -32,7 +32,7 @@ Run the cells in Section 9. They will:
 **Before moving on, say what they mean in plain language.**
 
 :::{.callout-tip collapse="true"}
-## Put the Numbers Into Words
+## Putting the Numbers into Words
 
 - If precision for people is 0.57: of every hundred names the model tagged as people, 57 really were people, and 43 weren't. 
 - If recall is 0.71: of every hundred people the annotator listed, the model found 71, and missed 29.
