@@ -125,7 +125,7 @@ A small set of habits does most of the real work in research prompting.
 - **Ask for evidence and uncertainty** when correctness matters.
 - **Revise based on what went wrong**, not on generic advice from the internet.
 
-Prompting goals differ by task. A brainstorming prompt can be loose, but a prompt for analysing sources should usually be tight.
+Prompting goals differ by task. A brainstorming prompt can be loose, but a prompt for analyzing sources should usually be tight.
 
 ::: {.callout-tip}
 ## A Reusable Prompt Template
