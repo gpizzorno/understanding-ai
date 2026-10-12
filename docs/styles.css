@@ -444,3 +444,6 @@ mjx-math {
 .toc-actions {
   margin-left: 1.05em;
 }
+.nav-footer .toc-actions {
+  display: none;
+}
