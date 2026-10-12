@@ -13,16 +13,16 @@ license-files = ["LICENSE", "LICENSE-docs"]
 authors = [{ name = "Gabriel H. Pizzorno" }]
 
 dependencies = [
-    "notebook>=7",        # Jupyter (tested: 7.5.3)
-    "ipywidgets>=8",      # progress bars in Jupyter (tested: 8.1.8)
-    "pandas>=2.0",        # tested: 3.0.0
-    "matplotlib>=3.7",    # tested: 3.10.8
+    "notebook>=7",        # Jupyter (tested: 7.6.3)
+    "ipywidgets>=8",      # progress bars in Jupyter (tested: 8.1.9)
+    "pandas>=2.0",        # tested: 3.0.6
+    "matplotlib>=3.7",    # tested: 3.11.2
     "seaborn>=0.12",      # tested: 0.13.2
-    "networkx>=3.0",      # tested: 3.6.1
-    "scikit-learn>=1.2",  # Cohen's kappa (tested: 1.8.0)
+    "networkx>=3.0",      # tested: 3.7
+    "scikit-learn>=1.2",  # Cohen's kappa (tested: 1.9.1)
     "folium>=0.14",       # interactive map (tested: 0.20.0)
-    "transformers>=4.40", # tested: 5.1.0
-    "torch>=2.1",         # model backend for transformers (tested: 2.10.0)
+    "transformers>=4.40", # tested: 5.19.0
+    "torch>=2.1",         # model backend for transformers (tested: 2.14.1)
 ]
 
 [project.urls]
