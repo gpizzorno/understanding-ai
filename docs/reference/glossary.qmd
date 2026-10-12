@@ -16,7 +16,7 @@ listing:
   table-hover: false
 ---
 
-The list below includes short definitions of the terms used across the site. They're deliberately brief: each one links to the page that explains the term in context, with examples. Type in the box to filter the list.
+The list below includes short definitions of the terms used across the site. They're deliberately brief, since each one links to the page that explains the term in context, with examples. Type in the box to filter the list.
 
 ::: {#glossary}
 :::
