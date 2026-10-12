@@ -4,13 +4,13 @@ title: 'Advantages of Programmatic Approaches'
 
 Everything in Units 1 and 2 used browser-based tools: [Teachable Machine](../unit_1/teachable_machine.qmd), [Hack Merlin](../unit_1/hack_merlin.qmd), [Gemini Notebook](../unit_2/gemini_notebook.qmd), and chat assistants. They were easy to start with, and they produced real results. In the [Gemini Notebook activity](../unit_2/gemini_notebook.qmd), you found the people, places, and organizations in 20 letters, and got a data file back.
 
-So why write code at all? Not because code is inherently better. On these letters, the model you'll run in this unit is no more accurate than Gemini Notebook was, and on some kinds of names it's less accurate. The reason to use code is **control**: over *what* is done to your data, *how* it is done, *by which model*, and just as importantly, over *whether you can do it again* and expect the same results.
+So why write code at all? Not because code is inherently better. On these letters, the model you'll run in this unit is no more accurate than Gemini Notebook was, and on some kinds of names it's actually less accurate. The reason to use code is **control**: over *what* is done to your data, *how* it is done, *by which model*, and just as importantly, over *whether you can do it again* and expect the same results.
 
 ## Control, Not Capability
 
 On the eight letters that two people annotated, here is how Gemini Notebook compares with the pre-trained NER model you'll use in the [case study](ner_case_study.qmd), measured by F1 (the [balance of precision and recall](../unit_1/evaluation_metrics.qmd#f1-score)):
 
-<div class="table-container table-50">
+<div class="table-container table-60">
 
 | Entity type | Gemini (run 1) | Gemini (run 2) | NER model |
 |---|:-:|:-:|:-:|
@@ -26,25 +26,25 @@ Gemini Notebook is ahead on people and organizations, and the two are level on p
 <div class="table-container">
 
 | | Gemini Notebook | The NER pipeline |
-|--|---|---|
+|---|---|---|
 | **Same input, same output?** | No: two runs shared only ~88% of their rows | Yes: identical every time, with the same versions |
 | **Can you see the method?** | No: the code Gemini ran wasn't shown, and its description of the steps didn't reproduce the results | Yes: every step is in the notebook |
-| **Which model?** | Not shown, and it changes without notice | Named, with a published model card, and a library version you can record |
+| **Which model?** | Not shown, and it changes without notice | Named, with a published model card, and versions of the model and the library that you can [record](https://huggingface.co/docs/transformers/models) |
 | **All of your documents?** | Hard to verify which documents, or which parts of them, were used | One row per entity, from every file, and you can check what was processed |
 | **What the output looks like** | Whatever the tool decided this time | Columns you defined, the same every time |
 | **Where your data lives** | Google's servers | Your computer (or, in Colab, Google's servers, under your own account) |
-| **Can you rerun it in five years?** | Only if the product, the model, and your account still exist | Yes, if you keep the code, the model, and the library versions |
-: {.sm}
+| **Can you rerun it in five years?** | Only if the product, the model, and your account still exist | Yes, if you keep the code, the model, and the library versions [@trisovicLargescaleStudyResearch2022] |
+: {.sm tbl-colwidths="[30,35,35]"}
 
 </div>
 
-None of this is a criticism of Gemini Notebook. It's genuinely good at exploration and interpretation. The limits come from the format: a conversation with a product that someone else runs and changes.
+Gemini Notebook is genuinely good at exploration and interpretation, but has limits imposed by the format: a conversation with a product that someone else runs and changes.
 
 For research, those limits can matter as much as accuracy, and sometimes more. A result you can't reproduce, inspect, or describe exactly is hard to build on, check, or publish. And a method whose accuracy you have *measured*, even a less accurate one, is often more useful than one you can't pin down. Measuring it is what the last two activities in this unit are for.
 
 ## The Case for Code
 
-Coding has a real cost: setting up an environment, learning some syntax, debugging. So the useful question isn't <span class="quote">Should I learn to code?</span> but rather <span class="quote">What do I need code for?</span> Here are some typical signs that a task needs it:
+Coding has a real cost: setting up an environment, learning some syntax, debugging. So the useful question isn't *Should I learn to code?* but rather *What do I need code for?* Here are some typical signs that a task needs it:
 
 - You need to process more material than a tool will accept, or more than you could check by hand, and have the certainty that all of it was processed.
 - You need output you can count, sort, filter, map, or feed into another analysis, in a format you control.
@@ -57,17 +57,17 @@ If none of these apply, a conversational tool may be all you need, as long as yo
 ::: {.callout-note #best-of-both-worlds}
 ## The Best of Both Worlds
 
-The choice isn't strictly between a chat window and a small specialized model. There are approaches in-between, which you may find, or want, once you're comfortable with this unit:
+The choice isn't strictly between a chat window and a small specialized model. There are approaches in-between, which you may want to explore once you're comfortable with this unit:
 
-- **Calling an LLM from code.** Instead of typing into a chat window, a script sends each document to a model through the provider's API (*Application Programming Interface*), with a saved prompt, and saves every response. You can name an exact model version, process every file the same way, and evaluate the results exactly as you'll evaluate the NER model here. You keep the flexibility of an LLM, and gain much of the control of a pipeline. **Two caveats:** the output can still vary between runs, and providers retire old model versions, so you can't rerun it forever.
+- **Calling an LLM from code.** Instead of typing into a chat window, a script sends each document to a model through the provider's API (*Application Programming Interface*), with a saved prompt, and saves every response. You can name an exact model version, process every file the same way, and evaluate the results exactly as you'll evaluate the NER model here. You keep the flexibility of an LLM, and gain much of the control of a pipeline. **Two caveats:** the output can still vary between runs [@atilNonDeterminismDeterministicLLM2025], and providers retire old model versions ([Anthropic](https://platform.claude.com/docs/en/about-claude/model-deprecations), [OpenAI](https://developers.openai.com/api/docs/deprecations)), so you can't rerun it forever.
 - **Running an open model on your own computer.** Some LLMs can be downloaded and run locally, with tools built for the purpose. Your data never leaves your machine, and the model never changes unless you change it. They are usually smaller and less capable than the models behind commercial chat assistants.
-- **Building your own retrieval.** Tools like Gemini Notebook use [retrieval-augmented generation](../unit_2/prompts.qmd#the-models-actual-input) (RAG): they search your sources for relevant passages, and give those to the model. Building a RAG system yourself means you can log which passages were retrieved for each answer, which makes the answers far easier to check.
-- **GraphRAG** is a variant that first uses an LLM to extract the entities and relationships in a collection into a network (a *graph*), and then uses that graph to answer questions about the collection as a whole, such as its main themes, which plain retrieval handles poorly. Notice that the first step is exactly the kind of extraction you'll evaluate in this unit, and needs evaluating in the same way.
+- **Building your own retrieval.** Tools like Gemini Notebook use [retrieval-augmented generation](../unit_2/prompts.qmd#the-models-actual-input) (RAG): they search your sources for relevant passages, and give those to the model. Building a RAG system yourself means you can log which passages were retrieved for each answer, which makes the answers far easier to check [@lewisRetrievalaugmentedGenerationKnowledgeintensive2020; @jurafskySpeechLanguageProcessing2026, chap. 11].
+- **GraphRAG** is a variant that first uses an LLM to extract the entities and relationships in a collection into a network (a *graph*), and then uses that graph to answer questions about the collection as a whole, such as its main themes, which plain retrieval handles poorly [@edgeLocalGlobalGraph2024]. Notice that the first step is exactly the kind of extraction you'll evaluate in this unit, and needs evaluating in the same way.
 :::
 
 ## Reading and Adapting, Not Engineering
 
-In this unit you won't write Python from scratch. You'll read, run, and adapt a [notebook](ner_pipeline.ipynb) that has already been written, and use widely used libraries that do the heavy lifting. When something is unclear, you'll ask an LLM to explain it, which changes what *learning to code* means. [Coding with LLMs](coding_with_llms.qmd) covers how to do that well.
+In this unit you won't write Python from scratch. You'll read, run, and adapt a [notebook](ner_pipeline.ipynb) that has already been written, and use widely used libraries that do the heavy lifting. When something is unclear, you'll ask an LLM to explain it. That changes what *learning to code* means, and [Coding with LLMs](coding_with_llms.qmd) covers how to do that well.
 
 ## Structured Output as a Dataset
 
@@ -94,6 +94,16 @@ Many research projects use both: a chat assistant to explore a few documents and
 - There are approaches in between, such as calling an LLM from code, running a local model, or building your own retrieval, which combine some of the flexibility of LLMs with some of the control of a pipeline.
 - Conversational and programmatic tools complement each other, and many projects use both.
 
-## Next
+::: {.callout-note}
+## Going Further
 
-[Coding with LLMs](coding_with_llms.qmd): how to use an LLM to help you read, run, and adapt code, without losing track of what the code does.
+If you want to read more, the following are a good place to start:
+
+- @sandveTenSimpleRules2013: ten short rules for making computational research reproducible, from recording every step to keeping the exact versions of the tools you used.
+- @trisovicLargescaleStudyResearch2022: a study that tried to rerun thousands of research scripts deposited with published papers, and found that about three-quarters of them failed on the first try. A sobering read on why *keeping the code* isn't enough on its own.
+:::
+
+## References
+
+::: {#refs}
+:::

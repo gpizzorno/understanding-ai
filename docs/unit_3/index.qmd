@@ -10,8 +10,8 @@ This unit covers what to do when your research needs the kind of reproducibility
 
 For this unit, you'll need:
 
-- A working Python/Jupyter environment, or an account for Google Colab ([Setting up Python](python_setup.qmd) covers both)
-- Enough knowledge of Python to read and run code, though not to write it from scratch ([Setting up Python](python_setup.qmd#required-python-knowledge) helps you check)
+- A working Python/Jupyter environment, or an account for Google Colab ([Setting Up Python](python_setup.qmd) covers each approach)
+- Enough knowledge of Python to read and run code, though not to write it from scratch ([Setting Up Python](python_setup.qmd#required-python-knowledge) helps you check)
 - Access to a general-purpose AI chat assistant, as in Unit 2, to help you read and debug code
 :::
 
@@ -24,13 +24,13 @@ For this unit, you'll need:
 - Load and run a pre-trained named-entity recognition (NER) model with Hugging Face Transformers, over a whole corpus
 - Turn model output into structured data, export it as CSV, and visualize it (charts, a network graph, a timeline, and a map)
 - Create ground-truth annotations, and measure agreement between annotators
-- Evaluate model output against ground truth with precision, recall, and F1, analyse its errors, and compare models
+- Evaluate model output against ground truth with precision, recall, and F1, analyze its errors, and compare models
 - Record a model, its version, its settings, and its evaluation in a way that supports reproducible research
 :::
 
 ## Contents
 
-1. **Setup: [Setting up Python](python_setup.qmd)**
+1. **Setup: [Setting Up Python](python_setup.qmd)**
    - Required Python knowledge, and a quick refresher
    - Three ways to get set up: Google Colab, Anaconda, or plain Python
 2. **Reading: [Advantages of Programmatic Approaches](programming_advantages.qmd)**

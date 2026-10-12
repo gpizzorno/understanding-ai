@@ -2,11 +2,11 @@
 title: 'The NLP Pipeline'
 ---
 
-The case study uses [**natural language processing (NLP)**](https://en.wikipedia.org/wiki/Natural_language_processing): computational methods for working with human language. This page explains the elements you'll use: named-entity recognition, pre-trained models, tokenization, and the [Hugging Face](https://huggingface.co/) ecosystem. It also explains how the small, specialized model in the case study differs from the chat assistants you used in Unit 2.
+The case study uses [**Natural Language Processing (NLP)**](https://en.wikipedia.org/wiki/Natural_language_processing), namely computational methods for working with human language. This page explains the key concepts you'll use: named-entity recognition, pre-trained models, tokenization, and the [Hugging Face](https://huggingface.co/) ecosystem. It also explains how the small, specialized model in the case study differs from the chat assistants you used in Unit 2.
 
 ## Named-Entity Recognition
 
-**Named-entity recognition (NER)** is the task of finding and classifying names in a text: people, places, organizations, and sometimes dates, works, or other categories.
+**Named-Entity Recognition (NER)** is the task of finding and classifying names in a text: people, places, organizations, and sometimes dates, works, or other categories [@grishmanMessageUnderstandingConference1996; @nadeauSurveyNamedEntity2007a; @jurafskySpeechLanguageProcessing2026, chap. 18].
 
 Given a sentence like <span class="quote">Robert Louis Stevenson wrote to Sidney Colvin from Edinburgh in August 1877.</span>, an NER model returns something like:
 
@@ -21,44 +21,44 @@ Given a sentence like <span class="quote">Robert Louis Stevenson wrote to Sidney
 </div>
 
 ::: {.callout-note}
-The table above is the actual output of the case study's model. Notice that `August 1877` isn't there: this model isn't trained to label dates.
+The table above is the actual output of the case study's model. Notice that `August 1877` isn't there: that's because this model isn't trained to label dates (its [model card](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl) lists only people, places, and organizations).
 :::
 
-For researchers, NER is a way to turn unstructured text into structured data: who is mentioned, where, and how often. It's a common first step for network analysis, mapping, and indexing collections.
+For researchers, NER is a way to turn unstructured text into structured data: who is mentioned, where, and how often. It's a common first step for network analysis, mapping, and indexing collections [@ehrmannNamedEntityRecognition2023].
 
 ## Pre-Trained Models
 
-The NER models in the case study are **pre-trained**: someone else has already trained them, on a large annotated dataset, and published them for others to use. You don't train anything; you download the model and run it on your own text.
+The NER models in the case study are **pre-trained**: someone else has already trained them, on a large annotated dataset, and published them for others to use. You don't train anything. You download the model and run it on your own text.
 
-This works because of [supervised learning](../unit_1/basic_concepts.qmd#types-of-machine-learning): people annotated thousands of sentences, marking every name and its type, and the model learned to reproduce those labels on new text. It also means the model inherits everything about that training data: what kind of text it was, which languages, which period, and which decisions the annotators made.
+This works because of [supervised learning](../unit_1/basic_concepts.qmd#types-of-machine-learning): people annotated thousands of sentences, marking every name and its type, and the model learned to reproduce those labels on new text [@sangIntroductionCoNLL2003Shared2003]. It also means the model inherits everything about that training data: what kind of text it was, which languages, which period, and which decisions the annotators made.
 
-Most widely used NER models were trained largely on **modern news text**. That shapes what they're good and bad at. News has lots of politicians, companies, and cities, written in standard modern spelling. Nineteenth-century letters have nicknames, initials, archaic place names, ALL-CAPS headers, and people known only to the writer. Expect the model to do well on the first kind of thing and worse on the second. Measuring *how much* worse is what the evaluation in the case study is for.
+Most widely used NER models were trained largely on **modern news text**. That shapes what they're good and bad at. News has lots of politicians, companies, and cities, written in standard modern spelling. Nineteenth-century letters have nicknames, initials, archaic place names, ALL-CAPS headers, and people known only to the writer. Expect the model to do well on the first kind of thing and worse on the second [@ehrmannNamedEntityRecognition2023; @ehrmannExtendedOverviewCLEF2020]. The evaluation in the case study will measure *how much* worse.
 
 ## Pre-Trained Models vs. General-Purpose LLMs
 
-Both are pre-trained neural networks, and both are built on the [transformer architecture](../unit_1/language_models.qmd#from-sequence-to-sequence-transformers). But they are different tools:
+Both are pre-trained neural networks, and both are built on the [transformer architecture](../unit_1/language_models.qmd#from-sequence-to-sequence-transformers) [@devlinBERTPretrainingDeep2019a; @jurafskySpeechLanguageProcessing2026, chap. 9]. But they are different tools:
 
 <div class="table-container">
 | | NER model (e.g. BERT-based) | General-purpose LLM (e.g. ChatGPT) |
-|-|--|--|
+|---|---|---|
 | Task | One narrow task: label names in text | Almost any text task, described in a prompt |
 | Output | Structured: entity, type, position, confidence score | Free text (which can be asked to look like data) |
 | Consistency | Same input, same settings, same versions, same output | Varies between runs by default |
-| Size and cost | Small; runs on a laptop | Very large; usually runs on a company's servers |
-| Transparency | Published model with a documented training set | Often opaque about training data |
+| Size and cost | Small, runs on a laptop | Very large, usually runs on a company's servers |
+| Transparency | Published model with a documented training set | Often opaque about training data [@bommasaniFoundationModelTransparency2023] |
 | Flexibility | Low: only does what it was trained for | High: can explain, summarize, translate, reason about context |
-: {.sm}
+: {.sm tbl-colwidths="[15,35,35]"}
 
 </div>
 
-Neither is simply better. The NER model gives you fast, consistent, structured output at scale, but it only gives you **predictions, not explanations**. You can't ask it why it labelled something as it did, or ask it follow-up questions, and it doesn't reason about context the way Gemini Notebook did when it worked out that `S. C.` was Colvin. And its confidence scores aren't explanations either: a score of 0.99 says how confident the model is, which isn't the same as how likely it is to be right, and says nothing about why. That's the trade-off this unit explores.
+Neither is simply better. The NER model gives you fast, consistent, structured output at scale, but it only gives you **predictions, not explanations**. You can't ask it why it labelled something as it did, or ask it follow-up questions, and it doesn't reason about context the way Gemini Notebook did when it worked out that `S. C.` was Colvin. And its confidence scores aren't explanations either: a score of 0.99 says how confident the model is, which isn't the same as how likely it is to be right, and says nothing about why [@guoCalibrationModernNeural2017; @desaiCalibrationPretrainedTransformers2020]. That's the trade-off this unit explores.
 
 ::: {.callout-note #all-caps-tokenization}
 ## Tokenization: The Problem of ALL-CAPS Text
 
-[Language Models](../unit_1/language_models.qmd#tokens) explained that models don't read words, but *tokens*. The NER models in the case study use a scheme called *WordPiece*: common words are single tokens, and rarer words are split into pieces from a fixed vocabulary, with the pieces that continue a word marked `##`.
+[Language Models](../unit_1/language_models.qmd#tokens) explained that models don't read words, but *tokens*. The NER models in the case study use a scheme called *WordPiece*: common words are single tokens, and rarer words are split into pieces from a fixed vocabulary, with the pieces that continue a word marked `##` [@devlinBERTPretrainingDeep2019a; @jurafskySpeechLanguageProcessing2026, chap. 9].
 
-This causes a concrete problem in the case study. The letters are full of ALL-CAPS text: headings (`TO SIDNEY COLVIN`), salutations (`MY DEAR COLVIN`), and signatures (`LOUIS STEVENSON`). The model's vocabulary was built mostly from normally capitalized text, so the capitalized forms are broken into fragments that rarely appeared in its training data:
+This causes a concrete problem in the case study. The letters are full of ALL-CAPS text: headings (`TO SIDNEY COLVIN`), salutations (`MY DEAR COLVIN`), and signatures (`LOUIS STEVENSON`). The model's [vocabulary](https://github.com/google-research/bert/blob/master/multilingual.md) was built mostly from normally capitalized text, so the capitalized forms are broken into fragments that rarely appeared in its training data:
 
 <div class="table-container table-30 table-right">
 | Text | Tokens |
@@ -72,7 +72,7 @@ This causes a concrete problem in the case study. The letters are full of ALL-CA
 
 </div>
 
-Normally, the pipeline merges the `##` pieces back into whole words (that's what `aggregation_strategy='simple'` does). But the model has rarely seen fragments like these in training, so it may give different labels to different pieces of the same word. Then they can't be merged, and they come out as meaningless entities like `SI` or `L`.
+Normally, the pipeline merges the `##` pieces back into whole words (that's what [`aggregation_strategy='simple'`](https://huggingface.co/docs/transformers/main_classes/pipelines) does). But the model has rarely seen fragments like these in training, so it may give different labels to different pieces of the same word. Then they can't be merged, and they come out as meaningless entities like `SI` or `L`.
 
 The simplest fix is to convert ALL-CAPS words to title case (`Sidney Colvin`) before running the model. The notebook does this with a small function called `normalize_caps`, and shows the output before and after in Section 2. (A different aggregation strategy, such as `'first'`, would keep each word in one piece, but the model would still be reading fragments it rarely saw in training.)
 
@@ -81,21 +81,21 @@ This is a small example of a general lesson: **preprocessing decisions matter**,
 
 ## The Pipeline
 
-Put together, the case study is a pipeline, a sequence of steps each feeding the next:
+Put together, the case study is a *pipeline*, a sequence of steps each feeding the next:
 
 1. **Load** the letters and their metadata.
 2. **Preprocess** the text (normalize capitalization).
-3. **Run the NER model** on each letter. The model reads at most 512 tokens at a time (roughly 370 words), so longer letters are read in overlapping windows.
+3. **Run the NER model** on each letter.
 4. **Structure** the output as a table, and export it as CSV.
 5. **Resolve** different names for the same entity (`Colvin`, `Sidney Colvin`).
-6. **Analyse and visualize**: frequencies, a network, a timeline, a map.
+6. **Analyze and visualize**: frequencies, a network, a timeline, a map.
 7. **Evaluate** the model against human annotations.
 
-Each step can introduce errors, and errors compound: a fragment from step 3 becomes a "person" in the network, or a dot on the map. That's why the last step matters so much.
+Each step can introduce errors, and errors compound [@finkelSolvingProblemCascading2006]: a fragment from step 3 becomes a *person* in the network, or a dot on the map. That's why evaluation matters so much.
 
 ## Hugging Face
 
-[Hugging Face](https://huggingface.co) hosts millions of pre-trained models, including many for NER in different languages and domains. The `transformers` library lets you load any of them in a few lines:
+[Hugging Face](https://huggingface.co) hosts [millions of pre-trained models](https://huggingface.co/models), including many for NER in different languages and domains. The `transformers` library [@wolfTransformersStateoftheArtNatural2020] lets you load any of them in a few lines:
 
 ```python
 from transformers import pipeline
@@ -104,7 +104,7 @@ ner_pipeline = pipeline('ner', model='Davlan/bert-base-multilingual-cased-ner-hr
 ner_pipeline('Robert Louis Stevenson wrote to Sidney Colvin from Edinburgh in August 1877.')
 ```
 
-Each model has a **model card**: a page describing what it was trained on, which labels it predicts, how it was evaluated, and its known limitations. Reading the model card is the first step in choosing a model, and the first thing you'd cite about it. The case study uses:
+Each model has a **model card**: a page describing what it was trained on, which labels it predicts, how it was evaluated, and its known limitations [@mitchellModelCardsModel2019]. Reading the model card is the first step in choosing a model, and the first thing you'd cite about it. The case study uses:
 
 - [`Davlan/bert-base-multilingual-cased-ner-hrl`](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl): a multilingual model, used for the main pipeline.
 - [`dslim/bert-base-NER`](https://huggingface.co/dslim/bert-base-NER): an English model trained on news articles, used for comparison.
@@ -119,6 +119,18 @@ Read both model cards before you start. What do they tell you about how each mod
 - Preprocessing matters: a mismatch between your text and the model's training data, such as ALL-CAPS headers, can cause failures that look mysterious.
 - Errors compound along a pipeline, which is why evaluation comes last and matters most. Start by reading the model card.
 
-## Next
+::: {.callout-note}
+## Going Further
 
-[Case Study: Named Entities in Stevenson''s Letters](ner_case_study.qmd): run the pipeline yourself.
+If you want to read more, the following are a good place to start:
+
+- @ehrmannNamedEntityRecognition2023: a survey of named-entity recognition on historical documents, written partly with humanities researchers in mind. The introduction and the sections on the challenges of historical text are readable without the technical detail.
+- Megan S. Kane, [*Corpus Analysis with spaCy*](https://programminghistorian.org/en/lessons/corpus-analysis-with-spacy) (2023): a *Programming Historian* lesson that walks through NER and related techniques on a real corpus, step by step.
+- @mitchellModelCardsModel2019: the short paper that proposed model cards, and what they should contain. Worth reading before you rely on one.
+:::
+
+## References
+
+::: {#refs}
+:::
+

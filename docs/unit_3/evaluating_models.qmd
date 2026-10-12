@@ -5,16 +5,16 @@ title: 'Evaluating and Comparing Models'
 ::: {.callout-note collapse="true"}
 ## Activity Details
 
-**Time:** about 45 minutes
-**Works:** on your own, or in a group
-**You need:** the [NER pipeline notebook](ner_pipeline.ipynb), run through Section 8, and ideally your own annotations from the [annotation activity](annotation.qmd)
+**Time:** about 45 minutes <br />
+**Setup:** on your own, or in a group <br />
+**Requirements:** the [NER pipeline notebook](ner_pipeline.ipynb), run through Section 8, and ideally your own annotations from the [annotation activity](annotation.qmd)
 :::
 
-This is where the ideas from [Unit 1](../unit_1/model_training.qmd#measuring-performance) become a concrete calculation. You'll compare the model's predictions with human annotations, work out precision, recall, and F1, look at what kinds of errors the model makes, and then compare it with a second model, and with Gemini Notebook.
+This is where the ideas from [Unit 1](../unit_1/model_training.qmd#measuring-performance) become a concrete calculation. You'll compare the model's predictions with human annotations, work out precision, recall, and F1 [@sangIntroductionCoNLL2003Shared2003; @nadeauSurveyNamedEntity2007a; @manningIntroductionInformationRetrieval2008, chap. 8; @jurafskySpeechLanguageProcessing2026, chap. 18], look at what kinds of errors the model makes, and then compare it with a second model, and with Gemini Notebook.
 
-If you need a refresher on the metrics, see the [worked example](../unit_1/evaluation_metrics.qmd), and especially [From Marbles to Letters](../unit_1/evaluation_metrics.qmd#from-marbles-to-letters), which explains true positives, false positives, and false negatives with these letters.
+If you need a refresher on the metrics, see the [example](../unit_1/evaluation_metrics.qmd), and especially [From Marbles to Letters](../unit_1/evaluation_metrics.qmd#from-marbles-to-letters), which explains true positives, false positives, and false negatives with these letters.
 
-::: {.callout-note}
+::: {.callout-warning}
 ## About the Data
 
 The repository includes two independent sets of annotations, by two people (`person_1` and `person_2`), of the same eight letters. By default, the model is evaluated against `person_1`. If you've done the [annotation activity](annotation.qmd), the notebook loads yours too, as `my`.
@@ -22,42 +22,57 @@ The repository includes two independent sets of annotations, by two people (`per
 
 ## Part 1: Evaluating the Model (Notebook Section 9)
 
-Run the cells in Section 9. They:
+Run the cells in Section 9. They will:
 
-1. load every set of annotations in `data/annotations/`, and show which letters each annotator covered;
-2. choose one annotator as the reference (`REFERENCE`, `person_1` by default);
-3. compare the model's predictions with the reference annotations, letter by letter, and calculate precision, recall, and F1 for each entity type;
-4. repeat the evaluation against every annotator, so you can see how much the score depends on whose annotations count as the truth.
+1. Load every set of annotations in `data/annotations/`, and show which letters each annotator covered
+2. Choose one annotator as the reference (`REFERENCE`, `person_1` by default)
+3. Compare the model's predictions with the reference annotations, letter by letter, and calculate precision, recall, and F1 for each entity type
+4. Repeat the evaluation against every annotator, so you can see how much the score depends on whose annotations count as the truth [@plankProblemHumanLabel2022]
 
-**Put the numbers into words.** Before moving on, say what they mean in plain language. If precision for people is 0.57: of every hundred names the model tagged as people, 57 really were people, and 43 weren't. If recall is 0.71: of every hundred people the annotator listed, the model found 71, and missed 29.
+**Before moving on, say what they mean in plain language.**
+
+:::{.callout-tip collapse="true"}
+## Put the Numbers Into Words
+
+- If precision for people is 0.57: of every hundred names the model tagged as people, 57 really were people, and 43 weren't. 
+- If recall is 0.71: of every hundred people the annotator listed, the model found 71, and missed 29.
+:::
 
 ### Error Analysis
 
-The next cell lists every disagreement between the model and the annotations. This is where the real learning is.
+The next cell lists every disagreement between the model and the annotations.
 
 - **False positives:** are they really wrong, or did the *annotator* miss them? Ground truth can be wrong too.
 - **False negatives:** what do the missed entities have in common? Salutations? Initials? Names that are also ordinary words?
-- Are the errors **random or systematic**? Systematic errors tell you about the mismatch between the model's training data and your sources.
+- Are the errors **random or systematic**? Systematic errors tell you about the mismatch between the model's training data and your sources [@ehrmannNamedEntityRecognition2023].
 
 In the letter to Colvin (`vol1_ch3_letter14`), for instance, the model tags `Clever` (from `not so CLEVER perhaps`) as a person, and misses `COLVIN` in the salutation `MY DEAR COLVIN`.
 
 ### Inter-Annotator Agreement
 
-The agreement cell calculates Cohen's kappa for every pair of annotators on the letters they share (`person_1` and `person_2`, and yours against both, if you've annotated), and treats the model as one more annotator. Read the explanation in the notebook: raw agreement always looks high, because most words aren't entities; kappa corrects for that. The next cell lists where `person_1` and `person_2` disagree, letter by letter.
+The agreement cell calculates Cohen's *kappa* for every pair of annotators on the letters they share (`person_1` and `person_2`, and yours against both, if you've annotated), and treats the model as one more annotator. Read the explanation in the notebook: raw agreement always looks high, because most words aren't entities, and *kappa* corrects for that. The next cell lists where `person_1` and `person_2` disagree, letter by letter.
 
 - How does the two people's agreement compare with the model's agreement with either of them?
 - Look at the disagreements between the two people. Which are boundary, type, or coverage disagreements? Which would you resolve, and how?
 - How did the model's F1 change when you switched the reference annotator? What does that tell you about reporting a single score?
 
+:::{.callout-note}
+## Agreement Measures
+
+*Kappa* isn't the only way to measure agreement, many NER projects compare annotators with F1 instead, treating one as the reference [@hripcsakAgreementFMeasureReliability2005]. For more, @artsteinSurveyArticleIntercoder2008 is the standard introduction to agreement measures in language research.
+:::
+
 ### Confidence Thresholds
 
 Each prediction has a confidence score. The threshold cell keeps only predictions above a series of cut-offs and recalculates the metrics, so you can see the tradeoff from [Unit 1](../unit_1/evaluation_metrics.qmd#precision-vs-recall-the-tradeoff) on real data. Against `person_1`, keeping every prediction gives a precision of 0.62 and a recall of 0.73. Keeping only predictions with a confidence of 0.99 or more raises precision to 0.72, and drops recall to 0.55: fewer false alarms, but many more misses.
 
-**Think about:**
+:::{.callout-note}
+## Consider
 
 - Which matters more for your research goal, precision or recall? If you're building an index of everyone mentioned in the letters and will check it by hand, recall probably matters more. If you're publishing counts, both do.
 - What threshold would you choose, and why?
-- Some false positives have very high confidence: the model was 98% confident that `Clever` is a person. What does that tell you about using confidence to filter out errors?
+- Some false positives have very high confidence: the model was 98% confident that `Clever` is a person. What does that tell you about using confidence to filter out errors [@guoCalibrationModernNeural2017; @desaiCalibrationPretrainedTransformers2020]?
+:::
 
 ## Part 2: Comparison with Other Approaches (Notebook Section 10)
 
@@ -74,21 +89,23 @@ Then run the cells, and fill in a comparison like this one, using the notebook's
 <div class="table-container table-90">
 
 | | `Davlan/bert-base-multilingual-cased-ner-hrl` | `dslim/bert-base-NER` |
-|---|--|--|
+|---|--|--:|
 | Precision / recall / F1, people | | |
 | Precision / recall / F1, places | | |
 | Precision / recall / F1, organizations | | |
 | Notable false positives | | |
 | Notable misses | | |
-: {.sm}
+: {.sm tbl-colwidths="[30,30,30]"}
 
 </div>
 
-**Think about:**
+:::{.callout-note}
+## Consider
 
 - Where do the two models agree? Where do they disagree?
-- Was your prediction right? "More specialized" doesn't automatically mean better for your task. Only evaluating on your own data tells you.
-- The second model also predicts a `MISC` category, which the evaluation ignores. What might you be missing by fitting its output to your annotation scheme?
+- Was your prediction right? *More specialized* doesn't automatically mean better for your task. Only evaluating on your own data tells you.
+- The second model also predicts a `MISC` category [@sangIntroductionCoNLL2003Shared2003], which the evaluation ignores. What might you be missing by fitting its output to your annotation scheme?
+:::
 
 ### Gemini Notebook
 
@@ -106,11 +123,13 @@ Gemini Notebook did considerably better than both NER models on people and organ
 But the NER model, run twice on the same letter, gives identical output. Gemini Notebook's two runs shared only 288 of their 327 and 325 rows, and some mentions changed type between runs. Anything built on its rows (counts, a network, a map) would change too. And you can't see the code that produced them, or which model version did.
 :::
 
-**Think about:**
+:::{.callout-note}
+## Consider
 
 - If you had to choose one approach for a research project, which would it be, and why? What would you need to report about it?
 - Two runs of Gemini Notebook scored almost the same, but produced different data. Which matters more for your research: the score, or the data?
 - Could you get some of both? [Advantages of Programmatic Approaches](programming_advantages.qmd#best-of-both-worlds) describes some approaches in between.
+:::
 
 ## Options for Improving Results
 
@@ -119,22 +138,22 @@ If a model isn't good enough for your purpose, you have several options, roughly
 1. **Adjust the confidence threshold** to favour precision or recall.
 2. **Preprocess the text** better (as `normalize_caps` does for ALL-CAPS text).
 3. **Post-process** the predictions: filter known false positives (`God`), and add rules for patterns the model misses.
-4. **Try a different model**, perhaps one trained on historical text or on your language, or an LLM called from code.
+4. **Try a different model**, perhaps one trained on historical text [@schweterHmBERTHistoricalMultilingual2022] or on your language, or an LLM called from code.
 5. **Fine-tune** a model on annotated examples from your own sources ([Next Steps](next_steps.qmd#further-directions)).
 
 ## Recording Your Method
 
 The last cell of the notebook prints a record of the models and settings used, and the evaluation. If you used results like these in a publication, your methods section would need at least:
 
-- the model name (and version, if there is one), a link to its model card, and the version of the library that ran it;
-- the preprocessing and settings (here, capitalization normalization, the aggregation strategy, and how long texts were split);
-- the evaluation data: how many letters, annotated by whom, following what guidelines, and with what agreement;
-- the results: precision, recall, and F1 by entity type, and against which annotator;
-- known systematic errors, and what you did about them.
+- the model name and its exact version (on Hugging Face, the commit of the model's repository), a link to its model card [@mitchellModelCardsModel2019], and the version of the library that ran it
+- the preprocessing and settings (here, capitalization normalization, the aggregation strategy, and how long texts were split)
+- the evaluation data: how many letters, annotated by whom, following what guidelines, and with what agreement
+- the results: precision, recall, and F1 by entity type, and against which annotator
+- known systematic errors, and what you did about them
 
 [Documenting Your Work](../unit_2/documenting_ai_use.qmd#examples), in Unit 2, has a methods paragraph for this case study, built from exactly these figures.
 
-Benchmark scores on a model card tell you how the model performed on *its* test data, typically modern news. Only an evaluation on your own material tells you what you actually need to know.
+Benchmark scores on a model card tell you how the model performed on *its* test data, typically modern news. Only an evaluation on your own material tells you what you actually need to know [@ehrmannExtendedOverviewCLEF2020].
 
 ## Key Takeaways
 
@@ -142,8 +161,19 @@ Benchmark scores on a model card tell you how the model performed on *its* test 
 - Look at the errors, not just the scores. Systematic errors reveal the mismatch between the model's training data and your sources.
 - A score depends on whose annotations count as the truth, and agreement between people sets a limit on what a model's score means.
 - Confidence thresholds trade precision for recall, and high confidence doesn't mean correct. Choose a threshold based on your research goal.
-- The most accurate approach isn't automatically the right one: on these letters, Gemini Notebook scored highest, but its results couldn't be reproduced. Choosing a model is a methodological decision; compare candidates on your own data, and record what you used.
+- The most accurate approach isn't automatically the right one: on these letters, Gemini Notebook scored highest, but its results couldn't be reproduced. Choosing a model is a methodological decision: compare candidates on your own data, and record what you used.
 
-## Next
+::: {.callout-note}
+## Going Further
 
-[Next Steps](next_steps.qmd): what you've learned across the unit, and where to go from here.
+If you want to read more, the following are a good place to start:
+
+- @ehrmannExtendedOverviewCLEF2020: the report of a shared task in which teams built NER systems for historical newspapers in several languages, and compared them on the same annotated material. It shows how much scores drop on historical text, and why.
+- @plankProblemHumanLabel2022: a short argument that disagreement between annotators is often information, not just noise, and what that means for evaluating models against them.
+:::
+
+## References
+
+::: {#refs}
+:::
+

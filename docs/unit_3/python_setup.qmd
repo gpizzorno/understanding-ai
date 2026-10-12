@@ -2,7 +2,7 @@
 title: 'Setting Up Python'
 ---
 
-Unit 3 uses [Python](https://www.python.org/), in [Jupyter notebooks](https://jupyter.org) (documents that mix code, its output, and explanatory text). You write and run code in small cells, one at a time, and see the result immediately below each one, which makes them forgiving for learning: run a cell, see what happens, change it, run it again.
+Unit 3 uses [Python](https://www.python.org/), in [Jupyter notebooks](https://jupyter.org) (documents that mix code, its output, and explanatory text) [@kluyverJupyterNotebooksPublishing2016]. You write and run code in small cells, one at a time, and see the result immediately below each one, which makes them forgiving for learning: run a cell, see what happens, change it, run it again.
 
 This page covers two things: how much Python you need, and how to get a working setup.
 
@@ -60,22 +60,23 @@ Notice the indentation: in Python, the lines that belong to a loop or a function
 
 ## Setup Options
 
-There are three ways to get set up. If you're not sure, start with [Google Colab](#option-1-google-colab).
+There are three ways to get set up, each in its own tab below. If you're not sure, start with Google Colab.
 
 <div class="table-container table-90">
 
 | Option | Install? | Good for |
-|---|---|---|
-| [Google Colab](#option-1-google-colab) | No, runs in the browser | Getting started quickly, or a computer where you can't install software |
-| [Anaconda](#option-2-anaconda) | Yes, one installer | A permanent local setup, with a graphical launcher |
-| [Plain Python](#option-3-plain-python) | Yes, command line | People comfortable with a terminal |
+|-|-|---|
+| Google Colab | No, runs in the browser | Getting started quickly, or a computer where you can't install software |
+| Anaconda | Yes, one installer | A permanent local setup, with a graphical launcher |
+| Plain Python | Yes, command line | People comfortable with a terminal |
 : {.sm}
 
 </div>
 
-## Option 1: Google Colab
+::: {.panel-tabset}
+### Google Colab
 
-[Google Colab](https://colab.research.google.com) runs notebooks on Google's computers, and you see the results in your browser. You only need a Google account.
+[Google Colab](https://colab.research.google.com) runs notebooks on [Google's computers](https://research.google.com/colaboratory/faq.html), and you see the results in your browser. You only need a Google account.
 
 1. Open the [case study notebook on GitHub](https://github.com/gpizzorno/understanding-ai/blob/main/code/ner_pipeline.ipynb) and click the <span class="command">Open in Colab</span> badge at the top.
 2. Run the first cell. It downloads a copy of this repository into your Colab session, so the notebook can find the data.
@@ -90,7 +91,7 @@ Two things to know about Colab:
 - **Annotations:** to use your own annotations, upload your `my_annotations.csv` file to `understanding-ai/data/annotations/` in Colab's file browser (the folder icon on the left) before running Section 9.
 :::
 
-## Option 2: Anaconda
+### Anaconda
 
 The [Anaconda distribution](https://www.anaconda.com/download) installs Python, Jupyter, and many common libraries in one go, on Windows, macOS, or Linux.
 
@@ -119,7 +120,7 @@ Anaconda is free for individuals, for teaching, and for organizations with fewer
 
 You can also start Jupyter from the <span class="command">Anaconda Navigator</span> app instead of the command line, but you still need to run step 3 once.
 
-## Option 3: Plain Python
+### Plain Python
 
 If you're comfortable with a terminal, you can use a standard Python installation and a *virtual environment* (an isolated set of libraries for this project, so it doesn't interfere with anything else on your computer).
 
@@ -159,6 +160,7 @@ If you're comfortable with a terminal, you can use a standard Python installatio
    ```
 
 Each time you come back, activate the environment again (step 3's last line) before starting Jupyter.
+:::
 
 ## Checking Your Setup
 
@@ -170,12 +172,13 @@ Whichever option you chose:
 
 **If something goes wrong:**
 
-- **`ModuleNotFoundError`** (for example, `No module named 'transformers'`): a library is missing. Make sure you ran `pip install .` from the repository folder, in the same environment Jupyter is using. In a notebook cell, you can also run `%pip install transformers` (replacing `transformers` with the missing module): `%pip` always installs into the environment the notebook is running in.
+- **`ModuleNotFoundError`** (for example, `No module named 'transformers'`): a library is missing. Make sure you ran `pip install .` from the repository folder, in the same environment Jupyter is using. In a notebook cell, you can also run `%pip install transformers` (replacing `transformers` with the missing module): [`%pip`](https://ipython.readthedocs.io/en/stable/interactive/magics.html) always installs into the environment the notebook is running in.
 - **`FileNotFoundError` for `../data/...`:** the notebook can't find the data. Make sure you opened the notebook from inside the repository's `code/` folder, not a copy saved somewhere else. [Coding with LLMs](coding_with_llms.qmd#from-code-to-result) explains why this matters.
 - **Anything else:** copy the full error message into an LLM and ask what it means, as described in [Coding with LLMs](coding_with_llms.qmd).
 
 The first time the notebook loads a model, it downloads a few hundred megabytes, so you'll want to do it from somewhere with a reasonably fast internet connection. Installing the libraries also takes a while, and several gigabytes of disk space.
 
-## Next
+## References
 
-[Advantages of Programmatic Approaches](programming_advantages.qmd): why this unit moves from conversational tools to code.
+::: {#refs}
+:::

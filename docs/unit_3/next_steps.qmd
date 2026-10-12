@@ -3,16 +3,16 @@ title: 'Next Steps'
 body-classes: end-of-units # no link to the next page (the Reference section); see styles.css
 ---
 
-You've now worked through a complete pipeline: from raw letters to structured data, visualizations, and an evaluation of how far to trust them. This reading pulls together the main lessons of the unit, and points to where you can go from here.
+You've now worked through a complete pipeline: from raw letters to structured data, visualizations, and an evaluation of how far to trust them. This page pulls together the main lessons of the unit, and points to where you can go from here.
 
 ## Key Takeaways
 
 - **Control, not capability.** Gemini Notebook was more accurate on these letters than the NER model, at least on people and organizations. The pipeline's advantage is that you can reproduce it, inspect it, name the model that ran it, and know that every letter was processed.
-- **Different tools for different tasks.** Conversational tools are good for exploration and interpretation; programmatic pipelines are good for systematic extraction, structured output, and reproducibility. Many projects use both.
-- **Models are not magic.** They make mistakes, inherit the strengths and blind spots of their training data, and need to be evaluated on your own sources. A high benchmark score on news articles doesn't guarantee good performance on nineteenth-century letters.
+- **Different tools for different tasks.** Conversational tools are good for exploration and interpretation, and programmatic pipelines are good for systematic extraction, structured output, and reproducibility. Many projects use both.
+- **Models are not magic.** They make mistakes, inherit the strengths and blind spots of their training data, and need to be evaluated on your own sources. A high benchmark score on news articles doesn't guarantee good performance on nineteenth-century letters [@ehrmannNamedEntityRecognition2023].
 - **Evaluation is how you find out.** Treat model output as a hypothesis to be tested, not an answer to be accepted. Build your own ground truth, calculate precision, recall, and F1, and look at the errors, not just the scores.
 - **Errors compound.** Each step in a pipeline (extraction, resolution, geocoding) adds its own errors, and a polished chart or map can hide all of them.
-- **Make your use visible.** Record the model, its version, your settings, and your evaluation. Your code is already a record of what you did; the prompts you used to write it are part of your method too.
+- **Make your use visible.** Record the model, its version, your settings, and your evaluation. Your code is already a record of what you did, and the prompts you used to write it are part of your method too.
 - **Human judgement remains essential.** The model found the entities. You decided how to resolve them, how to evaluate them, and what they mean.
 
 ## Writing Up AI Methods
@@ -21,7 +21,7 @@ If you used a pipeline like this in published research, your methods section wou
 
 - [Recording Your Method](evaluating_models.qmd#recording-your-method) lists what the methods section needs: the model and its version, your preprocessing and settings, your evaluation, and its known errors.
 - [Documenting Your Work](../unit_2/documenting_ai_use.qmd#examples) has an example methods paragraph for this case study.
-- [Acknowledging AI Use](../unit_2/acknowledging_ai_use.qmd) covers any help you had from an LLM, for example in writing or adapting the code.
+- [Acknowledging AI Use](../unit_2/acknowledging_ai_use.qmd) covers reporting any help you had from an LLM, for example in writing or adapting the code.
 
 Try drafting the paragraph yourself, for the case study as *you* ran it: with your annotations, your choice of reference annotator, and your threshold. What would you have to go back and check?
 
@@ -36,20 +36,35 @@ The notebook processes any folder of plain-text (`.txt`) files. To try it on you
 
 Things that will likely need to change:
 
-- **Format:** PDFs, scans, or spreadsheets need converting to text first. OCR errors will affect the model.
-- **Language:** choose a model trained on your language. The multilingual model in the case study covers several; many others exist.
+- **Format:** PDFs, scans, or spreadsheets need converting to text first. OCR errors will affect the model [@hamdiIndepthAnalysisImpact2023].
+- **Language:** choose a model trained on your language. The multilingual model in the case study covers [ten languages](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl), but many other models exist.
 - **Entity types:** if you need dates, works, ships, or occupations, look for a model with those labels, consider fine-tuning (below), or try an LLM called from code, evaluated in the same way.
 - **Resolution:** you'll need your own alias dictionary, or a more sophisticated approach.
 
 ## Further Directions
 
-- **[Hugging Face Model Hub](https://huggingface.co/models):** browse pre-trained models for NER, classification, summarization, translation, and more; filter by task and language. Read the model card before you use one.
+- **[Hugging Face Model Hub](https://huggingface.co/models):** browse pre-trained models for NER, classification, summarization, translation, and more. Filter by task and language. Read the model card before you use one.
 - **[spaCy](https://spacy.io):** a fast, widely used Python library for language processing. Good for production pipelines, rule-based matching (useful for custom entity patterns), and working with Hugging Face models.
-- **Fine-tuning:** if an off-the-shelf model isn't good enough, you can continue training it on annotated examples from your own sources, so that it learns their particular names, spellings, and conventions. It's [transfer learning](../unit_1/teachable_machine.qmd#transfer-learning) again, as in Teachable Machine, on a larger scale. It needs far more annotated examples than an evaluation does, and more computing power, but it can improve performance on your material considerably. The Hugging Face documentation covers it step by step.
+- **Fine-tuning:** if an off-the-shelf model isn't good enough, you can continue training it on annotated examples from your own sources, so that it learns their particular names, spellings, and conventions. It's [transfer learning](../unit_1/teachable_machine.qmd#transfer-learning) again, as in Teachable Machine, on a larger scale [@howardUniversalLanguageModel2018a]. It needs far more annotated examples than an evaluation does, and more computing power, but it can improve performance on your material considerably [@brandsenCreatingDatasetNamed2020; @brandsenCanBERTDig2021; @schweterHmBERTHistoricalMultilingual2022]. The [Hugging Face documentation](https://huggingface.co/docs/transformers/en/tasks/token_classification) covers it step by step.
 - **LLMs from code:** calling an LLM through an API, with a pinned model version and a saved prompt, or running an open model on your own computer, combines some of an LLM's flexibility with some of a pipeline's control ([The Best of Both Worlds](programming_advantages.qmd#best-of-both-worlds)). Evaluate it exactly as you evaluated the NER model.
 - **The [self-paced introduction to Python](https://github.com/gpizzorno/introduction-to-python):** if you want to become more comfortable reading and adapting code.
 - **This repository:** the notebook and data are yours to adapt, under the [licence](../about.qmd#licence).
 
 ## A Return to the Beginning
 
-These materials started from one idea: AI models learn patterns from data, and everything they can and can't do follows from that. In Unit 1, you saw it in a model that learned shape from a few dozen photos; in Unit 2, in a chat assistant that was fluent, often right, and impossible to pin down; and here, in a pipeline whose every step you could inspect, measure, and repeat. Whatever tools you use next, the same questions apply: what was this model trained on, how would I know if it's wrong, and could someone else see what I did?
+These materials started from one idea: *AI models learn patterns from data, and everything they can and can't do follows from that.* In Unit 1, you saw it in a model that learned shape from a few dozen photos. In Unit 2, you saw it in a chat assistant that was fluent, often right, and impossible to pin down. Here, you saw it in a pipeline whose every step you could inspect, measure, and repeat. Whatever tools you use next, the same questions apply: *what was this model trained on, how would I know if it's wrong, and could someone else see what I did?*
+
+::: {.callout-note}
+## Going Further
+
+If you want to read more, the following are a good place to start:
+
+- *[The Programming Historian](https://programminghistorian.org)*: peer-reviewed, step-by-step lessons on digital methods for humanities researchers, from text analysis and NER to networks and maps. Many of the techniques in this unit have lessons there.
+- @ehrmannNamedEntityRecognition2023: a survey of named-entity recognition on historical documents, with the main challenges, resources, and approaches. The introduction and the sections on historical text are readable without the technical detail.
+:::
+
+## References
+
+::: {#refs}
+:::
+

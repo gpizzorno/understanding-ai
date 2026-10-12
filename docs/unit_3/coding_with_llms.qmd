@@ -2,32 +2,32 @@
 title: 'Coding with LLMs'
 ---
 
-LLMs have changed what it means to learn to code. You can ask one to explain a line you don't understand, interpret an error message, or write a script from a description, and it will usually give a useful answer. But the failure modes from [Unit 2](../unit_2/index.qmd) apply to code too: LLMs produce plausible-looking code that can be subtly wrong, and code that is right can still fail to run on *your* computer, with *your* files. This page is about getting the benefits while staying in control.
+LLMs have changed what it means to learn to code. You can ask one to explain a line you don't understand, interpret an error message, or write a script from a description, and it will usually give a useful answer. But the failure modes from [Unit 2](../unit_2/index.qmd) apply to code too: LLMs produce plausible-looking code that can be subtly wrong [@liuYourCodeGenerated2023; @kabirStackOverflowObsolete2024], and code that is right can still fail to run on *your* computer, with *your* files. This page is about getting the benefits while staying in control.
 
 ## Vibe-Coding vs. Coding with LLMs
 
 - **Vibe-coding:** describe what you want, run whatever the LLM produces, and iterate until it seems to work, without understanding the code in between.
 - **Coding with LLMs:** use the LLM as a collaborator to explain, draft, debug, and extend code that you follow step by step.
 
-The difference is whether **you are in the loop**.
-
-[*Vibe-coding*](https://en.wikipedia.org/wiki/Vibe_coding) (a term coined by the AI researcher Andrej Karpathy, [in February 2025](https://x.com/karpathy/status/1886192184808149383)) is seductive, and genuinely useful for throwaway scripts and quick prototypes. For research, it's risky:
+The difference is whether **you are in the loop**. [*Vibe-coding*](https://en.wikipedia.org/wiki/Vibe_coding) (a term coined by the AI researcher Andrej Karpathy, [in February 2025](https://x.com/karpathy/status/1886192184808149383)) is seductive, and genuinely useful for throwaway scripts and quick prototypes. For research, it's risky:
 
 - You can't evaluate output from code you don't understand.
 - You can't maintain or modify code you didn't follow.
 - You can't document your process credibly.
 
+A study found that people who wrote code with an AI assistant produced less secure code, and were more confident that it was secure [@perryUsersWriteMore2023]. Another study showed that about 40% of the programs an AI assistant suggested for security-relevant tasks were vulnerable [@pearceAsleepKeyboardAssessing2021].
+
 Coding with LLMs means treating the LLM as a knowledgeable—but fallible—collaborator: ask it to explain a function before you run it, to walk through its logic step by step, and to say what could go wrong. **You remain the decision-maker**. LLMs lower the barrier to writing code. They don't lower the bar for *understanding* what your code does.
 
-## Kinds of Tools
+## Types of Tools
 
 ::: {.callout-warning}
 ## About the Tools
 
-The types of tools described in this section change quickly. The descriptions below were written in October 2026. Names, features, and prices will change, but the three kinds of tool, and the trade-offs between them, are likely to last.
+The types of tools described in this section change quickly. The descriptions below were accurate at the time of writing. Names, features, and prices will change, but the three kinds of tool, and the trade-offs between them, are likely to remain relevant.
 :::
 
-There are three main kinds of tool for coding with an LLM. To compare them, imagine the same small task in each: **count Stevenson's letters per year, using `data/letters_metadata.csv`, and draw a bar chart.**
+There are three main types of tool for coding with an LLM. To compare them, imagine the same small task in each: **count Stevenson's letters per year, using `data/letters_metadata.csv`, and draw a bar chart.**
 
 ### Chat Assistants
 
@@ -39,7 +39,7 @@ The assistant can't see your files, so you have to tell it what it needs to know
 
 **Running the result:** copy the code into a new cell in a notebook in the `code/` folder, and run it.
 
-**Good for:** small pieces of code, explanations, and error messages. You see every line before it runs, because you're the one who runs it. Some assistants can also run code themselves, in their own sandbox, that tells you the code works on *their* copy of the file, not on yours.
+**Good for:** small pieces of code, explanations, and error messages. You see every line before it runs, because you're the one who runs it. Some assistants can also run code themselves, in their own sandbox, but that only tells you that the code works on *their* copy of the file, not necessarily on yours.
 
 ### Coding Agents
 
@@ -55,7 +55,7 @@ You don't need to tell it the columns of the file: it can open the file and look
 
 ### Code Editors with AI Assistance
 
-A code editor, such as [VS Code](https://code.visualstudio.com) with its Jupyter extension, opens notebooks like the case study's directly, and has an AI assistant built in (in VS Code, GitHub Copilot, or most other models via extensions). The assistant suggests code as you type, explains a selected cell, and can work as an agent inside the editor. Google Colab also has a built-in assistant.
+A code editor, such as [VS Code](https://code.visualstudio.com) with its Jupyter extension, opens notebooks like the case study's directly, and has an AI assistant built in (in VS Code, [GitHub Copilot](https://github.com/features/copilot), but other models can be run via [extensions](https://code.visualstudio.com/docs/configure/extensions/extension-marketplace)). The assistant suggests code as you type, explains a selected cell, and can work as an agent inside the editor. Google Colab also has a [built-in assistant](https://developers.googleblog.com/en/new-ai-first-google-colab-now-available-to-everyone/).
 
 **Running the result:** open the repository folder in the editor, open the notebook, and choose which Python environment (the *kernel*) runs it. Then run the cells as usual.
 
@@ -79,7 +79,7 @@ plt.show()
 
 It runs, and the chart looks right. But look at the printed counts:
 
-```text
+```bash
 year
 1863.0     1
 1866.0     1
@@ -87,23 +87,38 @@ year
 ...
 ```
 
-Why `1863.0`, and not `1863`? Because one letter in the metadata has no year, and the way `pandas` stores a missing number turns the whole column into decimals. The counts are right, but **the code silently dropped the letter with no year**, and nothing tells you so. Ask the LLM <span class="prompt">Why do the years end in .0?</span>, and it will usually explain, and suggest a fix. But you had to notice first. **Reading the output critically is your job**, whichever tool wrote the code.
+Why `1863.0`, and not `1863`? Because one letter in the metadata has no year, and the way `pandas` [stores a missing number](https://pandas.pydata.org/docs/user_guide/gotchas.html) turns the entire column into decimals. The counts are correct, but **the code silently dropped the letter with no year**, and nothing tells you so. Ask the LLM <span class="prompt">Why do the years end in .0?</span>, and it will usually explain, and suggest a fix. But you had to notice first. **Reading the output critically is your job**, whichever tool wrote the code.
 
 ## From Code to Result
 
-In our experience, much of the trouble beginners have with LLM-written code isn't in the code itself. It's in getting it to run: in the right place, with the right files, and the right libraries. LLMs can't see these things unless you tell them, so this is where their suggestions most often go wrong.
+In our experience, much of the trouble beginners have with LLM-written code isn't in the code itself. It's in getting it to run: in the right place, with the right files, and the right libraries. Chat assistants, in particular, can't see these things unless you tell them, so this is where their suggestions most often go wrong.
 
 ### Execution Environments
 
 Code always runs on some computer, in some Python installation:
 
-- **Google Colab:** runs on Google's computers. Files you create there disappear when the session ends, unless you download them.
-- **Jupyter on your own computer:** runs in the Python environment you installed ([Setting up Python](python_setup.qmd)). Each notebook is connected to a *kernel*: the running Python process that executes its cells, with that environment's libraries.
+- **Google Colab:** runs on Google's servers. Files you create there disappear when the session ends, unless you download them.
+- **Jupyter on your own computer:** runs in the Python environment you installed ([Setting Up Python](python_setup.qmd)). Each notebook is connected to a *kernel*: the running Python process that executes its cells, with that environment's libraries.
 - **A chat assistant's sandbox:** runs on the provider's computers, on whatever copy of your files you uploaded.
 
-When something works in one place and not another, the difference between the places is usually the reason for it.
+When the same code works in one place but fails in another, the specific differences between those two places will usually explain why.
 
 ### The Working Directory and File Paths
+
+The examples below use the case study's project folder, which is laid out like this (simplified):
+
+```text
+understanding-ai/
+├── code/
+│   └── ner_pipeline.ipynb      ← the notebook runs from here
+├── data/
+│   ├── letters/
+│   │   ├── wikisource_vol1_ch1_letter1.txt
+│   │   ├── wikisource_vol1_ch1_letter2.txt
+│   │   └── ...                 (462 letters)
+│   └── letters_metadata.csv
+└── outputs/                    ← where the notebook saves its results
+```
 
 Code finds files by their *path*. A path can be:
 
@@ -140,11 +155,11 @@ When an LLM suggests installing something, ask yourself (or it) where it will go
 An agent's convenience comes from doing many things for you. Make sure you can see what they were:
 
 - **Read the commands before you approve them.** If you don't know what a command does, refuse it, and ask the agent to explain.
-- **Use version control.** If your project is in [git](https://git-scm.com), you can see exactly which files the agent changed, and undo the changes. If it isn't, at least make a copy of your data before you start.
+- **Use version control.** If your project is in [git](https://git-scm.com) ([Software Carpentry's lesson](https://swcarpentry.github.io/git-novice/) is a good introduction), you can see exactly which files the agent changed, and undo the changes. If it isn't, at least make a copy of your data before you start.
 - **Ask for a summary:** <span class="prompt">List every file you created or changed, and every command you ran.</span> Then check the files.
 - **Don't give an agent blanket permission** in a folder with data you can't replace.
 
-::: {.callout-tip}
+::: {.callout-tip #five-good-habits}
 ## Five Good Habits
 
 **1. Ask for explanations, not just code.** Before running code you don't understand (whether an LLM wrote it or not), ask for an explanation: <span class="prompt">Walk me through this function line by line.</span> If the explanation doesn't make sense, don't trust the code yet.
@@ -153,16 +168,16 @@ An agent's convenience comes from doing many things for you. Make sure you can s
 
 **3. Ask what could go wrong.** <span class="prompt">What happens if a letter is empty?</span> <span class="prompt">What if a letter has no entities?</span> <span class="prompt">What could go wrong when running this on a nineteenth-century letter?</span> LLMs are often good at anticipating failure cases, if you ask explicitly.
 
-**4. Use the LLM to read error messages.** Python error messages (called *tracebacks*) can look intimidating. Read the last line first, it usually names the problem. Then paste the whole traceback into an LLM and ask what it means and how to fix it. This is one of the most valuable uses of LLMs for beginners.
+**4. Use the LLM to read error messages.** Python error messages (called *tracebacks*) can look intimidating. Read the last line first, it usually names the problem. Then paste the whole traceback into an LLM and ask what it means and how to fix it. This is one of the most valuable uses of LLMs for beginners [@leinonenUsingLargeLanguage2023].
 
-**5. Keep a record.** The prompts you use to generate or change code are part of your research process. Keep the useful ones alongside your code, in a comment, a notebook text cell, or a separate file, and keep the code itself, not just its results ([Documenting your work](../unit_2/documenting_ai_use.qmd#explicit-processing-requesting-the-script)).
+**5. Keep a record.** The prompts you use to generate or change code are part of your research process. Keep the useful ones alongside your code, in a comment, a notebook text cell, or a separate file, and keep the code itself, not just its results ([Documenting Your Work](../unit_2/documenting_ai_use.qmd#explicit-processing-requesting-the-script)).
 :::
 
 ## Prompts to Try
 
 These prompts work well with the [case study notebook](ner_pipeline.ipynb):
 
-- <span class="prompt">Explain this Python function line by line for someone with basic Python knowledge.</span> (Paste in `extract_entities_from_file` from Section 3)
+- <span class="prompt">Explain this Python function line by line for someone with basic Python knowledge.</span><br />Paste in `extract_entities_from_file` from Section 3.
 - <span class="prompt">What would cause this function to throw an error? List three likely failure cases.</span>
 - <span class="prompt">I got this error: **[paste the traceback]**. What does it mean and how do I fix it?</span>
 - <span class="prompt">What does aggregation_strategy='simple' do in a Hugging Face NER pipeline?</span>
@@ -194,6 +209,16 @@ If any of the Python itself is unfamiliar, the [quick refresher](python_setup.qm
 - Most problems are in getting code to run: where it runs, the working directory and paths, and which environment libraries are installed in. Tell the LLM what it can't see.
 - The prompts you use, and the code they produce, are part of your method. Keep them.
 
-## Next
+::: {.callout-note}
+## Going Further
 
-[The NLP Pipeline](nlp_pipeline.qmd): what the model in the case study actually does, and how it differs from the chat assistants you used in Unit 2.
+If you want to read more, the following are a good place to start:
+
+- Software Carpentry, [*Version Control with Git*](https://swcarpentry.github.io/git-novice/): a free, step-by-step lesson written for researchers, the safety net for working with coding agents.
+- @perryUsersWriteMore2023: a study in which people who wrote code with an AI assistant produced less secure code than those without one, and were more confident that it was secure. The introduction and conclusion make the point without the technical detail.
+:::
+
+## References
+
+::: {#refs}
+:::
