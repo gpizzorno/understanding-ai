@@ -12,13 +12,13 @@ He was a prolific letter writer, and his letters follow all of this: his work, h
 
 ## The Collection
 
-The letters come from *The Letters of Robert Louis Stevenson to His Family and Friends*, selected and edited by his friend Sidney Colvin and published in 1899, as transcribed on [Wikisource](https://en.wikisource.org/wiki/The_Letters_of_Robert_Louis_Stevenson_Volume_1). They are in the public domain. The collection has 462 letters, written between 1863 and 1894, each saved as a plain-text file, with a table recording who each letter was written to and when.
+The letters come from *The Letters of Robert Louis Stevenson to His Family and Friends*, selected and edited by his friend Sidney Colvin and published in 1899 [@stevensonLettersRobertLouis1899], as transcribed on [Wikisource](https://en.wikisource.org/wiki/The_Letters_of_Robert_Louis_Stevenson_Volume_1). They are in the public domain. The collection has 462 letters, written between 1863 and 1894, each saved as a plain-text file, with a table recording who each letter was written to and when.
 
 The people he wrote to most often in the collection:
 
 <div class="table-container table-90">
 | Correspondent | Who they were | Letters |
-|--|----|:-:|
+|---|----|:-:|
 | Sidney Colvin | Critic and museum curator, a close friend, and the editor of these letters | 54 |
 | Charles Baxter | A lawyer, and a friend from his student days in Edinburgh | 38 |
 | W. E. Henley | A poet and editor | 35 |
@@ -31,11 +31,11 @@ The people he wrote to most often in the collection:
 
 </div>
 
-Keep in mind that this is a *selection*. Colvin chose which letters to publish, and what to leave out. The complete edition of Stevenson's letters, published by Yale University Press in 1994–95, has nearly 2,800 letters, only 1,100 of which had been published before. Whatever you find in these 462 letters, with or without AI, reflects Colvin's choices as well as Stevenson's life: a reminder that every dataset was shaped by someone ([Model Training](../unit_1/model_training.qmd#bias-in-training-data) comes back to this).
+Keep in mind that this is a *selection*. Colvin chose which letters to publish, and what to leave out. The [complete edition](https://yalebooks.yale.edu/book/9780300061901/the-letters-of-robert-louis-stevenson/) of Stevenson's letters, published by Yale University Press in 1994–95, has nearly 2,800 letters, only 1,100 of which had been published before. Whatever you find in these 462 letters, with or without AI, reflects Colvin's choices as well as Stevenson's life: a reminder that every dataset was shaped by someone ([Model Training](../unit_1/model_training.qmd#bias-in-training-data) comes back to this).
 
 ## A Sample Letter
 
-Here is one of them, exactly as it appears in its file. It's the letter you'll work with throughout [Unit 2](../unit_2/index.qmd):
+Here is one of the letters, exactly as it appears in its file. It's the letter you'll work with throughout [Unit 2](../unit_2/index.qmd):
 
 ```text
 Letter: TO SIDNEY COLVIN
@@ -50,10 +50,10 @@ LOUIS STEVENSON.
 
 Even this short letter has most of the features that make the collection hard for software, and for AI models in particular:
 
-- **Capitals.** The heading, the salutation (`MY DEAR COLVIN`), and the signature are in capitals, as they are in the printed edition. So are the place and date (`EDINBURGH, AUGUST`), the magazines (`CORNHILL`, `TEMPLE BAR`), and a word for emphasis (`CLEVER`), but those were italics in print: the transcription turned them into capitals. Models trained on modern text rely heavily on capital letters to spot names, and are easily misled here.
+- **Capitals.** The heading, the salutation (`MY DEAR COLVIN`), and the signature are in capitals, as they are in the printed edition. So are the place and date (`EDINBURGH, AUGUST`), the magazines (`CORNHILL`, `TEMPLE BAR`), and a word for emphasis (`CLEVER`), but those were italics in print: the transcription turned them into capitals. Models trained on modern text rely heavily on capital letters to spot names, and are easily misled here [@mayhewNerPosWhen2019].
 - **The editor's additions.** The heading (`TO SIDNEY COLVIN`) and the place and date in square brackets (`[EDINBURGH, AUGUST 1877.]`) come from the edition, not from Stevenson's letter.
 - **Old spellings and phrasing:** `to-morrow`, `re-casting`, `a devil of a lot`.
-- **Names that need outside knowledge.** `Stephen` is almost certainly Leslie Stephen, who edited the *Cornhill Magazine*, but the letter never says so. `Villon` isn't the poet François Villon, but Stevenson's own writing about him, and the letter mentions two different pieces: the story that `TEMPLE BAR` liked ("A Lodging for the Night"), and an essay in the *Cornhill* that is `out this month`. Nothing in the letter tells them apart.
+- **Names that need outside knowledge.** `Stephen` is almost certainly [Leslie Stephen](https://www.britannica.com/biography/Leslie-Stephen), who edited the *Cornhill Magazine*, but the letter never says so. `Villon` isn't the poet François Villon, but Stevenson's own writing about him, and the letter mentions two different pieces: the story that `TEMPLE BAR` liked ("A Lodging for the Night"), and an essay in the *Cornhill* that is `out this month`. Nothing in the letter tells them apart.
 - **The same thing in different forms.** Stevenson's friend is `SIDNEY COLVIN` in the heading and `COLVIN` in the salutation. In other letters, he is `my dear Colvin`, or just `S. C.`.
 
 ## The Choice of Letters
@@ -81,3 +81,9 @@ The letters are real, messy, and unfamiliar to most models, which makes them a f
 ## The Files
 
 The letters, the table of correspondents and dates, the 20-letter sample, and the annotations are all in the repository's [`data/`](https://github.com/gpizzorno/understanding-ai/tree/main/data) folder. Its [README](https://github.com/gpizzorno/understanding-ai/blob/main/data/README.md) describes every file, where it came from, and its known issues.
+
+## References
+
+::: {#refs}
+:::
+
