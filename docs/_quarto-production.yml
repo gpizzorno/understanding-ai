@@ -1,0 +1,8 @@
+# Settings for the published site only, merged into _quarto.yml when the "production" profile is
+# active: QUARTO_PROFILE=production, set in .github/workflows/website.yml.
+# Local previews and renders (including the website zip archived on Zenodo) are built without it.
+
+format:
+  html:
+    # analytics: the snippet is in _includes/plausible.html
+    include-in-header: _includes/plausible.html

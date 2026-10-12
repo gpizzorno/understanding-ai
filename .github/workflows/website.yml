@@ -34,6 +34,8 @@ jobs:
           version: 1.10.18
 
       - name: Build the site (fails on warnings, such as links Quarto can't resolve)
+        env:
+          QUARTO_PROFILE: production # adds the analytics snippet (see docs/_quarto-production.yml)
         run: |
           quarto render docs 2>&1 | tee render.log
           if grep -q 'WARN' render.log; then echo 'Quarto reported warnings (see above)'; exit 1; fi
