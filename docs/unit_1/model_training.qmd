@@ -10,7 +10,7 @@ When you collected training examples, what were you actually doing? You were def
 
 The model did not understand your concept. It learned to distinguish patterns in the data you gave it. The model in the [Teachable Machine videos](teachable_machine.qmd#an-experiment-shape-or-colour) could have learned colour instead of shape, since both separated its examples perfectly, only a green circle showed which it had picked up. In the same way, if all your examples of one class had a bright background, the model may have learned *bright background*, not the thing you meant.
 
-That is the core insight of this reading: **models learn from data, and the data shapes everything**.
+That is the core insight of this page: **models learn from data, and the data shapes everything**.
 
 ## The Training Loop
 
