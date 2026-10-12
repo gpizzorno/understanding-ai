@@ -3,7 +3,7 @@
 [![Code](https://img.shields.io/badge/Code-MIT-green.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/Docs-CC%20BY%204.0-blue.svg)](LICENSE-docs)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22048602.svg)](https://doi.org/10.5281/zenodo.23324651)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23324651.svg)](https://doi.org/10.5281/zenodo.23324651)
 
 <img align="right" src="docs/assets/home_illustration.jpg" width=300  />
 
