@@ -49,7 +49,7 @@
 - title: Weight
   description: >-
     A number on each connection in a neural network, which determines how the value passing along it changes.
-    The weights are what a network learns in training, and everything it "knows" is stored in them.
+    The weights are what a network learns in training, and everything it *knows* is stored in them.
     See [Basic Concepts](../unit_1/basic_concepts.qmd#neural-networks-and-weights).
 
 - title: Activation function
