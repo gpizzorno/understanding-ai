@@ -49,4 +49,4 @@ To preview the website locally, [install Quarto](https://quarto.org/docs/get-sta
 
 If you use or adapt these materials, please cite them as:
 
-> Pizzorno, Gabriel H. *Understanding AI: A Practical Workshop for Humanities and Social Science Researchers*. 2026. https://github.com/gpizzorno/understanding-ai
+> Pizzorno, Gabriel H. *Understanding AI: A Practical Workshop for Humanities and Social Science Researchers*. Version 1.0.0. Zenodo, 2026. https://doi.org/10.5281/zenodo.23324652

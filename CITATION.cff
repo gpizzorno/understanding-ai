@@ -5,8 +5,18 @@ type: software
 authors:
   - family-names: Pizzorno
     given-names: Gabriel H.
+    affiliation: Harvard University
+    orcid: "https://orcid.org/0000-0003-1013-9324"
+doi: 10.5281/zenodo.23324652
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23324652
+    description: "This version (1.0.0)"
+  - type: doi
+    value: 10.5281/zenodo.23324651
+    description: "All versions: always resolves to the latest version"
 repository-code: "https://github.com/gpizzorno/understanding-ai"
-url: "https://github.com/gpizzorno/understanding-ai"
+url: "https://gpizzorno.github.io/understanding-ai/"
 abstract: >-
   Teaching materials introducing humanities and social science researchers to
   contemporary AI systems: key concepts, effective and critical use of large
@@ -23,3 +33,4 @@ license:
   - MIT
   - CC-BY-4.0
 version: 1.0.0
+date-released: 2026-10-12
