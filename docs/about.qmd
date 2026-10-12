@@ -2,9 +2,9 @@
 title: 'About These Materials'
 ---
 
-These materials grew out of a series of in-person workshops for humanities and social science researchers, designed and taught by Gabe Pizzorno, with [James Capobianco](https://dsg.fas.harvard.edu/about/people/james-capobianco/) and [Tracy Stuber](https://dsg.fas.harvard.edu/about/people/tracy-stuber/), as part of the programming of the [Digital Scholarship Group](https://dsg.fas.harvard.edu) at Harvard University.
+The materials on this site grew out of a series of in-person workshops for humanities and social science researchers, designed and taught by the author, with [James Capobianco](https://dsg.fas.harvard.edu/about/people/james-capobianco/) and [Tracy Stuber](https://dsg.fas.harvard.edu/about/people/tracy-stuber/), as part of the programming of the [Digital Scholarship Group](https://dsg.fas.harvard.edu) at Harvard University. The idea for the workshops first came up in September 2025, in conversations with [Gio DiRusso](https://cswr.hds.harvard.edu/people/giovanni-dirusso) and [Andy Chen](https://history.fas.harvard.edu/people/andy-chen), about how AI was being discussed at Harvard, and the need for a better-informed approach.
 
-Pizzorno later taught a redesigned version as a seminar at the [United States Holocaust Memorial Museum](https://www.ushmm.org). The materials from that seminar were then adapted for self-study, as the three units on this site.
+The author later taught a redesigned version as a seminar at the [United States Holocaust Memorial Museum](https://www.ushmm.org). The materials from that seminar were then adapted for self-study, as the three units on this site.
 
 ## Acknowledgements
 
@@ -12,13 +12,21 @@ Pizzorno later taught a redesigned version as a seminar at the [United States Ho
 - [Jeremy Guillette](https://atg.fas.harvard.edu/people/jeremy-guillette) scraped the letters from Wikisource, and split and parsed them into text files and metadata, in the [`stevenson_letters`](https://github.com/jaguillette/stevenson_letters) repository, created for an earlier workshop on web scraping.
 - Place coordinates come from [OpenStreetMap](https://www.openstreetmap.org/copyright) via the [Nominatim](https://nominatim.org) geocoder (© OpenStreetMap contributors, [ODbL](https://opendatacommons.org/licenses/odbl/)).
 - The case study uses the named-entity recognition models [`Davlan/bert-base-multilingual-cased-ner-hrl`](https://huggingface.co/Davlan/bert-base-multilingual-cased-ner-hrl) and [`dslim/bert-base-NER`](https://huggingface.co/dslim/bert-base-NER), via Hugging Face [Transformers](https://github.com/huggingface/transformers).
-- Unit 1 uses [Teachable Machine](https://teachablemachine.withgoogle.com) (Google) and [Hack Merlin](https://hackmerlin.io), Unit 2 uses [Gemini Notebook](https://notebook.google) (Google). These are third-party services, not affiliated with these materials.
+- Unit 1 uses [Teachable Machine](https://teachablemachine.withgoogle.com) (Google) and [Hack Merlin](https://hackmerlin.io), Unit 2 uses [Gemini Notebook](https://notebook.google) (Google). These are unaffiliated, third-party services.
+
+## AI Assistance
+
+These materials were prepared with the help of an AI assistant (*Claude*, by Anthropic), used to edit an early draft of the text for clarity and to test code. The author reviewed and corrected all of it, and the design, the arguments, the sources, and the final content are the author's own.
+
+## Feedback
+
+If you find an error, a broken link, or instructions that no longer match a tool, please [open an issue](https://github.com/gpizzorno/understanding-ai/issues) on GitHub (you'll need a free GitHub account). The third-party tools used in the activities change often, so reports of outdated steps are especially welcome.
 
 ## Licence
 
-- **Code** is licensed under the [MIT License](https://github.com/gpizzorno/understanding-ai/blob/main/LICENSE).
-- **Written materials** are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://github.com/gpizzorno/understanding-ai/blob/main/LICENSE-docs). You may share and adapt them for any purpose, including in your own teaching, as long as you give appropriate credit.
-- **Data** in `data/` comes from other sources with their own terms, see the [data README](https://github.com/gpizzorno/understanding-ai/blob/main/data/README.md).
+- *Code* is licensed under the [MIT License](https://github.com/gpizzorno/understanding-ai/blob/main/LICENSE).
+- *Written materials* are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://github.com/gpizzorno/understanding-ai/blob/main/LICENSE-docs). You may share and adapt them for any purpose, including in your own teaching, as long as you give appropriate credit.
+- *Data* in `data/` comes from other sources with their own terms, see the [data README](https://github.com/gpizzorno/understanding-ai/blob/main/data/README.md).
 
 
 ## Citation
