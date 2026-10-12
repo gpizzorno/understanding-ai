@@ -16,7 +16,7 @@ The materials are designed for self-study and no technical background is assumed
 ::: {.callout-note}
 ## The Running Example
 
-Robert Louis Stevenson (1850–1894), the author of *Treasure Island* and *Strange Case of Dr Jekyll and Mr Hyde*, was a prolific letter writer. A collection of 462 of his letters, written between 1863 and 1894, is used as an example dataset in all three units: you'll question them with a chat assistant, explore them with an AI research tool, and analyse them with a Python pipeline. [More about the letters.](reference/letters.qmd)
+Robert Louis Stevenson (1850–1894), the author of *Treasure Island* and *Strange Case of Dr Jekyll and Mr Hyde*, was a prolific letter writer. A collection of 462 of his letters, written between 1863 and 1894, is used as an example dataset in all three units: you'll question them with a chat assistant, explore them with an AI research tool, and analyze them with a Python pipeline. [More about the letters.](reference/letters.qmd)
 :::
 
 ## The Three Units
